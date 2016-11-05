@@ -1,0 +1,29 @@
+>.panel{
+  z-index: 4;max-height:100%;overflow:hidden;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-top:18px solid rgba(255, 255, 255, 0.5);
+  nav{
+    position: inherit;
+    max-height:100%;overflow:auto;-webkit-overflow-scrolling: touch;
+    top: 0px;
+    bottom: 0px;
+    
+    width: 80%;
+    max-width: 15em;
+    background-color: #fff;
+    @include box-shadow(1px, 0px, 1px, 0px, #b9baba);
+    ul{
+      padding: 10px;
+      li{
+        // margin: 30px 10px;
+        padding: 10px 12px;
+        font-size:1.2em;
+        border-bottom:1px dotted #e1dfdf;
+        &:last-child{
+          border-bottom:0;
+        }
+      }
+    }
+  }
+}

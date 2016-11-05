@@ -1,0 +1,710 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eba lang="zo" description="this is ZOLAI language/section or etc...">
+  <info>Effortless bible analysis?</info>
+  <author>
+    <name></name>
+    <email>LTTMAIL.COM@GMAIL.COM lttmail.com@gmail.com</email>
+    <url></url>
+  </author>
+  <modification>
+    <added>
+      <job on="September 25, 2016">We started converting our data into XML!</job>
+    </added>
+    <updated>
+      <job></job>
+    </updated>
+    <removed>
+      <job></job>
+    </removed>
+  </modification>
+  <index>
+    <section id="1" name="[ZO] AIDS Natna">AIDS Natna</section>
+    <section id="2" name="02. Anpal (First Fruits)">Anpal (First Fruits)</section>
+    <section id="3" name="03. Antanna (Fasting)">Antanna (Fasting)</section>
+    <section id="4" name="04. Biakinn (Church)">Biakinn (Church)</section>
+    <section id="5" name="05. Biakna (Religion)">Biakna (Religion)</section>
+    <section id="6" name="06. Biakpiakzia Maan (True Worship)">Biakpiakzia Maan (True Worship)</section>
+    <section id="7" name="07. Bum (Necromancer)">Bum (Necromancer)</section>
+    <section id="8" name="08. Cidam Sakna (Healing)">Cidam Sakna (Healing)</section>
+    <section id="9" name="09. Dahna leh Sihna (Sadness and Dead)">Dahna leh Sihna (Sadness and Dead)</section>
+    <section id="10" name="10. Dawi (Demon)"></section>
+    <section id="11" name="11. Dawi Hawlkhiatna (Deliverance)"></section>
+    <section id="12" name="12. Dawimangpa (Satan)"></section>
+    <section id="13" name="13. Gay leh Lesbian">description</section>
+    <section id="14" name="14. Hehpihna (Grace)">description</section>
+    <section id="15" name="15. Itna, Ngaihna (Love)">description</section>
+    <section id="16" name="16. Kamsang (Prophet) ">description</section>
+    <section id="17" name="17. Kamtuampau (Other Tongue, Unknown Tongue)">description</section>
+    <section id="18" name="18. Khasiangtho (Holy Spirit, Holy Ghost)">description</section>
+    <section id="19" name="19. Khitui (Tears)">description</section>
+    <section id="20" name="20. Kikhapna (Betting, Gambling)">description</section>
+    <section id="21" name="21. Kitenna (Marriage)">description</section>
+    <section id="22" name="22. Milim (Idol)">description</section>
+    <section id="23" name="23. Muanna (Trust)">description</section>
+    <section id="24" name="24. Nulehpa Mawhna (Sex)">description</section>
+    <section id="25" name="25. Pharisees">description</section>
+    <section id="26" name="26. Phiangsiah, Siahdong (Tax)">description</section>
+    <section id="27" name="27. Phuisam (Casts Spells)">description</section>
+    <section id="28" name="28. Piakhiatna (Offering)">description</section>
+    <section id="29" name="29. Sa (Meat)">description</section>
+    <section id="30" name="30. Sabbath">description</section>
+    <section id="31" name="31. Samsiatna (Cursing) ">description</section>
+    <section id="32" name="32. Satanna (Vegetarian)">description</section>
+    <section id="33" name="33. Sehsuah (Tithe)">description</section>
+    <section id="34" name="34. Siampi (Priest)">description</section>
+    <section id="35" name="35. Tattoo (Vuntung Limsuaih)">description</section>
+    <section id="36" name="36. Thukham (Commandments)">description</section>
+    <section id="37" name="37. Thungetna (Prayer)">description</section>
+    <section id="38" name="38. Thupha (Blessing)">description</section>
+    <section id="39" name="39. Tuiphum, Kiphumna (Baptise)">description</section>
+    <section id="40" name="40. Tumging leh Phatna (Music and Praise)">description</section>
+    <section id="41" name="41. Upna (Faith)">description</section>
+    <section id="42" name="42. Upna Khaicii (Seed Faith)">description</section>
+    <section id="43" name="43. Ze-etna (Temptation)">description</section>  
+    <section id="44" name="44. Zuaukhemna (Lie)">description</section>
+
+<section id="45" name="01. Buaina Vengsakna (Problem Solving)">description</section> 
+<section id="46" name="02. Ei leh Ei Kimuanna (Self-confidence)   ">description</section>
+<section id="47" name="03. Geelna (Plan)">description</section>
+<section id="48" name="04. Hanciamna (Try Hard)">description</section>
+<section id="49" name="05. Huaihamna (Greed)">description</section>
+<section id="50" name="06. Hun Hoih, Hun Kituak (Right Time)">description</section>
+<section id="51" name="07. Khat leh Khat Kizahtakna (Respect) ">description</section>
+<section id="52" name="08. Ki niamkhiatna (Humbling)">description</section>
+<section id="53" name="09. Kideidanna, Langlekna (Bias, Discrimination)">description</section>
+<section id="54" name="10. Kidemna (Competition)">description</section>
+<section id="55" name="11. Kihilna (Omen, Portent)">description</section>
+<section id="56" name="12. Kikhalna (Organized)">description</section>
+<section id="57" name="13. Kineihna (Pretending)">description</section>
+<section id="58" name="14. Kinialna, Kam Kiselna (Argument)">description</section>
+<section id="59" name="15. Kipulaakna (Confession)">description</section>
+<section id="60" name="16. Kisialhna (Boasting)">description</section>
+<section id="61" name="17. Kisikna (Regret, Remorse, Repent)">description</section>
+<section id="62" name="18. Lametna leh Thapiakna (Hope and Encouragement) ">description</section>
+<section id="63" name="19. Launa, Lung himawhna, Patauhna (Fear, Worry)">description</section>
+<section id="64" name="20. Lehdo Langdona (Betrayal)">description</section>
+<section id="65" name="21. Lungdamkohna (Thanks Giving)">description</section>
+<section id="66" name="22. Lungduaina (Patience)">description</section>
+<section id="67" name="23. Lungnopna, Daihna (Calmness)">description</section>
+<section id="68" name="24. Lungzingna (Depression)  ">description</section>
+<section id="69" name="25. Maisakna (Forgiveness)">description</section>
+<section id="70" name="26. Midangte Thukhenna (Judge Others)">description</section>
+<section id="71" name="27. Mihing Ngeina (Human Nature)">description</section>
+<section id="72" name="28. Ngimna (Aim, Goal)">description</section>
+<section id="73" name="29. Nuntak tomna, Hun tawmvei (Temporary)">description</section>
+<section id="74" name="30. Nuntakna ii Khiatna (Meaning of Life)">description</section>
+<section id="75" name="31. Pasian Deihna, Pasian Geelna (God’s will, God’s Purpose)">description</section>
+<section id="76" name="32. Pasian Zahtakna (Fair of God)">description</section>
+<section id="77" name="33. Picinna (Maturity)">description</section>
+<section id="78" name="34. Pilna (Wisdom)">description</section>
+<section id="79" name="35. Sep Ngamna, Kipat Ngamna (Risk)">description</section>
+<section id="80" name="36. Sepkhop theihna (Teamwork)">description</section>
+<section id="81" name="37. Simmawhna (Bullying, Sabotage)">description</section>
+<section id="82" name="38. Sum Tuat Kholhna (Budget)">description</section>
+<section id="83" name="39. Sumbat, Leibat (Debt)">description</section>
+<section id="84" name="40. Teci, Tet ti (Testimony)">description</section>
+<section id="85" name="41. Tehkaakna (Comparison)">description</section>
+<section id="86" name="42. Thu Theihna (Knowledge)">description</section>
+<section id="87" name="43. Thumanna (Obedience)">description</section>
+<section id="88" name="44. Thuumna (Apology)">description</section>
+<section id="89" name="45. Zin dona, Lengla Dona (Guests, Visitors)">description</section>
+
+<section id="90" name="01. Biakinn (Church)">description</section>
+<section id="91" name="02. Gal (Enemy)">description</section>
+<section id="92" name="03. Gamvai (Politics)">description</section>
+<section id="93" name="04. Golhguk (Bribe)">description</section>
+<section id="94" name="05. Innkuan (Family)">description</section>
+<section id="95" name="06. Khangno (Youth)">description</section>
+<section id="96" name="07. Kumpi (government)">description</section>
+<section id="97" name="08. Lawm (Friend)">description</section>
+<section id="98" name="09. Leitawi Laakna leh Piakna (Borrow and Loan)">description</section>
+<section id="99" name="10. Lokhawh Gankhawi (Agriculture)">description</section>
+<section id="100" name="11. Naupang (Children)">description</section>
+<section id="101" name="12. Sia, Thu Hilhte (Teacher)">description</section>
+<section id="102" name="13. Sila (Slavery)">description</section>
+<section id="103" name="14. Suahpih Hamphatna (Human Rights)">description</section>
+<section id="104" name="15. Sum, Hauhna (Money, Wealth)">description</section>
+<section id="105" name="16. Thu Kizakna, Lakna Muhna (Media)">description</section>
+<section id="106" name="17. Aksite (Stars)">description</section>
+<section id="107" name="18. Christian">description</section>
+<section id="108" name="19. Dawi Tawh Kikopna (illuminati)">description</section>
+<section id="109" name="20. Dawimangpa ta (son of Satan)">description</section>
+<section id="110" name="21. Eden Huan (How is Eden)">description</section>
+<section id="111" name="22. Hell Meikhuk (How is Hell)">description</section>
+<section id="112" name="23. Hun Khiangna (Teleportation)">description</section>
+<section id="113" name="24. Huntawp Ni (Sign of The End)">description</section>
+<section id="114" name="25. Kha zia (Spiritual Nature)">description</section>
+<section id="115" name="26. Khasiangtho Kibuak Ni (Pentecost)">description</section>
+<section id="116" name="27. Laaktohna (Rapture)">description</section>
+<section id="117" name="28. Laisiangtho (Bible)">description</section>
+<section id="118" name="29. Lei leh Vaan Kuampibup (Universe)">description</section>
+<section id="119" name="30. Leitung (How is World)">description</section>
+<section id="120" name="31. Lungdambawl (Christmas)">description</section>
+<section id="121" name="32. Neekkhawm (Communion)">description</section>
+<section id="122" name="33. Nisuh (Palm)">description</section>
+<section id="123" name="34. Nungzuihna (Discipleship)">description</section>
+<section id="124" name="35. Paikikna (The Second Coming)">description</section>
+<section id="125" name="36. Pasian (God">description</section>
+<section id="126" name="37. Pasian Gam (God's Kingdom)">description</section>
+<section id="127" name="38. Pasian Thugenna, Pasian Na Sepna (Evangelist, Ministry)">description</section>
+<section id="128" name="39. Pasian Thukhenna (God’s Judgement)">description</section>
+<section id="129" name="40. Pawi (Festival)">description</section>
+<section id="130" name="41. Sapi Nambat (666) ">description</section>
+<section id="131" name="42. Sathau Nilhna (Anointing) ">description</section>
+<section id="132" name="43. Siangthopen Mun (Holy of Holies)">description</section>
+<section id="133" name="44. Sihkhit Nung ah (Life after Death)">description</section>
+<section id="134" name="45. Thawhkik Sakna (Resurrection)">description</section>
+<section id="135" name="46. Thum Gawm Pasian (Trinity)">description</section>
+<section id="136" name="47. Topa Zeisu Sihni (Good Friday)">description</section>
+<section id="137" name="48. Topa Zeisu Thawhkik Ni (Easter)">description</section>
+<section id="138" name="49. Vantung Gam (How is Heaven)">description</section>
+<section id="139" name="50. Vantungmi (Angel)">description</section>
+<section id="140" name="51. Zeisu (Jesus)">description</section> 
+  </index>
+<bookname>
+    <row id="1">Piancilna</row>
+    <row id="2">Paikhiatna</row>
+    <row id="3">Siampi Laibu</row>
+    <row id="4">Gamlak Vanka</row>
+    <row id="5">Thu Hilhkikna</row>
+    <row id="6">Joshua</row>
+    <row id="7">Thukhente</row>
+    <row id="8">Ruth</row>
+    <row id="9">Samuel Masa</row>
+    <row id="10">Samuel Nihna</row>
+    <row id="11">Kumpite Masa</row>
+    <row id="12">Kumpite Nihna</row>
+    <row id="13">Khang Tangthu Masa</row>
+    <row id="14">Khang Tangthu Nihna</row>
+    <row id="15">Ezra</row>
+    <row id="16">Nehemiah</row>
+    <row id="17">Esther</row>
+    <row id="18">Job</row>
+    <row id="19">Late</row>
+    <row id="20">Paunak</row>
+    <row id="21">Thuhilhna</row>
+    <row id="22">Solomon La</row>
+    <row id="23">Isaiah</row>
+    <row id="24">Jeremiah</row>
+    <row id="25">Kahla</row>
+    <row id="26">Ezekiel</row>
+    <row id="27">Daniel</row>
+    <row id="28">Hosea</row>
+    <row id="29">Joel</row>
+    <row id="30">Amos</row>
+    <row id="31">Obadiah</row>
+    <row id="32">Jonah</row>
+    <row id="33">Micah</row>
+    <row id="34">Nahum</row>
+    <row id="35">Habakkuk</row>
+    <row id="36">Zephaniah</row>
+    <row id="37">Haggai</row>
+    <row id="38">Zechariah</row>
+    <row id="39">Malakhi</row>
+    <row id="40">Matthew</row>
+    <row id="41">Mark</row>
+    <row id="42">Luka</row>
+    <row id="43">Johan</row>
+    <row id="44">Sawltakte Tangthu</row>
+    <row id="45">Rom</row>
+    <row id="46">Corin Masa</row>
+    <row id="47">Corin Nihna</row>
+    <row id="48">Galati</row>
+    <row id="49">Ephesa</row>
+    <row id="50">Philippi</row>
+    <row id="51">Colose</row>
+    <row id="52">Thesaloni Masa</row>
+    <row id="53">Thesaloni Nihna</row>
+    <row id="54">Timoti Masa</row>
+    <row id="55">Timoti Nihna</row>
+    <row id="56">Titus</row>
+    <row id="57">Philemon</row>
+    <row id="58">Hebrews</row>
+    <row id="59">James</row>
+    <row id="60">Peter Masa</row>
+    <row id="61">Peter Nihna</row>
+    <row id="62">Johan Masa</row>
+    <row id="63">Johan Nihna</row>
+    <row id="64">Johan Thumna</row>
+    <row id="65">Jude</row>
+    <row id="66">Mangmuhna</row>
+  </bookname>
+ <testament>
+    <row id="1" shortname="TL" reg="1-39">Thuciam Lui</row>
+    <row id="2" shortname="TT" reg="40-66">Thuciam Thak</row>
+  </testament>
+  <tag>
+    <row id="1">Basic</row>
+    <row id="2">intermediate</row>
+    <row id="3">Advance</row>
+  </tag>
+  <book>
+    <category id="1">
+      <verse book="20" chapter="5" verse="3-6" tag="1">Numei paktatte' kampau khuaizu bangin khum mahmahin a thugente uh a neel dakdak hangin, 4 a tawpna-ah lungkhamna leh natna simloh nangma tungah bangmah dang hong guanlo hi. 5 Amah in sihna gamah nang hong paipih ding a, ama tot lampi pen sihna mun tun'na lampi ahi hi. 6 Nuntakna lampi-ah amah omlo a, nang na phawkloh hangin amah lam pialin a vakvai ahi hi.</verse>
+<verse book="20" chapter="5" verse="11" tag="1">Na sih kuan uh ciangin thumin na tau ding uh a, gawngin na guhguak bekun na om ding uh hi.</verse>
+<verse book="20" chapter="6" verse="26-28" tag="1">Bang hang hiam cih leh anlum khat tawh numei paktat khat kingahzo a, ahi zongin numei tawh mawhna in nuntakna bup siasak hi. 27 Na ang sungah meikuang pom lecin na puan kangloin om ding ahi hiam? 28 Mei-am tung tawnin pai lecin na khe kangloin om ding ahi hiam?  </verse>
+<verse book="20" chapter="6" verse="32" tag="1">Ahi zongin numei tawh a mawhte pen thu ngaihsun theilo mi hi a, amau leh amau a kisusiatawm ahi uh hi.</verse>
+<verse book="20" chapter="7" verse="26,27" tag="1">Tua bang numei in mi tampi tak siasakin, simzawhloh ding mi tampi' sihna a piangsak hi. 27 Tua bang numei zuihna pen sihna gam zuatna hi a, sih baihna ding lampi zuatna ahi hi.</verse>
+  <verse book="46" chapter="6" verse="18" tag="1">Numei tawh mawhna na pelh un. Mi khat in a bawl mawhna tuamtuamte in ama pumpi sukhalo hi, a ci om hi. Ahi zongin numei tawh a mawhte, ama pumpi tungah a khial ahi hi.
+</verse>
+    </category>
+    <category id="2">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="3">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="4">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="5">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="6">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="7">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="8">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="9">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="10">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+<category id="11">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="12">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="13">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="14">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="15">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="16">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="17">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="18">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="19">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="20">
+      <verse book="2" chapter="20" verse="17" tag="1">“Na vengte uh inn na deihgawh kei ding uh hi. Na vengte uh zi hita leh, ama nasempa hita leh, ama nasemnu hita leh, ama bawngtal hita leh, ama la hita leh, na vengte-a' ahi na khat peuhpeuh na deihgawh kei ding uh hi,” a ci hi.</verse>
+<verse book="7" chapter="14" verse="12,13" tag="1">Tua ciangin Samson in amaute kiangah, “Note' mai-ah thuhaksa khat hong gen ning. Hih pawi ni sagih sungin a thu mukhia-in bang hiam cih nong gentheih uh leh saihadial puan silh sawmthum leh pawipuan silh sawmthum note kong pia ding hi. 13 Ahih hangin bang hiam cih nong gentheih kei uh leh saihadial puan silh sawmthum leh pawipuan silh sawmthum kei nong pia ding uh hi,” a ci hi. Tua ciangin amaute in ama kiangah, “Na thuhaksa hong gen in, za dih ni,” a ci uh hi.</verse>
+<verse book="19" chapter="24" verse="1" tag="1">Leitung leh a tunga omte, leitung leh a tunga tengte { Topa}-a' ahi hi.</verse>
+<verse book="20" chapter="10" verse="4" tag="1">Thadahna in zawn'na hi a, thanuamna in hauhna hi.</verse>
+<verse book="20" chapter="13" verse="11" tag="1">Ol takin hauhpakna oltak mahin kiamkik pah a, haksapi-in hauhtohna khangto semsem hi.</verse>
+ <verse book="20" chapter="15" verse="27" tag="1">A manloin sum ngahna in innsung lungkhamsak a, sumgolh a deihlote a nuntak sauvei nuam hi.</verse>
+<verse book="20" chapter="16" verse="33" tag="1">Mite in bangbangin ai a san zongin, a piang ding thu pen { Topa' } deihna bangbek hizaw hi.</verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+ <verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+ <verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+ <verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+ <verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+ <verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+ <verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+<verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+<category id="21">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="22">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="23">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="24">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="25">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="26">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="27">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="28">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="29">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="30">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+<category id="31">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="32">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="33">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="34">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="35">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="36">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="37">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="38">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="39">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="40">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+<category id="41">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="42">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+ <category id="43">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+    <category id="44">
+      <verse book="" chapter="" verse="" tag="1"></verse>
+    </category>
+
+<category id="45">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="46">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="47">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="48">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="49">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="50">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="51">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="52">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="53">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="54">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="55">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="56">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="57">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="58">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="59">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="60">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="61">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="62">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="63">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="64">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="65">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="66">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="67">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="68">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="69">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="70">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="71">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="72">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="73">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="74">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="75">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="76">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="77">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="78">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="79">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="80">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="81">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="82">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="83">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="84">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="85">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="86">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="87">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="88">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+<category id="89">
+      <verse book="" chapter="" verse="" tag="2"></verse>
+    </category>
+
+<category id="90">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="91">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="92">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="93">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="94">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="95">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="96">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="97">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="98">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="99">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="100">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="101">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="102">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="103">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="104">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="105">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="106">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="107">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="108">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="109">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="110">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="111">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="112">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="113">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="114">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="115">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="116">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="117">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="118">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="119">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="120">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="121">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="122">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="123">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="124">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="125">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="126">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="127">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="128">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="129">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="130">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="131">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="132">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="133">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="134">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="135">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="136">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="137">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="138">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+<category id="139">
+      <verse book="" chapter="" verse="" tag="3"></verse>
+    </category>
+
+  </book>
+</eba>

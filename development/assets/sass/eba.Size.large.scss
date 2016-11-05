@@ -1,0 +1,43 @@
+main{
+  div{
+    ul{
+      li{}
+      &.content{
+        li{
+          h2{
+            font-size: 1.4em;
+          }
+          h3, p{
+          }
+          h3{
+            font-size: 1.3em;
+            i{
+              font-size: 1.4em;
+              &:before{
+              }
+            }
+          }
+          p{
+            font-size: 1.2em;
+            b{
+              font-weight: lighter;
+            }
+          }
+          &.active{
+            h3{
+              i{
+                &:before{
+                }
+              }
+            }
+          }
+          &.category{
+            h2{
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+    }
+  }
+}

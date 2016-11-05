@@ -1,0 +1,52 @@
+&.android {
+  header{
+    ul {
+      li {
+        a {
+          text-decoration: none;
+          font-size: 1.7em;
+        }
+        &.title {
+          font-size: 1.6em;
+        }
+      }
+      li.fix {
+      }
+    }
+  }
+  main {
+    div {
+      &.container{
+        >ol{
+          li {
+            a {
+            }
+          }
+          &.category{
+            li {
+              a {
+                font-size: 1.4em;
+                &:before {
+                  top:16px;
+                  right: 10px;
+                }
+              }
+            }
+          }
+        }
+        >ul{
+          &.content{
+            li{
+              h3{
+                font-size: 1.4em;
+              }
+              p{
+                font-size: 1.3em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

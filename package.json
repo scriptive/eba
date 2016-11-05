@@ -1,0 +1,154 @@
+{
+  "name": "effortless-bible-analysis",
+  "version": "1.0.0",
+  "description": "Effortless bible analysis",
+  "config": {
+    "common": {
+      "name": "Effortless bible analysis",
+      "unique": ".n-.o-.v-build-.b",
+      "id":"me.lethil.developer.eba",
+      "development": {
+        "root": "development",
+        "assets": "assets"
+      },
+      "production": {
+        "root": "production",
+        "main": "index",
+        "type": "app",
+        "file": {
+          "img": {
+            "png$": true
+          },
+          "fontmya": {
+            "(.*)": true
+          },
+          "fontello": {
+            "json$": false
+          },
+          "laisiangtho": {
+            "([A-Z])": false
+          },
+          "lang": {
+            "^[a-z]{2}.json$": true
+          },
+          "css": {
+            "([A-Z]|\\d)": false
+          },
+          "js": {
+            "([A-Z]|\\d)": false
+          },
+          "root": {
+            "([A-Z]|\\d)": false
+          }
+        }
+      },
+      "version": "1.0.0",
+      "build": "0.0.1"
+    },
+    "individual": {
+      "chrome": {
+        "production": {
+          "file": {
+            "laisiangtho": {
+              "(json)": true
+            },
+            "css": {
+              "(mobile|web|tablet)": false
+            },
+            "js": {
+              "(mobile|web|tablet)": false
+            },
+            "root": {
+              "(chrome)": true
+            }
+          }
+        }
+      },
+      "ios": {
+        "production": {
+          "file": {
+            "css": {
+              "(desktop|web|android)": false
+            },
+            "js": {
+              "(desktop|web|chrome|android)": false
+            },
+            "root": {
+              "(ios|app)": true,
+              "(web)": false
+            }
+          }
+        }
+      },
+      "android": {
+        "production": {
+          "file": {
+            "css": {
+              "(desktop|web|ios)": false
+            },
+            "js": {
+              "(desktop|web|chrome|ios)": false
+            },
+            "root": {
+              "(android|app)": true,
+              "(web)": false
+            }
+          }
+        }
+      },
+      "default": {
+        "development": {
+          "main": "default"
+        },
+        "production": {
+          "type": "web",
+          "file": {
+            "css": {
+              "(app)": false
+            },
+            "js": {
+              "(app)": false
+            },
+            "root": {
+              "(default|web)": true,
+              "(app)": false
+            }
+          }
+        }
+      },
+      "electron": {}
+    }
+  },
+  "main": "main.js",
+  "scripts": {
+    "build": "node ./npm-build.js",
+    "build-chrome": "node ./npm-build.js --os=chrome",
+    "build-ios": "node ./npm-build.js --os=ios",
+    "build-android": "node ./npm-build.js --os=android",
+    "build-default": "node ./npm-build.js --os=default",
+    "build-electron": "node ./npm-build.js --os=electron",
+    "build-template": "node ./npm-template.js --os=null",
+    "build-test": "node ./npm-build-test.js --os=chrome"
+  },
+  "keywords": [
+    "effortless",
+    "bible",
+    "analysis"
+  ],
+  "author": "Khen Solomon Lethil",
+  "license": "ISC",
+  "devDependencies": {
+    "fs-extra": "latest",
+    "gulp": "latest",
+    "gulp-concat": "latest",
+    "gulp-include": "latest",
+    "gulp-minify-css": "latest",
+    "gulp-sass": "latest",
+    "gulp-uglify": "latest",
+    "cli-color": "latest",
+    "minimist": "latest",
+    "node.extend": "latest",
+    "uglify-js": "latest",
+    "xmldom": "latest"
+  }
+}

@@ -10,22 +10,37 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Effortless bible analysis</title>
-    <link rel="icon" href="img/icon.16.png" type="image/png"/>
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery.ui.js"></script>
-    <script src="js/jquery.mobile.custom.min.js"></script>
-    <script src="js/eba.js"></script>
-    <link rel="stylesheet" href="css/eba.css" media="screen" title="EBA">
-    <link rel="stylesheet" href="font/eba.css" media="screen" title="EBA">
-    <style type='text/css' id='custom'></style>
+    <link rel="api" href="http://api.laisiangtho.com/"/>
+    <link rel="icon" href="img/icon.png" type="image/png"/>
+    <link rel="stylesheet" href="font/eba.css" media="screen">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <script src="lib/jquery.min.js"></script>
+    <!-- <script src="lib/jquery.ui.min.js"></script> -->
+    <!-- <script src="lib/jquery.ui.touch-punch.min.js"></script> -->
+    <!-- <script src="lib/jquery.mobile.custom.min.js"></script> -->
+    <!-- <script src="cordova.js"></script> -->
+    <script src="lib/scriptive.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+    eba.document({
+      config:{
+        Execute:[{'metalink':['api']},'load','handler'],
+        Device:'ios',Platform:'app',Deploy:'mobile'
+      },
+      ready:function(){
+        this.config.msg.info = document.querySelector("p#msg");
+      }
+    });
+    </script>
+    <style type="text/css" id="custom"></style>
   </head>
   <body>
     <div id="l100" class="screen">
       <h1>Effortless bible analysis</h1>
-      <p title="0%">wait...</p>
+      <p id="msg" title="0%">wait...</p>
     </div>
     <script>
-        var __cordovaRunningOnBrowser__ = false;
+      var __cordovaRunningOnBrowser__ = false;
     </script>
     <script src="cordova.js"></script>
   </body>

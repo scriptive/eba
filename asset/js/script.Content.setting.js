@@ -27,8 +27,8 @@ var options={
   }
 }
 var container = $( "<ul>",{class:'setting'} ).appendTo($('div.container').empty());
-// var db = eba.db.select('css',true);
-var configuration = eba.db.select('setting',true);
+// var db = app.db.select('css',true);
+var configuration = app.db.select('setting',true);
 if(!configuration.name.setting.hasOwnProperty('class')){configuration.name.setting.class={};}
 $.each(options, function(k, setting) {
   $( "<li>",{class:'title'}).append(
@@ -38,13 +38,13 @@ $.each(options, function(k, setting) {
     var childContainer = $(this);
     $.each(setting.option, function(x, y) {
       if(configuration.name.setting.class.hasOwnProperty(k)){
-        var activeStatusClass = (configuration.name.setting.class[k]==y.class?eba.setting.classname.active:eba.setting.classname.inactive);
+        var activeStatusClass = (configuration.name.setting.class[k]==y.class?app.setting.classname.active:app.setting.classname.inactive);
       } else {
-        var activeStatusClass = eba.setting.classname.inactive;
+        var activeStatusClass = app.setting.classname.inactive;
       }
       $( "<span>",y).addClass('icon-').addClass(activeStatusClass).bind(app.config.Handler, function(e) {
         // var style = setting.style.replace(/(\$.*)(\;)/gi,x+'$2');
-        $(this).addClass(eba.setting.classname.active).siblings().removeClass(eba.setting.classname.active);
+        $(this).addClass(app.setting.classname.active).siblings().removeClass(app.setting.classname.active);
         if(configuration.name.setting.class.hasOwnProperty(k)){
           if($('body').hasClass(configuration.name.setting.class[k])){
             $('body').removeClass(configuration.name.setting.class[k]);

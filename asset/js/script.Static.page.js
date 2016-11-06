@@ -81,7 +81,7 @@ verse:{
         job:function(evt){
           evt.bind(app.config.Handler, function(e) {
             // console.log('click');
-            $(this).parent().toggleClass(eba.setting.classname.active);
+            $(this).parent().toggleClass(app.setting.classname.active);
           });
           // return $('<input>',{type:'text',name:'q',id:'q',placeholder:'search...'});
         }

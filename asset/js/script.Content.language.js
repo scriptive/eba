@@ -1,23 +1,23 @@
-var language = eba.db.name.language;
-var query = eba.db.name.query;
+var language = app.db.name.language;
+var query = app.db.name.query;
 var container = $( "<ul>",{class:'language'} ).appendTo($('div.container').empty());
-$.each(eba.setting.language, function(k, v) {
+$.each(app.setting.language, function(k, v) {
   if(language.hasOwnProperty(k)){
-    var activeStatusClass = eba.setting.classname.active;
+    var activeStatusClass = app.setting.classname.active;
   } else{
-    var activeStatusClass = eba.setting.classname.inactive;
+    var activeStatusClass = app.setting.classname.inactive;
   }
   $( "<li>",{class:k}).addClass(activeStatusClass).append(
     $( "<p>",{class:'lang icon-flag-empty'}).append(v.name).bind(app.config.Handler, function(e) {
       if(language.hasOwnProperty(k)){
         query.language=k;
-        eba.watch.go('category')(k);
+        app.watch.go('category')(k);
       } else{
-        eba.msg('Selected language is not activited!');
+        app.msg('Selected language is not activited!');
       }
     }),
     $( "<p>",{class:'download icon-'}).append($( "<span>",{text:'download'})).bind(app.config.Handler, function(e) {
-      $(this).parent().toggleClass(eba.setting.classname.active).promise().done(function(){
+      $(this).parent().toggleClass(app.setting.classname.active).promise().done(function(){
         if(language.hasOwnProperty(k)){
           delete language[k];
           if (Object.keys(language)[0]){
@@ -36,8 +36,8 @@ $.each(eba.setting.language, function(k, v) {
           query.language=k;
           language[k]={};
         }
-        eba.db.update('query');
-        eba.db.update('language');
+        app.db.update('query');
+        app.db.update('language');
       });
     })
   ).appendTo(container);

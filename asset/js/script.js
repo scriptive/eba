@@ -12,8 +12,7 @@
           $('.screen').fadeOut(500).promise().done(app.watch.go());
         });
       }).fail(function(msg) {
-        app.notification(msg);
-        app.notification('class','blink');
+        app.notification(msg).setAttribute('class','blink');
       }).always(function(msg){
         app.notification(msg);
       });

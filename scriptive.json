@@ -12,6 +12,9 @@
     },
     "dist": {
       "file": {
+        "db": {
+          "xml$": true
+        }
       }
     }
   },
@@ -34,7 +37,13 @@
     },
     "web": {
       "dev": {},
-      "dist": {}
+      "dist": {
+        "file": {
+          "lib": {
+            "(localforage|google|ui)": false
+          }
+        }
+      }
     },
     "electron": {
       "dev": {},

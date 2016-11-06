@@ -1,7 +1,7 @@
-var query = eba.db.name.query;
-var bookmark = eba.db.name.bookmark;
+var query = app.db.name.query;
+var bookmark = app.db.name.bookmark;
 if (query.language && !$.isEmptyObject(bookmark)){
-  var xmlDoc = $(eba.xml.data[query.language]);
+  var xmlDoc = $(app.xml.data[query.language]);
   var container = $( "<ul>",{class:'content bookmark'} ).appendTo($('div.container').empty());
   $.each(bookmark,function(category,vCategory){
     $( "<li>" ).append(
@@ -13,10 +13,10 @@ if (query.language && !$.isEmptyObject(bookmark)){
         $.each(vChapter,function(vVerse,verse){
           var xmlVerse = xmlCategory.find('verse[book="711"][chapter="712"][verse="713"]'.replace(711, book).replace(712, chapter).replace(713, verse));
           var bookName=xmlDoc.find('bookname').children('row[id="0"]'.replace('0', book)).text();
-          $( "<li>",{class:eba.setting.classname.active}).append(
+          $( "<li>",{class:app.setting.classname.active}).append(
             $( "<h3>" ).append(
               $( "<i>",{class:'icon-bookmark'} ).bind(app.config.Handler, function(e) {
-                eba.task.bookmark($(this).parents('li'),category,book,chapter,verse);
+                app.task.bookmark($(this).parents('li'),category,book,chapter,verse);
               }),
               '0 1:2'.replace(0, bookName).replace(1, chapter).replace(2, verse)
             ),

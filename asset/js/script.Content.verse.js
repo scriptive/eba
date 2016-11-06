@@ -1,6 +1,6 @@
-var query = eba.db.name.query;
+var query = app.db.name.query;
 var xmlDoc, tags=[], testaments=[];
-eba.xml.get(query.language).done(function(xml) {
+app.xml.get(query.language).done(function(xml) {
   var container = $( "<ul>",{class:'content'} ).appendTo($('div.container').empty());
   xmlDoc = $(xml);
   $('.title').html(xmlDoc.find('index').children('section[id="0"]'.replace('0', query.category)).text());
@@ -21,7 +21,7 @@ eba.xml.get(query.language).done(function(xml) {
     tags.push(tag);
     testaments.push(testament);
 
-    // var bookmarks = eba.db.name.bookmark;
+    // var bookmarks = app.db.name.bookmark;
     // var hasBookmark = false;
     // if (bookmarks.hasOwnProperty(query.category)){
     //   if (bookmarks[query.category].hasOwnProperty(book)){
@@ -30,19 +30,19 @@ eba.xml.get(query.language).done(function(xml) {
     //     }
     //   }
     // }
-    var hasBookmark = eba.task.hasBookmark(query.category,book,chapter,verse);
-    var activeBookmarkClass = (hasBookmark?eba.setting.classname.active:eba.setting.classname.inactive);
+    var hasBookmark = app.task.hasBookmark(query.category,book,chapter,verse);
+    var activeBookmarkClass = (hasBookmark?app.setting.classname.active:app.setting.classname.inactive);
     var tagClass = xmlDoc.find('tag').children('row[id="0"]'.replace('0', tag)).text().toLowerCase();
     var testamentClass = xmlDoc.find('testament').children('row[id="0"]'.replace('0', testament)).text().replace(' ', '-').toLowerCase();
      $( "<li>",{class:tagClass}).addClass(activeBookmarkClass).addClass(testamentClass).append(
        $( "<h3>" ).append(
          $( "<i>",{class:'icon-bookmark'} ).bind(app.config.Handler, function(e) {
-           eba.task.bookmark($(this).parents('li'),query.category,book,chapter,verse);
+           app.task.bookmark($(this).parents('li'),query.category,book,chapter,verse);
          }),
          '0 1:2'.replace(0, bookName).replace(1, chapter).replace(2, verse)
        ),
        $( "<p>" ).append(
-         eba.task.numReplace(verseText)
+         app.task.numReplace(verseText)
        )
      ).appendTo(container);
   });

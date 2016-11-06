@@ -9,7 +9,7 @@ set: function(id,val){
 remove: function(){
 },
 import: function(url,file){
-  eba.setting.language[file]={
+  app.setting.language[file]={
     xml:file,
     name:'(?) '+file+' temp',
     description:'Unknown'
@@ -22,17 +22,17 @@ get: function(file,callback){
       file = Object.keys(this.data)[0];
       console.log(file);
     } else {
-      file = Object.keys(eba.setting.language)[0];
+      file = Object.keys(app.setting.language)[0];
     }
   }
   if(this.data.hasOwnProperty(file)){
     var deferred = $.Deferred();
     if (callback){ callback(); }
-    deferred.resolve(eba.xml.data[file]);
+    deferred.resolve(app.xml.data[file]);
     return deferred.promise();
     // if (callback){ callback(); }
     // this.done=function(callback){
-    //   return callback(eba.xml.data[file]);
+    //   return callback(app.xml.data[file]);
     // };
     // return deferred;
   } else{
@@ -42,7 +42,7 @@ get: function(file,callback){
 load: function(url,file,callback){
   return $.ajax({
     // ?zomi=developer
-    type:'GET',url:'url/file.xml'.replace('url', url).replace('file', eba.setting.language[file].xml),cache:false,dataType:'xml',
+    type:'GET',url:'url/file.xml'.replace('url', url).replace('file', app.setting.language[file].xml),cache:false,dataType:'xml',
     xhr: function () {
       var xhr = new window.XMLHttpRequest();
       if (callback){
@@ -51,7 +51,7 @@ load: function(url,file,callback){
       return xhr;
     }
   }).done(function(xml) {
-    eba.xml.set(file,xml);
+    app.xml.set(file,xml);
   })
   .fail(function() {
   })

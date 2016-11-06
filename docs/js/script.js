@@ -477,7 +477,7 @@
         init: function(t) {
             var a = $.Deferred();
             return a.notify("initiating"), setTimeout(function() {
-                $("body").addClass(e.config.Deploy).promise().then(function() {
+                $("body").addClass(e.config.Screen).promise().then(function() {
                     a.notify("configuration"), setTimeout(function() {
                         var t = e.db.select("setting", !0);
                         t.name.setting.hasOwnProperty("class") ? $.each(t.name.setting.class, function(e, t) {
@@ -498,7 +498,7 @@
                     }, 400);
                 }).then(function() {
                     setTimeout(function() {
-                        e.config.Deploy ? a.notify(90) : a.notify(99).reject("connecting to device");
+                        e.config.Screen ? a.notify(90) : a.notify(99).reject("connecting to device");
                     }, 600);
                 }).then(function() {
                     setTimeout(function() {

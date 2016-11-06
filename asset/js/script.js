@@ -106,7 +106,7 @@
       var deferred = $.Deferred();
       deferred.notify('initiating');
       setTimeout(function() {
-        $('body').addClass(app.config.Deploy).promise().then(function() {
+        $('body').addClass(app.config.Screen).promise().then(function() {
           deferred.notify('configuration');
           setTimeout(function() {
             var configuration = app.db.select('setting',true);
@@ -144,7 +144,7 @@
           },400);
         }).then(function(){
           setTimeout(function() {
-            if (app.config.Deploy) {
+            if (app.config.Screen) {
               deferred.notify(90);
             } else {
               deferred.notify(99).reject('connecting to device');

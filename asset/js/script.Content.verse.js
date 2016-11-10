@@ -1,4 +1,4 @@
-var query = app.db.name.query;
+var query = app.localStorage.name.query;
 var xmlDoc, tags=[], testaments=[];
 app.xml.get(query.language).done(function(xml) {
   var container = $( "<ul>",{class:'content'} ).appendTo($('div.container').empty());
@@ -21,7 +21,7 @@ app.xml.get(query.language).done(function(xml) {
     tags.push(tag);
     testaments.push(testament);
 
-    // var bookmarks = app.db.name.bookmark;
+    // var bookmarks = app.localStorage.name.bookmark;
     // var hasBookmark = false;
     // if (bookmarks.hasOwnProperty(query.category)){
     //   if (bookmarks[query.category].hasOwnProperty(book)){

@@ -1,5 +1,5 @@
-var language = app.db.name.language;
-var query = app.db.name.query;
+var language = app.localStorage.name.language;
+var query = app.localStorage.name.query;
 var container = $( "<ul>",{class:'language'} ).appendTo($('div.container').empty());
 $.each(app.setting.language, function(k, v) {
   if(language.hasOwnProperty(k)){
@@ -36,8 +36,7 @@ $.each(app.setting.language, function(k, v) {
           query.language=k;
           language[k]={};
         }
-        app.db.update('query');
-        app.db.update('language');
+        app.localStorage.update('query').update('language');
       });
     })
   ).appendTo(container);

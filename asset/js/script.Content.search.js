@@ -1,7 +1,7 @@
-var query = app.db.name.query;
+var query = app.localStorage.name.query;
 // query.q = 'numei';
 var searchVerse = function(){
-  var suggestion = app.db.name.suggestion;
+  var suggestion = app.localStorage.name.suggestion;
   var searchResult = 0;
   var searchResultCategory = 0;
   if (query.language && query.q){
@@ -42,7 +42,7 @@ var searchVerse = function(){
       }).promise().done(function(){
         if (searchResult) {
           suggestion[query.q]=searchResult;
-          app.db.update('suggestion');
+          app.localStorage.update('suggestion');
         } else {
           $('div.container').html(
             $( "<div>",{class:'msg error'}).html('"0" did not match any verses!'.replace(0,query.q))
@@ -60,7 +60,7 @@ var searchVerse = function(){
   console.log(date);
 }
 var searchSuggestion = function(){
-  var suggestion = app.db.name.suggestion;
+  var suggestion = app.localStorage.name.suggestion;
   $.each(suggestion,function(k,v){
     console.log(k,v);
   });
@@ -68,6 +68,6 @@ var searchSuggestion = function(){
 searchVerse();
 $('form').submit(function( event ) {
   query.q=$(this).children('input').val();
-  app.db.update('query');
+  app.localStorage.update('query');
   searchVerse();
 });

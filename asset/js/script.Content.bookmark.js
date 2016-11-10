@@ -1,5 +1,5 @@
-var query = app.db.name.query;
-var bookmark = app.db.name.bookmark;
+var query = app.localStorage.name.query;
+var bookmark = app.localStorage.name.bookmark;
 if (query.language && !$.isEmptyObject(bookmark)){
   var xmlDoc = $(app.xml.data[query.language]);
   var container = $( "<ul>",{class:'content bookmark'} ).appendTo($('div.container').empty());

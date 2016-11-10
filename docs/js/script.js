@@ -32,25 +32,6 @@
                 }
             }
         },
-        db: {
-            setup: function() {},
-            name: {},
-            storage: window.localStorage,
-            select: function(e, t) {
-                return this.name[e] = this.storage.getItem(e), t && (this.name[e] = this.name[e] ? JSON.parse(this.name[e]) : {}), 
-                this;
-            },
-            insert: function(e, t) {
-                return this.storage.setItem(e, t), this;
-            },
-            update: function(e) {
-                return $.isPlainObject(this.name[e]) ? this.storage.setItem(e, JSON.stringify(this.name[e])) : this.storage.setItem(e, this.name[e]), 
-                this;
-            },
-            delete: function(e) {
-                return this.storage.removeItem(e), this;
-            }
-        },
         xml: {
             data: {},
             set: function(e, t) {
@@ -432,8 +413,8 @@
         },
         watch: {
             go: function(t) {
-                return t && e.content.hasOwnProperty(t) || (t = e.db.name.query.page, e.content.hasOwnProperty(t) || (t = "menu")), 
-                e.layout.identity(t), e.content[t];
+                return t && e.content.hasOwnProperty(t) || (t = e.localStorage.name.query.page, 
+                e.content.hasOwnProperty(t) || (t = "menu")), e.layout.identity(t), e.content[t];
             },
             filter: function(t) {
                 t.toggleClass(e.setting.classname.active);
@@ -470,7 +451,7 @@
             footer: function() {},
             identity: function(t) {
                 $("body").attr("id", t), $("header").html(this.header.change(t)).promise().done(function() {
-                    e.db.name.query.page = t, e.db.update("query");
+                    e.localStorage.name.query.page = t, e.localStorage.update("query");
                 });
             }
         },
@@ -479,11 +460,10 @@
             return a.notify("initiating"), setTimeout(function() {
                 $("body").addClass(e.config.Screen).promise().then(function() {
                     a.notify("configuration"), setTimeout(function() {
-                        var t = e.db.select("setting", !0);
+                        var t = e.localStorage.select("setting");
                         t.name.setting.hasOwnProperty("class") ? $.each(t.name.setting.class, function(e, t) {
                             $("body").addClass(t);
-                        }) : t.name.setting.class = {}, e.db.select("bookmark", !0), e.db.select("query", !0), 
-                        e.db.select("suggestion", !0), e.db.select("language", !0);
+                        }) : t.name.setting.class = {}, e.localStorage.select("bookmark").select("query").select("suggestion").select("language");
                     }, 200);
                 }).then(function() {
                     setTimeout(function() {
@@ -517,19 +497,19 @@
             }).html(e).prependTo("div.container");
         },
         task: {
-            bookmark: function(t, a, n, i, s) {
-                var o = e.db.name.bookmark;
-                t.hasClass(e.setting.classname.active) ? (o[a][n][i].splice(o[a][n][i].indexOf(s), 1), 
-                o[a][n][i].length <= 0 && (delete o[a][n][i], $.isEmptyObject(o[a][n]) && (delete o[a][n], 
-                $.isEmptyObject(o[a]) && delete o[a])), t.parent().hasClass("bookmark") && t.fadeOut(300)) : (o.hasOwnProperty(a) || (o[a] = {}), 
-                o[a].hasOwnProperty(n) || (o[a][n] = {}), o[a][n].hasOwnProperty(i) || (o[a][n][i] = []), 
-                o[a][n][i].push(s.toString())), t.toggleClass(e.setting.classname.active).promise().done(function() {
-                    e.db.update("bookmark");
+            bookmark: function(t, a, n, i, o) {
+                var s = e.localStorage.name.bookmark;
+                t.hasClass(e.setting.classname.active) ? (s[a][n][i].splice(s[a][n][i].indexOf(o), 1), 
+                s[a][n][i].length <= 0 && (delete s[a][n][i], $.isEmptyObject(s[a][n]) && (delete s[a][n], 
+                $.isEmptyObject(s[a]) && delete s[a])), t.parent().hasClass("bookmark") && t.fadeOut(300)) : (s.hasOwnProperty(a) || (s[a] = {}), 
+                s[a].hasOwnProperty(n) || (s[a][n] = {}), s[a][n].hasOwnProperty(i) || (s[a][n][i] = []), 
+                s[a][n][i].push(o.toString())), t.toggleClass(e.setting.classname.active).promise().done(function() {
+                    e.localStorage.update("bookmark");
                 });
             },
             hasBookmark: function(t, a, n, i) {
-                var s = e.db.name.bookmark;
-                if (s.hasOwnProperty(t) && s[t].hasOwnProperty(a) && s[t][a].hasOwnProperty(n)) return $.inArray(i, s[t][a][n]) >= 0;
+                var o = e.localStorage.name.bookmark;
+                if (o.hasOwnProperty(t) && o[t].hasOwnProperty(a) && o[t][a].hasOwnProperty(n)) return $.inArray(i, o[t][a][n]) >= 0;
             },
             textReplace: function(e, t) {
                 return "string" === $.type(t) ? e.replace(new RegExp(t, "gi"), "<b>$&</b>") : e;
@@ -612,7 +592,7 @@
                     }
                 }, a = $("<ul>", {
                     class: "setting"
-                }).appendTo($("div.container").empty()), n = e.db.select("setting", !0);
+                }).appendTo($("div.container").empty()), n = e.localStorage.select("setting");
                 n.name.setting.hasOwnProperty("class") || (n.name.setting.class = {}), $.each(t, function(t, i) {
                     $("<li>", {
                         class: "title"
@@ -620,12 +600,12 @@
                         class: t
                     }).append(function() {
                         var a = $(this);
-                        $.each(i.option, function(i, s) {
-                            if (n.name.setting.class.hasOwnProperty(t)) var o = n.name.setting.class[t] == s.class ? e.setting.classname.active : e.setting.classname.inactive; else var o = e.setting.classname.inactive;
-                            $("<span>", s).addClass("icon-").addClass(o).bind(e.config.Handler, function(a) {
+                        $.each(i.option, function(i, o) {
+                            if (n.name.setting.class.hasOwnProperty(t)) var s = n.name.setting.class[t] == o.class ? e.setting.classname.active : e.setting.classname.inactive; else var s = e.setting.classname.inactive;
+                            $("<span>", o).addClass("icon-").addClass(s).bind(e.config.Handler, function(a) {
                                 $(this).addClass(e.setting.classname.active).siblings().removeClass(e.setting.classname.active), 
                                 n.name.setting.class.hasOwnProperty(t) && $("body").hasClass(n.name.setting.class[t]) && $("body").removeClass(n.name.setting.class[t]), 
-                                $("body").hasClass(s.class) || $("body").addClass(s.class), n.name.setting.class[t] = s.class, 
+                                $("body").hasClass(o.class) || $("body").addClass(o.class), n.name.setting.class[t] = o.class, 
                                 n.update("setting");
                             }).appendTo(a);
                         });
@@ -633,16 +613,16 @@
                 });
             },
             language: function() {
-                var t = e.db.name.language, a = e.db.name.query, n = $("<ul>", {
+                var t = e.localStorage.name.language, a = e.localStorage.name.query, n = $("<ul>", {
                     class: "language"
                 }).appendTo($("div.container").empty());
-                $.each(e.setting.language, function(i, s) {
-                    if (t.hasOwnProperty(i)) var o = e.setting.classname.active; else var o = e.setting.classname.inactive;
+                $.each(e.setting.language, function(i, o) {
+                    if (t.hasOwnProperty(i)) var s = e.setting.classname.active; else var s = e.setting.classname.inactive;
                     $("<li>", {
                         class: i
-                    }).addClass(o).append($("<p>", {
+                    }).addClass(s).append($("<p>", {
                         class: "lang icon-flag-empty"
-                    }).append(s.name).bind(e.config.Handler, function(n) {
+                    }).append(o.name).bind(e.config.Handler, function(n) {
                         t.hasOwnProperty(i) ? (a.language = i, e.watch.go("category")(i)) : e.msg("Selected language is not activited!");
                     }), $("<p>", {
                         class: "download icon-"
@@ -651,7 +631,7 @@
                     })).bind(e.config.Handler, function(n) {
                         $(this).parent().toggleClass(e.setting.classname.active).promise().done(function() {
                             t.hasOwnProperty(i) ? (delete t[i], Object.keys(t)[0] ? a.language = Object.keys(t)[0] : delete a.language) : (a.language = i, 
-                            t[i] = {}), e.db.update("query"), e.db.update("language");
+                            t[i] = {}), e.localStorage.update("query").update("language");
                         });
                     })).appendTo(n);
                 });
@@ -672,16 +652,16 @@
                 });
             },
             category: function() {
-                var t = e.db.name.query;
+                var t = e.localStorage.name.query;
                 t.language ? e.xml.get(t.language).done(function(a) {
                     var n = $("<ol>", {
                         class: "category"
                     }).appendTo($("div.container").empty());
                     $(a).find("index").children("section").each(function() {
-                        var a = $(this), i = a.attr("id"), s = a.attr("name");
+                        var a = $(this), i = a.attr("id"), o = a.attr("name");
                         $("<li>").append($("<a>", {
                             class: "icon-right-open"
-                        }).append(s).bind(e.config.Handler, function(a) {
+                        }).append(o).bind(e.config.Handler, function(a) {
                             t.category = i, e.watch.go("verse")(i);
                         })).appendTo(n);
                     });
@@ -690,62 +670,62 @@
                 }).html("Language has not been selected!"));
             },
             verse: function() {
-                var t, a = e.db.name.query, n = [], i = [];
-                e.xml.get(a.language).done(function(s) {
-                    var o = $("<ul>", {
+                var t, a = e.localStorage.name.query, n = [], i = [];
+                e.xml.get(a.language).done(function(o) {
+                    var s = $("<ul>", {
                         class: "content"
                     }).appendTo($("div.container").empty());
-                    t = $(s), $(".title").html(t.find("index").children('section[id="0"]'.replace("0", a.category)).text()), 
+                    t = $(o), $(".title").html(t.find("index").children('section[id="0"]'.replace("0", a.category)).text()), 
                     t.find("book").find('category[id="0"]'.replace(0, a.category)).children("verse").each(function() {
-                        var s = $(this), c = s.attr("book"), r = s.attr("chapter"), l = s.attr("verse"), d = s.attr("tag"), g = t.find("bookname").children('row[id="0"]'.replace("0", c)).text(), u = s.text(), p = c <= 39 ? 1 : 2;
+                        var o = $(this), c = o.attr("book"), l = o.attr("chapter"), r = o.attr("verse"), d = o.attr("tag"), g = t.find("bookname").children('row[id="0"]'.replace("0", c)).text(), u = o.text(), p = c <= 39 ? 1 : 2;
                         n.push(d), i.push(p);
-                        var m = e.task.hasBookmark(a.category, c, r, l), f = m ? e.setting.classname.active : e.setting.classname.inactive, h = t.find("tag").children('row[id="0"]'.replace("0", d)).text().toLowerCase(), b = t.find("testament").children('row[id="0"]'.replace("0", p)).text().replace(" ", "-").toLowerCase();
+                        var f = e.task.hasBookmark(a.category, c, l, r), m = f ? e.setting.classname.active : e.setting.classname.inactive, h = t.find("tag").children('row[id="0"]'.replace("0", d)).text().toLowerCase(), v = t.find("testament").children('row[id="0"]'.replace("0", p)).text().replace(" ", "-").toLowerCase();
                         $("<li>", {
                             class: h
-                        }).addClass(f).addClass(b).append($("<h3>").append($("<i>", {
+                        }).addClass(m).addClass(v).append($("<h3>").append($("<i>", {
                             class: "icon-bookmark"
                         }).bind(e.config.Handler, function(t) {
-                            e.task.bookmark($(this).parents("li"), a.category, c, r, l);
-                        }), "0 1:2".replace(0, g).replace(1, r).replace(2, l)), $("<p>").append(e.task.numReplace(u))).appendTo(o);
+                            e.task.bookmark($(this).parents("li"), a.category, c, l, r);
+                        }), "0 1:2".replace(0, g).replace(1, l).replace(2, r)), $("<p>").append(e.task.numReplace(u))).appendTo(s);
                     });
                 }).then(function() {
                     n = $.unique(n), i = $.unique(i);
-                    var a = $("<li>").appendTo($("<ul>").appendTo($("li.filter"))), s = $("<ul>").appendTo(a);
+                    var a = $("<li>").appendTo($("<ul>").appendTo($("li.filter"))), o = $("<ul>").appendTo(a);
                     $.each(n, function(a, n) {
-                        var i = t.find("tag").children('row[id="0"]'.replace("0", n)).text(), o = i.toLowerCase();
+                        var i = t.find("tag").children('row[id="0"]'.replace("0", n)).text(), s = i.toLowerCase();
                         $("<li>", {
                             class: "icon-ok active"
-                        }).addClass(o).html(i).bind(e.config.Handler, function(e) {
+                        }).addClass(s).html(i).bind(e.config.Handler, function(e) {
                             $("div.container ul li").each(function(e, t) {
-                                $(this).hasClass(o) && $(this).fadeToggle("fast");
+                                $(this).hasClass(s) && $(this).fadeToggle("fast");
                             }).promise().done($(this).toggleClass("active"));
-                        }).appendTo(s);
+                        }).appendTo(o);
                     });
                 });
             },
             search: function() {
-                var t = e.db.name.query, a = function() {
-                    var a = e.db.name.suggestion, i = 0, s = 0;
+                var t = e.localStorage.name.query, a = function() {
+                    var a = e.localStorage.name.suggestion, i = 0, o = 0;
                     t.language && t.q ? e.xml.get(t.language).done(function(n) {
-                        var o = $(e.xml.data[t.language]), c = $("<ul>", {
+                        var s = $(e.xml.data[t.language]), c = $("<ul>", {
                             class: "content search"
                         }).appendTo($("div.container").empty());
-                        o.find("book").find("category").children("verse").each(function() {
-                            var a = $(this), n = a.attr("book"), r = a.attr("chapter"), l = a.attr("verse"), d = (a.attr("tag"), 
-                            o.find("bookname").children('row[id="0"]'.replace("0", n)).text()), g = a.text(), u = g.search(new RegExp(t.q, "i")), p = a.parent().attr("id");
+                        s.find("book").find("category").children("verse").each(function() {
+                            var a = $(this), n = a.attr("book"), l = a.attr("chapter"), r = a.attr("verse"), d = (a.attr("tag"), 
+                            s.find("bookname").children('row[id="0"]'.replace("0", n)).text()), g = a.text(), u = g.search(new RegExp(t.q, "i")), p = a.parent().attr("id");
                             if (u >= 0) {
-                                i++, s != p && $("<li>").append($("<h2>").append(o.find("index").children('section[id="0"]'.replace("0", p)).text())).appendTo(c).promise().done(function() {
-                                    s = p;
+                                i++, o != p && $("<li>").append($("<h2>").append(s.find("index").children('section[id="0"]'.replace("0", p)).text())).appendTo(c).promise().done(function() {
+                                    o = p;
                                 });
-                                var m = e.task.hasBookmark(p, n, r, l), f = m ? e.setting.classname.active : e.setting.classname.inactive;
-                                $("<li>").addClass(f).append($("<h3>").append($("<i>", {
+                                var f = e.task.hasBookmark(p, n, l, r), m = f ? e.setting.classname.active : e.setting.classname.inactive;
+                                $("<li>").addClass(m).append($("<h3>").append($("<i>", {
                                     class: "icon-bookmark"
                                 }).bind(e.config.Handler, function(t) {
-                                    e.task.bookmark($(this).parents("li"), p, n, r, l);
-                                }), "0 1:2".replace(0, d).replace(1, r).replace(2, l)), $("<p>").html(e.task.textReplace(g, t.q))).appendTo(c);
+                                    e.task.bookmark($(this).parents("li"), p, n, l, r);
+                                }), "0 1:2".replace(0, d).replace(1, l).replace(2, r)), $("<p>").html(e.task.textReplace(g, t.q))).appendTo(c);
                             }
                         }).promise().done(function() {
-                            i ? (a[t.q] = i, e.db.update("suggestion")) : $("div.container").html($("<div>", {
+                            i ? (a[t.q] = i, e.localStorage.update("suggestion")) : $("div.container").html($("<div>", {
                                 class: "msg error"
                             }).html('"0" did not match any verses!'.replace(0, t.q)));
                         });
@@ -754,38 +734,38 @@
                     }).html("Language has not been selected!")) : $("div.container").html($("<div>", {
                         class: "msg error"
                     }).html("Try a word or two!")), n();
-                    var o = new Date();
-                    console.log(o);
+                    var s = new Date();
+                    console.log(s);
                 }, n = function() {
-                    var t = e.db.name.suggestion;
+                    var t = e.localStorage.name.suggestion;
                     $.each(t, function(e, t) {
                         console.log(e, t);
                     });
                 };
                 a(), $("form").submit(function(n) {
-                    t.q = $(this).children("input").val(), e.db.update("query"), a();
+                    t.q = $(this).children("input").val(), e.localStorage.update("query"), a();
                 });
             },
             bookmark: function() {
-                var t = e.db.name.query, a = e.db.name.bookmark;
+                var t = e.localStorage.name.query, a = e.localStorage.name.bookmark;
                 if (t.language && !$.isEmptyObject(a)) {
                     var n = $(e.xml.data[t.language]), i = $("<ul>", {
                         class: "content bookmark"
                     }).appendTo($("div.container").empty());
                     $.each(a, function(t, a) {
                         $("<li>").append($("<h2>").append(n.find("index").children('section[id="0"]'.replace("0", t)).text())).appendTo(i);
-                        var s = n.find("book").find('category[id="0"]'.replace(0, t));
-                        $.each(a, function(a, o) {
-                            $.each(o, function(o, c) {
-                                $.each(c, function(c, r) {
-                                    var l = s.find('verse[book="711"][chapter="712"][verse="713"]'.replace(711, a).replace(712, o).replace(713, r)), d = n.find("bookname").children('row[id="0"]'.replace("0", a)).text();
+                        var o = n.find("book").find('category[id="0"]'.replace(0, t));
+                        $.each(a, function(a, s) {
+                            $.each(s, function(s, c) {
+                                $.each(c, function(c, l) {
+                                    var r = o.find('verse[book="711"][chapter="712"][verse="713"]'.replace(711, a).replace(712, s).replace(713, l)), d = n.find("bookname").children('row[id="0"]'.replace("0", a)).text();
                                     $("<li>", {
                                         class: e.setting.classname.active
                                     }).append($("<h3>").append($("<i>", {
                                         class: "icon-bookmark"
                                     }).bind(e.config.Handler, function(n) {
-                                        e.task.bookmark($(this).parents("li"), t, a, o, r);
-                                    }), "0 1:2".replace(0, d).replace(1, o).replace(2, r)), $("<p>").append(l.text())).appendTo(i);
+                                        e.task.bookmark($(this).parents("li"), t, a, s, l);
+                                    }), "0 1:2".replace(0, d).replace(1, s).replace(2, l)), $("<p>").append(r.text())).appendTo(i);
                                 });
                             });
                         });

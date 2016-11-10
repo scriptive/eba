@@ -27,8 +27,8 @@ var options={
   }
 }
 var container = $( "<ul>",{class:'setting'} ).appendTo($('div.container').empty());
-// var db = app.db.select('css',true);
-var configuration = app.db.select('setting',true);
+// var db = app.localStorage.select('css');
+var configuration = app.localStorage.select('setting');
 if(!configuration.name.setting.hasOwnProperty('class')){configuration.name.setting.class={};}
 $.each(options, function(k, setting) {
   $( "<li>",{class:'title'}).append(

@@ -20,9 +20,6 @@
     setting:{
       // =require script.Static.setting.js
     },
-    db:{
-      // =require script.Static.db.js
-    },
     xml:{
       // =require script.Static.xml.js
     },
@@ -32,7 +29,7 @@
     watch:{
       go:function(page){
         if (!page || !app.content.hasOwnProperty(page)){
-          page = app.db.name.query.page;
+          page = app.localStorage.name.query.page;
           if (!app.content.hasOwnProperty(page)){
             page = 'menu';
           }
@@ -94,8 +91,8 @@
       identity:function(name){
         $('body').attr('id',name);
         $('header').html(this.header.change(name)).promise().done(function(){
-          app.db.name.query.page=name;
-          app.db.update('query');
+          app.localStorage.name.query.page=name;
+          app.localStorage.update('query');
         });
       }
     },
@@ -109,7 +106,7 @@
         $('body').addClass(app.config.Screen).promise().then(function() {
           deferred.notify('configuration');
           setTimeout(function() {
-            var configuration = app.db.select('setting',true);
+            var configuration = app.localStorage.select('setting');
             if(configuration.name.setting.hasOwnProperty('class')){
               $.each(configuration.name.setting.class, function(k, v) {
                 $('body').addClass(v);
@@ -117,10 +114,7 @@
             } else {
               configuration.name.setting.class={};
             }
-            app.db.select('bookmark',true);
-            app.db.select('query',true);
-            app.db.select('suggestion',true);
-            app.db.select('language',true);
+            app.localStorage.select('bookmark').select('query').select('suggestion').select('language');
           },200);
         }).then(function() {
           setTimeout(function() {
@@ -187,7 +181,7 @@
     },
     task:{
       bookmark:function(container,category,book,chapter,verse){
-        var bookmarks = app.db.name.bookmark;
+        var bookmarks = app.localStorage.name.bookmark;
         if (container.hasClass(app.setting.classname.active)){
          bookmarks[category][book][chapter].splice(bookmarks[category][book][chapter].indexOf(verse), 1);
          if (bookmarks[category][book][chapter].length <= 0) {
@@ -215,11 +209,11 @@
          bookmarks[category][book][chapter].push(verse.toString());
         }
         container.toggleClass(app.setting.classname.active).promise().done(function(){
-          app.db.update('bookmark');
+          app.localStorage.update('bookmark');
         });
       },
       hasBookmark:function(category,book,chapter,verse){
-        var bookmarks = app.db.name.bookmark;
+        var bookmarks = app.localStorage.name.bookmark;
         if (bookmarks.hasOwnProperty(category)){
           if (bookmarks[category].hasOwnProperty(book)){
             if (bookmarks[category][book].hasOwnProperty(chapter)){

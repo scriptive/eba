@@ -1,4 +1,4 @@
-var query = app.db.name.query;
+var query = app.localStorage.name.query;
 if (query.language){
   app.xml.get(query.language).done(function(xml) { 
     var container = $( "<ol>",{class:'category'} ).appendTo($('div.container').empty());

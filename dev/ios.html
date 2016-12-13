@@ -24,11 +24,9 @@
   <script>
   eba.document({
     config:{
+      Meta:false,
       Execute:['load','handler'],
       Device:'ios',Platform:'app',Screen:'mobile'
-    },
-    ready:function(){
-      this.config.msg.info = document.querySelector("p#msg");
     }
   });
   </script>

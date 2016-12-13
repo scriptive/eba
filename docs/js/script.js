@@ -1,3 +1,9 @@
+/*!
+    eba -- Effortless bible analysis
+    v1.0.123
+    https://scriptive.github.io/eba
+    (c) 2016
+*/
 !function(e) {
     e.merge({
         load: function() {

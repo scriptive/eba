@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Effortless bible analysis</title>
+  <link rel="icon" href="img/icon.png" type="image/png" />
+  <link rel="stylesheet" href="font/eba.css">
+  <link rel="stylesheet" href="font/animation.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/css" id="custom"></style>
+</head>
+
+<body>
+  <div id="screen" style="display:none">
+  </div>
+  <div id="dialog" style="display:none">
+  </div>
+  <div id="main">
+    <nav>
+      nav
+    </nav>
+    <header>
+      <ul>
+        <li class="ctl">
+          <ul class="book setting about active">
+            <li class="fixed">
+              <div class="icon-slim-left" data-link="nav toPrevious"></div>
+            </li>
+            <li class="link-content" data-content="nav setName">Book</li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <div class="container book active">
+        <ol class="main-book">
+          <!-- cloud,attention,ok -->
+          <li>
+            <div class="icon-cloud"></div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          </li>
+          <li>
+            <div class="icon-loading animate-spin"></div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          </li>
+          <li>
+            <div class="icon-attention"></div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          </li>
+          <li>
+            <div class="icon-ok"></div>
+            <div data-description="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          </li>
+          <li>
+            <div class="icon-loading animate-spin"></div>
+            <div data-description="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          </li>
+        </ol>
+        <ol class="main-upload">
+          <li>This section might not work on mobile devices, and testing purpose only!</li>
+          <li>
+            <input type="file" id="file" name="file" accept=".xml" />
+            <script>
+              function handleFileSelect(e) {
+                var file = e.target.files[0];
+                // NOTE: file.name, file.type, file.size, file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString():''
+                // console.log(file);
+                var reader = new FileReader();
+                reader.onerror = function(e) {
+                  console.log('error', e);
+                };
+                reader.onprogress = function(e) {
+                  // console.log(e);
+                };
+                reader.onabort = function(e) {
+                  // console.log(e);
+                };
+                reader.onloadstart = function(e) {
+                  // document.getElementById('progress_bar').className = 'loading';
+                };
+                reader.onload = function(e) {
+                  // Ensure that the progress bar displays 100% at the end.
+                  validateXML(e.target.result).then(function(e){
+                    console.log(e);
+                  },function(e){
+                    console.log(e);
+                  });
+                };
+
+                // Read in the image file as a binary string.
+                // reader.readAsBinaryString(file);
+                reader.readAsText(file);
+                // console.log(file[0]);
+                // console.log(file.name,file.size,file.type);
+              }
+
+              document.getElementById('file').addEventListener('change', handleFileSelect, false);
+            </script>
+            <script>
+              function validateXML(xml) {
+                
+                return new Promise(function(resolve, reject) {
+                  var txt = "", h3OK = 1;
+                  
+                  function checkErrorXML(x) {
+                    txt = "", h3OK = 1;
+                    return checkXML(x);
+                  }
+                  
+                  function checkXML(n) {
+                    var i, nam = n.nodeName;
+                    if (nam == "h3") {
+                      if (h3OK == 0) return;
+                      h3OK = 0
+                    }
+                    if (nam == "#text") txt = n.nodeValue;
+                    for (i = 0; i < n.childNodes.length; i++) {
+                      checkXML(n.childNodes[i]);
+                    }
+                  }
+                  if (document.implementation.createDocument) {
+                    // code for Mozilla, Firefox, Opera, etc.
+                    try {
+                      var xmlDoc = new DOMParser().parseFromString(xml, "application/xml");
+                    } catch (e) {
+                      return reject(e.message);
+                    }
+                    if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+                      checkErrorXML(xmlDoc.getElementsByTagName("parsererror")[0]);
+                      reject(txt);
+                    } else {
+                      resolve(xmlDoc);
+                    }
+                  } else {
+                    reject('Your browser cannot handle XML validation');
+                  }
+                });
+              }
+            </script>
+          </li>
+        </ol>
+        <!-- <ol class="main-book">
+          <li>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div class="icon-toggle-on"></div>
+          </li>
+          <li>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div class="icon-toggle-off"></div>
+          </li>
+        </ol> -->
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

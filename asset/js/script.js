@@ -1,269 +1,194 @@
 /*!
     eba -- Effortless bible analysis
-    Version '1.0.0'
+    Version {application.version}-{application.buildDate}
     https://scriptive.github.io/eba
-    (c) 2016
+    (c) 2017
 */
 (function(app) {
+  // app.plugin({});
   app.merge({
-    load:function(){
-      this.init().progress(function(msg) {
-        if ($.isNumeric(msg)){
-          app.notification("title", msg+'%');
+    config: {
+      // =require script.Configuration.js
+    },
+    initiate: function() {
+      var configuration = app.config, local = app.localStorage;
+      configuration.pageHome=Object.keys(configuration.page)[0];
+      var process = function() {
+        // =require script.Initiate.process.js
+      };
+      var route = function() {
+        // =require script.Initiate.route.js
+      };
+      var template = function() {
+        // =require script.Initiate.template.js
+      };
+      var terminal = function() {
+        // =require script.Initiate.terminal.js
+      };
+      // {"class":{"fontsize":"size-normal","background":"color-white"}}
+      // {"version":"1.0.0","build":"1.0.1","class":{"fontsize":"size-normal","background":"color-white"}}
+      new Promise(function(resolve, reject) {
+        local.select('setting').select('query').select('todo');
+        local.select('bookmark').select('suggestion');
+        // NOTE: Private
+        if (local.name.setting.hasOwnProperty('build')) {
+          if (local.name.setting.build == configuration.build) {
+            // NOTE: ONLOAD
+            configuration.requireUpdate = 0;
+          } else {
+            // NOTE: ONUPDATE
+            configuration.requireUpdate = 2;
+          }
         } else {
-          app.notification(msg);
+          // NOTE: ONINSTALL
+          configuration.requireUpdate = 1;
+          // NOTE: Private
         }
-      }).done(function(msg) {
-        $('body').append($( "<header>" )).append(app.layout.main.create()).promise().done(function() {
-          $('.screen').fadeOut(500).promise().done(app.watch.go());
+        if (configuration.requireUpdate) {
+          local.name.setting.version = configuration.version;
+          local.name.setting.build = configuration.build;
+          local.update('setting');
+        }
+        // process().then(function(e) {
+        //   if (e === true) return template();
+        //   return e;
+        // }).then(function(e) {
+        //   if (e === true) {
+        //     resolve();
+        //   } else {
+        //     reject(e);
+        //   }
+        // });
+        process().then(function(e) {
+          document.body.classList.add(app.config.Screen);
+          // return setTimeout(function() {},200);
+          if(local.name.setting.hasOwnProperty('class')){
+            local.name.setting.class.each(function(i,v){
+              document.body.classList.add(v);
+            });
+          } else {
+            local.name.setting.class={};
+          }
+          if (e === true) return template();
+          return e;
+        }).then(function(e) {
+          if (e === true) {
+            resolve();
+          } else {
+            reject(e);
+          }
         });
-      }).fail(function(msg) {
-        app.notification(msg).setAttribute('class','blink');
-      }).always(function(msg){
-        app.notification(msg);
+      }).then(function() {
+        app.hashChange(function() {
+          terminal().then(function(e) {
+            // NOTE: if page error
+            if (e !== true)console.log('page error',e);
+          });
+        });
+      }, function(e) {
+        if (typeof e === 'object' && e.hasOwnProperty('message')) {
+          app.notification(e.message);
+        } else if (typeof e === 'string') {
+          app.notification(e);
+        }
       });
     },
-    setting:{
-      // =require script.Static.setting.js
-    },
-    xml:{
-      // =require script.Static.xml.js
-    },
-    page:{
-      // =require script.Static.page.js
-    },
-    watch:{
-      go:function(page){
-        if (!page || !app.content.hasOwnProperty(page)){
-          page = app.localStorage.name.query.page;
-          if (!app.content.hasOwnProperty(page)){
-            page = 'menu';
-          }
-        }
-        app.layout.identity(page);
-        return app.content[page];
-      },
-      filter:function(evt){
-        // if (evt.hasClass('active')){}
-        evt.toggleClass(app.setting.classname.active);
+    // NOTE: <dialog> used in page
+    dialog: {
+      container:function(){
+        return app.elementSelect('div#dialog');
       }
     },
-    layout:{
-      header:{
-        change:function(q){
-          var container=$( "<ul>" );
-          if (app.page[q].hasOwnProperty('header')){
-            $.each(app.page[q].header, function(k, v) {
-              $( "<li>",v.attr).append(
-                function(){
-                  if (v.child){
-                    var action = $(v.child.tag,v.child.attr);
-                    return action.html(function(){
-                      if (v.child.hasOwnProperty('job')){
-                        return v.child.job(action);
-                      }
-                    });
-                  }
-                }
-              ).bind(app.config.Handler, function(e) {
-                var into = $(this).attr("go");
-                if (into) {
-                  app.watch.go(into)();
-                } 
-                // if ($(this).hasClass(app.setting.classname.filter)) {
-                //   app.watch.filter($(this));
-                // }
-              }).appendTo(container);
+    // NOTE: <nav> used in device, dataLink, dataContent
+    nav: {
+      container:function(){
+        return app.elementSelect('nav');
+      },
+      // NOTE: Private
+      toHome:function(e){
+        window.location.hash = app.config.pageHome;
+      },
+      toPrevious:function(e){
+        window.location.hash = e.dataset.hasOwnProperty('page')?e.dataset.page:app.config.pagePrevious;
+      },
+      setNamePrevious:function(e){
+        e.innerHTML=app.localStorage.name.query.page;
+        e.eventClick(function(){
+          window.location.hash = e.dataset.hasOwnProperty('page')?e.dataset.page:app.config.pagePrevious;
+        });
+      },
+      setTitle:function(e){
+        e.innerHTML= app.config.name;
+      },
+      setName:function(e){
+        e.innerHTML=app.localStorage.name.query.page;
+        // e.innerHTML=app.config.page[app.localStorage.name.query.page].name;
+      },
+      setReader:function(e){
+        app.Toggle.menu(e,function(container){
+          var ol = container.appendChild(app.elementCreate('ol'));
+          app.config.catalog.each(function(i,v){
+            v.each(function(id,o){
+              ol.appendChild(app.elementCreate('li').addAttr('data-cls',o.class).addAttr('data-title',o.total).eventClick(function(event){
+                event.target.toggleClass('active');
+                app.Toggle.main().querySelectorAll('ol li ol li').each(function(i,abc){
+                  if (abc.hasClass(o.class)) abc.toggleDisplay();
+                });
+              }).addContent(o.name).addClass('active'));
             });
-            return container;
-          }
-        }
-      },
-      main:{
-        create: function(){
-          return $( "<main>" ).append(
-            $( "<div>",{class:'container active'} ).append(
-              $( "<div>",{class:'msg'} ).append(
-                // $( "<input>",{class:'msg'} ).append(
-                //   'A moment please...'
-                // )
-              )
-            )
-          );
-        }
-      },
-      footer: function(){
-      },
-      identity:function(name){
-        $('body').attr('id',name);
-        $('header').html(this.header.change(name)).promise().done(function(){
-          app.localStorage.name.query.page=name;
-          app.localStorage.update('query');
-        });
-      }
-    },
-    init: function(milliseconds) {
-      /*
-      device, setting, xml, prepare, done(success, fail, always)->{mesg}
-      */
-      var deferred = $.Deferred();
-      deferred.notify('initiating');
-      setTimeout(function() {
-        $('body').addClass(app.config.Screen).promise().then(function() {
-          deferred.notify('configuration');
-          setTimeout(function() {
-            var configuration = app.localStorage.select('setting');
-            if(configuration.name.setting.hasOwnProperty('class')){
-              $.each(configuration.name.setting.class, function(k, v) {
-                $('body').addClass(v);
-              });
-            } else {
-              configuration.name.setting.class={};
-            }
-            app.localStorage.select('bookmark').select('query').select('suggestion').select('language');
-          },200);
-        }).then(function() {
-          setTimeout(function() {
-            deferred.notify('XML');
-            app.xml.get(null,function(evt){
-              var done = 70;
-              if (evt.lengthComputable) {
-                done=Math.round(evt.loaded / evt.total * 70);
-              } 
-              deferred.notify(done);
-            }).done(function(xml) {
-              deferred.notify('Data');
-            }).fail(function(response, error) {
-              deferred.notify(90);
-              if (response.statusText){
-                deferred.reject(response.statusText);
-              } else {
-                deferred.reject(error);
-              }
-            });
-          },400);
-        }).then(function(){
-          setTimeout(function() {
-            if (app.config.Screen) {
-              deferred.notify(90);
-            } else {
-              deferred.notify(99).reject('connecting to device');
-            }
-          },600);
-        }).then(function() {
-          /*
-          setTimeout(function() {
-            document.addEventListener('deviceready', function(){
-              deferred.notify(100).resolve('ready');
-            },false);
-          },800);
-          */
-          /*
-          document.addEventListener('deviceready', function(){
-            deferred.notify(100).resolve('ready');
-          }, function() {
-            deferred.notify(99).reject('device is not suppport');
-            console.log('what');
           });
-          */
-          setTimeout(function() {
-            deferred.notify(100).resolve('ready');
-          },800);
-          $(document).on("submit", "form", function(event){
-            event.preventDefault();
-          });
+          // https://drive.google.com/file/d/FILE_ID/edit?usp=sharing
+          // https://drive.google.com/uc?export=download&id=FILE_ID
+          // https://drive.google.com/open?id=0B_7bPVufJ-j4ZTJISGRUb0pYb3liUnJmX0pSMkZOQld6Y29Z
+          // https://drive.google.com/uc?export=download&id=0B_7bPVufJ-j4ZTJISGRUb0pYb3liUnJmX0pSMkZOQld6Y29Z
+        },function(){
+          // NOTE: onClose
         });
-      }, 100);
-      return deferred.promise();
-    },
-    msg:function(msg){
-      if ($('div.msg').length) {
-        $( "div.msg" ).fadeToggle( "fast", function() {
-            $(this).html(msg);
-        });
-      } else {
-        return $('<div>',{class:'msg'}).html(msg).prependTo('div.container');
       }
     },
-    task:{
-      bookmark:function(container,category,book,chapter,verse){
-        var bookmarks = app.localStorage.name.bookmark;
-        if (container.hasClass(app.setting.classname.active)){
-         bookmarks[category][book][chapter].splice(bookmarks[category][book][chapter].indexOf(verse), 1);
-         if (bookmarks[category][book][chapter].length <= 0) {
-           delete bookmarks[category][book][chapter];
-           if ($.isEmptyObject(bookmarks[category][book])){
-             delete bookmarks[category][book];
-             if ($.isEmptyObject(bookmarks[category])){
-               delete bookmarks[category];
-             }
-           }
-         }
-         if (container.parent().hasClass('bookmark')) {
-           container.fadeOut(300);
-         }
-        } else {
-         if (!bookmarks.hasOwnProperty(category)){
-           bookmarks[category]={};
-         }
-         if (!bookmarks[category].hasOwnProperty(book)){
-           bookmarks[category][book]={};
-         }
-         if (!bookmarks[category][book].hasOwnProperty(chapter)){
-           bookmarks[category][book][chapter]=[];
-         }
-         bookmarks[category][book][chapter].push(verse.toString());
-        }
-        container.toggleClass(app.setting.classname.active).promise().done(function(){
-          app.localStorage.update('bookmark');
+    // NOTE: <header> used in device, dataLink, dataContent
+    header: {
+      container:function(){
+        return app.elementSelect('header');
+      },
+      lookup:function(e){
+        // object.addEventListener("focus", function(){});
+        var input = e.querySelector('input').addAttr('placeholder',app.localStorage.name.query.q||'search...');
+        
+        input.eventHandler("focus", function(){
+          document.body.classList.add('lookup');
+          window.scrollTo(0, 0);
+          document.body.scrollTop = 0;
+          // console.log('focus');
         });
-      },
-      hasBookmark:function(category,book,chapter,verse){
-        var bookmarks = app.localStorage.name.bookmark;
-        if (bookmarks.hasOwnProperty(category)){
-          if (bookmarks[category].hasOwnProperty(book)){
-            if (bookmarks[category][book].hasOwnProperty(chapter)){
-              return ($.inArray(verse, bookmarks[category][book][chapter]) >= 0);
-            }
-          }
-        }
-      },
-      textReplace:function(s,n){
-        //TODO s.replace(/(([^\s]+\s\s*){20})(.*)/,"$1…")
-        return ($.type(n) === "string"?s.replace(new RegExp(n, "gi"), '<b>$&</b>'):s);
-      },
-      numReplace:function(s){
-        return s.replace(/\d+/g, '<sup>$&</sup>');
+        input.eventHandler("focusout", function(){
+          document.body.classList.remove('lookup');
+          // console.log('focusout');
+        });
+        e.eventHandler('submit', function(o){
+          var qN={q:o.target.elements.q.value}, hash = app.config.hash;
+          if (qN.q == hash.q && hash.page == o.target.name)qN.i=new Date().getTime();
+          window.location.hash = qN.paramater([o.target.name]);
+          // window.location.reload(true);
+          o.preventDefault();
+        });
+      }
+
+    },
+    // NOTE: <main> used in page
+    main: {
+      container:function(){
+        return app.elementSelect('main');
       }
     },
-    content: {
-      menu:function(){
-        // =require script.Content.menu.js
-      },
-      setting:function(){
-        // =require script.Content.setting.js
-      },
-      language:function(){
-        // =require script.Content.language.js
-      },
-      about:function(){
-        // =require script.Content.about.js
-      },
-      category:function(){
-        // =require script.Content.category.js
-      },
-      verse:function(){
-        // =require script.Content.verse.js
-      },
-      search:function(){
-        // =require script.Content.search.js
-      },
-      bookmark:function(){
-        // =require script.Content.bookmark.js
-      },
-      daily:function(){
-        // =require script.Content.daily.js
+    // NOTE: <footer> used in none
+    footer: {
+      container:function(){
+        return app.elementSelect('footer');
       }
-    }
+    },
+    // Toggle:{},
+    // NOTE: Common
+    // =require script.Common.js
   });
-}(scriptive("eba")));
+}(scriptive("app")));

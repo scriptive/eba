@@ -1,0 +1,203 @@
+header{
+  >ul{
+    display: table; width: 100%; height: 100%; vertical-align: inherit;
+    >li{
+      display: table-cell;vertical-align: inherit; position: relative;
+      &:before{
+      }
+      &:hover{
+        &:before{
+        }
+      }
+      >ul{
+        >li{
+        }
+      }
+      &:last-child{
+        > ul {
+          display: none;
+          &.active{
+            display: table; width: 100%; height: 100%; vertical-align: inherit;
+            >li{
+              display: table-cell;vertical-align: inherit;
+            }
+          }
+        }
+      }
+      // NOTE: Control
+      &.ctl{
+        // width: auto;
+        // max-width: 156px;
+        // background-color: green;
+        // width: 100%;
+        >ul{
+          // display: table;width: 100%;
+          // main Default
+          position: inherit;
+          &:nth-child(1){
+          }
+          // main Book
+          &:nth-child(2){
+          }
+          // main Lookup
+          &:nth-child(3){
+          }
+          >li{
+            // display: table-cell;position: relative; 
+            line-height: 20px; height: 49px;
+            text-overflow:ellipsis; overflow: hidden;
+            >div{
+              padding: 11px 1px 12px 1px; font-size: 110%;text-overflow:ellipsis; overflow: hidden;
+              &:before{
+                color: #8f9193;
+                // font-size: 140%;
+              }
+              &:hover{
+                &:before{
+                  color:$ColorRed;
+                }
+              }
+            }
+            &.link-content{
+              text-transform: capitalize;
+              // text-overflow:ellipsis; overflow: hidden; 
+              white-space: nowrap; max-width:90px;
+              position: inherit;
+              // >div.adjust{
+              //   position: absolute;
+              //   left: -50px;
+              //   padding-left: 50px;
+              //   top: 3px;
+              //   // background-color: red;
+              //   // display: block;
+              //   width: calc(100% - 50px);
+              //   // width: 100%;
+              // }
+            }
+            &.link-lookup{
+              // max-width:120px;
+              // width: 100%;
+              // width: auto;
+              // background-color: red;
+              form{
+                display:table;width:100%;border-radius:2px;height:17px;line-height:24px;font-size:9pt;
+                vertical-align: inherit;position: relative;
+                @include box-shadow(0px, 0px, 1px, 1px, darken(#fff,25%), inset);
+                label{
+                  display:table-cell; position: relative; vertical-align: inherit;text-align: center;overflow: hidden;
+                  padding:3px 5px;
+                  input{
+                    display:block;border:0;margin:0;padding:0;background-color:transparent;font-size:16px;height:26px;line-height:26px; z-index: 3;
+                    outline:none;
+                    -webkit-appearance: none;
+                    -webkit-border-radius:0; 
+                    border-radius:0;
+                    -webkit-tap-highlight-color:transparent;
+                    &[type="search"]{
+                      width:100%;
+                    }
+                    &:focus{
+                      outline:none;
+                    }
+                  }
+                }
+              }
+            }
+            &.link-filter{
+              ul{
+                &.hO{
+                  right:5px; 
+                  max-width: 300px;
+                  min-width: 50%;
+                  &:before, &:after{
+                    right:13px;
+                  }
+                  >li{
+                    >ol{
+                      max-width: 96%;
+                      padding: 2%;
+                      white-space: nowrap;
+                      text-align: left;
+                      >li{
+                        overflow: hidden;
+                        text-overflow:ellipsis;
+                        font-size: 90%;
+                        // position: relative;
+                        // color:$ColorDim;
+                        // &:before{
+                        //   padding: 3px; margin: 5px;
+                        //   background-color: #ccc;
+                        //   border-radius: 30px;
+                        //   color: #fff;
+                        //   @include text-shadow(0px, 1px, 1px, #666);
+                        // }
+                        &[data-title]{
+                          &:before{
+                            // position: absolute;
+                            content: attr(data-title);
+                            margin: 2px;
+                            padding: 1px 0px;
+                            text-align: center;
+                            display: inline-block;
+                            min-width: 22px;
+                            font-size: 80%;
+                            border-radius:30px;
+                            color: #fff;
+                            @include text-shadow(0px, 1px, 1px, #666);
+                            // color: $ColorRed;
+                            background-color: #ccc;
+                          }
+                        }
+                        &.active{
+                          // text-decoration: line-through;
+                          color: $FontColor;
+                          &:before{
+                            // text-decoration: none;
+                            background-color: #666;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            &.fixed{
+              width: 50px;
+              text-align: center;
+            }
+            > div {
+              text-align: center;
+              cursor: default;
+              &[data-title]{
+                &:after{
+                  background-color: #8f9193;
+                }
+              }
+              &.unusable{
+                &:before{
+                  color:$ColorNone;
+                }
+              }
+              &.left{
+                text-align: left;
+                &:before{
+                  padding-left: 12px;
+                }
+              }
+            }
+            &.active{
+              >ul.hO{
+                display: block;
+              }
+            }
+          }
+        }
+      }
+      // NOTE: lookup Form
+      &.dig{
+        // z-index:3;
+      }
+    }
+  }
+}

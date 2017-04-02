@@ -1,18 +1,19 @@
 {
-  "common": {
-    "name": "eba",
-    "version":"1.0.0",
+  "app": {
+    "name": "EBA",
+    "version":"0.0.2",
     "build": "1.0.0",
-    "library": {
-      "jquery.min.js":"http://code.jquery.com/jquery-3.1.1.min.js",
-      "jquery.ui.min.js":"http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-    },
+    "description":"Effortless bible analysis",
+    "author":"tuang",
     "dist": {
       "file": {
-        "db": {
-          "xml$": true
+        "lang": {
+          "([A-Z]|\\d)": false
         }
       }
+    },
+    "dev": {
+      "lib": "js"
     }
   },
   "individual": {
@@ -45,6 +46,42 @@
     "electron": {
       "dev": {},
       "dist": {}
+    }
+  },
+  "gulp": {
+    "sass":{
+      "debugInfo": true,
+      "lineNumbers": false,
+      "errLogToConsole": true,
+      "outputStyle": "compact"
+    },
+    "js":{
+      "output":{
+        "beautify": false, 
+        "comments":"license"
+      },
+      "compress":true,
+      "preserveComments":"license"
+    },
+    "custom": {
+      "fileStorage": {
+        "source":"../scriptive.filestorage/asset/filestorage/fileStorage.js",
+        "target":["dev/js"],
+        "pipe":{
+          "gulp-include":{},
+          "gulp-uglify":{
+            "mangle":false,
+            "output":{
+              "beautify": false, 
+              "comments":"license"
+            },
+            "compress":true,
+            "preserveComments":"license"
+          },
+          "gulp-concat":"filestorage.min.js"
+        },
+        "watch":"../scriptive.filestorage/asset/filestorage/*.js"
+      }
     }
   }
 }

@@ -1,0 +1,573 @@
+ol{
+  list-style: none;font-size: 100%;position: relative;
+  &.main-home{
+    li{
+      border-bottom: 1px solid darken($BackgroundColor,7%);font-size: 105%;position: relative;
+      padding: 0px 10px;
+      a{
+        display: block; padding: 3vh 7px;
+        text-transform: capitalize;font-size: 110%;
+        color: $ColorBlue;
+        text-overflow:ellipsis; overflow: hidden; white-space: nowrap; max-width:100%;
+        &:before{
+          color: lighten($BackgroundColor,7%);
+          @include text-shadow(0px, 1px, 1px, #666);
+          font-size: 110%;
+          padding: 7px;
+          margin-right: 20px;
+          background-color: darken($BackgroundColor,7%); border-radius: 2px; @include box-shadow(0, 1px, 1px, 1px, #b9baba,inset);
+        }
+      }
+      &:nth-child(even) {
+        background-color: #fff;
+      }
+      &:last-child{
+        border: 0;
+        &:nth-child(even){
+          background-color:transparent;
+        }
+      }
+    }
+    
+  }
+  &.main-book{
+    // background-color: #fff;background-color: #fff; border: 1px solid darken($BackgroundColor,10%); 
+    // margin:10px 10px;border-radius: 2px;
+    margin:5px 0;border-left: 0; border-right: 0;
+    li{
+      // border-bottom: 1px solid #ccc; position: relative;
+      border-bottom: 1px solid darken($BackgroundColor,7%);
+      @include box-shadow(0px, 1px, 0px, 0px, #fff);
+      text-align: center;
+      margin:15px 0;
+      // display: table; width:98%; margin: 0 auto; vertical-align: middle;
+      &:last-child{
+        border: 0;@include box-shadow(0px, 0px, 0px, 0px, #fff);
+      }
+      >div{
+        
+        text-align: inherit;
+        // display: table-cell; padding: 7px 1px; 
+        text-overflow:ellipsis; overflow: hidden; 
+        font-size: 115%;
+        
+        &:first-child{
+          // background-color: red;
+          width: 35px;
+          height: 35px;
+          margin: 0 auto;
+          // background-color: #ccc;
+          // position: absolute; top: 5px; left: 5px;
+          &:before{
+            // display: table; width: 100%; height: 100%;
+            display: block;
+            vertical-align: middle;
+            text-align: center;
+            position: relative;
+            padding:3px;
+            // margin: 2px;
+            line-height: 1.3em;
+            font-size: 1em;
+            color:$ColorBlue;
+            width: 23px;
+            height: 23px;
+            background-color: darken($BackgroundColor,7%); border-radius:30px; 
+            // @include box-shadow(0, 1px, 1px, 1px, #b9baba,inset);
+          }
+          &.icon-cloud{
+            &:before{
+              color:$ColorBlue;
+            }
+          }
+          &.icon-attention{
+            &:before{
+              color:$ColorDim;
+            }
+          }
+          &.icon-ok{
+            &:before{
+              color:$ColorGreen;
+            }
+          }
+          &.icon-loading{
+            // animate-spin
+            &:before{
+              color:$ColorRed;
+              background-color: transparent; @include box-shadow(0, 0px, 0px, 0px, #fff);
+            }
+          }
+        }
+        &:last-child{
+          cursor: pointer;
+          // white-space: nowrap;max-width: 90px;
+          // display: inline-block;
+          white-space: nowrap;max-width: 100%;
+          // margin-left: 40px;
+          padding: 10px;
+          &[data-description]:not(:empty){
+            &:after{
+              display: block;
+              margin-top: 7px;
+              font-size: 70%;
+              white-space: pre-wrap;
+              content: attr(data-description);
+              color:$ColorBlue;
+            }
+          }
+        }
+        
+        /*
+        &:first-child{
+          white-space: nowrap;max-width: 90px;
+        }
+        &:last-child{
+          width: 50px;
+          // background-color: #ccc;
+          &:before{
+            // font-size: 120%;
+            font-size: 2em;
+            color: #666;
+          }
+          &.icon-toggle-on{
+            &:before{
+              color: green;
+            }
+          }
+        }
+        */
+      }
+    }
+  }
+  &.main-upload{
+    margin:2%; 
+    border: 2px dotted #666;
+    border-radius: 7px;
+    background-color:#fff;
+    font-size: 90%;
+    >li{
+      // background-color: red;
+      text-align: center;
+      padding: 15px 10px;
+      &:nth-child(1){
+        color: $ColorRed;
+        font-size: 80%;
+        
+      }
+      &:nth-child(2){
+        // border-top: 1px dotted #666;
+        input{
+          // display: block;
+          // width: 100%;
+          // padding: 1%;
+          // border: 1px solid red;
+          width: auto;
+          color: transparent;
+          outline: none;
+          background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+          border: 1px solid #666;
+          // border: 1px solid #666;
+          @include box-shadow(0px, 0px, 1px, 1px, #ccc,inset);
+          border-radius: 50px;
+          &::-webkit-file-upload-button {
+            visibility: hidden;
+            display: none;
+          }
+          &::before {
+            content: 'Choose your XML!';
+            color: black;
+            display: block;
+            text-align: center;
+            // background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+            // border: 1px solid #999;
+            // border-radius: 3px;
+            padding: 5px 0px;
+            outline: none;
+            // white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            text-shadow: 1px 1px #fff;
+            // font-weight: 700;
+            // font-size: 10pt;
+            // font-size: 120%;
+          }
+          &:hover::before {
+            border-color: red;
+          }
+          &:active {
+            outline: 0;
+          }
+          &:active::before {
+            // background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+          }
+        }
+      }
+    }
+  }
+  &.main-catalog{
+    margin: 5px 0;vertical-align: middle;
+    li{
+      //  display: table-row; 
+       vertical-align: inherit;
+       border-bottom: 1px solid darken($BackgroundColor,7%);font-size: 107%;position: relative;
+       padding: 15px 5px;
+       &:before{
+         position: absolute; top:15px; right:3px;
+         vertical-align: inherit;
+         text-align: center;
+         color: #8d8d90;
+         display: inline; width:20px;
+         font-size: 1em;
+         line-height: 1em;
+         padding:2px 1px;
+        //  background-color:#ccc;
+       }
+       &[data-title]{
+         &:after{
+           position: absolute; top:15px; left: 3px;
+           vertical-align: inherit;
+           text-align: center;
+           color: #8d8d90;
+           display: inline-block; width:25px;
+           font-size: 0.7em; line-height: 0.9em; padding:5px 2px;
+           content: attr(data-title);
+           border-radius: 12px; color: #fff; background-color: #ccc; @include text-shadow(0px, 1px, 1px, #666);
+         }
+       }
+       a{
+         display: block;
+         padding: 0 30px 0 30px;
+        //  background-color:#ccc;
+        display: block;
+        // background-color: #ccc;
+        // margin-left: 40px;
+        // margin-right: 40px;
+        color: $ColorBlue;
+        position: relative;
+        vertical-align: middle;
+        text-overflow:ellipsis; white-space: nowrap; max-width:100%;
+        overflow: hidden;
+        &[data-total]:not(:empty){
+          padding-right: 50px;
+          &:before{
+            position: absolute; top:0px; right:19px;
+            vertical-align: inherit;
+            display: inline-block; width:30px;
+            font-size: 0.7em; line-height: 0.9em; padding:5px 2px;
+            content: attr(data-total);
+            text-align: center; border-radius: 12px; color: #fff; background-color: #8d8d90; @include text-shadow(0px, 1px, 1px, #666);
+            // text-align: right;
+          }
+          &[data-total="0"]{
+            &:before{
+              color: #fff; background-color: lighten(#8d8d90,30%); @include text-shadow(0px, 1px, 1px, #666);
+            }
+          }
+        }
+        &[data-description]:not(:empty){
+          &:after{
+            display: block;
+            font-size: 80%;
+            white-space: pre-line;
+            content: attr(data-description);
+            color: $FontColor;
+          }
+        }
+       }
+       /*
+       &[data-title]{
+         &:before{
+           position: absolute; top:16px;
+           vertical-align: inherit;
+           text-align: center;
+           color: #8d8d90;
+           display: inline; width:30px;
+           font-size: 0.7em;
+           line-height: 0.9em;
+           padding:5px 2px;
+           content: attr(data-title);
+           border-radius: 12px; color: #fff; background-color: #ccc; @include text-shadow(0px, 1px, 1px, #666);
+         }
+       }
+      >a{
+        display: block;
+        // background-color: #ccc;
+        margin-left: 40px;
+        // margin-right: 40px;
+        color: $ColorBlue;
+        position: relative;
+        vertical-align: middle;
+        // text-overflow:ellipsis; overflow: hidden; white-space: nowrap; max-width:100%;
+        overflow: hidden;
+        padding-right: 30px;
+        &:before{
+          position: absolute;top:2px;  right:0px;
+          // top:3%; 
+          color: #8d8d90;
+          font-size: 1em;
+          line-height: 1em;
+        }
+        &[data-title]:not(:empty){
+          &:after{
+            display: block;
+            font-size: 80%;
+            content: attr(data-title);
+            color: $FontColor;
+          }
+        }
+      }
+      */
+
+      &:nth-child(odd) {
+      }
+      &:nth-child(even) {
+        background-color: #fff;
+      }
+      &:last-child{
+        border: 0;
+        background-color:transparent;
+      }
+    }
+  }
+  &.main-reader{
+    margin: 5px 0;
+    >li{
+      // padding: 0;
+      overflow: hidden;
+      >h2{
+        font-size:120%;text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid darken($BackgroundColor,7%);
+        @include box-shadow(0px, 1px, 0px, 0px, #fff);
+        color: $ColorBlue;
+        @include text-shadow(0px, 1px, 1px, #fff);
+        &[data-description]:not(:empty){
+          &:after{
+            display: block;
+            padding: 3px 10px;
+            font-size: 70%;
+            white-space: pre-wrap;
+            content: attr(data-description);
+            color:$FontColor;
+            font-weight: normal;
+          }
+        }
+      }
+      >ol{
+        // padding: 0;
+        li{
+          border-bottom: 1px solid darken($BackgroundColor,7%);font-size: 107%;position: relative;
+          padding: 15px 10px; 
+          // overflow: hidden;
+          &[data-title]{
+            margin-top: 50px;
+            &:before{
+              display: block;
+              width: 97%;
+              position: absolute;
+              top: -35px;
+              // background-color: #ccc;
+              text-align: center;
+              content: attr(data-title);
+              font-size:120%;
+              padding: 7px 0 15px 0;
+              // color:$ColorBlue;
+            }
+          }
+          div{
+            &:before,sup{
+              color: $ColorBlue;
+            }
+            &:first-child{
+              // background-color: red;
+              width: 35px;
+              position: absolute; 
+              top: 15px;
+              left: 2px;
+              &:before{
+                text-align: center;
+                font-size: 1.4em;
+                line-height: 1em;
+              }
+            }
+            &:last-child{
+              margin-left: 25px;
+              &:before{
+                content: attr(data-title);
+                margin-right: 3px;
+                font-weight: bold;
+                display: inline-block;
+                padding: 0;
+              }
+              sup{
+                font-size: 80%;
+              }
+              b{
+                color: $ColorRed;
+                font-weight: lighter;
+                // text-shadow: 1px 1px 0px #f1e9eb;
+                @include text-shadow(0px, 1px, 1px, #f1e9eb);
+              }
+              p{
+                padding-top:7px;
+                span{
+                  display: inline-block;
+                  background-color: $ColorDim; padding:2px 7px; margin:1px; border-radius: 30px;
+                  font-size: 80%;color: #fff; background-color: #ccc; @include text-shadow(0px, 1px, 1px, #333);
+                }
+              }
+            }
+          }
+          &.active{
+            div{
+              &:before,sup{
+                color: $ColorRed;
+              }
+            }
+          }
+          &:nth-child(odd) {
+          }
+          &:nth-child(even) {
+            background-color: #fff;
+          }
+          &:last-child{
+            border: 0;
+            &:nth-child(even){
+              background-color:transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.main-lookup{
+  }
+  &.main-setting{
+    margin: 5px 0;
+    >li{
+      text-align: center;
+      h3{
+        padding:10px 10px;
+        color: $ColorDim;
+        text-transform: capitalize;
+      }
+      >ol{
+        display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+        >li{
+          padding: 5px; margin: 5px;
+          width: 40px; height: 40px;
+          min-width: 50px;
+          border-radius: 2px;
+          vertical-align: middle;
+          @include box-shadow(0, 0px, 1px, 1px, #b9baba,inset);
+          &:before{
+            padding: 1px;
+            margin: 7px;
+            font-size: 1.4em;
+            color: #fff;@include text-shadow(1px, 1px, 1px, #666);
+            border-radius: 50px;
+          }
+        }
+        &.fontsize{
+          li{
+            &:not(.active){
+              &[data-title]{
+                &:before{
+                  content:attr(data-title);
+                  color:$ColorRed;@include text-shadow(0px, 1px, 1px, #fff);
+                  font-size: 1.5em;
+                  background-color: $ColorNone;
+                }
+              }
+            }
+          }
+        }
+        &.background{
+          li{
+            border: 3px solid darken(#fff,2%);
+            &:not(.active){
+              &:before{
+                content:'';
+              }
+            }
+            &.color-white{
+              background-color: #ffffff;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#ffffff,15%),inset);
+            }
+            &.color-lightgray{
+              background-color: #F8F8F8;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#F8F8F8,15%),inset);
+            }
+            &.color-dimgrey{
+              background-color: #7f7f7f;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#7f7f7f,10%),inset);
+            }
+            &.color-chocolate{
+              background-color: #b97a59;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#b97a59,10%),inset);
+            }
+            &.color-darkred{
+              background-color: #880016;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#880016,10%),inset);
+            }
+            &.color-red{
+              background-color: #ed1b24;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#ed1b24,10%),inset);
+            }
+            &.color-gold{
+              background-color: #fef102;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#fef102,10%),inset);
+            }
+            &.color-green{
+              background-color: #24b04d;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#24b04d,10%),inset);
+            }
+            &.color-darkblue{
+              background-color: #3f47cc;
+              @include box-shadow(0, 0px, 1px, 1px, darken(#3f47cc,10%),inset);
+            }
+          }
+        }
+      }
+    }
+  }
+  &.main-about{
+    text-align: center;
+    // margin: 20px auto;
+    li{
+      // padding: 10px auto;
+      // &.name{}
+      // &.version{}
+      // &.description{}
+      // &.author{}
+      &.name{
+        font-size: 1.6em;
+        margin: 20px 2px;
+      }
+      &.version{
+        margin: 2px 40px;
+        padding: 15px 2px;
+        border-top: 1px dotted #ccc;
+        border-bottom: 1px dotted #ccc;
+      }
+      &.description{
+        margin: 20px 2px 20px 2px;
+        font-size: 1em;
+      }
+      &.author{
+        font-size: 1.1em;
+      }
+    }
+  }
+  &.main-tmp{
+  }
+  // NOTE: Common  
+  &.msg{
+    display: table; height: 100%; margin: 0 auto; vertical-align: middle; text-align: center;
+    >li{
+      display: table-cell; vertical-align: inherit;
+      font-size: 120%;
+      font-weight: lighter;
+      color: $ColorDim;
+    }
+  }
+}

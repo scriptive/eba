@@ -1,28 +1,11 @@
 @charset "utf-8";
 $Font: Arial, 'Myanmar3', Helvetica, sans-serif;
 $FontSize: 100%;//11pt
-$FontColor: #333;
-
-$BackgroundColor:#F8F8F8;
-$BackgroundColorBar:#F8F8F8;
-$BackgroundColorHighlight:#EDEDED;
-
+$Color: #333;
+$BackgroundColor:#f6f8f9;
 $WidthMobile:500px;
 $WidthTablet:820px;
 $WidthDesktop:1210px;
-
-$BackgroundColorHeader:#fff;
-$BackgroundColorMain:#fff;
-$BackgroundColorNav:#C3C3C3;
-$BackgroundColorFooter:#fff;
-
-$ColorRed:#c12e2e;
-$ColorDim:#C3C3C3;
-$ColorGreen:#0a5ab9;
-$ColorBlue:#052B58;
-$ColorNone:#ccc;
-$ColorActive:#e2e2e2; //???
-
 @mixin text-size-adjust($value: none) {
     -webkit-text-size-adjust: $value;
     -moz-text-size-adjust: $value;
@@ -45,7 +28,6 @@ $ColorActive:#e2e2e2; //???
     -ms-user-select: $value;
      user-select: $value;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    // -webkit-touch-callout:none; text-decoration:none; outline:none;
 }
 @mixin text-shadow($v:'0', $h:'0', $b:'0', $color:'#FF0000') {
   text-shadow: $v $h $b $color;
@@ -71,18 +53,14 @@ $ColorActive:#e2e2e2; //???
 @mixin touch-callout($status:none) {
   -webkit-touch-callout: $status; -webkit-user-select: $status;
 }
-* {
-  &:not(#dialog), &:not(body), &:not(footer), &:not(header), &:not(main) {
-    // position:relative;
-  }
-  &:after, &:before {
-    // content: ""; text-align: center; pointer-events: none;
-  }
-  &:after {}
-  &:before {}
-}
-
 // inherit
 // text-overflow:ellipsis;
 // @-moz-document url-prefix() {}
 // -webkit-overflow-scrolling:touch;overflow:auto;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+// help?
+// todo? = adjust
+// todo# = either remove or add
+// &:before, &:after{
+// }
+// &:before{}
+// &:after{}

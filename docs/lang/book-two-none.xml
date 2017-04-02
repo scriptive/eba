@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eba lang="zo" description="this is ZOLAI language/section or etc...">
+  <info>Effortless bible analysis?</info>
+  <author>
+    <name></name>
+    <email>LTTMAIL.COM@GMAIL.COM lttmail.com@gmail.com</email>
+    <url></url>
+  </author>
+  <modification>
+    <added>
+      <job on="September 25, 2016">We started converting our data into XML!</job>
+    </added>
+    <updated>
+      <job></job>
+    </updated>
+    <removed>
+      <job></job>
+    </removed>
+  </modification>
+  <index>
+    <section id="1" name="Antanna">description</section>
+    <section id="2" name="Biakinn">description</section>
+  </index>
+  <bookname>
+    <row id="1">Piancilna</row>
+    <row id="2">Paikhiatna</row>
+    <row id="66">Mangmuhna</row>
+  </bookname>
+  <testament>
+    <row id="1" shortname="TL" reg="1-39">Thuciam Lui</row>
+    <row id="2" shortname="TT" reg="40-66">Thuciam Thak</row>
+  </testament>
+  <tag>
+    <row id="1">Basic</row>
+    <row id="2">intermediate</row>
+    <row id="3">Advance</row>
+  </tag>
+  <book>
+    <category id="1">
+      <verse book="1" chapter="1" verse="3" tag="1">Pasian in, “Khuavak om hen,” ci hi; tua ciangin khuavak om pah hi.</verse>
+      <verse book="1" chapter="1" verse="19" tag="2">Nitak hong bei-in zingsang hong tung a, ni li ni ahi hi.</verse>
+      <verse book="1" chapter="1" verse="19" tag="1">Nitak hong bei-in zingsang hong tung a, ni li ni ahi hi.</verse>
+      <verse book="1" chapter="1" verse="19" tag="2">Nitak hong bei-in zingsang hong tung a, ni li ni ahi hi.</verse>
+      <verse book="1" chapter="1" verse="19" tag="3">Nitak hong bei-in zingsang hong tung a, ni li ni ahi hi.</verse>
+      <verse book="1" chapter="1" verse="19" tag="1">Nitak hong bei-in zingsang hong tung a, ni li ni ahi hi.</verse>
+      <verse book="1" chapter="1" verse="19" tag="2">Nitak hong bei-in zingsang hong tung a, ni li ni ahi hi.</verse>
+    </category>
+    <category id="2">
+      <verse book="1" chapter="1" verse="17-18" tag="1">Leitungah khua a vaksak ding, sun leh zan a uk ding, khuamial panin khuavak a khenkhia dingin Pasian in vantungah tuate a koih hi. Pasian in tua pen hoih hi, ci-in a mu hi.</verse>
+      <verse book="1" chapter="1" verse="5" tag="2">Leitungah khua a vaksak ding, sun leh zan a uk ding, khuamial panin khuavak a khenkhia dingin Pasian in vantungah tuate a koih hi. Pasian in tua pen hoih hi, ci-in a mu hi.</verse>
+      <verse book="1" chapter="1" verse="6" tag="3">Leitungah khua a vaksak ding, sun leh zan a uk ding, khuamial panin khuavak a khenkhia dingin Pasian in vantungah tuate a koih hi. Pasian in tua pen hoih hi, ci-in a mu hi.</verse>
+    </category>
+  </book>
+</eba>

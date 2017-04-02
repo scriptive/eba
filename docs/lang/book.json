@@ -1,13 +1,13 @@
 {
-  "b1001":{
+  "book-one-none":{
     "name":"book or language 1",
     "description":"Unknown description"
   },
-  "b1002":{
+  "book-two-none":{
     "name":"book or language 2",
     "description":"Unknown description"
   },
-  "book-or-language-test-3":{
+  "book-or-language-test-three":{
     "name":"book or language 3",
     "description":"Unknown description"
   }

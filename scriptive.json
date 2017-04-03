@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "EBA",
-    "version":"0.0.2",
+    "version":"0.0.3",
     "build": "1.0.0",
     "description":"Effortless bible analysis",
     "author":"tuang",

@@ -10,7 +10,7 @@ file: {
   template: 'z.html',
   lang:'lang/book.json',
   urlLocal:'eba/bId.xml',
-  urlAPI:['db/bId.xml','lang/bId.xml']
+  urlAPI:['lang/bId.xml']
   // https://drive.google.com/uc?export=download&id=0B_7bPVufJ-j4b3ZiRFBPQkZZbXM
   // http://laisiangtho.github.io/core/bible/bId.xml
 },

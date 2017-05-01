@@ -81,6 +81,32 @@
           "gulp-concat":"filestorage.min.js"
         },
         "watch":"../scriptive.filestorage/asset/filestorage/*.js"
+      },
+      "apps.script.css": {
+        "source":"asset/apps.script/*([^A-Z0-9-]).scss",
+        "target":"apps.script",
+        "pipe":{
+          "gulp-sass":{
+            "style": "compressed"
+          }
+        }
+      },
+      "apps.script.js": {
+        "source":"asset/apps.script/*([^A-Z0-9-]).js",
+        "target":"apps.script",
+        "pipe":{
+          "gulp-include":{},
+          "gulp-uglify":{
+            "mangle":false,
+            "output":{
+              "beautify": true, 
+              "comments":"license"
+            },
+            "compress":true,
+            "preserveComments":"license"
+          }
+        },
+        "watch":"asset/apps.script/*.js"
       }
     }
   }

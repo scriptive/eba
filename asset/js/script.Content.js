@@ -101,11 +101,18 @@ var selectorCategoryVerse=function(i){
   return xmlDoc.querySelectorAll('book category[id="0"] verse'.replace(0,i));
 };
 var selectorBookname=function(i){
-  // i?'bookname row[id="0"]'.replace(0, i):'bookname'
-  return xmlDoc.querySelector('bookname row[id="0"]'.replace(0, i));
+  if (i){
+    return xmlDoc.querySelector('bookname row[id="0"]'.replace(0, i));
+  } else{
+    return xmlDoc.querySelectorAll('bookname row');
+  }
 };
 var selectorTestamentname=function(i){
-  return xmlDoc.querySelector('testament row[id="0"]'.replace(0, i));
+  if (i){
+    return xmlDoc.querySelector('testament row[id="0"]'.replace(0, i));
+  } else{
+    return xmlDoc.querySelectorAll('testament row');
+  }
 };
 var selectorTagname=function(i){
   // i?'tag row[id="0"]'.replace(0, i):'tag row'
@@ -143,7 +150,7 @@ var responseXML={
     return new Promise(function(resolve, reject) {
       selectorIndex().each(function(i,v){
         result.section++;
-        var id = v.getAttribute('id'), name = v.getAttribute('name'),description = v.innerHTML;
+        var id = v.getAttribute('id'), name = v.getAttribute('name'), sort = v.getAttribute('sort'), description = v.innerHTML;
         container.appendChild(app.elementCreate('li'))
           .addClass('icon-arrow-right')
           .addAttr('data-title',id)
@@ -154,6 +161,77 @@ var responseXML={
             .innerHTML=name;
       });
       resolve(result);
+    });
+  },
+  exportCategory:function(language){
+    // timestamp	id	language	sort	group	name	desc
+    // TODO: sorting
+    var logSorted = {};
+    var logContent='id\tlanguage\tsort\tgroup\tname\tdesc';
+    return new Promise(function(resolve, reject) {
+      selectorIndex().each(function(i,v){
+        result.section++;
+        var id = v.getAttribute('id'), name = v.getAttribute('name'), sort = v.getAttribute('sort'), description = v.innerHTML;
+        // logContent = logContent+"\n"+id+"\t"+language+"\t"+sort+"\t"+1+"\t"+name+"\t"+description;
+        logSorted[sort]={id:id,language:language,sort:sort,name:name,description:description};
+      });
+      logSorted.each(function(i,v){
+        logContent = logContent+"\n"+v.id+"\t"+v.language+"\t"+v.sort+"\t"+1+"\t"+v.name+"\t"+v.description;
+      });
+      console.log(logContent);
+      resolve(logContent);
+    });
+  },
+  exportTestament:function(language){
+    // timestamp	id	language	name	shortname
+    var logContent='id\tlanguage\tname\tshortname';
+    return new Promise(function(resolve, reject) {
+      selectorTestamentname().each(function(i,v){
+        var id = v.getAttribute('id'), shortname=v.getAttribute('shortname'), name = v.innerHTML;
+        logContent = logContent+"\n"+id+"\t"+language+"\t"+name+"\t"+shortname;
+      });
+      console.log(logContent);
+      resolve(logContent);
+    });
+  },
+  exportBook:function(language){
+    // timestamp	id	language	name
+    var logContent='id\tlanguage\tname';
+    return new Promise(function(resolve, reject) {
+      selectorBookname().each(function(i,v){
+        var id = v.getAttribute('id'), description = v.innerHTML;
+        logContent = logContent+"\n"+id+"\t"+language+"\t"+description;
+      });
+      console.log(logContent);
+      resolve(logContent);
+    });
+  },
+  exportVerse:function(category){
+    // timestamp	category	book	chapter	verse	tag
+    var logContent='category\tbook\tchapter\tverse';
+    return new Promise(function(resolve, reject) {
+      var xmlCategories = selectorCategory(category);
+      if (!xmlCategories.length) return reject(configuration.lang.noCategoryData);
+      xmlCategories.each(function(i,xmlCategory){
+        var categoryId = category?category:xmlCategory.getAttribute('id');
+        xmlCategory.querySelectorAll(selectorVerse()).each(function(i,v){
+          var bookId = v.getAttribute('book'), testamentId = (bookId<=39?1:2), chapterId = v.getAttribute('chapter'), verseId = v.getAttribute('verse'),
+          testamentName = selectorTestamentname(testamentId).innerHTML,
+          bookName=selectorBookname(bookId).innerHTML;
+          if (bookId && chapterId && verseId){
+            result.verse ++;
+            logContent = logContent+"\n"+categoryId+"\t"+bookId+"\t"+chapterId+"\t"+verseId;
+          }
+        });
+      });
+      if (result.verse) {
+        console.log(logContent);
+        resolve(result);
+      } else if (category) {
+        reject(configuration.lang.noCategoryContent);
+      } else {
+        reject(configuration.lang.noMatchFor);
+      }
     });
   },
   reader:function(container,category){

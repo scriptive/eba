@@ -59,6 +59,10 @@ public/*
 # Assets
 asset/*/*[0-9].*
 
+# Apps Script
+apps.script/*.js
+apps.script/*.css
+
 # Development
 dev/*/**
 !dev/*/*.md

@@ -1,28 +1,7 @@
 @charset "utf-8";
-$Font: Arial, 'Myanmar3', Helvetica, sans-serif;
+$Font: Arial, 'Myanmar3', 'Material Icons', Helvetica, sans-serif;
 $FontSize: 100%;//11pt
 $FontColor: #333;
-
-$BackgroundColor:#F8F8F8;
-$BackgroundColorBar:#F8F8F8;
-$BackgroundColorHighlight:#EDEDED;
-
-$WidthMobile:500px;
-$WidthTablet:820px;
-$WidthDesktop:1210px;
-
-$BackgroundColorHeader:#fff;
-$BackgroundColorMain:#fff;
-$BackgroundColorNav:#C3C3C3;
-$BackgroundColorFooter:#fff;
-
-$ColorRed:#c12e2e;
-$ColorDim:#C3C3C3;
-$ColorGreen:#0a5ab9;
-$ColorBlue:#052B58;
-$ColorNone:#ccc;
-$ColorActive:#e2e2e2; //???
-
 @mixin text-size-adjust($value: none) {
     -webkit-text-size-adjust: $value;
     -moz-text-size-adjust: $value;
@@ -87,6 +66,3 @@ $ColorActive:#e2e2e2; //???
     // -webkit-overflow-scrolling:touch;overflow:auto;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
   }
 }
-
-// inherit
-// @-moz-document url-prefix() {}

@@ -10,6 +10,12 @@ page: {
   // =require script.Page.setting.js
   // =require script.Page.about.js
 },
+export:{
+  // =require script.Export.category.js
+  // =require script.Export.testament.js
+  // =require script.Export.book.js
+  // =require script.Export.verse.js
+},
 xml:function(bId){
   // =require script.XML.js
 },

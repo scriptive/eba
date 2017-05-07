@@ -226,7 +226,9 @@ ol.main-index li { width: 18px; padding: 3px 0; }
 
 ol.common-box-main { padding: 20px; }
 
-ol.common-box-main li div { display: block; padding: 10px 7px; margin: 5px 30px 5px 30px; border: 1px solid #ccc; text-transform: capitalize; font-size: 120%; color: #000; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 100%; }
+ol.common-box-main li div, ol.common-box-main li a { display: block; padding: 10px 7px; margin: 5px 30px 5px 30px; border: 1px solid #ccc; font-size: 120%; color: #000; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 100%; }
+
+ol.main-home li a { text-transform: uppercase; }
 
 ol.main-language { padding: 10px; }
 
@@ -334,7 +336,7 @@ ol.main-display { margin: 5px 0; }
 
 ol.main-display > li { text-align: center; }
 
-ol.main-display > li h3 { padding: 10px 10px; color: #C3C3C3; text-transform: capitalize; }
+ol.main-display > li h3 { padding: 10px 10px; color: #C3C3C3; text-transform: uppercase; }
 
 ol.main-display > li > ol { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
 

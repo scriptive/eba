@@ -122,8 +122,16 @@
         // e.innerHTML=app.config.page[app.localStorage.name.query.page].name;
       },
       toPage:function(e){
-        // app.Toggle.nav(e);
-        app.Toggle.nav(e).style.display = 'none';
+        app.Toggle.nav(e,function(e,a){
+          var homeContainer=e.querySelector('#home').removeClass('active');
+          homeContainer.querySelector('p a').eventClick(function(event){
+            document.body.removeClick(a);
+            e.styleDisplay('none');
+            app.book.menuName().dataContentEvent();
+            event.preventDefault();
+            event.stopPropagation();
+          });
+        }).style.display = 'none';
       },
       setReader:function(e){
         app.Toggle.menu(e,function(container){

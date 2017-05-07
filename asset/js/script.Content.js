@@ -133,11 +133,12 @@ var selectorTagname=function(i){
 var selectorTagrow=function(){
   return xmlDoc.querySelectorAll('tag row');
 };
-var selectorVerse=function(book,chapter,verse,tag){
+var selectorVerse=function(book,chapter,verse,testament,tag){
   var regVerse = 'row';
   if (book) regVerse = regVerse+'[book="0"]'.replace(0, book);
   if (chapter) regVerse = regVerse+'[chapter="0"]'.replace(0, chapter);
   if (verse) regVerse = regVerse+'[verse="0"]'.replace(0, verse);
+  if (testament) regVerse = regVerse+'[testament="0"]'.replace(0, testament);
   if (tag) regVerse = regVerse+'[tag="0"]'.replace(0, tag);
   return regVerse;
 };
@@ -317,7 +318,20 @@ var responseXML={
   },
   lookup:function(container,paraSearch){
     return selectorCommon(container,function(v){
-      if (new RegExp(paraSearch, "i").test(v.innerHTML)) return html.replaceKeyword(v.innerHTML,paraSearch);
+      var testamentId = v.getAttribute('testament');
+      // testamentId == local.name.testament &&
+      // if (new RegExp(paraSearch, "i").test(v.innerHTML)) return html.replaceKeyword(v.innerHTML,paraSearch);
+      // testamentId == local.name.testament &&
+      if (new RegExp(paraSearch, "i").test(v.innerHTML)) {
+        var testamentId = v.getAttribute('testament');
+        if (testamentId) {
+          if (testamentId == local.name.testament) {
+            return html.replaceKeyword(v.innerHTML,paraSearch);
+          }
+        } else {
+          return html.replaceKeyword(v.innerHTML,paraSearch);
+        }
+      }
     });
   },
   bookmark:function(container,lst){

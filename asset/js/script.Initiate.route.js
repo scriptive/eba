@@ -1,7 +1,7 @@
-var localQuery = local.name.query, 
+var localQuery = local.name.query, availableLanguage=Object.keys(local.name.language),
   fO = {
     // page: configuration.pageHome, book:'eba',category: 1, q:'', pagePrevious:configuration.pageHome,result: ''
-    page: configuration.pageHome, language:1,testament:1,category: 1, q:'', pagePrevious:configuration.pageHome,result: ''
+    page: configuration.pageHome, language:availableLanguage[0],testament:1,category: 1, q:'', pagePrevious:configuration.pageHome,result: ''
   },
   fM = {
     page: function(i,n,d,o) {
@@ -17,6 +17,9 @@ var localQuery = local.name.query,
       }
       configuration[i]= o[i];
       // console.log('configuration:',configuration.pagePrevious,'localQuery:',localQuery.pagePrevious,'current',localQuery.page);
+    },
+    language:function(i,n,d,o){
+      if (!availableLanguage.has(n))configuration[i]= o[d];
     },
     q: function(i,n,d,o) {
       o[i] = decodeURIComponent(n);

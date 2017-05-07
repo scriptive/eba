@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Effortless bible analysis",
-    "version":"0.0.3",
+    "version":"0.0.4",
     "build": "1.0.0",
     "description":"This is not the entire bible. This is the bible analysis according to topics. Thus it helps to search, check and study the scriptures. Please be advised, read the bible book to meditate.",
     "author":"tuang",

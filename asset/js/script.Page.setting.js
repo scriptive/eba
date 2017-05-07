@@ -5,7 +5,7 @@ setting:function(resolve, reject){
   ol=app.elementCreate('ol'),
   sizeNcolor={
     fontsize:{
-      title:'font size',
+      title:'Words size',
       style:'body {font-size:$100%;}',
       option:{
         '80%':{title:'1',class:'size-small-extra'},
@@ -16,7 +16,7 @@ setting:function(resolve, reject){
       }
     },
     background:{
-      title:'background color',
+      title:'background colour',
       style:'body {background-color:$white;}',
       option:{
         '#ffffff':{class:'color-white'},

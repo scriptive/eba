@@ -3,25 +3,6 @@ randomverse:function(resolve, reject){
   app.Toggle.main(true).appendChild(ol).setAttribute('class','main-reader');
   var randomGet = false, randomDay = new Date().toLocaleDateString().toString().replace(/\//g,'');
 
-
-  /*
-  new app.Content(local.name.query.language).xml().then(function(e){
-    e.bookmark(ol,local.name.randomverse.verse).then(function(e){
-      // reader Done
-      console.log(e);
-    },function(e){
-      // reader Fail
-      ol.addAttr('class','msg').appendChild(app.elementCreate('li')).appendChild(app.elementCreate('div')).innerHTML=e;
-    });
-  },function(e){
-    // XML fail
-    ol.addAttr('class','msg').appendChild(app.elementCreate('li')).appendChild(app.elementCreate('div')).innerHTML=configuration.lang.isNotFound.replace('{is}',local.name.query.language);
-  }).then(function(){
-    // XML Done
-    resolve();
-  });
-  */
-  
   new Promise(function(res, rej) {
     if (local.name.randomverse && local.name.randomverse.isObject() && !local.name.randomverse.isEmpty()){
       if (local.name.randomverse.id != randomDay){
@@ -47,7 +28,6 @@ randomverse:function(resolve, reject){
     new app.Content(local.name.query.language).xml().then(function(e){
       e.bookmark(ol,local.name.randomverse.verse).then(function(e){
         // reader Done
-        console.log(e);
       },function(e){
         // reader Fail
         ol.addAttr('class','msg').appendChild(app.elementCreate('li')).appendChild(app.elementCreate('div')).innerHTML=e;

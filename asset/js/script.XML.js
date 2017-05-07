@@ -61,7 +61,9 @@ new app.xml(bId).save({}).then(function(){
 this.save=function(e){
   return new Promise(function(resolve, reject) {
     app.fileStorage.save(e).then(function(s){
-      localSession[localId][bId]=dataSession[localId][bId];
+      // console.log(dataSession[localId]);
+      // localSession[localId][bId]=dataSession[localId][bId];
+      if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId))localSession[localId][bId]=dataSession[localId][bId];
       // localSession[localId][bId]['info']={
       //   version:'abc',
       //   launched:'abc'
@@ -70,7 +72,15 @@ this.save=function(e){
       new app.Content(bId).xml().then(function(e){
         e.information().then(function(e){
           // reader Done
-          localSession[localId][bId]['information']=e.information;
+          if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)){
+            localSession[localId][bId]['information']=e.information;
+          } else {
+            localSession[localId][bId]={
+              name:e.information.name,
+              updated:'0',
+              information:e.information
+            };
+          }
         },function(e){
         });
       },function(e){

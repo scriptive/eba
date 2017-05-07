@@ -15,9 +15,9 @@ Effortless bible analysis
   - [x] Home/Language
   - [x] -Category
   - [x] -Reader
-  - [ ] Lookup/search
+  - [x] Lookup/search
   - [x] Bookmark/Stars
-  - [ ] Setting/Display
+  - [x] Setting/Display
   - [x] Random Verse
   - [x] About
   - [x] Contact

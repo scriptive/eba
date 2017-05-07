@@ -1,4 +1,4 @@
-var configuration = app.config, dataSession=app.book, localId='book', localSession = app.localStorage.name, self=this;
+var configuration = app.config, dataSession=app.book, localId='language', localSession = app.localStorage.name, self=this;
 // new app.xml(bId).open().then();
 this.open=function(){
   return app.fileStorage.open({
@@ -61,10 +61,25 @@ new app.xml(bId).save({}).then(function(){
 this.save=function(e){
   return new Promise(function(resolve, reject) {
     app.fileStorage.save(e).then(function(s){
-      dataSession.all[bId].id.local=1;
-      localSession[localId][bId].id.local=1;
-      app.localStorage.update(localId);
-      resolve(s);
+      localSession[localId][bId]=dataSession[localId][bId];
+      // localSession[localId][bId]['info']={
+      //   version:'abc',
+      //   launched:'abc'
+      // };
+
+      new app.Content(bId).xml().then(function(e){
+        e.information().then(function(e){
+          // reader Done
+          localSession[localId][bId]['information']=e.information;
+        },function(e){
+        });
+      },function(e){
+
+      }).then(function(){
+        app.localStorage.update(localId);
+        resolve(s);
+      });
+
     },function(e){
       reject(e)
     });
@@ -83,9 +98,8 @@ this.delete=function(){
       urlLocal: configuration.file.urlLocal.replace(/bId/,bId),
       fileNotFound: true
     }).then(function(e){
-      delete dataSession.all[bId].id.local;
-      delete localSession[localId][bId].id.local;
-      delete dataSession.file[bId];
+      
+      delete localSession[localId][bId];
       app.localStorage.update(localId);
       resolve(e);
     },function(e){
@@ -108,13 +122,13 @@ this.request=function(progressCallback){
   return new Promise(function(resolve, reject) {
     if (dataSession.file.hasOwnProperty(bId)){
       resolve(dataSession.file[bId]);
-    } else if (localSession[localId][bId].id.hasOwnProperty('local')){
+    } else if (localSession[localId].hasOwnProperty(bId)){
       self.open().then(function(e){
         e.xml = new DOMParser().parseFromString(e.fileContent,e.fileType);
         dataSession.file[bId]=e.xml;
         resolve(e.xml);
       },function(e){
-        console.log('open fail',e);
+        // console.log('open fail',e);
         self.delete().then(function(){
           reject(e);
         });
@@ -125,11 +139,8 @@ this.request=function(progressCallback){
         readAs:'readAsText'
       }).then(function(e){
         e.xml = new DOMParser().parseFromString(e.fileContent,e.fileType);
-        dataSession.file[bId]=e.xml;
-        // app.book.file[bId]=e.xml;
         resolve(e.xml);
       },function(e){
-        console.log('request local fail',e);
         new app.xml(bId).delete().then(function(){
           reject(e);
         });

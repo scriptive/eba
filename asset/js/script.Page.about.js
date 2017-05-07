@@ -1,6 +1,19 @@
 about:function(resolve, reject){
-  var configuration = app.config, ol=app.elementCreate('ol');
-  app.Toggle.main(true).appendChild(ol).setAttribute('class','main-about');
+  var configuration = app.config,local = app.localStorage, ol=app.elementCreate('ol');
+  app.Toggle.main(true).appendChild(ol).setAttribute('class','main-information');
+  var li = ol.appendChild(app.elementCreate('li'));
+  li.innerHTML=configuration.description;
+  
+  local.name.language.each(function(i,v) {
+    var li = ol.appendChild(app.elementCreate('li')).addClass(i);
+    li.appendChild(app.elementCreate('h3')).innerHTML=v.name;
+    if (v.hasOwnProperty('information') && !v.information.isEmpty()){
+      li.appendChild(app.elementCreate('p')).addAttr('data-title','Version').innerHTML=v.information.version;
+      li.appendChild(app.elementCreate('p')).addAttr('data-title','Launched').innerHTML=v.information.launched;
+    }
+  });
+  
+  /*
   var options={
     name:configuration.name,
     version:configuration.version,
@@ -12,7 +25,9 @@ about:function(resolve, reject){
     var li = ol.appendChild(app.elementCreate('li')).addClass(i);
     li.innerHTML=v;
   }),resolve();
-}
+  */
+  resolve();
+},
 /*
 var info={
   name:'Effortless bible analysis',

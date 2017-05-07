@@ -47,14 +47,24 @@ export:{
       var xmlEBA = $(app.export.xmlCreate()).children();
       var currentUser = app.sheet.currentUser.row[0];
       xmlEBA.append($('<info>').append(
-        $('<name>').html(row.name),
-        $('<desc>').html(row.desc),
-        $('<lang>').html(row.lang)
+        $('<row>',{id:'name'}).html(row.name),
+        $('<row>',{id:'desc'}).html(row.desc),
+        $('<row>',{id:'version'}).html(row.version),
+        $('<row>',{id:'launched'}).html(row.launched),
+        $('<row>',{id:'lang'}).html(row.lang)
+        // $('<name>').html(row.name),
+        // $('<desc>').html(row.desc),
+        // $('<version>').html(row.version),
+        // $('<launched>').html(row.launched),
+        // $('<lang>').html(row.lang)
       ));
       xmlEBA.append($('<author>').append(
-        $('<name>').html(currentUser.name),
-        $('<email>').html(currentUser.email),
-        $('<url>').html('')
+        $('<row>',{id:'name'}).html(currentUser.name),
+        $('<row>',{id:'email'}).html(currentUser.email),
+        $('<row>',{id:'url'}).html('')
+        // $('<name>').html(currentUser.name),
+        // $('<email>').html(currentUser.email),
+        // $('<url>').html('')
       ));
       // <job on="September 25, 2016">We started converting our data into XML!</job>
       xmlEBA.append($('<modification>').append(
@@ -160,7 +170,8 @@ export:{
             var row = response.shift();
             task.verseText(row.book,row.chapter,row.verse).done(function(v) {
               if (!xmlCategory)xmlCategory = $('<category>',{id:row.category}).appendTo(xmlEBA);
-              $('<row>',{book:row.book,chapter:row.chapter,verse:row.verse,tag:row.tag}).html(v).appendTo(xmlCategory);
+              var testamentId = (parseInt(row.book)<=39?1:2);
+              $('<row>',{testament:testamentId,book:row.book,chapter:row.chapter,verse:row.verse,tag:row.tag}).html(v).appendTo(xmlCategory);
               xmlCategory.promise().done(function(){
                 if (response.length){
                   job.process();

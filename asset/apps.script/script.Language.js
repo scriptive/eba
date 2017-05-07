@@ -58,6 +58,14 @@ language:{
           $('<input>',{type:'text',name:'name',placeholder:'Name'})
         ),
         $('<div>').append(
+          $('<p>').html('Version'),
+          $('<input>',{type:'text',name:'version',placeholder:'Version'})
+        ),
+        $('<div>').append(
+          $('<p>').html('Launched'),
+          $('<input>',{type:'text',name:'launched',placeholder:'Launched'})
+        ),
+        $('<div>').append(
           $('<p>').html('Description'),
           $('<textarea>',{name:'desc',placeholder:'Description'})
         ),
@@ -108,6 +116,14 @@ language:{
         $('<div>').append(
           $('<p>').html('Name'),
           $('<input>',{type:'text',name:'name',placeholder:'Name',value:row.name})
+        ),
+        $('<div>').append(
+          $('<p>').html('Version'),
+          $('<input>',{type:'text',name:'version',placeholder:'Version',value:row.version})
+        ),
+        $('<div>').append(
+          $('<p>').html('Launched'),
+          $('<input>',{type:'text',name:'launched',placeholder:'Launched',value:row.launched})
         ),
         $('<div>').append(
           $('<p>').html('Description'),

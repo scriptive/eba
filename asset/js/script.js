@@ -28,7 +28,7 @@
       // {"class":{"fontsize":"size-normal","background":"color-white"}}
       // {"version":"1.0.0","build":"1.0.1","class":{"fontsize":"size-normal","background":"color-white"}}
       new Promise(function(resolve, reject) {
-        local.select('setting').select('query').select('todo');
+        local.select('setting').select('query').select('language').select('randomverse').select('todo');
         local.select('bookmark').select('suggestion');
         // NOTE: Private
         if (local.name.setting.hasOwnProperty('build')) {
@@ -49,16 +49,6 @@
           local.name.setting.build = configuration.build;
           local.update('setting');
         }
-        // process().then(function(e) {
-        //   if (e === true) return template();
-        //   return e;
-        // }).then(function(e) {
-        //   if (e === true) {
-        //     resolve();
-        //   } else {
-        //     reject(e);
-        //   }
-        // });
         process().then(function(e) {
           document.body.classList.add(app.config.Screen);
           // return setTimeout(function() {},200);
@@ -121,8 +111,19 @@
         e.innerHTML= app.config.name;
       },
       setName:function(e){
-        e.innerHTML=app.localStorage.name.query.page;
+        // e.innerHTML=app.config.page[app.localStorage.name.query.page].name || app.config.name;
+        
+        if (app.config.page[app.localStorage.name.query.page].hasOwnProperty('title')){
+          e.innerHTML=app.config.page[app.localStorage.name.query.page].title;
+        } else{
+          e.innerHTML= app.config.name;
+        }
+        // e.innerHTML=app.localStorage.name.query.page;
         // e.innerHTML=app.config.page[app.localStorage.name.query.page].name;
+      },
+      toPage:function(e){
+        // app.Toggle.nav(e);
+        app.Toggle.nav(e).style.display = 'none';
       },
       setReader:function(e){
         app.Toggle.menu(e,function(container){
@@ -144,7 +145,6 @@
           
           // https://drive.google.com/open?id=0B_7bPVufJ-j4R2NnUTNIWm55Tlk
           // https://drive.google.com/open?id=0B_7bPVufJ-j4b3ZiRFBPQkZZbXM
-          
           // https://drive.google.com/uc?export=download&id=0B_7bPVufJ-j4b3ZiRFBPQkZZbXM
         },function(){
           // NOTE: onClose
@@ -157,6 +157,7 @@
         return app.elementSelect('header');
       },
       lookup:function(e){
+        /*
         // object.addEventListener("focus", function(){});
         var input = e.querySelector('input').addAttr('placeholder',app.localStorage.name.query.q||'search...');
         
@@ -177,6 +178,7 @@
           // window.location.reload(true);
           o.preventDefault();
         });
+        */
       }
 
     },

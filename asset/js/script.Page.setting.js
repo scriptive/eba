@@ -32,7 +32,7 @@ setting:function(resolve, reject){
       }
     }
   };
-  app.Toggle.main(true).appendChild(ol).setAttribute('class','main-setting');
+  app.Toggle.main(true).appendChild(ol).setAttribute('class','main-display');
   if(!localSetting.hasOwnProperty('class')){localSetting.class={};}
   sizeNcolor.each(function(k, name) {
     var liParent = ol.appendChild(app.elementCreate('li'));

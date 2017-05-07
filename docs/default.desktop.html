@@ -22,70 +22,37 @@
   </div>
   <div id="main">
     <nav>
+      <dl>
+        <dt><p>Manage language</p></dt>
+        <dd></dd>
+      </dl>
     </nav>
     <header>
       <ul>
         <li class="ctl">
           <ul class="active">
-            <li class="link-content">
-              <div data-content="nav setTitle"></div>
-            </li>
-          </ul>
-          <ul class="book setting about bookmark">
             <li class="fixed">
-              <div class="icon-slim-left" data-link="nav toPrevious"></div>
+              <div class="icon-home" data-link="nav toHome"></div>
+            </li>
+            <li class="fixed border">
+              <div class="icon-left" data-link="nav toPrevious"></div>
             </li>
             <li class="link-content">
-              <div data-content="nav setName"></div>
+              <div data-content="nav setName">Effortless</div>
             </li>
-            <li class="fixed"></li>
-          </ul>
-          <ul class="catalog">
-            <li class="fixed">
-              <div class="icon-slim-left" data-link="nav toPrevious"></div>
-            </li>
-            <li class="link-content">
-              <div data-content="nav setName"></div>
-            </li>
-            <li class="fixed">
+            <li class="fixed border">
               <div class="icon-lookup" data-link="nav toPrevious" data-page="lookup"></div>
             </li>
-          </ul>
-          <ul class="reader">
             <li class="fixed">
-              <div class="icon-slim-left" data-link="nav toPrevious"></div>
-            </li>
-            <li class="link-content">
-              <div data-content="nav setName"></div>
-            </li>
-            <li class="link-filter fixed">
-              <div class="icon-map" data-content="nav setReader"></div>
-              <ul class="hO">
-                <li></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="lookup">
-            <li class="fixed">
-              <div class="icon-slim-left" data-link="nav toPrevious"></div>
-            </li>
-            <li class="link-lookup">
-              <form name="lookup" data-content="header lookup">
-                <label for="q"><input type="search" name="q" id="q" placeholder="search..."></label>
-              </form>
-            </li>
-            <li class="link-filter fixed">
-              <div class="icon-map" data-content="nav setReader"></div>
-              <ul class="hO">
-                <li></li>
-              </ul>
+              <div class="icon-panel" data-content="nav toPage"></div>
             </li>
           </ul>
         </li>
       </ul>
     </header>
     <main>
-      <div class="container home active"></div>
+      <div class="container active"></div>
+      <div class="container home reader" style="bottom:35px"></div>
       <div class="container lookup"></div>
     </main>
     <footer></footer>

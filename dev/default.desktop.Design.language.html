@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -7,56 +8,51 @@
   <meta name="msapplication-tap-highlight" content="no" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Effortless bible analysis</title>
-  <link rel="icon" href="img/icon.png" type="image/png"/>
+  <link rel="icon" href="img/icon.png" type="image/png" />
   <link rel="stylesheet" href="font/eba.css">
   <link rel="stylesheet" href="css/style.css">
   <style type="text/css" id="custom"></style>
 </head>
+
 <body>
+  <div id="screen" style="display:none">
+  </div>
   <div id="dialog" style="display:none">
-    <div>
-      <div class="message"></div>
-      <p class="okey">Ok</p>
-      <p class="cancel">Cancel</p>
-    </div>
   </div>
   <div id="main">
     <nav>
-      <dl>
-        <dt><p>Manage language</p></dt>
-        <dd></dd>
-      </dl>
+      nav
     </nav>
     <header>
       <ul>
         <li class="ctl">
           <ul class="active">
             <li class="fixed">
-              <div class="icon-home" data-link="nav toHome"></div>
-            </li>
-            <li class="fixed border">
-              <div class="icon-left" data-link="nav toPrevious"></div>
+              <div class="icon-home" data-content="nav setTitle"></div>
             </li>
             <li class="link-content">
-              <div data-content="nav setName">Effortless</div>
-            </li>
-            <li class="fixed border">
-              <div class="icon-lookup" data-link="nav toPrevious" data-page="lookup"></div>
+              <div data-content="nav setTitle">Languages</div>
             </li>
             <li class="fixed">
-              <div class="icon-panel" data-content="nav toPage"></div>
+              <div class="icon-panel" data-content="nav setTitle"></div>
             </li>
           </ul>
         </li>
       </ul>
     </header>
     <main>
-      <div class="container active"></div>
-      <div class="container home reader" style="bottom:35px"></div>
-      <div class="container lookup"></div>
+      <div class="container language active">
+        <ol class="main-language">
+          <li>
+            <div>English English English English</div><div>add</div>
+          </li>
+          <li>
+            <div>ZOMI</div><div>Remove</div>
+          </li>
+        </ol>
+      </div>
     </main>
-    <footer></footer>
   </div>
-
 </body>
+
 </html>

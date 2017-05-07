@@ -10,6 +10,18 @@ Effortless bible analysis
 }
 ```
 
+## Todo
+- Page
+  - [x] Home/Language
+  - [x] -Category
+  - [x] -Reader
+  - [ ] Lookup/search
+  - [x] Bookmark/Stars
+  - [ ] Setting/Display
+  - [x] Random Verse
+  - [x] About
+  - [x] Contact
+  
 ## Command lines
 
 - `npm run download -- --pro=eba`

@@ -41,6 +41,7 @@ body {
     @import "style.Dialog";
     &#main{
       z-index: 1; display: table; width: 100%; height: 100%;border-collapse: collapse; 
+      // z-index: 1; display: table; width: 100%; height: 100%;border-collapse: collapse; 
       top:0;bottom: 0; box-sizing:border-box;-webkit-box-sizing: border-box; overflow: hidden;
       >*{
         display: table-row;
@@ -50,7 +51,54 @@ body {
       }
       nav{
         display: none;
+        height: 100%;
+        width: 100%;
         z-index: 4;
+        // background-color: rgba(255,255,255,0.7);
+        background-color: rgba(0, 0, 0, 0.1);
+        position: fixed; top:0px; bottom:0; right: 0;
+        @include user-select();
+        /*
+        >div{
+          z-index: 7; position: fixed; width: 95%; max-width:290px; top:0px; bottom:0;  right: 0;
+          // margin: 20px 0 20px 0;
+          overflow:auto;-webkit-overflow-scrolling:touch;box-sizing:border-box;-webkit-box-sizing: border-box;
+          @include text-size-adjust(100%);@include box-sizing();
+          background-color: #fff;
+          box-shadow: -1px 0px 1px 1px darken(#e1e1e2,10%);
+        }
+        */
+        dl {
+          // display: block; position:relative;max-width: 250px; height: 100%;
+          z-index: 7; position: fixed; width: 95%; max-width:290px; top:0px; bottom:0;  right: 0;
+          background-color: #fff;
+          box-shadow: -1px 0px 1px 1px darken(#e1e1e2,10%);
+          dt {
+            display: flex; height: 30px; align-items: center;
+            p {
+              text-align: center; font-size: 115%; text-transform: uppercase;
+              // color: #8f9193;width: 100%;
+              color: #fff;
+              &:before {
+              }
+            }
+          }
+          dd {
+            overflow-y: auto;
+            // @include box-shadow(1px, 0px, 0px, 0px, #d9dbdd);
+            -webkit-overflow-scrolling: touch;
+            height: 100%;
+            max-height: -o-calc(100% - 30px);
+            max-height: -moz-calc(100% - 30px);
+            max-height: -webkit-calc(100% - 30px);
+            &:empty{
+              display: none;
+            }
+            >ul{
+              list-style: none;
+            }
+          }
+        }
       }
       header{
         // height: 50px;
@@ -62,7 +110,7 @@ body {
       main{
         z-index: 2;height: 100%;
         >div{
-          position: fixed; top:50px; bottom:0px; left: 0; right: 0;
+          position: fixed; top:50px; left: 0; right: 0;bottom:0; // bottom:35px;
           &.container.active{
             overflow:auto;-webkit-overflow-scrolling:touch;box-sizing:border-box;-webkit-box-sizing: border-box;
             @include text-size-adjust(100%);@include box-sizing();
@@ -152,6 +200,7 @@ body {
 // NOTE: hO, hW
 ul{
   list-style: none;
+  /*
   &.hO{
     display: none;
     position: absolute;
@@ -211,6 +260,8 @@ ul{
       }
     }
   }
+  */
 }
+@import 'style.Nav';
 @import 'style.Header';
 @import 'style.Main';

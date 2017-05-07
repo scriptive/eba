@@ -8,9 +8,10 @@ idUnique: 'eba:unique',
 developer: '{application.developer}',
 file: {
   template: 'z.html',
-  lang:'lang/book.json',
+  lang:'https://storage.googleapis.com/effortless/language.json',
   urlLocal:'eba/bId.xml',
-  urlAPI:['lang/bId.xml']
+  urlAPI:['https://storage.googleapis.com/effortless/bId.xml']
+  // urlAPI:['lang/bId.xml']
   // https://drive.google.com/uc?export=download&id=0B_7bPVufJ-j4b3ZiRFBPQkZZbXM
   // http://laisiangtho.github.io/core/bible/bId.xml
 },
@@ -28,8 +29,13 @@ lang: {
   noMatchFor: 'No match for {for}!',
   noCategoryContent: 'This category has no content...',
   noCategoryData: 'This category has no data...',
-  noBookmark: 'No Bookmark...',
-  isNotFound: 'Not found: "{is}"'
+  noBookmark: 'No Star...',
+  isNotFound: 'Not found: "{is}"',
+  Loading: 'Loading',
+  isError: 'Error',
+  addLanguage: 'Add',
+  removeLanguage: 'Remove',
+  manageLanguage: 'Add Languages'
 },
 classname: {
   active: 'active',
@@ -40,42 +46,64 @@ classname: {
 page:{
   home:{
     id:1,
-    name:'Home',
-    class:'icon-home'
+    name:'Languages',
+    class:'home',
+    title:'Effortless'
   },
-  book:{
+  // book:{
+  //   id:2,
+  //   name:'Book',
+  //   class:'language',
+  //   title:'Effortless'
+  // },
+  category:{
     id:2,
-    name:'Book',
-    class:'icon-language'
-  },
-  catalog:{
-    id:3,
-    name:'Catalog',
-    class:'icon-book'
+    // name:'Category',
+    class:'book'
   },
   reader:{
-    id:4,
-    name:'Reader',
-    class:'icon-chapter'
+    id:3,
+    // name:'Reader',
+    class:'chapter'
   },
   lookup:{
+    id:4,
+    name:'Search',
+    class:'lookup',
+    title:'Search'
+  },
+  lookupresult:{
     id:5,
-    name:'Lookup',
-    class:'icon-lookup'
+    title:'Effortless'
   },
   bookmark:{
     id:6,
-    name:'Bookmark',
-    class:'icon-bookmark'
+    name:'Stars',
+    class:'bookmark',
+    title:'Stars'
+  },
+  randomverse:{
+    id:7,
+    name:'Random Verse',
+    class:'randomverse',
+    title:'Random Verse'
   },
   setting:{
-    id:7,
-    name:'Setting',
-    class:'icon-setting'
+    id:8,
+    name:'Display',
+    class:'setting',
+    title:'Display'
   },
   about:{
-    id:8,
+    id:9,
     name:'About',
-    class:'icon-info'
+    class:'info',
+    title:'About'
+  },
+  contact:{
+    id:10,
+    name:'Contact',
+    class:'info',
+    title:'Contact'
   }
 }

@@ -2,13 +2,16 @@
 
 page: {
   // =require script.Page.home.js
-  // =require script.Page.book.js
-  // =require script.Page.catalog.js
+  // =require script.Page.category.js
+  // require script.Page.book.js
   // =require script.Page.reader.js
+  // =require script.Page.randomverse.js
   // =require script.Page.lookup.js
+  // =require script.Page.lookupresult.js
   // =require script.Page.bookmark.js
   // =require script.Page.setting.js
   // =require script.Page.about.js
+  // =require script.Page.contact.js
 },
 export:{
   // =require script.Export.category.js

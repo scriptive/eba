@@ -1,6 +1,7 @@
 var localQuery = local.name.query, 
   fO = {
-    page: configuration.pageHome, book:'eba',category: 1, q:'', pagePrevious:configuration.pageHome,result: ''
+    // page: configuration.pageHome, book:'eba',category: 1, q:'', pagePrevious:configuration.pageHome,result: ''
+    page: configuration.pageHome, language:1,testament:1,category: 1, q:'', pagePrevious:configuration.pageHome,result: ''
   },
   fM = {
     page: function(i,n,d,o) {

@@ -19,7 +19,11 @@ var localQuery = local.name.query, availableLanguage=Object.keys(local.name.lang
       // console.log('configuration:',configuration.pagePrevious,'localQuery:',localQuery.pagePrevious,'current',localQuery.page);
     },
     language:function(i,n,d,o){
-      if (!availableLanguage.has(n))configuration[i]= o[d];
+      if (availableLanguage.length){
+        if (!availableLanguage.has(n))configuration[i]= o[d];
+      } else {
+        local.name.query.page = configuration.pageHome;
+      }
     },
     q: function(i,n,d,o) {
       o[i] = decodeURIComponent(n);

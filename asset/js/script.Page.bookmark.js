@@ -5,7 +5,7 @@ bookmark:function(resolve, reject){
   new app.Content(local.name.query.language).xml().then(function(e){
     e.bookmark(ol,local.name.bookmark).then(function(e){
       // reader Done
-      console.log(e);
+      // console.log(e);
     },function(e){
       // reader Fail
       ol.addAttr('class','msg').appendChild(app.elementCreate('li')).appendChild(app.elementCreate('div')).innerHTML=e;

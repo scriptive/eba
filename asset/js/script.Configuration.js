@@ -47,7 +47,7 @@ page:{
   home:{
     id:1,
     name:'Languages',
-    class:'home',
+    class:'icon-language',
     title:'Effortless'
   },
   // book:{
@@ -69,7 +69,7 @@ page:{
   lookup:{
     id:4,
     name:'Search',
-    class:'lookup',
+    class:'icon-lookup',
     title:'Search'
   },
   lookupresult:{
@@ -79,31 +79,31 @@ page:{
   bookmark:{
     id:6,
     name:'Stars',
-    class:'bookmark',
+    class:'icon-star',
     title:'Stars'
   },
   randomverse:{
     id:7,
     name:'Random Verse',
-    class:'randomverse',
+    class:'icon-random',
     title:'Random Verse'
   },
   setting:{
     id:8,
     name:'Display',
-    class:'setting',
+    class:'icon-display',
     title:'Display'
   },
   about:{
     id:9,
     name:'About',
-    class:'info',
+    class:'icon-about',
     title:'About'
   },
   contact:{
     id:10,
     name:'Contact',
-    class:'info',
+    class:'icon-contact',
     title:'Contact'
   }
 }

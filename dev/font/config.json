@@ -96,6 +96,36 @@
       "css": "left",
       "code": 61815,
       "src": "fontawesome"
+    },
+    {
+      "uid": "ddecf5ad7935e3fb1b70dac6ed00d06a",
+      "css": "language",
+      "code": 59413,
+      "src": "entypo"
+    },
+    {
+      "uid": "7e4164950ffa4990961958b2d6318658",
+      "css": "about",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "937f4db8b6ff3348a1d9fcd5e12fd2fe",
+      "css": "contact",
+      "code": 59395,
+      "src": "iconic"
+    },
+    {
+      "uid": "3d349daaea304032a7669b4f24931b6c",
+      "css": "random",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "9x8p16w516pn1b19chr85japkedporm7",
+      "css": "display",
+      "code": 59398,
+      "src": "typicons"
     }
   ]
 }

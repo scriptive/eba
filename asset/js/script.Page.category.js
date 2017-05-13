@@ -19,9 +19,8 @@ category:function(resolve, reject){
     var alphabet = [], olIndex=app.elementCreate('ol');
     // alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
     container.appendChild(olIndex).eventClick(function(event){
-      var e = event.target, id =e.getAttribute('class');
-      var position = document.getElementById(id);
-      app.main.container().firstElementChild.scrollTop = position.offsetTop;
+      var e = event.target, id =e.getAttribute('class'), position = document.getElementById(id);
+      if (position)app.main.container().firstElementChild.scrollTop = position.offsetTop;
 
     }).setAttribute('class','main-index');
     olMain.querySelectorAll('li.alpha').each(function(i,v){

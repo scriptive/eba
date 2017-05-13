@@ -74,12 +74,23 @@ body {
           background-color: #fff;
           box-shadow: -1px 0px 1px 1px darken(#e1e1e2,10%);
           dt {
-            display: flex; height: 30px; align-items: center;
+            // display: flex; 
+            height: 50px; align-items: right; text-align: right;
             p {
               text-align: center; font-size: 115%; text-transform: uppercase;
               // color: #8f9193;width: 100%;
               color: #fff;
               &:before {
+              }
+            }
+            div{
+              display: inline-block;
+              padding:13px 10px; font-size: 110%;text-overflow:ellipsis; overflow: hidden;
+              // background-color: red;
+              // line-height: 20px; height: 49px;
+              &:before{
+                color: #8f9193;
+                font-size: 120%;
               }
             }
           }

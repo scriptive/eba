@@ -1,8 +1,13 @@
 
 .icon-star:before { content: '\e800'; } /* '' */
 .icon-share:before { content: '\e801'; } /* '' */
+.icon-about:before { content: '\e802'; } /* '' */
+.icon-contact:before { content: '\e803'; } /* '' */
 .icon-home:before { content: '\e804'; } /* '' */
+.icon-random:before { content: '\e805'; } /* '' */
+.icon-display:before { content: '\e806'; } /* '' */
 .icon-menu:before { content: '\e808'; } /* '' */
+.icon-language:before { content: '\e815'; } /* '' */
 .icon-refresh:before { content: '\e824'; } /* '' */
 .icon-config:before { content: '\e839'; } /* '' */
 .icon-dot3:before { content: '\e83a'; } /* '' */

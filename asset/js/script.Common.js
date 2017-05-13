@@ -90,6 +90,9 @@ book:{
         }).then(function(e){
           nav.style.display='block';
           local.update('query');
+          dt.firstElementChild.eventClick(function(e){
+            console.log('click');
+          });
           dd.emptyElement();
           app.book.language = JSON.parse(e.data);
           var ul = dd.appendChild(app.elementCreate('ul'));

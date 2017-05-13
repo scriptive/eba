@@ -9,7 +9,13 @@ about:function(resolve, reject){
     li.appendChild(app.elementCreate('h3')).innerHTML=v.name;
     if (v.hasOwnProperty('information') && !v.information.isEmpty()){
       li.appendChild(app.elementCreate('p')).addAttr('data-title','Version').innerHTML=v.information.version;
-      li.appendChild(app.elementCreate('p')).addAttr('data-title','Launched').innerHTML=v.information.launched;
+      if (v.information.hasOwnProperty('size')) {
+        li.appendChild(app.elementCreate('p')).addAttr('data-title','Size').innerHTML=v.information.size;
+      } else {
+        li.appendChild(app.elementCreate('p')).addAttr('data-title','Size').innerHTML='size view required to readd language';
+        
+      }
+      // li.appendChild(app.elementCreate('p')).addAttr('data-title','Launched').innerHTML=v.information.launched;
     }
   });
   

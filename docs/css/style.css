@@ -66,9 +66,13 @@ body > div#main nav { display: none; height: 100%; width: 100%; z-index: 4; back
 
 body > div#main nav dl { z-index: 7; position: fixed; width: 95%; max-width: 290px; top: 0px; bottom: 0; right: 0; background-color: #fff; box-shadow: -1px 0px 1px 1px #c7c7c9; }
 
-body > div#main nav dl dt { display: flex; height: 30px; align-items: center; }
+body > div#main nav dl dt { height: 50px; align-items: right; text-align: right; }
 
 body > div#main nav dl dt p { text-align: center; font-size: 115%; text-transform: uppercase; color: #fff; }
+
+body > div#main nav dl dt div { display: inline-block; padding: 13px 10px; font-size: 110%; text-overflow: ellipsis; overflow: hidden; }
+
+body > div#main nav dl dt div:before { color: #8f9193; font-size: 120%; }
 
 body > div#main nav dl dd { overflow-y: auto; -webkit-overflow-scrolling: touch; height: 100%; max-height: -o-calc(100% - 30px); max-height: -moz-calc(100% - 30px); max-height: -webkit-calc(100% - 30px); }
 

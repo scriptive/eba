@@ -68,12 +68,16 @@ this.save=function(e){
       //   version:'abc',
       //   launched:'abc'
       // };
-
+      var size = s.total;
       new app.Content(bId).xml().then(function(e){
+        
         e.information().then(function(e){
           // reader Done
+          e.information.size=self.bytesToSize(size);
           if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)){
             localSession[localId][bId]['information']=e.information;
+            
+            // localSession[localId][bId]['information'].size=self.bytesToSize(size);
           } else {
             localSession[localId][bId]={
               name:e.information.name,
@@ -94,6 +98,18 @@ this.save=function(e){
       reject(e)
     });
   });
+};
+this.bytesToSize=function(bytes,decimals){
+  // var sizes = ['bytes', 'kb', 'mb', 'gb', 'tb'];
+  // if (bytes == 0) return '0 byte';
+  // var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  // return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
+  if(bytes == 0) return '0 Bytes';
+  var k = 1000,
+      dm = decimals || 2,
+      sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+      i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 /*
 new app.xml(bId).delete().then(function(){

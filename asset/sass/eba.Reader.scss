@@ -1,0 +1,92 @@
+&.reader{
+  margin: 5px 0;
+  >li{
+    overflow: hidden;
+    >h2{
+      font-size:120%;text-align: center;
+      padding: 15px 0;
+      // border-bottom: 1px solid darken($ColorBackground,7%);
+      @include box-shadow(0px, 1px, 0px, 0px, #fff);
+      color: $ColorBlue;
+      @include text-shadow(0px, 1px, 1px, #fff);
+      &[data-description]:not(:empty){
+        &:after{
+          display: block; padding: 3px 10px; font-size: 70%; white-space: pre-wrap;
+          content: attr(data-description);
+          color:$Color;
+          font-weight: normal;
+        }
+      }
+    }
+    >ol{
+      li{
+        font-size: 100%;position: relative;
+        padding: 7px 10px;
+        &[data-title]{
+          margin-top: 50px;
+          &:before{
+            display: block;
+            width: 97%;
+            position: absolute;
+            top: -35px;
+            text-align: center;
+            content: attr(data-title);
+            font-size:120%;
+            padding: 7px 0 15px 0;
+          }
+        }
+        div{
+          &:before,sup{
+            color: #666;
+          }
+          &:first-child{
+            width: 60px; height: 50px; position: absolute; top: 7px; left: 0px;
+            &:before{
+              display: block;width:90%;
+              // text-align: center; font-size: 1.0em; line-height: 1em;
+            }
+          }
+          &:last-child{
+            margin-left: 50px;
+            color: #000;
+            // text-align: justify;
+            &:before{
+              display: inline-block; margin-right: 2px; padding: 0; content: attr(data-title); font-size:90%;
+            }
+            sup{
+              font-size: 80%;
+              &:first-child{
+                display: none;
+              }
+            }
+            b{
+              color: $ColorGold; font-weight: lighter; @include text-shadow(0px, 1px, 1px, #f1e9eb);
+            }
+          }
+        }
+        &.active{
+          div{
+            &:first-child{
+              &:before{
+                color:$ColorGold;
+              }
+            }
+          }
+        }
+        /*
+        &:nth-child(odd) {
+        }
+        &:nth-child(even) {
+          background-color: #fff;
+        }
+        &:last-child{
+          border: 0;
+          &:nth-child(even){
+            background-color:transparent;
+          }
+        }
+        */
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+// width: $WidthPanel;
+// overflow: hidden;
+// @include user-select();
+// background-color: lighten(#ccc,13%);
+&::before{
+  // content: '-';
+  // position: absolute;
+  // top: 0; width: 1px;
+  // height: 100%;
+  // @include box-shadow(0px, 0px, 5px,5px, rgba(0,0,0,.19));
+
+}
+> div {
+  &.header {
+    // background-color: lighten(#ccc,13%);
+    background-color:lighten(#000,30%);
+  }
+  &.lmSB {
+    background-color:lighten(#000,30%);
+    >ul{
+    }
+  }
+}
+&#lPl{
+  // left: 0;
+  // z-index: 2;
+  // &::before{
+  //   right: 0;
+  // }
+}
+&#lPr{
+  // right: 0;
+  // z-index: 1;
+  // // display: none;
+  // &::before{
+  //   left: 0;
+  // }
+}

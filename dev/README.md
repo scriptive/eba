@@ -1,1 +1,0 @@
-# Effortless bible analysis

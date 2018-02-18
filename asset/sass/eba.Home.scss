@@ -1,0 +1,35 @@
+&.home{
+  padding:15px 0;
+  font-size: 130%;
+  >li {
+    margin-top: 1px;
+    padding:1px 40px;
+    // padding: 13px 7px;
+    border-top: 1px solid lighten($ColorSecond,40%);
+    // color: $ColorMain;
+    &:first-child{
+      border-top: 0;
+    }
+    >div {
+      display: table; width: 100%;border-spacing:0px;
+      >div{
+        // background-color: red;
+        display: table-cell; padding: 18px;
+        border-collapse:separate;
+        // color:lighten(#FFA500,15%);
+        &:first-child{
+          // background-color: lighten(#000,20%);
+          border-radius: 7px 0 0 7px;
+        }
+        &:last-child{
+          width: 80px;
+          font-size: 80%;
+          text-align: center;
+
+          border-radius: 0 7px 7px 0;
+          // background-color: lighten(#000,30%);
+        }
+      }
+    }
+  }
+}

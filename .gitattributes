@@ -22,6 +22,12 @@
 .gitignore          export-ignore
 .editorconfig       export-ignore
 
+
+/apps.script        export-ignore
+/lang/*.xml         export-ignore
+/*.md               export-ignore
+/*.js               export-ignore
+/*.json             export-ignore
 /asset              export-ignore
 /dev                export-ignore
 #/docs              export-ignore

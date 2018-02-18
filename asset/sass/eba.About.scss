@@ -1,0 +1,27 @@
+&.about{
+  // NOTE: used in contact and about
+  padding: 20px;
+  li{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    &:first-child{
+      margin-bottom: 40px;
+    }
+    h3{
+      padding: 10px 1px;
+    }
+    p{
+      &[data-title]:not(:empty){
+        &:before{
+          display: inline-block;
+          margin-right: 7px;
+          content: attr(data-title);
+          color: #666;
+          // font-style: italic;
+          // text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,314 @@
+@import "Common";
+
+@media #{$media-mobile} {
+}
+@media #{$media-tablet} {
+}
+@media #{$media-desktop} {
+}
+body {
+  >div {
+    position: fixed;overflow: hidden;
+    // top: 0;left: 0;
+    &#lBm {
+      z-index: 3;
+      // top: 0;
+      bottom: 0;
+      // left: 0;
+      // left: 250px;
+      right: 0;
+      height: 100%;
+      // width: 100%;
+      >div {
+        &:nth-child(1){}
+        &:nth-child(2){}
+        // overflow: hidden;
+        &#lmB {
+          // background-color: lighten(#ccc,19%);
+          height:$HeightBar;
+          border-bottom: 1px solid #ccc;
+          z-index: 5;
+        }
+        &#lmC {
+          position: relative;
+          // top: 50px; bottom: 0px;
+          // left: 0; right: 0;
+          // left: 250px;
+          // background: lighten(#ccc,15%);
+          z-index: 1;
+          border-top: 1px solid lighten(#ccc,5%);
+          // height: calc(100%- 50px);
+          // width: 100%;
+          // box-sizing: border-box;
+          // overflow: auto;
+          // overflow-x: auto;
+          // -moz-overflow: auto;
+          // -webkit-overflow-scrolling: auto;
+          // -webkit-overflow-scrolling: touch;
+          // height: 100%;
+          // max-height: 100%;
+          max-height: calc(100% - 50px);
+          max-width: 100%;
+        }
+      }
+    }
+    &#lBm {
+      left: $WidthPanel;
+      // right: 300px;
+      // @include box-shadow(0px, 0px, 3px,3px, lighten(#000,1%));
+      // -webkit-box-shadow: inset 5px 0 5px rgba(0,0,0,.15);
+      // -moz-box-shadow: inset 5px 0 5px rgba(0,0,0,.15);
+      // box-shadow: inset 5px 0 5px rgba(0,0,0,.15);
+      @include box-shadow(0px, 0px, 4px,4px, rgba(0,0,0,.17));
+      // @include box-shadow(0px, 0px, 4px,4px, lighten($ColorSecond,13%));
+      // @include box-shadow(0px, 0px, 4px,4px, lighten($ColorMain,1%));
+      // @include box-shadow(inset, 5px, 0px,5px, lighten($ColorSecond,1%));
+      // border: 1px solid #fff;
+      border-top: 0;
+      border-bottom: 0;
+    }
+    &.lm-Panel{
+      >ul{
+        list-style: none;
+        padding: 1% 5%; //margin: 1%;
+        font-size: 130%;
+        >li {
+          margin-top: 1px;
+          // background-color: red;
+          padding: 13px 7px;
+          border-top: 1px solid lighten($ColorSecond,40%);
+          // background-color: #ccc;
+          color: $ColorMain;
+          &:first-child{
+            border-top: 0;
+          }
+        }
+      }
+      >div{
+        position: relative;
+        background-color: lighten(#ccc,13%);
+        &:first-child{
+          height:$HeightBar;
+          background-color: lighten(#ccc,13%);
+        }
+        &:last-child{
+          border-top: 1px solid lighten(#ccc,15%);
+          position: inherit;
+          // top:$HeightBar;
+          width: $WidthPanel;
+          bottom:0px;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+    &#lPl {
+      z-index: 1;
+      // top: 0;
+      // bottom: 0;
+      // left: 0;
+      // right: 0;
+      // left: 50px;
+      height: 100%;
+      width: $WidthPanel;
+      // background-color: red;
+      // background-color: lighten(#ccc,19%);
+      background-color: #fff;
+      // background-color: lighten($ColorMain,25%);
+      // @include box-shadow(0px, 0px, 3px, 3px, lighten($ColorMain,10%));
+      // @include box-shadow( 2px, 0px, 5px,0px, lighten($ColorSecond,1%));
+    }
+    &#lPr {
+      display: none;
+      z-index: 1;
+      // top: 0;
+      // bottom: 0;
+      left: auto;
+      right: 0;
+      // left: 50px;
+      height: 100%;
+      width: $WidthPanel;
+      // background-color: red;
+      // background-color: lighten(#ccc,19%);
+      background-color: #fff;
+      // background-color: lighten($ColorMain,25%);
+      // @include box-shadow(0px, 0px, 3px, 3px, lighten($ColorMain,10%));
+      // @include box-shadow( 2px, 0px, 5px,0px, lighten($ColorSecond,1%));
+    }
+  }
+}
+div{
+  &.lmSB {
+    // NOTE: scrollbar container
+    box-sizing: border-box;
+    overflow: auto;
+    overflow-x: auto;
+    -moz-overflow: auto;
+    // -webkit-overflow-scrolling: auto;
+    -webkit-overflow-scrolling: touch;
+    // height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    &::-webkit-scrollbar-track {
+    	background-color:transparent;
+    }
+    &::-webkit-scrollbar {
+    	width: 7px;
+    	background-color:transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+    	// border-radius: 2px 0 0 2px;
+      border-radius: 2px;
+    	// -webkit-box-shadow: 0 0 1px rgba(0,0,0,.1);
+    	background-color: lighten($ColorSecond,35%);
+    }
+  }
+  &#lPl {
+    // NOTE: Panel left
+  }
+  &#lPr {
+    // NOTE: Panel right
+  }
+  &#lmB {
+    >ul{
+      display:table; width: 100%;
+      // padding: 5px 0;
+      height: 100%;
+      height: 50px;
+      >li {
+        vertical-align: middle;
+        display: table-cell;
+        text-align: center;
+        width: 60px;
+        max-width: 60px;
+        &:first-child, &:last-child{
+          min-width: 60px;
+          // width: 50px;
+        }
+        &:first-child{
+
+        }
+        &:last-child{
+
+        }
+        &#lmD{
+          // max-width: 50px;
+          width:100%;
+
+          // width: auto;
+          // background-color: blue;
+          // text-shadow:1px 0px 1px lighten(#ccc,30%);
+
+          &:empty {
+            &[data-title]{
+              &::before{
+                content: attr(data-title);
+                display: block;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                color: darken(#ccc,20%);
+              }
+            }
+          }
+          input {
+            // border: 1px solid darken(#ccc,1%);
+            border: 0px;
+            line-height: 22px;
+            width: 96%;
+            padding: 7px 2%;
+            outline: 0;
+            font-size: 97%;
+            border-radius: 3px;
+            -webkit-border-radius:3px;
+            -webkit-appearance: none;
+            background-color: lighten(#ccc,13%);
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            // @include box-shadow(inset, 0px, 0px, 1px, 1px, lighten($ColorSecond,30%));
+            &:focus{
+              background-color: lighten(#ccc,17%);
+              // background-color: #fff;
+              @include box-shadow(inset, 0px, 0px, 1px, 1px, lighten($ColorSecond,30%));
+            }
+          }
+        }
+        &[class]{
+          &::before{
+            font-size: 130%;
+            padding: 2px;
+            // margin-top: 15px;
+            // margin-left: 15px;
+
+            color: lighten($ColorMain,1%);
+            font-weight: lighter;
+            text-shadow:1px 1px 1px lighten(#ccc,15%);
+            // text-align: center;
+            // display:table;
+            // width: 100%; height: 100%;
+            // vertical-align: middle;
+            // background-color: red;
+          }
+          &:active{
+            &::before{
+              color: lighten(#666,20%);
+              // text-shadow:0px 0px 1px lighten(red,20%);
+            }
+          }
+        }
+      }
+    }
+  }
+  &#lmC {
+    >div{
+      // box-sizing: border-box;
+      // overflow: auto;
+      // overflow-x: auto;
+      // -moz-overflow: auto;
+      // -webkit-overflow-scrolling: auto;
+      // // height: 100%;
+      // max-height: 100%;
+      // max-width: 100%;
+      // background-color: #666;
+      p {
+        padding: 5%;
+      }
+    }
+  }
+}
+
+// NOTE: iOS
+body {
+  &::before{
+    position:fixed;
+    top: 0;
+    left: 0; right: 0;
+    content: '';
+    display:block;
+    background-color: #fff;
+    height:$HeightStatus;
+    z-index: 7;
+  }
+  // border-top: 20px solid #666;
+  >div {
+    top: $HeightStatus;
+    &#lBm {
+      >div{
+        &#lmB {
+        }
+        &#lmC {
+          // max-height: calc(100% - calc($HeightStatus + $HeightBar));
+        }
+      }
+    }
+    &.lm-Panel, & > div#lmB{
+      top:70px;
+    }
+    &.lm-Panel{
+      >div{
+        &:last-child{
+          // top:70px;
+        }
+      }
+    }
+  }
+}

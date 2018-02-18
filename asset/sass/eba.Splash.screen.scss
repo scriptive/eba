@@ -1,0 +1,68 @@
+&#screen {
+  background-color: lighten(#000,20%);
+  // color: #EEE8AA;
+  // color: #F0E68C;
+  // color: #DAA520;
+  // color: #FFD700;
+  color:lighten(#FFA500,15%);
+  text-align: center;
+  h1 {
+    text-transform: uppercase;
+  }
+  ul {
+    margin-top: 20vh;
+    // margin-top: 15%;
+    list-style: none;
+    padding-top: 1%;
+    li {
+      text-transform: uppercase;
+      &:nth-child(1){
+        // font-size: 320%;
+        font-size: 12vw;
+        font-weight: bold;
+        text-shadow:0px 1px 1px lighten(#000,1%);
+        // @include box-shadow(inset, 0px, 0px, 1px, 1px, lighten($ColorSecond,30%));
+      }
+      &:nth-child(2){
+        // font-size: 200%;
+        font-size: 6vw;
+        text-shadow:1px 1px 1px darken(#000,15%);
+      }
+      &:first-child{
+
+      }
+      &:last-child{
+        text-transform: capitalize;
+      }
+    }
+  }
+  ol {
+    position: absolute;
+    text-align:right;
+    list-style: none;
+    bottom:2%;
+    right:5%;
+    font-size: 95%;
+    li {
+      &:nth-child(1){
+        text-transform: uppercase;
+        font-weight: bold;
+        text-shadow:0px 1px 0px lighten(#000,15%);
+      }
+      &:nth-child(2){
+        font-size: 90%;
+        &::before{
+          content: attr(data-title);
+          color:darken(#FFA500,15%);
+          margin-right:2px;
+        }
+      }
+      &:last-child{
+        font-size: 70%;
+        sup{
+          color:darken(#FFA500,15%);
+        }
+      }
+    }
+  }
+}

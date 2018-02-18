@@ -1,27 +1,34 @@
 @charset "utf-8";
 $Font: Arial, 'Myanmar3', Helvetica, sans-serif;
 $FontSize: 100%;//11pt
-$FontColor: #333;
-
-$BackgroundColor:#F8F8F8;
-$BackgroundColorBar:#F8F8F8;
-$BackgroundColorHighlight:#EDEDED;
-
+$Color: #333;
+$ColorBackground:#fff;//#F8F8F8;
+$ColorMain:#318ED7;
+$ColorSecond:#7A7A7A;
 $WidthMobile:500px;
 $WidthTablet:820px;
 $WidthDesktop:1210px;
 
-$BackgroundColorHeader:#fff;
-$BackgroundColorMain:#fff;
-$BackgroundColorNav:#C3C3C3;
-$BackgroundColorFooter:#fff;
+$WidthPanel:320px;
+$HeightBar:50px;
+$HeightStatus:20px;
+
+$ColorGooglePlus:#d34836;
+$ColorTwitter:#3b5998;
+$ColorFacebook:#0084b4;
 
 $ColorRed:#c12e2e;
 $ColorDim:#C3C3C3;
 $ColorGreen:#0a5ab9;
 $ColorBlue:#052B58;
 $ColorNone:#ccc;
+$ColorGold:lighten(#FFA500,15%);
+
 $ColorActive:#e2e2e2; //???
+
+$media-mobile: "(min-width:150px) and (max-width:641px)";
+$media-tablet: "(min-width:641px) and (max-width:961px)";
+$media-desktop: "(min-width:961px)";
 
 @mixin text-size-adjust($value: none) {
     -webkit-text-size-adjust: $value;
@@ -34,18 +41,16 @@ $ColorActive:#e2e2e2; //???
     box-sizing: $value;
 }
 @mixin box-shadow($top, $right, $left, $blur, $color, $inset:"") {
-    // -webkit-box-shadow:$top $right $left $blur $color #{$inset};
-    // -moz-box-shadow:$top $right $left $blur $color #{$inset};
+    -webkit-box-shadow:$top $right $left $blur $color #{$inset};
+    -moz-box-shadow:$top $right $left $blur $color #{$inset};
     box-shadow:$top $right $left $blur $color #{$inset};
 }
 @mixin user-select($value: none) {
-    -webkit-touch-callout: $value; 
-    -webkit-user-select: $value; 
-    -moz-user-select: $value; 
-    -ms-user-select: $value;
-     user-select: $value;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    // -webkit-touch-callout:none; text-decoration:none; outline:none;
+    -webkit-user-select:$value;
+    // -khtml-user-select:$value;
+    // -moz-user-select:$value;
+    // -ms-user-select:$value;
+    // user-select:$value;
 }
 @mixin text-shadow($v:'0', $h:'0', $b:'0', $color:'#FF0000') {
   text-shadow: $v $h $b $color;
@@ -68,25 +73,26 @@ $ColorActive:#e2e2e2; //???
     ::-webkit-scrollbar-thumb { background-color:#{$color};border-top-left-radius:#{$border}px;border-top-right-radius:#{$border}px;border-bottom-right-radius:#{$border}px;border-bottom-left-radius:#{$border}px;}
     ::-webkit-scrollbar-thumb:window-inactive {background-color:#{$color};}
 }
-@mixin touch-callout($status:none) {
-  -webkit-touch-callout: $status; -webkit-user-select: $status;
-}
-* {
-  &:not(#dialog), &:not(body), &:not(footer), &:not(header), &:not(main) {
-    // position:relative;
-  }
-  &:after, &:before {
-    // content: ""; text-align: center; pointer-events: none;
-  }
-  &:after {}
-  &:before {}
-  &.overflow-text {
-    // text-overflow:ellipsis; overflow: hidden; white-space: nowrap;
-  }
-  &.overflow-scroll {
-    // -webkit-overflow-scrolling:touch;overflow:auto;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
-  }
-}
-
+// NOTE: hi-res laptops and desktops
+@media (min-width:1281px){}
+// NOTE: big landscape tablets, laptops, and desktops
+@media (min-width:1025px) {}
+// NOTE: tablet, landscape iPad, lo-res laptops ands desktops
+@media (min-width:961px) {}
+// NOTE: portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones
+@media (min-width:641px) {}
+// NOTE: portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide.
+@media (min-width:481px) {}
+// NOTE: 320px smartphones, iPhone, portrait 480x320 phones
+@media (min-width:150px) {}
 // inherit
+// text-overflow:ellipsis;
 // @-moz-document url-prefix() {}
+// -webkit-overflow-scrolling:touch;overflow:auto;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+// help?
+// todo? = adjust
+// todo# = either remove or add
+// &:before, &:after{
+// }
+// &:before{}
+// &:after{}

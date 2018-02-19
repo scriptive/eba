@@ -39,7 +39,7 @@ new Promise(function(resolve, reject) {
     }
   });
 }).then(function() {
-  $(configPanel).initPanel(function(s){
+  $(configPanel).intPanel(function(s){
     var lmSB = document.getElementById("lCm").getElementsByClassName("lmSB")[0];
     s.open(function(o){
       // console.log(o);

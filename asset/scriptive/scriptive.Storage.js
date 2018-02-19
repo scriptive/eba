@@ -23,10 +23,6 @@ insert:function(key,val) {
 update:function(key,val) {
   return this.insert(key,val||this.name[key]);
 },
-testing:function() {
-  // arguments
-  return this.id;
-},
 delete:function(key) {
   this.db.removeItem(this.ids(key));
   return this;

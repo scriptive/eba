@@ -31,52 +31,38 @@
     idUnique:'app:unique'
   },
   configHash={},
-  // panel:{
-  //   element:'',
-  //   button:'',
-  //   done:function(){
-  //   },
-  //   toggle:function(x){
-  //   },
-  //   click:function(){
-  //   },
-  //   drag:function(){
-  //   }
-  // },
+  panel={
+    Current:'',
+    // element:'',
+    Button:'',
+    Click:function(){
+      // =require panel.Click.js
+    },
+    Drag:function(){
+      // =require panel.Drag.js
+    },
+    Close:function(){
+      // =require panel.Close.js
+    },
+    Done:function(){
+      // =require panel.Done.js
+    },
+    Toggle:function(x){
+      // =require panel.Toggle.js
+    }
+  },
   $={
-    panel:'',
-    button:'',
-    // storage:{
-    //   // require scriptive.Storage.js
-    // },
     pixel:function(x){
       return x + config.widthUnit;
     },
     has:{
       // =require scriptive.Has.js
     },
-    open:{
-      done:function(){
-        // =require scriptive.Open.done.js
-      },
-      toggle:function(x){
-        // =require scriptive.Open.toggle.js
-      }
-    },
     toggleClass:function(e){
       // =require scriptive.toggleClass.js
     },
-    click:function(){
-      // =require scriptive.Click.js
-    },
-    drag:function(){
-      // =require scriptive.Drag.js
-    },
-    menu:{
-
-    },
     hash:function(){
-      var r=configHash,q,o=win.location.hash.split('?');
+      var r=configHash,q,o=location.hash.split('?');
       // var o = win.location.href.slice(win.location.href.indexOf('#') + 1).split('?')
         if (o.length){
           var hash = o[0].split('/');
@@ -115,7 +101,7 @@
     resize:function() {
       $.width();
       if ((eWidthOffset - config.widthMax) <= config.widthMax) {
-        $.open.toggle(config.widthMin);
+        panel.Toggle(config.widthMin);
         $.on(3);
       }
     },
@@ -123,8 +109,8 @@
       $.has.main();
       if (eMain) {
         $.width();
-        if(eMenu)$.click();
-        $.drag();
+        if(eMenu)panel.Click();
+        panel.Drag();
       }
       callback();
     },
@@ -135,29 +121,8 @@
         requestExtend[i](requestParam);
       }
     },
-    // NOTE: initiate
-    // i:function(e){
-    //   if (e instanceof Object){
-    //     if (e instanceof Element){
-    //     // if (e.nodeName){
-    //       this.element = e;
-    //     } else {
-    //       eWidthPanel = $.extend(config,e).widthMax;
-    //     }
-    //   } else if (typeof(e) === 'string') {
-    //     try {
-    //       this.element = doc.querySelector(e);
-    //     } catch (e) {
-    //       requestParam.error=e;
-    //       $.on(0);
-    //     }
-    //   }
-    //   $.extend(this,requestExtend);
-    // },
-    // NOTE: return
     r:function(e){
       var self=this;
-      // $.i.call(self,e);
       self.element=e;
       self.ready=function(callback){
         // $.extend(self,requestExtend);
@@ -177,7 +142,7 @@
           }
         });
       };
-      self.initPanel=function(callback){
+      self.intPanel=function(callback){
         config = $.merge(config,self.element);
         $.ready(function(){
           eWidthPanel = config.widthMax;
@@ -197,8 +162,8 @@
           }
           if (offsetNormal) {
             $.has.panelButton(eMain.dataset[offsetNormal]);
-            requestParam.panel=$.panel;
-            $.open.toggle(config.widthMax);
+            requestParam.panel=panel.Current;
+            panel.Toggle(config.widthMax);
             $.on(2);
           }
         });

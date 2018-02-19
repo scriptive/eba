@@ -1,1 +1,1089 @@
-var configPanel={main:"#lCm",mainActive:".lmSB",menu:"#lMn"},configMain={idUnique:"eba:unique"},configuration={description:"This is not the entire bible. This is the bible analysis according to topics. Thus it helps to search, check and study the scriptures. Please be advised, read the bible book to meditate.",information:{email:"supereffortless@gmail.com",introduction:"Please give proper title/subject for your email.",list:[{name:"Advice",desc:"xxxxxxx"},{name:"Broken Report",desc:"xxxxxxx"},{name:"Copyrights",desc:"xxxxxxx"},{name:"Discussion",desc:"xxxxxxx"},{name:"Donation",desc:"xxxxxxx"},{name:"Mistaken Verse",desc:"xxxxxxx"},{name:"Question",desc:"xxxxxxx"}],conclusion:"You will be replied as soon as possible."},page:{home:{id:1,name:"Home",class:"icon-language",title:"Effortless"},category:{id:2,name:"Category",class:"book"},reader:{id:3,name:"Reader",class:"chapter"},search:{id:4,name:"Search",class:"icon-lookup",title:"Search"},result:{id:5,title:"Effortless"},bookmark:{id:6,name:"Stars",class:"icon-star",title:"Stars"},random:{id:7,name:"Random Verse",class:"icon-random",title:"Random Verse"},setting:{id:8,class:"icon-display",title:"Display"},about:{id:9,name:"About",class:"icon-about",title:"About"},contact:{id:10,name:"Contact",class:"icon-contact",title:"Contact"}},hash:{},file:{template:"z.html",book:"https://storage.googleapis.com/effortless/book.json",urlLocal:"eba/bId.xml",urlAPI:["https://storage.googleapis.com/effortless/bId.xml"]},fileStorage:{RequestQuota:1073741824,Permission:1,objectStore:{name:"eba",version:1}},lang:{isLocalRemove:'Would you like to remove "{is}" from local?',tryAWord:"Try a word or two!",noMatchFor:"No match for {for}!",noCategoryContent:"This category has no content...",noCategoryData:"This category has no data...",noBookmark:"None",noLanguage:"...",isNotFound:'Not found: "{is}"',Loading:"Loading",isError:"Error",addLang:"Add",addingLang:"Adding",removeLang:"Remove",removingLang:"Removing"},classname:{active:"active",inactive:"inactive",filter:"filter",available:"available"},version:"1.0.1",build:"1.0.1"};scriptive(configMain).ready(function(e,n){var t,a=document,o=e.storage;e.on("error",function(e){console.log("error",e)}),e.extension({notification:function(e){console.log("notification",e)},initiate:function(){configuration.pageHome=Object.keys(configuration.page)[0];var i=function(){return r().then(function(){return o.update("query"),new Promise(function(n,t){e.page[o.name.query.page](n,t)}).then(function(){a.body.setAttribute("id",o.name.query.page),e.header.content()},function(e){return e})},function(e){return e})},r=function(){var e=Object.keys(o.name.setting.available),t={page:configuration.pageHome,language:e[0],testament:1,category:1,q:"",pagePrevious:configuration.pageHome,result:""},a={page:function(e,n,t,a){a[e]=configuration.page.hasOwnProperty(n.toLowerCase())?n.toLowerCase():t},pagePrevious:function(e,n,t,a){a[e]&&configuration.page.hasOwnProperty(a[e])?t!=a.page&&(a[e]=configuration.page[t].id<=configuration.page[a.page].id?t:configuration.pageHome):a[e]=t,configuration[e]=a[e]},language:function(t,a,i,r){e.length?(n(e).inArray(a)||(configuration[t]=r[i]),o.name.query.hasOwnProperty("pageBlock")&&delete o.name.query.pageBlock):(o.name.query.page=configuration.pageHome,o.name.query.pageBlock=1)},q:function(e,n,t,a){a[e]=decodeURIComponent(n)}};return new Promise(function(e,i){try{n(o.name.query).isEmpty()?n(o.name.query).merge(t,configuration.hash):(t.pagePrevious=o.name.query.page,n(o.name.query).merge(configuration.hash)),n(o.name.query).each(function(e,n,o){a[e]instanceof Function&&a[e](e,n,t[e],o)}),e()}catch(e){i(e)}})};new Promise(function(r,l){(o.select("setting").select("book").select("query").select("language").select("randomverse").select("todo").select("bookmark").select("suggestion"),o.name.setting.hasOwnProperty("build")?o.name.setting.build==configuration.build?configuration.requireUpdate=0:configuration.requireUpdate=2:configuration.requireUpdate=1,configuration.requireUpdate&&(o.name.setting.version=configuration.version,o.name.setting.build=configuration.build,o.update("setting")),new Promise(function(n,a){t=fileStorage(configuration.fileStorage,{success:function(){e.isEmpty(o.name.book)?e.book.json().then(function(){n()},function(e){a(e)}):n()},fail:function(e){a(e)}})})).then(function(){return a.body.classList.add("config_Screen"),o.name.setting.hasOwnProperty("class")?n(o.name.setting.class).each(function(e,n){a.body.classList.add(n)}):o.name.setting.class={},o.name.setting.hasOwnProperty("available")||(o.name.setting.available={}),t.download({url:configuration.file.template.replace(/z/,["default","all"].join(".")),before:function(e){e.overrideMimeType("text/html; charset=utf-8"),e.responseType="document"}}).then(function(e){try{for(var n=e.data.body;n.firstChild;)a.body.appendChild(n.firstChild);return i().then(function(e){var n=a.querySelector("div#screen");if(e)return e;n&&n.remove()})}catch(e){return e}},function(e){return e})},function(e){return e}).then(function(e){e?l(e):r()})}).then(function(){n(configPanel).initPanel(function(e){var t=document.getElementById("lCm").getElementsByClassName("lmSB")[0];e.open(function(e){var a=e.panel.querySelector("ul");n(a).removeChild(),n(configuration.page).each(function(e,t){t.name&&n(a).appendChild("li").addClass(e).toggleClass("active",o.name.query.page==e).appendChild("a").attr("href","#"+e).setContent(t.name)}),!0===e.overlay&&(t.style.opacity=.2)}),e.close(function(){t.style.opacity=1}),e.drag(function(e){!0===e.overlay&&(t.style.opacity=parseFloat(1-e.percentage/170).toFixed(2))})}),e.resizeEvent(function(){}),e.hashChange(function(e){e&&(configuration.hash=e),i().then(function(e){e&&console.log("page error",e)})});document.querySelector("form.search")},function(n){"object"==typeof n&&n.hasOwnProperty("message")?e.notification(n.message):"string"==typeof n&&e.notification(n)})},Data:function(n){var a=e.book,i="book",r=o.name,l=this;this.open=function(){return t.open({urlLocal:configuration.file.urlLocal.replace(/bId/,n),readAs:"readAsText"})},this.download=function(e){var o={dir:JSON.parse(JSON.stringify(configuration.file.urlAPI)),request:function(a){return t.download({url:a,urlLocal:configuration.file.urlLocal.replace(/bId/,n),before:function(e){e.overrideMimeType("text/xml; charset=utf-8")},progress:e})},process:function(e,t){var i=o.dir.shift().replace(/bId/,n);return o.request(i).then(function(t){t.xml||(t.xml=(new DOMParser).parseFromString(t.data,t.fileType)),a.file[n]=t.xml,e(t)},function(n){o.dir.length?o.process(e,t):t(n)})}};return new Promise(o.process)},this.save=function(c){return new Promise(function(s,u){t.save(c).then(function(t){a.hasOwnProperty(i)&&a[i].hasOwnProperty(n)&&(r[i][n]=a[i][n]);var c=t.total;new e.Content(n).xml().then(function(e){e.information().then(function(e){e.information.size=l.bytesToSize(c),a.hasOwnProperty(i)&&a[i].hasOwnProperty(n)?r[i][n].information=e.information:r[i][n]={name:e.information.name,updated:"0",information:e.information},o.name.setting.available[n]=1},function(e){console.log(e)})},function(e){}).then(function(){o.update(i).update("setting"),s(t)})},function(e){u(e)})})},this.bytesToSize=function(e,n){if(0==e)return"0 Bytes";var t=n||2,a=Math.floor(Math.log(e)/Math.log(1e3));return parseFloat((e/Math.pow(1e3,a)).toFixed(t))+" "+["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"][a]},this.delete=function(){return new Promise(function(e,a){t.delete({urlLocal:configuration.file.urlLocal.replace(/bId/,n),fileNotFound:!0}).then(function(t){delete r[i][n].information,delete o.name.setting.available[n],o.update(i).update("setting"),e(t)},function(e){a(e)})})},this.request=function(e){return new Promise(function(t,o){a.file.hasOwnProperty(n)?t(a.file[n]):r[i].hasOwnProperty(n)?l.open().then(function(e){e.xml=(new DOMParser).parseFromString(e.fileContent,e.fileType),a.file[n]=e.xml,t(e.xml)},function(e){l.delete().then(function(){o(e)})}):l.download(e).then(function(e){l.save(e).then(function(){console.log("save success")},function(){console.log("save fail")}).then(function(){t(e.xml)})},function(e){o(e)})})}},Content:function(t){var a,i={category:0,section:0,verse:0};configuration.category={};var r=function(t,a,o){return new Promise(function(r,l){var s=c(o);if(!s.length)return l(configuration.lang.noCategoryData);n(s).each(function(r,l){var c,s=o||l.getAttribute("id");n(l.querySelectorAll(m())).each(function(o,r){var l=a(r);if(l){c||(c=f.createOl(t,s)),i.verse++;var m=r.getAttribute("book"),g=m<=39?1:2,p=r.getAttribute("chapter"),h=r.getAttribute("verse"),v=(r.getAttribute("tag"),d(g).innerHTML,u(m).innerHTML),y=e.book.hasBookmark(s,m,p,h)?configuration.classname.active:configuration.classname.inactive,C=m<=39?"OT":"NT",b=v.replace(/\s+/g,"-").toLowerCase(),k=e.createElement("li");n(c).appendChild(k).addClass(y).addClass(C).addClass(b),n(k).appendChild("div").addClass("icon-star").click(function(n){e.book.addBookmark(n.target.parentNode,s,m,p,h)}),n(k).appendChild("div").attr("data-title","123 234:345".replace(123,v).replace(234,p).replace(345,h)).setContent(f.replaceNumber(l))}})}),i.verse?r(i):l(o?configuration.lang.noCategoryContent:configuration.lang.noMatchFor)})},l=function(e){return e?a.querySelector('section row[id="0"]'.replace(0,e)):a.querySelectorAll("section row")},c=function(e){return a.querySelectorAll(e?'category[id="0"]'.replace(0,e):"category")},s=function(e){return a.querySelectorAll('category[id="0"] row'.replace(0,e))},u=function(e){return e?a.querySelector('book row[id="0"]'.replace(0,e)):a.querySelectorAll("book row")},d=function(e){return e?a.querySelector('testament row[id="0"]'.replace(0,e)):a.querySelectorAll("testament row")},m=function(e,n,t,a,o){var i="row";return e&&(i+='[book="0"]'.replace(0,e)),n&&(i+='[chapter="0"]'.replace(0,n)),t&&(i+='[verse="0"]'.replace(0,t)),a&&(i+='[testament="0"]'.replace(0,a)),o&&(i+='[tag="0"]'.replace(0,o)),i},f={replaceKeyword:function(e,n){return"string"==typeof n?e.replace(new RegExp(n,"gi"),"<b>$&</b>"):e},replaceNumber:function(e){return e.match(/\[(.*?)\]/g).length>1?e.replace(/\[(.*?)\]/g,"<sup>$1</sup>"):e.replace(/\[(.*?)\]/g,"")},createOl:function(t,a){i.category++;var o=l(a),r=e.createElement("li");return n(r).appendChild("h2").attr("data-description",o.innerHTML).setContent(o.getAttribute("name")),e.book.category.name=o.getAttribute("name"),n(t).appendChild(r).appendChild("ol").element}},g={section:function(e){return new Promise(function(t,a){var o=[];n(l()).each(function(t,a){i.section++;var r=a.getAttribute("id"),l=a.getAttribute("name"),c=(a.getAttribute("sort"),a.innerHTML,l.charAt(0));o.indexOf(c)<0&&(o.push(c),n(e).appendChild("li").addClass("alpha").attr("id",c).setContent(c)),n(e).appendChild("li").addClass("icon-arrow-right").attr("data-title",r).appendChild("a").attr("data-total",s(r).length).attr("data-description",a.innerHTML).attr("href","#reader?category="+r).setContent(l)}),t(i)})},randomverse:function(){return new Promise(function(e,n){i.information={};var t=Math.floor(Math.random()*l().length),a=s(t),o=a[Math.floor(Math.random()*a.length)],r=o.getAttribute("book"),c=o.getAttribute("chapter"),u=o.getAttribute("verse");i.information[t]={},i.information[t][r]={},i.information[t][r][c]=[u],e(i)})},information:function(){return new Promise(function(e,t){var o;i.information={},n(o?a.querySelector('info row[id="0"]'.replace(0,o)):a.querySelectorAll("info row")).each(function(e,n){i.section++;var t=n.getAttribute("id");i.information[t]=n.innerHTML}),e(i)})},reader:function(e,n){return r(e,function(e){return e.innerHTML},n)},lookup:function(e,n){return r(e,function(e){var t=e.getAttribute("testament");if(new RegExp(n,"i").test(e.innerHTML)){if(!(t=e.getAttribute("testament")))return f.replaceKeyword(e.innerHTML,n);if(t==o.name.testament)return f.replaceKeyword(e.innerHTML,n)}})},bookmark:function(t,a){return new Promise(function(r,l){n(a).each(function(a,r){var l;n(r).each(function(r,s){n(s).each(function(s,g){n(g).each(function(g,p){n(c(a)).each(function(c,g){n(g.querySelectorAll(m(r,s,p))).each(function(c,m){l||(l=f.createOl(t,a)),i.verse++;var g=d(r<=39?1:2).innerHTML,h=u(r).innerHTML,v=g.replace(" ","-").toLowerCase(),y=h.replace(" ","-").toLowerCase(),C=e.book.hasBookmark(a,r,s,p)?configuration.classname.active:configuration.classname.inactive,b=e.createElement("li");n(l).appendChild(b).addClass(C).addClass(v).addClass(y),n(b).appendChild("div").addClass("icon-star").click(function(t){var i=t.target.parentNode;e.book.addBookmark(i,a,r,s,p),"randomverse"!=o.name.query.page&&(i=i.remove())&&""===i.innerHTML&&(i=i.parentNode.remove())&&""===i.innerHTML&&n(i).addClass("msg").appendChild("li").appendChild("div").setContent(configuration.lang.noBookmark)}),n(b).appendChild("div").attr("data-title","123 234:345".replace(123,h).replace(234,s).replace(345,p)).setContent(f.replaceNumber(m.innerHTML))})})})})})}),i.verse?r(i):l(configuration.lang.noBookmark)})}};this.xml=function(){return new Promise(function(n,o){new e.Data(t).request(function(){}).then(function(e){a=e,n(g)},function(e){o(e)})})}},book:{file:{},category:{},addBookmark:function(e,n,t,a,i){var r=o.name.bookmark;e.classList.contains(configuration.classname.active)?(r[n][t][a].splice(r[n][t][a].indexOf(i),1),r[n][t][a].length<=0&&(delete r[n][t][a],0===Object.keys(r[n][t]).length&&(delete r[n][t],0===Object.keys(r[n]).length&&delete r[n])),e.classList.remove(configuration.classname.active),e.classList.add(configuration.classname.inactive)):(r.hasOwnProperty(n)||(r[n]={}),r[n].hasOwnProperty(t)||(r[n][t]={}),r[n][t].hasOwnProperty(a)||(r[n][t][a]=[]),r[n][t][a].push(i.toString()),e.classList.add(configuration.classname.active),e.classList.remove(configuration.classname.inactive)),o.update("bookmark")},hasBookmark:function(e,n,t,a){var i=o.name.bookmark;if(i.hasOwnProperty(e)&&i[e].hasOwnProperty(n)&&i[e][n].hasOwnProperty(t))return i[e][n][t].indexOf(a)>-1},isAvailable:function(e){if(!n(o.name.book).isEmpty()&&o.name.book.hasOwnProperty(e)&&o.name.book[e].hasOwnProperty("information"))return!0},json:function(a){return new Promise(function(i,r){a=a||configuration.file.book,t.download({url:a}).then(function(t){e.book.all=n(o.name.book).merge(JSON.parse(t.data)),o.update("book"),i()},function(e){r(e)})})}},page:{home:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0];n(r).removeChild();var l=a.createElement("ul");l.setAttribute("class","home"),o.name.query.hasOwnProperty("pageBlock")&&n(r).appendChild("ul").addClass("msg notify").appendChild("li").appendChild("p").setContent(configuration.lang.noLanguage),r.appendChild(l),n(o.name.book).each(function(t,o){var i=a.createElement("li"),r=a.createElement("div"),c=a.createElement("div"),s=a.createElement("div");i.setAttribute("id",t),r.appendChild(c),r.appendChild(s),n(c).click(function(e){var n=e.target;window.location.hash="#category?language=lID".replace(/lID/,n.dataset.bid)}).attr("data-bid",t).setContent(o.name),n(s).click(function(n){n.target;e.book.isAvailable(t)?(s.innerHTML=configuration.lang.removingLang,new e.Data(t).delete().then(function(){s.innerHTML=configuration.lang.addLang},function(e){s.innerHTML=configuration.lang.isError})):new e.Data(t).download(function(){s.innerHTML=configuration.lang.addingLang}).then(function(n){return new e.Data(t).save(n).then(function(){s.innerHTML=configuration.lang.removeLang},function(){s.innerHTML=configuration.lang.isError+":01"})},function(e){s.innerHTML=configuration.lang.isError+":02"})}).setContent(configuration.lang.addLang),e.book.isAvailable(t)&&(i.setAttribute("class",configuration.classname.active),s.innerHTML=configuration.lang.removeLang),i.appendChild(r),l.appendChild(i)}),t()},category:function(t,i){var r=o.name.query,l=r.page,c=r.language,s=a.getElementById("lCm").getElementsByClassName("lmSB")[0],u=n(s).removeChild().appendChild("ul").attr("class","category");configuration.page[l].title=o.name.book[c].name,new e.Content(c).xml().then(function(e){e.section(u.element).then(function(e){},function(e){})},function(e){u.attr("class","msg error").appendChild("li").appendChild("div").setContent(configuration.lang.isNotFound.replace("{is}",o.name.query.language))}).then(function(){t();var o=e.createElement("li");n(s).appendChild("ul").attr("class","category-index").appendChild(o).click(function(e){var n=e.target.getAttribute("class"),t=a.getElementById(n);t&&(s.scrollTop=t.offsetTop)}),u.selectChild("li.alpha",!0).each(function(e,t){n(o).appendChild("p").attr("class",t.getAttribute("id")).setContent(t.innerHTML)})})},reader:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0],l=n(r).removeChild().appendChild("ul").attr("class","reader"),c=o.name.query,s=c.page,u=c.language;new e.Content(u).xml().then(function(e){e.reader(l.element,c.category).then(function(e){},function(e){})},function(e){}).then(function(){configuration.page[s].title=e.book.category.name,t()})},search:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0],l=e.createElement("ul");n(r).removeChild().appendChild(l).addClass("search"),n(l).appendChild("li").appendChild("div").appendChild("input").attr("type","search").attr("name","q").attr("id","q").attr("placeholder","search..."),n(l).appendChild("li").appendChild("div").click(function(t){var a=t.target;if(a.nextElementSibling)a.nextElementSibling.remove();else{var i=e.createElement("ol");n(a.parentNode).appendChild(i).click(function(e){var t=e.target,a=t.getAttribute("id");a&&o.name.query.language!=a&&(t.parentNode.querySelector("."+configuration.classname.active).classList.remove(configuration.classname.active),n(t).addClass(configuration.classname.active),o.name.query.language=a)}),n(o.name.book).each(function(e,t){n(i).appendChild("li").attr("id",e).addClass(o.name.query.language==e?configuration.classname.active:configuration.classname.inactive).setContent(t.name)})}}).setContent("Language");var c=e.createElement("div");n(l).appendChild("li").addClass("lsi").appendChild(c).click(function(e){var t=e.target,a=t.getAttribute("id");if(a&&o.name.query.testament!=a){var i=t.parentNode.querySelector("."+configuration.classname.active);i&&i.classList.remove(configuration.classname.active),n(t).addClass(configuration.classname.active),o.name.query.testament=a}}),n(c).appendChild("p").attr("id","1").addClass(1==o.name.query.testament?configuration.classname.active:configuration.classname.inactive).setContent("OT"),n(c).appendChild("p").attr("id","2").addClass(2==o.name.query.testament?configuration.classname.active:configuration.classname.inactive).setContent("NT"),n(l).appendChild("li").appendChild("div").click(function(){var e=a.getElementById("q").value;e&&o.name.query.language&&o.name.query.testament&&(window.location.hash="#result?q=123&i=234".replace(/123/,e).replace(/234/,(new Date).getTime()))}).setContent("Enter"),t()},result:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0],l=e.createElement("ul"),c=o.name.query,s=(c.page,c.language);n(r).removeChild().appendChild(l).attr("class","reader"),new e.Content(s).xml().then(function(e){o.name.query.q?e.lookup(l,o.name.query.q).then(function(e){},function(e){n(l).attr("class","msg error").appendChild("li").appendChild("div").setContent(e.replace("{for}",o.name.query.q))}):n(l).attr("class","msg error").appendChild("li").appendChild("div").setContent(configuration.lang.tryAWord)},function(e){n(l).attr("class","msg error").appendChild("li").appendChild("div").setContent(configuration.lang.isNotFound.replace("{is}",o.name.query.book))}).then(function(){t()})},bookmark:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0],l=e.createElement("ul");n(r).removeChild().appendChild(l).attr("class","reader"),new e.Content(o.name.query.language).xml().then(function(e){e.bookmark(l,o.name.bookmark).then(function(e){},function(e){n(l).attr("class","msg error").appendChild("li").appendChild("div").setContent(e)})},function(e){n(l).attr("class","msg error").appendChild("li").appendChild("div").setContent(configuration.lang.isNotFound.replace("{is}",o.name.query.language))}).then(function(){t()})},random:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0],l=e.createElement("ul");n(r).removeChild().appendChild(l).attr("class","reader");var c=!1,s=(new Date).toLocaleDateString().toString().replace(/\//g,"");new Promise(function(t,a){o.name.randomverse&&n(o.name.randomverse).isObject()&&!n(o.name.randomverse).isEmpty()?o.name.randomverse.id!=s&&(o.name.randomverse.id=s,c=!0):(c=!0,o.name.randomverse.id=s),c?new e.Content(o.name.query.language).xml().then(function(e){e.randomverse().then(function(e){o.name.randomverse.verse=e.information,o.update("randomverse"),t()})}):t()}).then(function(){new e.Content(o.name.query.language).xml().then(function(e){e.bookmark(l,o.name.randomverse.verse).then(function(e){},function(e){})},function(e){}).then(function(){t()})})},setting:function(t,i){var r=o.name.setting,l=a.getElementById("lCm").getElementsByClassName("lmSB")[0],c=e.createElement("ul");n(l).removeChild().appendChild(c).addClass("setting"),r.hasOwnProperty("class")||(r.class={}),n({fontsize:{title:"Words size",style:"body {font-size:$100%;}",option:{"80%":{title:"1",class:"size-small-extra"},"90%":{title:"2",class:"size-small"},"100%":{title:"3",class:"size-normal",defaults:!0},"120%":{title:"4",class:"size-large"},"150%":{title:"5",class:"size-large-extra"}}},background:{title:"background colour",style:"body {background-color:$white;}",option:{"#ffffff":{class:"color-white"},"#F8F8F8":{class:"color-lightgray",defaults:!0},"#7f7f7f":{class:"color-dimgrey"},"#b97a59":{class:"color-chocolate"},"#880016":{class:"color-darkred"},"#ed1b24":{class:"color-red"},"#fef102":{class:"color-gold"},"#24b04d":{class:"color-green"},"#3f47cc":{class:"color-darkblue"}}}}).each(function(t,a){var i=e.createElement("li");n(c).appendChild(i).appendChild("h3").setContent(a.title);var l=n(c).appendChild(i).appendChild("ol").addClass(t).element;n(a.option).each(function(e,a){var i=configuration.classname.inactive,c=n(l).appendChild("li").addClass(a.class).addClass("icon-ok");a.hasOwnProperty("title")&&c.attr("data-title",a.title),r.class.hasOwnProperty(t)?i=r.class[t]==a.class?configuration.classname.active:configuration.classname.inactive:a.hasOwnProperty("defaults")&&(i=configuration.classname.active),c.addClass(i).click(function(e){var i=e.target;i.classList.contains(configuration.classname.active)||(n(i.parentNode.getElementsByClassName(configuration.classname.active)).each(function(e,n){n.classList.remove(configuration.classname.active)}),i.classList.add(configuration.classname.active),r.class.hasOwnProperty(t)&&document.body.classList.contains(r.class[t])&&document.body.classList.remove(r.class[t]),document.body.classList.contains(a.class)||document.body.classList.add(a.class),r.class[t]=a.class,o.update("setting"))})})}),t()},about:function(t,i){var r=a.getElementById("lCm").getElementsByClassName("lmSB")[0],l=e.createElement("ul");n(r).removeChild().appendChild(l).addClass("about").appendChild("li").addClass("description").appendChild("p").addClass("desc").setContent(configuration.description),n(o.name.book).each(function(t,a){var o=e.createElement("li");n(l).appendChild(o),n(o).addClass(configuration.classname.available).appendChild("h3").setContent(a.name),a.hasOwnProperty("information")&&!n(a.information).isEmpty()?(n(o).appendChild("p").attr("data-title","Version").setContent(a.information.version),a.information.hasOwnProperty("size")?n(o).appendChild("p").attr("data-title","Size").setContent(a.information.size):n(o).appendChild("p").attr("data-title","Size").setContent("size view required to readd language")):n(o).addClass(configuration.classname.inactive)}),t()},contact:function(t,o){var i=a.getElementById("lCm").getElementsByClassName("lmSB")[0];n(i).removeChild();var r=e.createElement("ul");i.appendChild(r).setAttribute("class","about");var l=configuration.information;r.appendChild(e.createElement("li")).innerHTML=l.email,r.appendChild(e.createElement("li")).innerHTML=l.introduction;var c=e.createElement("li");n(r).appendChild(c),n(l.list).each(function(e,t){n(c).appendChild("p").attr("data-title",t.name).setContent(t.desc)}),r.appendChild(e.createElement("li")).innerHTML=l.conclusion,t()}},header:{content:function(){var e=a.getElementById("lMn"),t=e.querySelector(".icon-panel"),i=e.querySelector("#lmD"),r=e.querySelector("#backLink");i.setAttribute("data-title",configuration.page[o.name.query.page].title),o.name.query.page!=o.name.query.pagePrevious?r||((r=a.createElement("li")).setAttribute("class","icon-left"),r.setAttribute("id","backLink"),e.insertBefore(r,e.firstChild),t.style.display="none",n(r).click(function(){window.location.hash="#123".replace(/123/,o.name.query.pagePrevious)})):r&&(r.remove(),t.style.display="")}}}).initiate()});
+var configPanel = {
+    main: "#lCm",
+    mainActive: ".lmSB",
+    menu: "#lMn"
+}, configMain = {
+    idUnique: "eba:unique"
+}, configuration = {
+    description: "This is not the entire bible. This is the bible analysis according to topics. Thus it helps to search, check and study the scriptures. Please be advised, read the bible book to meditate.",
+    information: {
+        email: "supereffortless@gmail.com",
+        introduction: "Please give proper title/subject for your email.",
+        list: [ {
+            name: "Advice",
+            desc: "xxxxxxx"
+        }, {
+            name: "Broken Report",
+            desc: "xxxxxxx"
+        }, {
+            name: "Copyrights",
+            desc: "xxxxxxx"
+        }, {
+            name: "Discussion",
+            desc: "xxxxxxx"
+        }, {
+            name: "Donation",
+            desc: "xxxxxxx"
+        }, {
+            name: "Mistaken Verse",
+            desc: "xxxxxxx"
+        }, {
+            name: "Question",
+            desc: "xxxxxxx"
+        } ],
+        conclusion: "You will be replied as soon as possible."
+    },
+    page: {
+        home: {
+            id: 1,
+            name: "Home",
+            class: "icon-language",
+            title: "Effortless"
+        },
+        category: {
+            id: 2,
+            name: "Category",
+            class: "book"
+        },
+        reader: {
+            id: 3,
+            name: "Reader",
+            class: "chapter"
+        },
+        search: {
+            id: 4,
+            name: "Search",
+            class: "icon-lookup",
+            title: "Search"
+        },
+        result: {
+            id: 5,
+            title: "Effortless"
+        },
+        bookmark: {
+            id: 6,
+            name: "Stars",
+            class: "icon-star",
+            title: "Stars"
+        },
+        random: {
+            id: 7,
+            name: "Random Verse",
+            class: "icon-random",
+            title: "Random Verse"
+        },
+        setting: {
+            id: 8,
+            class: "icon-display",
+            title: "Display"
+        },
+        about: {
+            id: 9,
+            name: "About",
+            class: "icon-about",
+            title: "About"
+        },
+        contact: {
+            id: 10,
+            name: "Contact",
+            class: "icon-contact",
+            title: "Contact"
+        }
+    },
+    hash: {},
+    file: {
+        template: "z.html",
+        book: "https://storage.googleapis.com/effortless/book.json",
+        urlLocal: "eba/bId.xml",
+        urlAPI: [ "https://storage.googleapis.com/effortless/bId.xml" ]
+    },
+    fileStorage: {
+        RequestQuota: 1073741824,
+        Permission: 1,
+        objectStore: {
+            name: "eba",
+            version: 1
+        }
+    },
+    lang: {
+        isLocalRemove: 'Would you like to remove "{is}" from local?',
+        tryAWord: "Try a word or two!",
+        noMatchFor: "No match for {for}!",
+        noCategoryContent: "This category has no content...",
+        noCategoryData: "This category has no data...",
+        noBookmark: "None",
+        noLanguage: "...",
+        isNotFound: 'Not found: "{is}"',
+        Loading: "Loading",
+        isError: "Error",
+        addLang: "Add",
+        addingLang: "Adding",
+        removeLang: "Remove",
+        removingLang: "Removing"
+    },
+    classname: {
+        active: "active",
+        inactive: "inactive",
+        filter: "filter",
+        available: "available"
+    },
+    version: "1.0.1",
+    build: "1.0.1"
+};
+
+scriptive(configMain).ready(function(app, $) {
+    var file, doc = document, local = app.storage;
+    app.on("error", function(e) {
+        console.log("error", e);
+    });
+    app.extension({
+        notification: function(e) {
+            console.log("notification", e);
+        },
+        initiate: function() {
+            configuration.pageHome = Object.keys(configuration.page)[0];
+            var process = function() {
+                local.select("setting").select("book").select("query").select("language").select("randomverse").select("todo").select("bookmark").select("suggestion");
+                if (local.name.setting.hasOwnProperty("build")) {
+                    if (local.name.setting.build == configuration.build) {
+                        configuration.requireUpdate = 0;
+                    } else {
+                        configuration.requireUpdate = 2;
+                    }
+                } else {
+                    configuration.requireUpdate = 1;
+                }
+                if (configuration.requireUpdate) {
+                    local.name.setting.version = configuration.version;
+                    local.name.setting.build = configuration.build;
+                    local.update("setting");
+                }
+                return new Promise(function(resolve, reject) {
+                    file = fileStorage(configuration.fileStorage, {
+                        success: function() {
+                            if (app.isEmpty(local.name.book)) {
+                                app.book.json().then(function() {
+                                    resolve();
+                                }, function(e) {
+                                    reject(e);
+                                });
+                            } else {
+                                resolve();
+                            }
+                        },
+                        fail: function(e) {
+                            reject(e);
+                        }
+                    });
+                });
+            };
+            var template = function(e) {
+                return file.download({
+                    url: configuration.file.template.replace(/z/, [ "default", "all" ].join(".")),
+                    before: function(e) {
+                        e.overrideMimeType("text/html; charset=utf-8");
+                        e.responseType = "document";
+                    }
+                }).then(function(html) {
+                    try {
+                        var bOD = html.data.body;
+                        while (bOD.firstChild) doc.body.appendChild(bOD.firstChild);
+                        return terminal().then(function(e) {
+                            var splashScreen = doc.querySelector("div#screen");
+                            if (e) {
+                                return e;
+                            } else if (splashScreen) {
+                                splashScreen.remove();
+                            }
+                        });
+                    } catch (e) {
+                        return e;
+                    }
+                }, function(e) {
+                    return e;
+                });
+            };
+            var terminal = function() {
+                return route().then(function() {
+                    local.update("query");
+                    return new Promise(function(resolve, reject) {
+                        app.page[local.name.query.page](resolve, reject);
+                    }).then(function() {
+                        doc.body.setAttribute("id", local.name.query.page);
+                        app.header.content();
+                    }, function(e) {
+                        return e;
+                    });
+                }, function(e) {
+                    return e;
+                });
+            };
+            var route = function() {
+                var availableLanguage = Object.keys(local.name.setting.available), fO = {
+                    page: configuration.pageHome,
+                    language: availableLanguage[0],
+                    testament: 1,
+                    category: 1,
+                    q: "",
+                    pagePrevious: configuration.pageHome,
+                    result: ""
+                }, fM = {
+                    page: function(i, n, d, o) {
+                        o[i] = configuration.page.hasOwnProperty(n.toLowerCase()) ? n.toLowerCase() : d;
+                    },
+                    pagePrevious: function(i, n, d, o) {
+                        if (o[i] && configuration.page.hasOwnProperty(o[i])) {
+                            if (d != o.page) {
+                                o[i] = configuration.page[d].id <= configuration.page[o.page].id ? d : configuration.pageHome;
+                            }
+                        } else {
+                            o[i] = d;
+                        }
+                        configuration[i] = o[i];
+                    },
+                    language: function(i, n, d, o) {
+                        if (availableLanguage.length) {
+                            if (!$(availableLanguage).inArray(n)) configuration[i] = o[d];
+                            if (local.name.query.hasOwnProperty("pageBlock")) delete local.name.query.pageBlock;
+                        } else {
+                            local.name.query.page = configuration.pageHome;
+                            local.name.query.pageBlock = 1;
+                        }
+                    },
+                    q: function(i, n, d, o) {
+                        o[i] = decodeURIComponent(n);
+                    }
+                };
+                return new Promise(function(resolve, reject) {
+                    try {
+                        if ($(local.name.query).isEmpty()) {
+                            $(local.name.query).merge(fO, configuration.hash);
+                        } else {
+                            fO.pagePrevious = local.name.query.page;
+                            $(local.name.query).merge(configuration.hash);
+                        }
+                        $(local.name.query).each(function(i, v, o) {
+                            if (fM[i] instanceof Function) fM[i](i, v, fO[i], o);
+                        });
+                        resolve();
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            };
+            new Promise(function(resolve, reject) {
+                process().then(function() {
+                    doc.body.classList.add("config_Screen");
+                    if (local.name.setting.hasOwnProperty("class")) {
+                        $(local.name.setting.class).each(function(i, v) {
+                            doc.body.classList.add(v);
+                        });
+                    } else {
+                        local.name.setting.class = {};
+                    }
+                    if (local.name.setting.hasOwnProperty("available")) {} else {
+                        local.name.setting.available = {};
+                    }
+                    return template();
+                }, function(e) {
+                    return e;
+                }).then(function(e) {
+                    if (e) {
+                        reject(e);
+                    } else {
+                        resolve();
+                    }
+                });
+            }).then(function() {
+                $(configPanel).intPanel(function(s) {
+                    var lmSB = document.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                    s.open(function(o) {
+                        var ul = o.panel.querySelector("ul");
+                        $(ul).removeChild();
+                        $(configuration.page).each(function(i, v) {
+                            if (v.name) {
+                                $(ul).appendChild("li").addClass(i).toggleClass("active", local.name.query.page == i).appendChild("a").attr("href", "#" + i).setContent(v.name);
+                            }
+                        });
+                        if (o.overlay === true) {
+                            lmSB.style.opacity = .2;
+                        }
+                    });
+                    s.close(function() {
+                        lmSB.style.opacity = 1;
+                    });
+                    s.drag(function(o) {
+                        if (o.overlay === true) {
+                            lmSB.style.opacity = parseFloat(1 - o.percentage / 170).toFixed(2);
+                        }
+                    });
+                });
+                app.resizeEvent(function() {});
+                app.hashChange(function(e) {
+                    if (e) configuration.hash = e;
+                    terminal().then(function(e) {
+                        if (e) console.log("page error", e);
+                    });
+                });
+                var searchForm = document.querySelector("form.search");
+                if (searchForm) {}
+            }, function(e) {
+                if (typeof e === "object" && e.hasOwnProperty("message")) {
+                    app.notification(e.message);
+                } else if (typeof e === "string") {
+                    app.notification(e);
+                }
+            });
+        },
+        Data: function(bId) {
+            var dataSession = app.book, localId = "book", localSession = local.name, self = this;
+            this.open = function() {
+                return file.open({
+                    urlLocal: configuration.file.urlLocal.replace(/bId/, bId),
+                    readAs: "readAsText"
+                });
+            };
+            this.download = function(progressCallback) {
+                var xmlRequest = {
+                    dir: JSON.parse(JSON.stringify(configuration.file.urlAPI)),
+                    request: function(url) {
+                        return file.download({
+                            url: url,
+                            urlLocal: configuration.file.urlLocal.replace(/bId/, bId),
+                            before: function(xhr) {
+                                xhr.overrideMimeType("text/xml; charset=utf-8");
+                            },
+                            progress: progressCallback
+                        });
+                    },
+                    process: function(successCallback, failCallback) {
+                        var url = xmlRequest.dir.shift().replace(/bId/, bId);
+                        return xmlRequest.request(url).then(function(e) {
+                            if (!e.xml) e.xml = new DOMParser().parseFromString(e.data, e.fileType);
+                            dataSession.file[bId] = e.xml;
+                            successCallback(e);
+                        }, function(e) {
+                            if (xmlRequest.dir.length) {
+                                xmlRequest.process(successCallback, failCallback);
+                            } else {
+                                failCallback(e);
+                            }
+                        });
+                    }
+                };
+                return new Promise(xmlRequest.process);
+            };
+            this.save = function(e) {
+                return new Promise(function(resolve, reject) {
+                    file.save(e).then(function(s) {
+                        if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)) localSession[localId][bId] = dataSession[localId][bId];
+                        var size = s.total;
+                        new app.Content(bId).xml().then(function(e) {
+                            e.information().then(function(e) {
+                                e.information.size = self.bytesToSize(size);
+                                if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)) {
+                                    localSession[localId][bId]["information"] = e.information;
+                                } else {
+                                    localSession[localId][bId] = {
+                                        name: e.information.name,
+                                        updated: "0",
+                                        information: e.information
+                                    };
+                                }
+                                local.name.setting.available[bId] = 1;
+                            }, function(e) {
+                                console.log(e);
+                            });
+                        }, function(e) {}).then(function() {
+                            local.update(localId).update("setting");
+                            resolve(s);
+                        });
+                    }, function(e) {
+                        reject(e);
+                    });
+                });
+            };
+            this.bytesToSize = function(bytes, decimals) {
+                if (bytes == 0) return "0 Bytes";
+                var k = 1e3, dm = decimals || 2, sizes = [ "Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" ], i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+            };
+            this.delete = function() {
+                return new Promise(function(resolve, reject) {
+                    file.delete({
+                        urlLocal: configuration.file.urlLocal.replace(/bId/, bId),
+                        fileNotFound: true
+                    }).then(function(e) {
+                        delete localSession[localId][bId].information;
+                        delete local.name.setting.available[bId];
+                        local.update(localId).update("setting");
+                        resolve(e);
+                    }, function(e) {
+                        reject(e);
+                    });
+                });
+            };
+            this.request = function(progressCallback) {
+                return new Promise(function(resolve, reject) {
+                    if (dataSession.file.hasOwnProperty(bId)) {
+                        resolve(dataSession.file[bId]);
+                    } else if (localSession[localId].hasOwnProperty(bId)) {
+                        self.open().then(function(e) {
+                            e.xml = new DOMParser().parseFromString(e.fileContent, e.fileType);
+                            dataSession.file[bId] = e.xml;
+                            resolve(e.xml);
+                        }, function(e) {
+                            self.delete().then(function() {
+                                reject(e);
+                            });
+                        });
+                    } else {
+                        self.download(progressCallback).then(function(e) {
+                            self.save(e).then(function() {
+                                console.log("save success");
+                            }, function() {
+                                console.log("save fail");
+                            }).then(function() {
+                                resolve(e.xml);
+                            });
+                        }, function(e) {
+                            reject(e);
+                        });
+                    }
+                });
+            };
+        },
+        Content: function(bId) {
+            var xmlDoc, result = {
+                category: 0,
+                section: 0,
+                verse: 0
+            };
+            configuration.category = {};
+            var selectorCommon = function(container, callbackVerse, category) {
+                return new Promise(function(resolve, reject) {
+                    var xmlCategories = selectorCategory(category);
+                    if (!xmlCategories.length) return reject(configuration.lang.noCategoryData);
+                    $(xmlCategories).each(function(i, xmlCategory) {
+                        var ol, categoryId = category ? category : xmlCategory.getAttribute("id");
+                        $(xmlCategory.querySelectorAll(selectorVerse())).each(function(i, v) {
+                            var verseText = callbackVerse(v);
+                            if (verseText) {
+                                if (!ol) ol = html.createOl(container, categoryId);
+                                result.verse++;
+                                var bookId = v.getAttribute("book"), testamentId = bookId <= 39 ? 1 : 2, chapterId = v.getAttribute("chapter"), verseId = v.getAttribute("verse"), tagId = v.getAttribute("tag"), testament = selectorTestamentname(testamentId), testamentName = testament.innerHTML, bookName = selectorBookname(bookId).innerHTML, bookmarkClass = app.book.hasBookmark(categoryId, bookId, chapterId, verseId) ? configuration.classname.active : configuration.classname.inactive, testamentClass = bookId <= 39 ? "OT" : "NT", bookClass = bookName.replace(/\s+/g, "-").toLowerCase();
+                                var li = app.createElement("li");
+                                $(ol).appendChild(li).addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass);
+                                $(li).appendChild("div").addClass("icon-star").click(function(evt) {
+                                    app.book.addBookmark(evt.target.parentNode, categoryId, bookId, chapterId, verseId);
+                                });
+                                $(li).appendChild("div").attr("data-title", "123 234:345".replace(123, bookName).replace(234, chapterId).replace(345, verseId)).setContent(html.replaceNumber(verseText));
+                            }
+                        });
+                    });
+                    if (result.verse) {
+                        resolve(result);
+                    } else if (category) {
+                        reject(configuration.lang.noCategoryContent);
+                    } else {
+                        reject(configuration.lang.noMatchFor);
+                    }
+                });
+            };
+            var selectorInformation = function(i) {
+                if (i) {
+                    return xmlDoc.querySelector('info row[id="0"]'.replace(0, i));
+                } else {
+                    return xmlDoc.querySelectorAll("info row");
+                }
+            };
+            var selectorSection = function(i) {
+                if (i) {
+                    return xmlDoc.querySelector('section row[id="0"]'.replace(0, i));
+                } else {
+                    return xmlDoc.querySelectorAll("section row");
+                }
+            };
+            var selectorCategory = function(i) {
+                return xmlDoc.querySelectorAll(i ? 'category[id="0"]'.replace(0, i) : "category");
+            };
+            var selectorCategoryVerse = function(i) {
+                return xmlDoc.querySelectorAll('category[id="0"] row'.replace(0, i));
+            };
+            var selectorBookname = function(i) {
+                if (i) {
+                    return xmlDoc.querySelector('book row[id="0"]'.replace(0, i));
+                } else {
+                    return xmlDoc.querySelectorAll("book row");
+                }
+            };
+            var selectorTestamentname = function(i) {
+                if (i) {
+                    return xmlDoc.querySelector('testament row[id="0"]'.replace(0, i));
+                } else {
+                    return xmlDoc.querySelectorAll("testament row");
+                }
+            };
+            var selectorTagname = function(i) {
+                return xmlDoc.querySelector('tag row[id="0"]'.replace(0, i));
+            };
+            var selectorTagrow = function() {
+                return xmlDoc.querySelectorAll("tag row");
+            };
+            var selectorVerse = function(book, chapter, verse, testament, tag) {
+                var regVerse = "row";
+                if (book) regVerse = regVerse + '[book="0"]'.replace(0, book);
+                if (chapter) regVerse = regVerse + '[chapter="0"]'.replace(0, chapter);
+                if (verse) regVerse = regVerse + '[verse="0"]'.replace(0, verse);
+                if (testament) regVerse = regVerse + '[testament="0"]'.replace(0, testament);
+                if (tag) regVerse = regVerse + '[tag="0"]'.replace(0, tag);
+                return regVerse;
+            };
+            var html = {
+                replaceKeyword: function(s, n) {
+                    return typeof n === "string" ? s.replace(new RegExp(n, "gi"), "<b>$&</b>") : s;
+                },
+                replaceNumber: function(s) {
+                    if (s.match(/\[(.*?)\]/g).length > 1) {
+                        return s.replace(/\[(.*?)\]/g, "<sup>$1</sup>");
+                    } else {
+                        return s.replace(/\[(.*?)\]/g, "");
+                    }
+                    return s.replace(/\[(.*?)\]/g, "<sup>$1</sup>");
+                },
+                createOl: function(container, categoryId) {
+                    result.category++;
+                    var xmlSection = selectorSection(categoryId);
+                    var li = app.createElement("li");
+                    $(li).appendChild("h2").attr("data-description", xmlSection.innerHTML).setContent(xmlSection.getAttribute("name"));
+                    app.book.category.name = xmlSection.getAttribute("name");
+                    return $(container).appendChild(li).appendChild("ol").element;
+                }
+            };
+            var responseXML = {
+                section: function(container) {
+                    return new Promise(function(resolve, reject) {
+                        var alphabet = [];
+                        $(selectorSection()).each(function(i, v) {
+                            result.section++;
+                            var id = v.getAttribute("id"), name = v.getAttribute("name"), sort = v.getAttribute("sort"), description = v.innerHTML, char = name.charAt(0);
+                            if (alphabet.indexOf(char) < 0) {
+                                alphabet.push(char);
+                                $(container).appendChild("li").addClass("alpha").attr("id", char).setContent(char);
+                            }
+                            $(container).appendChild("li").addClass("icon-arrow-right").attr("data-title", id).appendChild("a").attr("data-total", selectorCategoryVerse(id).length).attr("data-description", v.innerHTML).attr("href", "#reader?category=" + id).setContent(name);
+                        });
+                        resolve(result);
+                    });
+                },
+                randomverse: function() {
+                    return new Promise(function(resolve, reject) {
+                        result.information = {};
+                        var categoryId = Math.floor(Math.random() * selectorSection().length);
+                        var Verses = selectorCategoryVerse(categoryId);
+                        var position = Math.floor(Math.random() * Verses.length);
+                        var v = Verses[position];
+                        var bookId = v.getAttribute("book"), testamentId = bookId <= 39 ? 1 : 2, chapterId = v.getAttribute("chapter"), verseId = v.getAttribute("verse");
+                        result.information[categoryId] = {};
+                        result.information[categoryId][bookId] = {};
+                        result.information[categoryId][bookId][chapterId] = [ verseId ];
+                        resolve(result);
+                    });
+                },
+                information: function() {
+                    return new Promise(function(resolve, reject) {
+                        result.information = {};
+                        $(selectorInformation()).each(function(i, v) {
+                            result.section++;
+                            var id = v.getAttribute("id");
+                            result.information[id] = v.innerHTML;
+                        });
+                        resolve(result);
+                    });
+                },
+                reader: function(container, category) {
+                    return selectorCommon(container, function(v) {
+                        return v.innerHTML;
+                    }, category);
+                },
+                lookup: function(container, paraSearch) {
+                    return selectorCommon(container, function(v) {
+                        var testamentId = v.getAttribute("testament");
+                        if (new RegExp(paraSearch, "i").test(v.innerHTML)) {
+                            var testamentId = v.getAttribute("testament");
+                            if (testamentId) {
+                                if (testamentId == local.name.testament) {
+                                    return html.replaceKeyword(v.innerHTML, paraSearch);
+                                }
+                            } else {
+                                return html.replaceKeyword(v.innerHTML, paraSearch);
+                            }
+                        }
+                    });
+                },
+                bookmark: function(container, lst) {
+                    return new Promise(function(resolve, reject) {
+                        $(lst).each(function(categoryId, c) {
+                            var ol;
+                            $(c).each(function(bookId, c) {
+                                $(c).each(function(chapterId, c) {
+                                    $(c).each(function(i, verseId) {
+                                        $(selectorCategory(categoryId)).each(function(i, xmlCategory) {
+                                            $(xmlCategory.querySelectorAll(selectorVerse(bookId, chapterId, verseId))).each(function(i, v) {
+                                                if (!ol) ol = html.createOl(container, categoryId);
+                                                result.verse++;
+                                                var testamentId = bookId <= 39 ? 1 : 2, testamentName = selectorTestamentname(testamentId).innerHTML, bookName = selectorBookname(bookId).innerHTML, testamentClass = testamentName.replace(" ", "-").toLowerCase(), bookClass = bookName.replace(" ", "-").toLowerCase(), bookmarkClass = app.book.hasBookmark(categoryId, bookId, chapterId, verseId) ? configuration.classname.active : configuration.classname.inactive;
+                                                var li = app.createElement("li");
+                                                $(ol).appendChild(li).addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass);
+                                                $(li).appendChild("div").addClass("icon-star").click(function(evt) {
+                                                    var e = evt.target.parentNode;
+                                                    app.book.addBookmark(e, categoryId, bookId, chapterId, verseId);
+                                                    if (local.name.query.page != "randomverse") {
+                                                        e = e.remove();
+                                                        if (e && e.innerHTML === "") {
+                                                            e = e.parentNode.remove();
+                                                            if (e && e.innerHTML === "") {
+                                                                $(e).addClass("msg").appendChild("li").appendChild("div").setContent(configuration.lang.noBookmark);
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                                $(li).appendChild("div").attr("data-title", "123 234:345".replace(123, bookName).replace(234, chapterId).replace(345, verseId)).setContent(html.replaceNumber(v.innerHTML));
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                        if (result.verse) {
+                            resolve(result);
+                        } else {
+                            reject(configuration.lang.noBookmark);
+                        }
+                    });
+                }
+            };
+            this.xml = function() {
+                return new Promise(function(resolve, reject) {
+                    new app.Data(bId).request(function() {}).then(function(e) {
+                        xmlDoc = e;
+                        resolve(responseXML);
+                    }, function(e) {
+                        reject(e);
+                    });
+                });
+            };
+        },
+        book: {
+            file: {},
+            category: {},
+            addBookmark: function(container, category, book, chapter, verse) {
+                var bookmarks = local.name.bookmark;
+                if (container.classList.contains(configuration.classname.active)) {
+                    bookmarks[category][book][chapter].splice(bookmarks[category][book][chapter].indexOf(verse), 1);
+                    if (bookmarks[category][book][chapter].length <= 0) {
+                        delete bookmarks[category][book][chapter];
+                        if (Object.keys(bookmarks[category][book]).length === 0) {
+                            delete bookmarks[category][book];
+                            if (Object.keys(bookmarks[category]).length === 0) {
+                                delete bookmarks[category];
+                            }
+                        }
+                    }
+                    container.classList.remove(configuration.classname.active);
+                    container.classList.add(configuration.classname.inactive);
+                } else {
+                    if (!bookmarks.hasOwnProperty(category)) bookmarks[category] = {};
+                    if (!bookmarks[category].hasOwnProperty(book)) bookmarks[category][book] = {};
+                    if (!bookmarks[category][book].hasOwnProperty(chapter)) bookmarks[category][book][chapter] = [];
+                    bookmarks[category][book][chapter].push(verse.toString());
+                    container.classList.add(configuration.classname.active);
+                    container.classList.remove(configuration.classname.inactive);
+                }
+                local.update("bookmark");
+            },
+            hasBookmark: function(category, book, chapter, verse) {
+                var bookmarks = local.name.bookmark;
+                if (bookmarks.hasOwnProperty(category)) {
+                    if (bookmarks[category].hasOwnProperty(book)) {
+                        if (bookmarks[category][book].hasOwnProperty(chapter)) {
+                            return bookmarks[category][book][chapter].indexOf(verse) > -1;
+                        }
+                    }
+                }
+            },
+            isAvailable: function(i) {
+                if (!$(local.name.book).isEmpty() && local.name.book.hasOwnProperty(i) && local.name.book[i].hasOwnProperty("information")) {
+                    return true;
+                }
+            },
+            json: function(url) {
+                return new Promise(function(resolve, reject) {
+                    url = url ? url : configuration.file.book;
+                    file.download({
+                        url: url
+                    }).then(function(e) {
+                        app.book.all = $(local.name.book).merge(JSON.parse(e.data));
+                        local.update("book");
+                        resolve();
+                    }, function(e) {
+                        reject(e);
+                    });
+                });
+            }
+        },
+        page: {
+            home: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                $(container).removeChild();
+                var ul = doc.createElement("ul");
+                ul.setAttribute("class", "home");
+                if (local.name.query.hasOwnProperty("pageBlock")) $(container).appendChild("ul").addClass("msg notify").appendChild("li").appendChild("p").setContent(configuration.lang.noLanguage);
+                container.appendChild(ul);
+                $(local.name.book).each(function(bId, v) {
+                    var li = doc.createElement("li"), wrap = doc.createElement("div"), name = doc.createElement("div"), link = doc.createElement("a"), action = doc.createElement("div");
+                    li.setAttribute("id", bId);
+                    wrap.appendChild(name);
+                    wrap.appendChild(action);
+                    name.appendChild(link);
+                    var random = new Date().getTime();
+                    $(link).attr("href", "#category?language=bId&i=random".replace(/bId/, bId).replace(/random/, random)).setContent(v.name);
+                    $(action).click(function(evt) {
+                        var e = evt.target;
+                        if (app.book.isAvailable(bId)) {
+                            action.innerHTML = configuration.lang.removingLang;
+                            new app.Data(bId).delete().then(function() {
+                                action.innerHTML = configuration.lang.addLang;
+                            }, function(e) {
+                                action.innerHTML = configuration.lang.isError;
+                            });
+                        } else {
+                            new app.Data(bId).download(function() {
+                                action.innerHTML = configuration.lang.addingLang;
+                            }).then(function(e) {
+                                return new app.Data(bId).save(e).then(function() {
+                                    action.innerHTML = configuration.lang.removeLang;
+                                }, function() {
+                                    action.innerHTML = configuration.lang.isError + ":01";
+                                });
+                            }, function(e) {
+                                action.innerHTML = configuration.lang.isError + ":02";
+                            });
+                        }
+                    }).setContent(configuration.lang.addLang);
+                    if (app.book.isAvailable(bId)) {
+                        li.setAttribute("class", configuration.classname.active);
+                        action.innerHTML = configuration.lang.removeLang;
+                    }
+                    li.appendChild(wrap);
+                    ul.appendChild(li);
+                });
+                resolve();
+            },
+            category: function(resolve, reject) {
+                var query = local.name.query, pID = query.page, lID = query.language;
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var ulMain = $(container).removeChild().appendChild("ul").attr("class", "category");
+                configuration.page[pID].title = local.name.book[lID].name;
+                new app.Content(lID).xml().then(function(e) {
+                    e.section(ulMain.element).then(function(e) {}, function(e) {});
+                }, function(e) {
+                    ulMain.attr("class", "msg error").appendChild("li").appendChild("div").setContent(configuration.lang.isNotFound.replace("{is}", local.name.query.language));
+                }).then(function() {
+                    resolve();
+                    var liIndex = app.createElement("li");
+                    $(container).appendChild("ul").attr("class", "category-index").appendChild(liIndex).click(function(evt) {
+                        var e = evt.target, id = e.getAttribute("class"), position = doc.getElementById(id);
+                        if (position) {
+                            container.scrollTop = position.offsetTop;
+                        }
+                    });
+                    ulMain.selectChild("li.alpha", true).each(function(i, v) {
+                        $(liIndex).appendChild("p").attr("class", v.getAttribute("id")).setContent(v.innerHTML);
+                    });
+                });
+            },
+            reader: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var ulMain = $(container).removeChild().appendChild("ul").attr("class", "reader");
+                var query = local.name.query, pID = query.page, lID = query.language;
+                new app.Content(lID).xml().then(function(e) {
+                    e.reader(ulMain.element, query.category).then(function(e) {}, function(e) {});
+                }, function(e) {}).then(function() {
+                    configuration.page[pID].title = app.book.category.name;
+                    resolve();
+                });
+            },
+            search: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0], ul = app.createElement("ul");
+                $(container).removeChild().appendChild(ul).addClass("search");
+                $(ul).appendChild("li").appendChild("div").appendChild("input").attr("type", "search").attr("name", "q").attr("id", "q").attr("placeholder", "search...");
+                $(ul).appendChild("li").appendChild("div").click(function(evt) {
+                    var e = evt.target;
+                    if (e.nextElementSibling) {
+                        e.nextElementSibling.remove();
+                    } else {
+                        var olLanguage = app.createElement("ol");
+                        $(e.parentNode).appendChild(olLanguage).click(function(evt) {
+                            var e = evt.target, id = e.getAttribute("id");
+                            if (id && local.name.query.language != id) {
+                                e.parentNode.querySelector("." + configuration.classname.active).classList.remove(configuration.classname.active);
+                                $(e).addClass(configuration.classname.active);
+                                local.name.query.language = id;
+                            }
+                        });
+                        $(local.name.book).each(function(i, v) {
+                            $(olLanguage).appendChild("li").attr("id", i).addClass(local.name.query.language == i ? configuration.classname.active : configuration.classname.inactive).setContent(v.name);
+                        });
+                    }
+                }).setContent("Language");
+                var divTestament = app.createElement("div");
+                $(ul).appendChild("li").addClass("lsi").appendChild(divTestament).click(function(evt) {
+                    var e = evt.target, id = e.getAttribute("id");
+                    if (id && local.name.query.testament != id) {
+                        var elmContainer = e.parentNode.querySelector("." + configuration.classname.active);
+                        if (elmContainer) {
+                            elmContainer.classList.remove(configuration.classname.active);
+                        }
+                        $(e).addClass(configuration.classname.active);
+                        local.name.query.testament = id;
+                    }
+                });
+                $(divTestament).appendChild("p").attr("id", "1").addClass(local.name.query.testament == 1 ? configuration.classname.active : configuration.classname.inactive).setContent("OT");
+                $(divTestament).appendChild("p").attr("id", "2").addClass(local.name.query.testament == 2 ? configuration.classname.active : configuration.classname.inactive).setContent("NT");
+                $(ul).appendChild("li").appendChild("div").click(function() {
+                    var q = doc.getElementById("q").value;
+                    if (q && local.name.query.language && local.name.query.testament) {
+                        window.location.hash = "#result?q=123&i=234".replace(/123/, q).replace(/234/, new Date().getTime());
+                    }
+                }).setContent("Enter");
+                resolve();
+            },
+            result: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var ul = app.createElement("ul");
+                var query = local.name.query, pID = query.page, lID = query.language;
+                $(container).removeChild().appendChild(ul).attr("class", "reader");
+                new app.Content(lID).xml().then(function(e) {
+                    if (local.name.query.q) {
+                        e.lookup(ul, local.name.query.q).then(function(e) {}, function(e) {
+                            $(ul).attr("class", "msg error").appendChild("li").appendChild("div").setContent(e.replace("{for}", local.name.query.q));
+                        });
+                    } else {
+                        $(ul).attr("class", "msg error").appendChild("li").appendChild("div").setContent(configuration.lang.tryAWord);
+                    }
+                }, function(e) {
+                    $(ul).attr("class", "msg error").appendChild("li").appendChild("div").setContent(configuration.lang.isNotFound.replace("{is}", local.name.query.book));
+                }).then(function() {
+                    resolve();
+                });
+            },
+            bookmark: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var ul = app.createElement("ul");
+                $(container).removeChild().appendChild(ul).attr("class", "reader");
+                new app.Content(local.name.query.language).xml().then(function(e) {
+                    e.bookmark(ul, local.name.bookmark).then(function(e) {}, function(e) {
+                        $(ul).attr("class", "msg error").appendChild("li").appendChild("div").setContent(e);
+                    });
+                }, function(e) {
+                    $(ul).attr("class", "msg error").appendChild("li").appendChild("div").setContent(configuration.lang.isNotFound.replace("{is}", local.name.query.language));
+                }).then(function() {
+                    resolve();
+                });
+            },
+            random: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var ul = app.createElement("ul");
+                $(container).removeChild().appendChild(ul).attr("class", "reader");
+                var randomGet = false, randomDay = new Date().toLocaleDateString().toString().replace(/\//g, "");
+                new Promise(function(res, rej) {
+                    if (local.name.randomverse && $(local.name.randomverse).isObject() && !$(local.name.randomverse).isEmpty()) {
+                        if (local.name.randomverse.id != randomDay) {
+                            local.name.randomverse.id = randomDay;
+                            randomGet = true;
+                        }
+                    } else {
+                        randomGet = true;
+                        local.name.randomverse.id = randomDay;
+                    }
+                    if (randomGet) {
+                        new app.Content(local.name.query.language).xml().then(function(e) {
+                            e.randomverse().then(function(e) {
+                                local.name.randomverse.verse = e.information;
+                                local.update("randomverse");
+                                res();
+                            });
+                        });
+                    } else {
+                        res();
+                    }
+                }).then(function() {
+                    new app.Content(local.name.query.language).xml().then(function(e) {
+                        e.bookmark(ul, local.name.randomverse.verse).then(function(e) {}, function(e) {});
+                    }, function(e) {}).then(function() {
+                        resolve();
+                    });
+                });
+            },
+            setting: function(resolve, reject) {
+                var localSetting = local.name.setting, sizeNcolor = {
+                    fontsize: {
+                        title: "Words size",
+                        style: "body {font-size:$100%;}",
+                        option: {
+                            "80%": {
+                                title: "1",
+                                class: "size-small-extra"
+                            },
+                            "90%": {
+                                title: "2",
+                                class: "size-small"
+                            },
+                            "100%": {
+                                title: "3",
+                                class: "size-normal",
+                                defaults: true
+                            },
+                            "120%": {
+                                title: "4",
+                                class: "size-large"
+                            },
+                            "150%": {
+                                title: "5",
+                                class: "size-large-extra"
+                            }
+                        }
+                    },
+                    background: {
+                        title: "background colour",
+                        style: "body {background-color:$white;}",
+                        option: {
+                            "#ffffff": {
+                                class: "color-white"
+                            },
+                            "#F8F8F8": {
+                                class: "color-lightgray",
+                                defaults: true
+                            },
+                            "#7f7f7f": {
+                                class: "color-dimgrey"
+                            },
+                            "#b97a59": {
+                                class: "color-chocolate"
+                            },
+                            "#880016": {
+                                class: "color-darkred"
+                            },
+                            "#ed1b24": {
+                                class: "color-red"
+                            },
+                            "#fef102": {
+                                class: "color-gold"
+                            },
+                            "#24b04d": {
+                                class: "color-green"
+                            },
+                            "#3f47cc": {
+                                class: "color-darkblue"
+                            }
+                        }
+                    }
+                }, container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0], ul = app.createElement("ul");
+                $(container).removeChild().appendChild(ul).addClass("setting");
+                if (!localSetting.hasOwnProperty("class")) {
+                    localSetting.class = {};
+                }
+                $(sizeNcolor).each(function(k, name) {
+                    var li = app.createElement("li");
+                    $(ul).appendChild(li).appendChild("h3").setContent(name.title);
+                    var ol = $(ul).appendChild(li).appendChild("ol").addClass(k).element;
+                    $(name.option).each(function(i, o) {
+                        var activeStatusClass = configuration.classname.inactive, li = $(ol).appendChild("li").addClass(o.class).addClass("icon-ok");
+                        if (o.hasOwnProperty("title")) li.attr("data-title", o.title);
+                        if (localSetting.class.hasOwnProperty(k)) {
+                            activeStatusClass = localSetting.class[k] == o.class ? configuration.classname.active : configuration.classname.inactive;
+                        } else if (o.hasOwnProperty("defaults")) {
+                            activeStatusClass = configuration.classname.active;
+                        }
+                        li.addClass(activeStatusClass).click(function(evt) {
+                            var e = evt.target;
+                            if (!e.classList.contains(configuration.classname.active)) {
+                                $(e.parentNode.getElementsByClassName(configuration.classname.active)).each(function(i, eCurrent) {
+                                    eCurrent.classList.remove(configuration.classname.active);
+                                });
+                                e.classList.add(configuration.classname.active);
+                                if (localSetting.class.hasOwnProperty(k) && document.body.classList.contains(localSetting.class[k])) document.body.classList.remove(localSetting.class[k]);
+                                if (!document.body.classList.contains(o.class)) document.body.classList.add(o.class);
+                                localSetting.class[k] = o.class;
+                                local.update("setting");
+                            }
+                        });
+                    });
+                });
+                resolve();
+            },
+            about: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var ul = app.createElement("ul");
+                $(container).removeChild().appendChild(ul).addClass("about").appendChild("li").addClass("description").appendChild("p").addClass("desc").setContent(configuration.description);
+                $(local.name.book).each(function(i, v) {
+                    var li = app.createElement("li");
+                    $(ul).appendChild(li);
+                    $(li).addClass(configuration.classname.available).appendChild("h3").setContent(v.name);
+                    if (v.hasOwnProperty("information") && !$(v.information).isEmpty()) {
+                        $(li).appendChild("p").attr("data-title", "Version").setContent(v.information.version);
+                        if (v.information.hasOwnProperty("size")) {
+                            $(li).appendChild("p").attr("data-title", "Size").setContent(v.information.size);
+                        } else {
+                            $(li).appendChild("p").attr("data-title", "Size").setContent("size view required to readd language");
+                        }
+                    } else {
+                        $(li).addClass(configuration.classname.inactive);
+                    }
+                });
+                resolve();
+            },
+            contact: function(resolve, reject) {
+                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                $(container).removeChild();
+                var ul = app.createElement("ul");
+                container.appendChild(ul).setAttribute("class", "about");
+                var info = configuration.information;
+                ul.appendChild(app.createElement("li")).innerHTML = info.email;
+                ul.appendChild(app.createElement("li")).innerHTML = info.introduction;
+                var li = app.createElement("li");
+                $(ul).appendChild(li);
+                $(info.list).each(function(i, v) {
+                    $(li).appendChild("p").attr("data-title", v.name).setContent(v.desc);
+                });
+                ul.appendChild(app.createElement("li")).innerHTML = info.conclusion;
+                resolve();
+            }
+        },
+        header: {
+            content: function() {
+                var lMn = doc.getElementById("lMn");
+                var homeElement = lMn.querySelector(".icon-panel");
+                var titleElement = lMn.querySelector("#lmD");
+                var backElement = lMn.querySelector("#backLink");
+                titleElement.setAttribute("data-title", configuration.page[local.name.query.page].title);
+                if (local.name.query.page != local.name.query.pagePrevious) {
+                    if (!backElement) {
+                        backElement = doc.createElement("li");
+                        backElement.setAttribute("class", "icon-left");
+                        backElement.setAttribute("id", "backLink");
+                        lMn.insertBefore(backElement, lMn.firstChild);
+                        homeElement.style.display = "none";
+                        $(backElement).click(function() {
+                            window.location.hash = "#123".replace(/123/, local.name.query.pagePrevious);
+                        });
+                    }
+                } else if (backElement) {
+                    backElement.remove();
+                    homeElement.style.display = "";
+                }
+            }
+        }
+    }).initiate();
+});

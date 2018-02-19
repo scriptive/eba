@@ -11,7 +11,7 @@ container.appendChild(ul);
 // container.innerHTML = ol;
 $(local.name.book).each(function(bId,v) {
   // console.log(i,v);
-  var li = doc.createElement('li'),wrap = doc.createElement('div'), name = doc.createElement('div'), action = doc.createElement('div');
+  var li = doc.createElement('li'),wrap = doc.createElement('div'), name = doc.createElement('div'), link = doc.createElement('a'), action = doc.createElement('div');
   li.setAttribute('id',bId);
   // li.setAttribute('class',bId);
   wrap.appendChild(name);
@@ -28,11 +28,20 @@ $(local.name.book).each(function(bId,v) {
   });
   */
   // var tmpContainer = doc.querySelector('input#sch');
-  $(name).click(function(evt){
-    var e = evt.target;
-    window.location.hash = '#category?language=lID'.replace(/lID/,e.dataset.bid);
-    // e.preventDefault();
-  }).attr('data-bid',bId).setContent(v.name);
+  // $(name).click(function(evt){
+  //   var e = evt.target;
+  //   window.location.hash = '#category?language=lID'.replace(/lID/,e.dataset.bid);
+  //   // e.preventDefault();
+  // }).attr('data-bid',bId).setContent(v.name);
+
+  name.appendChild(link);
+
+
+  var random = new Date().getTime();
+
+  $(link).attr('href','#category?language=bId&i=random'.replace(/bId/,bId).replace(/random/,random)).setContent(v.name);
+
+
 
   $(action).click(function(evt){
     var e = evt.target;

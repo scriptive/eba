@@ -20,6 +20,9 @@
         &:first-child{
           // background-color: lighten(#000,20%);
           border-radius: 7px 0 0 7px;
+          a {
+            color: $ColorMain;
+          }
         }
         &:last-child{
           width: 80px;

@@ -19,19 +19,19 @@ eDrag.on("panstart", function(evt){
     offsetNormal=null;
   }
   if (offsetNormal) {
-    requestParam.panel = $.panel;
+    requestParam.panel = panel.Current;
     // TODO: if more element exists
     // var id = eMain.dataset[offsetNormal];
-    // $.button = doc.querySelector('[data-0="1"]'.replace("0", config.dataId).replace("1",id));
+    // panel.Button = doc.querySelector('[data-0="1"]'.replace("0", config.dataId).replace("1",id));
 
     $.has.panelButton(eMain.dataset[offsetNormal]);
-    // $.panel.style.zIndex = 2;
+    // panel.Current.style.zIndex = 2;
     // offsetReverse = (offsetNormal==lt)?rt:lt;
     if ($.has.slided(offsetNormal)) {
       // NOTE: Closing
       if ($.has.position(offsetReverse) < config.widthMin){
         // NOTE: just close?
-        // $.panel.style.zIndex = 1;
+        // panel.Current.style.zIndex = 1;
         // eMain.style[offsetNormal] = $.pixel(0);
         // eMain.style[offsetReverse] = $.pixel(0);
         // offsetNormal=false;
@@ -44,7 +44,7 @@ eDrag.on("panstart", function(evt){
       }
     } else {
       // NOTE: opening
-      $.panel.style.zIndex = 2;
+      panel.Current.style.zIndex = 2;
       $.on(2);
     }
   }
@@ -53,7 +53,7 @@ eDrag.on("panstart", function(evt){
     var x = (offsetNormal == lt)?e.center.x:(eWidthOffset - e.center.x);
     requestParam.percentage = x/config.widthMax*100;
     if (requestParam.percentage > 0 && requestParam.percentage < 100) {
-      $.open.toggle(x);
+      panel.Toggle(x);
       $.on(4);
     }
   }
@@ -64,11 +64,7 @@ eDrag.on("panstart", function(evt){
 // },true).on("panup", function(e){
 // },true).on("pandown", function(e){
 },true).on("panend", function(e){
-  if ($.open.done()){
-    $.on(3);
-  }
+  if (panel.Done()) $.on(3);
 },true).on("pancancel", function(e){
-  if ($.open.done()){
-    $.on(3);
-  }
+  if (panel.Done()) $.on(3);
 },true);

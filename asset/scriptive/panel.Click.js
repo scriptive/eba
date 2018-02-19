@@ -6,13 +6,12 @@ new Hammer(eMenu).on('tap', function(evt) {
   if (e.dataset[config.dataId]) {
     $.has.panelButton(e);
     if ($.has.panelOffset(e.dataset[config.dataId])) {
-      requestParam.panel=$.panel;
+      requestParam.panel=panel.Current;
       if ($.has.slided(offsetNormal)) {
-        $.open.toggle(config.widthMin);
+        panel.Toggle(config.widthMin);
         $.on(3);
       } else {
-        // $.panel.style.zIndex = 2;
-        $.open.toggle(config.widthMax);
+        panel.Toggle(config.widthMax);
         $.on(2);
       }
     }

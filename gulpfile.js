@@ -24,6 +24,8 @@ var configPublicRoot=Package.config.common.public.root;
 
 var rootAsset=path.join(configAssetRoot);
 var rootPublic=path.join(configPublicRoot);
+var scriptiveRoot=path.join('../scriptive');
+var scriptiveAsset=path.join(scriptiveRoot,rootAsset,'scriptive');
 
 var style = {
   normal:{
@@ -75,14 +77,34 @@ gulp.task('sass', function () {
 });
 // NOTE: SCRIPT
 gulp.task('script',function(){
-    return gulp.src(path.join(rootAsset,'javascript','*([^A-Z0-9-]).js'))
+    return gulp.src(path.join(rootAsset,'script','*([^A-Z0-9-]).js'))
     //.pipe(concat('all.min.js'))
     .pipe(include().on('error', console.log))
     .pipe(uglify(codeStyle.js).on('error', console.log))
     .pipe(gulp.dest(path.join(rootPublic,'js')));
 });
 // NOTE: SCRIPTIVE
-gulp.task('scriptive',function(){
+gulp.task('scriptive:js',function(){
+    return gulp.src(path.join(scriptiveAsset,'*([^A-Z0-9-]).js'))
+    .pipe(include().on('error', console.log))
+    // .pipe(uglify(style.compressed.js).on('error', console.log))
+    // .pipe(concat('scriptive.min.js'))
+    // .pipe(gulp.dest(path.join(scriptiveRoot,'js')))
+    .pipe(uglify(codeStyle.js).on('error', console.log))
+    .pipe(gulp.dest(path.join(rootPublic,'js')));
+});
+/*
+gulp.task('scriptive:sass',function(){
+    return gulp.src(path.join(scriptiveAsset,'*([^A-Z0-9-]).scss'))
+    .pipe(include().on('error', console.log))
+    // .pipe(uglify(style.compressed.sass).on('error', console.log))
+    // .pipe(concat('scriptive.min.css'))
+    // .pipe(gulp.dest(path.join(scriptiveRoot,'css')))
+    .pipe(uglify(codeStyle.sass).on('error', console.log))
+    .pipe(gulp.dest(path.join(rootPublic,'css')));
+});
+*/
+gulp.task('scriptive:tmp',function(){
     return gulp.src(path.join(rootAsset,'scriptive','*([^A-Z0-9-]).js'))
     .pipe(include().on('error', console.log))
     .pipe(uglify(codeStyle.js).on('error', console.log))
@@ -92,8 +114,10 @@ gulp.task('scriptive',function(){
 gulp.task('watch', function() {
   // echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
     gulp.watch(path.join(rootAsset,'sass','*.scss'), ['sass']);
-    gulp.watch(path.join(rootAsset,'javascript','*.js'), ['script']);
-    gulp.watch(path.join(rootAsset,'scriptive','*.js'), ['scriptive']);
+    gulp.watch(path.join(rootAsset,'script','*.js'), ['script']);
+    gulp.watch(path.join(rootAsset,'scriptive','*.js'), ['scriptive:tmp']);
+    gulp.watch(path.join(scriptiveAsset,'*.js'), ['scriptive:js']);
+    // gulp.watch(path.join(scriptiveAsset,'*.scss'), ['scriptive:sass']);
 });
 // NOTE: TASK
 gulp.task('default', ['watch']);

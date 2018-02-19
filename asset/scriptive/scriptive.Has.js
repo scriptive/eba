@@ -9,8 +9,8 @@ right:function(x){
   return (eMain.offsetWidth + $.has.position(lt)) - x;
 },
 panelOffset:function(id){
-  $.panel = doc.getElementById(id);
-  offsetNormal=($.panel && $.panel.dataset[config.dataOffset])?$.panel.dataset[config.dataOffset]:false;
+  panel.Current = doc.getElementById(id);
+  offsetNormal=(panel.Current && panel.Current.dataset[config.dataOffset])?panel.Current.dataset[config.dataOffset]:false;
   if (offsetNormal) {
     offsetReverse = (offsetNormal==lt)?rt:lt;
     return true;
@@ -18,17 +18,17 @@ panelOffset:function(id){
 },
 panelButton:function(e){
   if (e instanceof Element){
-    $.button = e;
+    panel.Button = e;
   } else {
     // eMain.dataset[offsetNormal]
-    $.button = doc.querySelector('[data-0="1"]'.replace("0", config.dataId).replace("1",e));
+    panel.Button = doc.querySelector('[data-0="1"]'.replace("0", config.dataId).replace("1",e));
   }
 },
 slided:function(p){
   return $.has.position(p) == config.widthMax;
 },
 max:function(){
-  return (eMain.offsetWidth - config.widthMax) < config.widthMax;
+  return (eMain.offsetWidth - config.widthMax) <= config.widthMax;
 },
 min:function(){
   return eMain.offsetWidth <= config.widthMax;

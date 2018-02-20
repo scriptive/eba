@@ -39,3 +39,9 @@ button{}
 body {
   @extend html; font-family:$Font; color:$Color;font-size:$FontSize; background-color: $ColorBackground;
 }
+@media #{$media-mobile} {
+}
+@media #{$media-tablet} {
+}
+@media #{$media-desktop} {
+}

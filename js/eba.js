@@ -1,6 +1,6 @@
 var configPanel = {
     main: "#lCm",
-    mainActive: ".lmSB",
+    mainActive: ".scSB",
     menu: "#lMn"
 }, configMain = {
     idUnique: "eba:unique"
@@ -296,7 +296,7 @@ scriptive(configMain).ready(function(app, $) {
                 });
             }).then(function() {
                 $(configPanel).intPanel(function(s) {
-                    var lmSB = document.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                    var scSB = document.getElementById("lCm").getElementsByClassName("scSB")[0];
                     s.open(function(o) {
                         var ul = o.panel.querySelector("ul");
                         $(ul).removeChild();
@@ -306,15 +306,15 @@ scriptive(configMain).ready(function(app, $) {
                             }
                         });
                         if (o.overlay === true) {
-                            lmSB.style.opacity = .2;
+                            scSB.style.opacity = .2;
                         }
                     });
                     s.close(function() {
-                        lmSB.style.opacity = 1;
+                        scSB.style.opacity = 1;
                     });
                     s.drag(function(o) {
                         if (o.overlay === true) {
-                            lmSB.style.opacity = parseFloat(1 - o.percentage / 170).toFixed(2);
+                            scSB.style.opacity = parseFloat(1 - o.percentage / 170).toFixed(2);
                         }
                     });
                 });
@@ -734,7 +734,7 @@ scriptive(configMain).ready(function(app, $) {
         },
         page: {
             home: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 $(container).removeChild();
                 var ul = doc.createElement("ul");
                 ul.setAttribute("class", "home");
@@ -782,7 +782,7 @@ scriptive(configMain).ready(function(app, $) {
             },
             category: function(resolve, reject) {
                 var query = local.name.query, pID = query.page, lID = query.language;
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 var ulMain = $(container).removeChild().appendChild("ul").attr("class", "category");
                 configuration.page[pID].title = local.name.book[lID].name;
                 new app.Content(lID).xml().then(function(e) {
@@ -804,7 +804,7 @@ scriptive(configMain).ready(function(app, $) {
                 });
             },
             reader: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 var ulMain = $(container).removeChild().appendChild("ul").attr("class", "reader");
                 var query = local.name.query, pID = query.page, lID = query.language;
                 new app.Content(lID).xml().then(function(e) {
@@ -815,7 +815,7 @@ scriptive(configMain).ready(function(app, $) {
                 });
             },
             search: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0], ul = app.createElement("ul");
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0], ul = app.createElement("ul");
                 $(container).removeChild().appendChild(ul).addClass("search");
                 $(ul).appendChild("li").appendChild("div").appendChild("input").attr("type", "search").attr("name", "q").attr("id", "q").attr("placeholder", "search...");
                 $(ul).appendChild("li").appendChild("div").click(function(evt) {
@@ -860,7 +860,7 @@ scriptive(configMain).ready(function(app, $) {
                 resolve();
             },
             result: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 var ul = app.createElement("ul");
                 var query = local.name.query, pID = query.page, lID = query.language;
                 $(container).removeChild().appendChild(ul).attr("class", "reader");
@@ -879,7 +879,7 @@ scriptive(configMain).ready(function(app, $) {
                 });
             },
             bookmark: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 var ul = app.createElement("ul");
                 $(container).removeChild().appendChild(ul).attr("class", "reader");
                 new app.Content(local.name.query.language).xml().then(function(e) {
@@ -893,7 +893,7 @@ scriptive(configMain).ready(function(app, $) {
                 });
             },
             random: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 var ul = app.createElement("ul");
                 $(container).removeChild().appendChild(ul).attr("class", "reader");
                 var randomGet = false, randomDay = new Date().toLocaleDateString().toString().replace(/\//g, "");
@@ -989,7 +989,7 @@ scriptive(configMain).ready(function(app, $) {
                             }
                         }
                     }
-                }, container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0], ul = app.createElement("ul");
+                }, container = doc.getElementById("lCm").getElementsByClassName("scSB")[0], ul = app.createElement("ul");
                 $(container).removeChild().appendChild(ul).addClass("setting");
                 if (!localSetting.hasOwnProperty("class")) {
                     localSetting.class = {};
@@ -1024,7 +1024,7 @@ scriptive(configMain).ready(function(app, $) {
                 resolve();
             },
             about: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 var ul = app.createElement("ul");
                 $(container).removeChild().appendChild(ul).addClass("about").appendChild("li").addClass("description").appendChild("p").addClass("desc").setContent(configuration.description);
                 $(local.name.book).each(function(i, v) {
@@ -1045,7 +1045,7 @@ scriptive(configMain).ready(function(app, $) {
                 resolve();
             },
             contact: function(resolve, reject) {
-                var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+                var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
                 $(container).removeChild();
                 var ul = app.createElement("ul");
                 container.appendChild(ul).setAttribute("class", "about");

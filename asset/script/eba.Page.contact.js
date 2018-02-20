@@ -1,5 +1,5 @@
 // resolve();
-var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
 
 $(container).removeChild();
 var ul=app.createElement('ul');

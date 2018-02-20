@@ -1,4 +1,4 @@
-var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
 // container.remove();
 // container.innerHTML = '';
 $(container).removeChild();
@@ -127,7 +127,7 @@ var abc={
     }
   }
 };
-var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
 // container.remove();
 // container.innerHTML = '';
 $(container).removeChild();

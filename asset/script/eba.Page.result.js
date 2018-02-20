@@ -1,4 +1,4 @@
-var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
 var ul=app.createElement('ul');
 var query=local.name.query, pID=query.page, lID = query.language;
 $(container).removeChild().appendChild(ul).attr('class','reader');

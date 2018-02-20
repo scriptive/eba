@@ -1,4 +1,4 @@
-var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0],
+var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0],
 ul=app.createElement('ul');
 $(container).removeChild().appendChild(ul).addClass('search');
 

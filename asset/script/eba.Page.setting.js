@@ -28,7 +28,7 @@ sizeNcolor={
     }
   }
 },
-container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0],
+container = doc.getElementById("lCm").getElementsByClassName("scSB")[0],
 ul=app.createElement('ul');
 $(container).removeChild().appendChild(ul).addClass('setting');
 

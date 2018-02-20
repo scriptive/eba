@@ -40,7 +40,7 @@ new Promise(function(resolve, reject) {
   });
 }).then(function() {
   $(configPanel).intPanel(function(s){
-    var lmSB = document.getElementById("lCm").getElementsByClassName("lmSB")[0];
+    var scSB = document.getElementById("lCm").getElementsByClassName("scSB")[0];
     s.open(function(o){
       // console.log(o);
       var ul = o.panel.querySelector('ul');
@@ -56,15 +56,15 @@ new Promise(function(resolve, reject) {
       //   OpenCounter.innerHTML= parseInt(OpenCounter.innerHTML) + 1;
       // }
       if (o.overlay === true){
-        lmSB.style.opacity = 0.2;
+        scSB.style.opacity = 0.2;
       }
     });
     s.close(function(){
-      lmSB.style.opacity =1;
+      scSB.style.opacity =1;
     });
     s.drag(function(o){
       if (o.overlay === true){
-        lmSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
+        scSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
       }
     });
   });

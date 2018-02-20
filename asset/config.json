@@ -1,11 +1,11 @@
 {
-  "name": "lamal",
+  "name": "icon",
   "css_prefix_text": "icon-",
   "css_use_suffix": false,
   "hinting": true,
   "units_per_em": 1000,
   "ascent": 850,
-  "copyright": "Lamal",
+  "copyright": "Effortless bible analysis",
   "glyphs": [
     {
       "uid": "2cfb3f2b46b34a1790aec0aa846297b6",

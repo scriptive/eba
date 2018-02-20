@@ -1,4 +1,4 @@
-var container = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
 var ul = app.createElement('ul');
 $(container).removeChild().appendChild(ul).addClass('about').appendChild('li').addClass('description').appendChild('p').addClass('desc').setContent(configuration.description);
 $(local.name.book).each(function(i,v) {

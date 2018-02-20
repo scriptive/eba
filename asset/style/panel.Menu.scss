@@ -1,0 +1,10 @@
+&.lmList{
+  >li {
+    border-top: 1px solid lighten($ColorSecond,10%);
+    color: lighten(#FFA500,15%);
+    a{
+      color: lighten(#FFA500,15%);
+      text-shadow:1px 1px 1px darken(#000,15%);
+    }
+  }
+}

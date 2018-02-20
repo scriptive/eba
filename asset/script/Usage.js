@@ -1,11 +1,11 @@
 scriptive({}).ready(function(app,$){
-  var doc = document, lmSB = doc.getElementById("lCm").getElementsByClassName("lmSB")[0];
+  var doc = document, scSB = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
   $('#clickTest').click(function(e) {
     console.log('clickTest',e.target);
   });
   app.extend({
     close:function(e){
-      lmSB.style.opacity =1;
+      scSB.style.opacity =1;
     },
     open:function(o){
       var OpenCounter = o.panel.querySelector('.OpenCounter');
@@ -13,12 +13,12 @@ scriptive({}).ready(function(app,$){
         OpenCounter.innerHTML= parseInt(OpenCounter.innerHTML) + 1;
       }
       if (o.overlay === true){
-        lmSB.style.opacity = 0.2;
+        scSB.style.opacity = 0.2;
       }
     },
     move:function(o){
       if (o.overlay === true){
-        lmSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
+        scSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
       }
     },
     error:function(){
@@ -34,7 +34,7 @@ scriptive({}).ready(function(app,$){
 
 (function (app) {
   window.addEventListener('DOMContentLoaded', function() {
-    var lmSB = document.getElementById("lCm").getElementsByClassName("lmSB")[0];
+    var scSB = document.getElementById("lCm").getElementsByClassName("scSB")[0];
     app.panel();
     app.extend({
       ready:function(e){
@@ -44,7 +44,7 @@ scriptive({}).ready(function(app,$){
   });
 }(scriptive({
   main:'#lCm',
-  mainActive:'.lmSB',
+  mainActive:'.scSB',
   menu:'#lMn',
   open:'right'
 })));
@@ -52,13 +52,13 @@ scriptive({}).ready(function(app,$){
 
 
 window.addEventListener('DOMContentLoaded', function() {
-  var lmSB = document.getElementById("lCm").getElementsByClassName("lmSB")[0];
-  // var lmSB = document.getElementById("lCm").querySelector(".lmSB");
+  var scSB = document.getElementById("lCm").getElementsByClassName("scSB")[0];
+  // var scSB = document.getElementById("lCm").querySelector(".scSB");
   // scriptive('#clickTest').click();
 
   scriptive({
     main:'#lCm',
-    mainActive:'.lmSB',
+    mainActive:'.scSB',
     menu:'#lMn',
     open:'right'
   }).extend({
@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', function() {
       console.log('ready',e);
     },
     close:function(e){
-      lmSB.style.opacity =1;
+      scSB.style.opacity =1;
     },
     open:function(o){
       var OpenCounter = o.panel.querySelector('.OpenCounter');
@@ -74,12 +74,12 @@ window.addEventListener('DOMContentLoaded', function() {
         OpenCounter.innerHTML= parseInt(OpenCounter.innerHTML) + 1;
       }
       if (o.overlay === true){
-        lmSB.style.opacity = 0.2;
+        scSB.style.opacity = 0.2;
       }
     },
     move:function(o){
       if (o.overlay === true){
-        lmSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
+        scSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
       }
     },
     error:function(){

@@ -5,7 +5,7 @@
 */
 var configPanel={
   main:'#lCm',
-  mainActive:'.lmSB',
+  mainActive:'.scSB',
   menu:'#lMn',
   // open:'right'
 },

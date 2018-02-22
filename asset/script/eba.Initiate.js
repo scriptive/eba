@@ -15,7 +15,7 @@ var route = function() {
 // {"version":"1.0.0","build":"1.0.1","class":{"fontsize":"size-normal","background":"color-white"}}
 new Promise(function(resolve, reject) {
   process().then(function(){
-    doc.body.classList.add('config_Screen');
+    doc.body.classList.add('eba');
     if(local.name.setting.hasOwnProperty('class')){
       $(local.name.setting.class).each(function(i,v){
         doc.body.classList.add(v);
@@ -39,38 +39,9 @@ new Promise(function(resolve, reject) {
     }
   });
 }).then(function() {
-  $(configPanel).intPanel(function(s){
-    var scSB = document.getElementById("lCm").getElementsByClassName("scSB")[0];
-    s.open(function(o){
-      // console.log(o);
-      var ul = o.panel.querySelector('ul');
-
-      $(ul).removeChild();
-      $(configuration.page).each(function(i,v){
-        if (v.name) {
-          $(ul).appendChild('li').addClass(i).toggleClass('active',local.name.query.page==i).appendChild('a').attr('href','#'+i).setContent(v.name)
-        }
-      });
-      // var OpenCounter = o.panel.querySelector('.OpenCounter');
-      // if (OpenCounter) {
-      //   OpenCounter.innerHTML= parseInt(OpenCounter.innerHTML) + 1;
-      // }
-      if (o.overlay === true){
-        scSB.style.opacity = 0.2;
-      }
-    });
-    s.close(function(){
-      scSB.style.opacity =1;
-    });
-    s.drag(function(o){
-      if (o.overlay === true){
-        scSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
-      }
-    });
-  });
   app.resizeEvent(function(){
   });
-  app.hashChange(function(e) {
+  app.hashEvent(function(e) {
     if(e)configuration.hash=e;
     // configuration.hash=e;
     terminal().then(function(e) {
@@ -78,6 +49,41 @@ new Promise(function(resolve, reject) {
       if (e)console.log('page error',e);
     });
   });
+  // $(configPanel).panelEvent(function(s){
+  // app.panelEvent(function(s){
+  //   // console.log('intPanel');
+  //   // console.log($.methodName);
+  //   // console.log(app.scMain);
+  //   // console.log(app.scContent);
+  //   var scSB = document.getElementById("lCm").getElementsByClassName("scSB")[0];
+  //   s.open(function(o){
+  //     // console.log(o);
+  //     var ul = o.panel.querySelector('ul');
+  //
+  //     $(ul).removeChild();
+  //     $(configuration.page).each(function(i,v){
+  //       if (v.name) {
+  //         $(ul).appendChild('li').addClass(i).toggleClass('active',local.name.query.page==i).appendChild('a').attr('href','#'+i).setContent(v.name)
+  //       }
+  //     });
+  //     // var OpenCounter = o.panel.querySelector('.OpenCounter');
+  //     // if (OpenCounter) {
+  //     //   OpenCounter.innerHTML= parseInt(OpenCounter.innerHTML) + 1;
+  //     // }
+  //     if (o.overlay === true){
+  //       scSB.style.opacity = 0.2;
+  //     }
+  //   });
+  //   s.close(function(){
+  //     scSB.style.opacity =1;
+  //   });
+  //   s.drag(function(o){
+  //     if (o.overlay === true){
+  //       scSB.style.opacity = parseFloat(1.0 - o.percentage/170).toFixed(2);
+  //     }
+  //   });
+  // });
+
   var searchForm = document.querySelector('form.search');
 
   if (searchForm) {

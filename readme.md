@@ -9,6 +9,43 @@ Effortless bible analysis
   }
 }
 ```
+## Initiate
+
+```javascript
+// process().template().terminal().route();
+// terminal().route();
+var process();
+var template();
+var terminal();
+var route();
+
+new Promise(function(resolve, reject) {
+  process().then(function(){
+    return template();
+  },function(e){
+    return e;
+  }).then(function(e) {
+    if (e) {
+      reject(e);
+    } else {
+      resolve();
+    }
+  });
+}).then(function() {
+  app.resizeEvent(function(){
+  });
+  app.hashEvent(function(e) {
+    if(e)configuration.hash=e;
+    terminal().then(function(e) {
+    });
+  });
+  app.panelEvent(function(s){
+  });
+
+}, function(e) {
+  app.notification(e);
+});
+```
 
 ## Todo
 - Page
@@ -21,7 +58,7 @@ Effortless bible analysis
   - [x] Random Verse
   - [x] About
   - [x] Contact
-  
+
 ## Command lines
 
 - `npm run download -- --pro=eba`

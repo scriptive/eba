@@ -117,5 +117,5 @@ classname: {
   filter: 'filter',
   available: 'available'
 },
-version:'1.0.1',
+version:'0.0.4',
 build:'1.0.1'

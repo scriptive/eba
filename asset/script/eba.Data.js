@@ -64,22 +64,14 @@ new app.Data(bId).save({}).then(function(){
 this.save=function(e){
   return new Promise(function(resolve, reject) {
     file.save(e).then(function(s){
-      // console.log(dataSession[localId]);
-      // localSession[localId][bId]=dataSession[localId][bId];
       if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId))localSession[localId][bId]=dataSession[localId][bId];
-      // localSession[localId][bId]['info']={
-      //   version:'abc',
-      //   launched:'abc'
-      // };
       var size = s.total;
       new app.Content(bId).xml().then(function(e){
-
         e.information().then(function(e){
           // reader Done
           e.information.size=self.bytesToSize(size);
           if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)){
             localSession[localId][bId]['information']=e.information;
-
             // localSession[localId][bId]['information'].size=self.bytesToSize(size);
           } else {
             localSession[localId][bId]={

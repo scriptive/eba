@@ -4,6 +4,22 @@
     font-size: 120%;
     font-weight: lighter;
     color: $ColorDim;
+    >p {
+      &.update {
+        display:inline-block;
+        border-radius: 80px;
+        font-size:100%;
+        padding:7px 15px;
+        margin:10px 5px;
+        overflow: hidden;
+        background-color:lighten(#000,65%);
+        color:#fff;
+        text-shadow:1px 1px 1px lighten(#666,15%);
+        &:active{
+          color:$ColorGold;
+        }
+      }
+    }
   }
   &.error{
     display: table; height: 100%; margin: 0 auto;

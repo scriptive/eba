@@ -39,11 +39,11 @@ new Promise(function(resolve, reject) {
     }
   });
 }).then(function() {
-  app.resizeEvent(function(){
-  });
-  app.hashEvent(function(e) {
-    if(e)configuration.hash=e;
-    // configuration.hash=e;
+  // $(app.scContent).scrollEvent(function(e){});
+  app.onlineEvent(function(){});
+  app.offineEvent(function(){});
+  app.resizeEvent(function(){});
+  app.hashEvent(function() {
     terminal().then(function(e) {
       // NOTE: if page error
       if (e)console.log('page error',e);
@@ -112,9 +112,21 @@ new Promise(function(resolve, reject) {
   }
 
 }, function(e) {
-  if (typeof e === 'object' && e.hasOwnProperty('message')) {
-    app.notification(e.message);
-  } else if (typeof e === 'string') {
-    app.notification(e);
-  }
+  new Promise(function(resolve, reject) {
+    if (configuration.requireUpdate) {
+      local.deleteAll();
+      reject();
+      // if (app.hashObject.hasOwnProperty('reset')) local.deleteAll(), reject();
+    } else {
+      resolve();
+    }
+  }).then(function(){
+    if (typeof e === 'object' && e.hasOwnProperty('message')) {
+      app.notification(e.message);
+    } else if (typeof e === 'string') {
+      app.notification(e);
+    }
+  },function(){
+    location.reload(true);
+  });
 });

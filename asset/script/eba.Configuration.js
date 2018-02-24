@@ -77,7 +77,6 @@ page:{
     title:'Contact'
   }
 },
-hash:{},
 file: {
   template: 'z.html',
   book:'https://storage.googleapis.com/effortless/book.json',
@@ -105,11 +104,13 @@ lang: {
   noLanguage: '...',
   isNotFound: 'Not found: "{is}"',
   Loading: 'Loading',
-  isError: 'Error',
-  addLang:'Add',
-  addingLang:'Adding',
-  removeLang:'Remove',
-  removingLang:'Removing',
+  Error: 'Error',
+  Add:'Add',
+  Adding:'Adding',
+  Remove:'Remove',
+  Removing:'Removing',
+  Update:'Update',
+  Updating:'Updating',
 },
 classname: {
   active: 'active',
@@ -118,4 +119,4 @@ classname: {
   available: 'available'
 },
 version:'0.0.4',
-build:'1.0.1'
+build:'1.0.2'

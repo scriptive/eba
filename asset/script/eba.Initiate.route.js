@@ -32,12 +32,11 @@ var availableLanguage=Object.keys(local.name.setting.available),
 };
 return new Promise(function(resolve, reject) {
   try {
-    // console.log(configuration.hash);
     if ($(local.name.query).isEmpty()){
-      $(local.name.query).merge(fO,configuration.hash);
+      $(local.name.query).merge(fO,app.hashObject);
     } else {
       fO.pagePrevious = local.name.query.page;
-      $(local.name.query).merge(configuration.hash);
+      $(local.name.query).merge(app.hashObject);
     }
     $(local.name.query).each(function(i,v,o){
       if (fM[i] instanceof Function) fM[i](i,v,fO[i],o);

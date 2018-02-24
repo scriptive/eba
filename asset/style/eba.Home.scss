@@ -2,37 +2,104 @@
   padding:15px 0;
   font-size: 130%;
   >li {
-    margin-top: 1px;
-    padding:1px 40px;
-    // padding: 13px 7px;
-    border-top: 1px solid lighten($ColorSecond,40%);
-    // color: $ColorMain;
+    margin-top:10px;
+    padding:1px 20px;
     &:first-child{
       border-top: 0;
     }
     >div {
       display: table; width: 100%;border-spacing:0px;
+      border-radius: 4px;
+      overflow: hidden;
+      // @include box-shadow( 0px, 0px, 1px, 1px, lighten(#FFA500,7%));
+      // background-color:$ColorMain;
+      background-color:lighten(#000,45%);
+      color:#fff;
       >div{
-        // background-color: red;
         display: table-cell; padding: 18px;
         border-collapse:separate;
-        // color:lighten(#FFA500,15%);
         &:first-child{
-          // background-color: lighten(#000,20%);
-          border-radius: 7px 0 0 7px;
+          // background-color: lighten($ColorMain,20%);
+          // background-color:lighten(#ccc,20%);
           a {
-            color: $ColorMain;
+            display: block;
+            text-transform: uppercase;
+            color:darken(#ccc,10%);
+            // color:lighten(#FFA500,15%);
+            text-shadow:1px 0px 1px lighten(#000,7%);
+            &:active {
+              color:$ColorGold;
+            }
+
+            // color: lighten(#ccc,7%);
+            // text-shadow:1px 0px 1px lighten(#666,10%);
+            // text-decoration: line-through;
           }
         }
         &:last-child{
-          width: 80px;
-          font-size: 80%;
+          border-left: 6px solid #fff;
+          width: 70px;
+          font-size: 70%;
           text-align: center;
-
-          border-radius: 0 7px 7px 0;
-          // background-color: lighten(#000,30%);
+          touch-action: none;
+          i {
+            &::before{
+              color:$ColorGold;
+            }
+          }
+        }
+      }
+    }
+    &.active {
+      >div {
+        >div{
+          &:first-child{
+            a {
+              color:lighten(#ccc,7%);
+            }
+          }
+          &:last-child{
+          }
         }
       }
     }
   }
 }
+// &.home{
+//   padding:15px 0;
+//   font-size: 130%;
+//   >li {
+//     margin-top: 1px;
+//     padding:1px 30px;
+//     // padding: 13px 7px;
+//     border-top: 1px solid lighten($ColorSecond,40%);
+//     // color: $ColorMain;
+//     &:first-child{
+//       border-top: 0;
+//     }
+//     >div {
+//       display: table; width: 100%;border-spacing:0px;
+//       >div{
+//         // background-color: red;
+//         display: table-cell; padding: 18px;
+//         border-collapse:separate;
+//         // color:lighten(#FFA500,15%);
+//         &:first-child{
+//           // background-color: lighten(#000,20%);
+//           border-radius: 7px 0 0 7px;
+//           a {
+//             color: $ColorMain;
+//           }
+//         }
+//         &:last-child{
+//           width: 80px;
+//           font-size: 80%;
+//           text-align: center;
+//
+//           border-radius: 0 7px 7px 0;
+//           // background-color: lighten(#000,30%);
+//         }
+//       }
+//     }
+//   }
+// }

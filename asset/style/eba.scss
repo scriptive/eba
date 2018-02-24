@@ -25,6 +25,8 @@ body {
                   }
                   &[class]{
                     &::before{
+                      color: lighten(#000,30%);
+
                     }
                     &:active, &:focus, &:hover{
                       &::before{
@@ -32,7 +34,7 @@ body {
                     }
                     &.active {
                       &::before{
-                        color: lighten(#000,30%);
+                        color: $ColorGold;
                       }
                     }
                   }

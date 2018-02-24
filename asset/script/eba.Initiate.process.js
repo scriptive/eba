@@ -17,6 +17,7 @@ if (configuration.requireUpdate) {
   local.name.setting.build = configuration.build;
   local.update('setting');
 }
+
 return new Promise(function(resolve, reject) {
   file = fileStorage(configuration.fileStorage, {
     success: function() {

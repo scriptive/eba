@@ -8,6 +8,7 @@ return new Promise(function(resolve, reject) {
     app.book.all=$(local.name.book).merge(JSON.parse(e.data));
     local.update('book');
     resolve();
+
   },function(e){
     // TODO: show message that connect has down!
     reject(e);

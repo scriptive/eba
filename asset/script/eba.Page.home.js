@@ -2,48 +2,49 @@
 // console.log(app.scMenu);
 // console.log(app.scContent);
 // console.log(app.scPanelCurrent);
+var containerMessage;
 $(app.scContent).removeChild();
 
 var ul = doc.createElement('ul');
 ul.setAttribute('class','home');
-if(local.name.query.hasOwnProperty('pageBlock')) {
+if(local.name.query.hasOwnProperty('pageBlock')) {}
 
-  var ulNote = doc.createElement('ul');
-  ulNote.setAttribute('class','msg notify');
+var eNote = doc.createElement('ul');
+eNote.setAttribute('class','msg notify');
 
-  var ulNoteMessage = app.scContent.appendChild(ulNote);
-  // console.log(abc);
+var ulNoteMessage = app.scContent.appendChild(eNote);
 
-  $(ulNoteMessage).appendChild('li')
-    .appendChild('p')
-    .setContent(configuration.lang.noLanguage);
+var containerMessage = $(ulNoteMessage).appendChild('li')
+  .appendChild('p').attr('id','apple')
+  .setContent(configuration.lang.noLanguage);
 
-  $(ulNoteMessage).appendChild('li')
-    .appendChild('p')
-    .addClass('update')
-    .setContent(configuration.lang.Update).click(function(evt) {
-      doc.querySelector('.scriptive').classList.add(configuration.classname.inactive);
-      var icon = $('i').createElement().addClass('icon-loading animate-spin');
-      $(evt.target).appendChild(icon.element);
+$(ulNoteMessage).appendChild('li')
+  .appendChild('p')
+  .addClass('update')
+  .setContent(configuration.lang.Update).click(function(evt) {
+    doc.querySelector('.scriptive').classList.add(configuration.classname.inactive);
+    var icon = $('i').createElement().addClass('icon-loading animate-spin');
+    $(evt.target).appendChild(icon.element);
 
-      app.book.json().then(function(){
-        console.log('success');
-      },function(e){
-        console.log('fail',e);
-      }).then(function(){
-        location.reload();
-        // $(e).setContent(configuration.lang.Update);
-        // container.classList.remove(configuration.classname.inactive);
-      });
+    app.book.json().then(function(){
+      console.log('success');
+    },function(e){
+      console.log('fail',e);
+    }).then(function(){
+      location.reload();
+      // $(e).setContent(configuration.lang.Update);
+      // container.classList.remove(configuration.classname.inactive);
     });
+  });
 
 
-  // $(app.scContent).appendChild('ul')
-  //   .addClass('msg notify')
-  //   .appendChild('li')
-  //   .appendChild('p')
-  //   .setContent(configuration.lang.noLanguage);
-}
+// $(app.scContent).appendChild('ul')
+//   .addClass('msg notify')
+//   .appendChild('li')
+//   .appendChild('p')
+//   .setContent(configuration.lang.noLanguage);
+
+
 app.scContent.appendChild(ul);
 
 $(local.name.book).each(function(bId,v) {
@@ -77,12 +78,10 @@ $(local.name.book).each(function(bId,v) {
     } else {
       new app.Data(bId).download(function(){
         // TODO: loading
-        // action.emptyElement().appendChild(app.elementCreate('span').attr('class','icon-loading animate-spin'));
-        // action.innerHTML=configuration.lang.addingLang;
-        // var icon= doc.createElement('i')
-        // var icon = app.createElement('i');
         var icon = $('i').createElement().addClass('icon-loading animate-spin');
         $(e).removeChild().appendChild(icon.element);
+      },function(e){
+        // console.log(e);
       }).then(function(e){
         return new app.Data(bId).save(e).then(function(){
           // NOTE: save success
@@ -94,7 +93,12 @@ $(local.name.book).each(function(bId,v) {
         });
       },function(e){
         // NOTE: download error
-        action.innerHTML=configuration.lang.Error + ':02';
+
+        if (navigator.onLine == false) {
+          containerMessage.setContent('Please retry when internet connection is available!');
+        }
+        action.innerHTML=configuration.lang.Add;
+        // action.innerHTML=configuration.lang.Error + ':02';
       });
     }
   }).setContent(configuration.lang.Add);

@@ -44,7 +44,10 @@ isAvailable:function(i){
   //   return true;
   // }
   // return false;
-  if (!$(local.name.book).isEmpty() && local.name.book.hasOwnProperty(i) && local.name.book[i].hasOwnProperty('information')) {
+  // if (!$(local.name.book).isEmpty() && local.name.book.hasOwnProperty(i) && local.name.book[i].hasOwnProperty('information')) {
+  //   return true;
+  // }
+  if (!$(local.name.setting.available).isEmpty() && local.name.setting.available.hasOwnProperty(i)) {
     return true;
   }
 },

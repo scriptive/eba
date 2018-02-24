@@ -20,7 +20,7 @@ new app.Data(bId).download(function(){
   });
 });
 */
-this.download=function(progressCallback){
+this.download=function(beforeCallback,progressCallback){
   // https://scriptive.github.io/eba/xml/bId.xml
   var xmlRequest={
     dir:JSON.parse(JSON.stringify(configuration.file.urlAPI)),
@@ -29,6 +29,7 @@ this.download=function(progressCallback){
         url: url,
         urlLocal: configuration.file.urlLocal.replace(/bId/,bId),
         before:function(xhr){
+          beforeCallback();
           xhr.overrideMimeType('text/xml; charset=utf-8');
         },
         progress: progressCallback
@@ -70,28 +71,37 @@ this.save=function(e){
         e.information().then(function(e){
           // reader Done
           e.information.size=self.bytesToSize(size);
-          if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)){
-            localSession[localId][bId]['information']=e.information;
-            // localSession[localId][bId]['information'].size=self.bytesToSize(size);
-          } else {
-            localSession[localId][bId]={
-              name:e.information.name,
-              updated:'0',
-              information:e.information
-            };
-          }
-          local.name.setting.available[bId]=1;
+          // if (dataSession.hasOwnProperty(localId) && dataSession[localId].hasOwnProperty(bId)){
+          //   localSession[localId][bId]['information']=e.information;
+          //   // localSession[localId][bId]['information'].size=self.bytesToSize(size);
+          // } else {
+          //   localSession[localId][bId]={
+          //     name:e.information.name,
+          //     updated:'0',
+          //     information:e.information
+          //   };
+          // }
+          // local.name.setting.available[bId]=1;
+
+          local.name.setting.available[bId]=e.information;
+
+
+          // console.log(localSession[localId][bId],e.information);
         },function(e){
-          console.log(e);
+          // console.log('what happened????',e);
         });
       },function(e){
 
       }).then(function(){
-        local.update(localId).update('setting');
+        // local.update(localId).update('setting');
+        local.update('setting');
         resolve(s);
       });
 
     },function(e){
+      // containerMessage.setContent('??????');
+      // console.log(e);
+      // doc.querySelector('#apple').innerHTML=JSON.stringify(e);
       reject(e);
     });
   });

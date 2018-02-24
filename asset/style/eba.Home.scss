@@ -47,6 +47,9 @@
               color:$ColorGold;
             }
           }
+          &:active{
+            background-color:$ColorGold;
+          }
         }
       }
     }

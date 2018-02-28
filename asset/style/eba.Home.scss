@@ -27,13 +27,13 @@
             color:darken(#ccc,10%);
             // color:lighten(#FFA500,15%);
             text-shadow:1px 0px 1px lighten(#000,7%);
-            &:active {
-              color:$ColorGold;
-            }
-
             // color: lighten(#ccc,7%);
             // text-shadow:1px 0px 1px lighten(#666,10%);
             // text-decoration: line-through;
+          }
+          &:active {
+            // color: $ColorGold;
+            background-color:$ColorGold;
           }
         }
         &:last-child{

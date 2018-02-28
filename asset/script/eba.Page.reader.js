@@ -1,5 +1,4 @@
-var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
-var ulMain = $(container).removeChild().appendChild('ul').attr('class','reader');
+var ulMain = $(app.scContent).removeChild().appendChild('ul').attr('class','reader');
 var query=local.name.query, pID=query.page, lID = query.language;
 
 // configuration.page[pID].title=local.name.book[lID].name;
@@ -25,6 +24,26 @@ new app.Content(lID).xml().then(function(e){
   resolve();
 });
 
+
+var ulNotify = doc.createElement('ul');
+ulNotify.setAttribute('class','msg notify');
+app.scContent.insertBefore(ulNotify, app.scContent.firstChild);
+
+var containerMessage = $(ulNotify).appendChild('li').appendChild('p').attr('class','toggle').click(function(evt){
+  var e = evt.target;
+  var ulTestament = doc.querySelectorAll('ul.reader li ol li.1'.replace('1',e.dataset.id));
+  $(e).toggleClass('active');
+  $(ulTestament).each(function(i,v){
+    if (v.style.display === 'none') {
+      v.style.display='';
+    } else {
+      v.style.display='none';
+    }
+  });
+});
+
+$(containerMessage.element).appendChild('span').attr('data-id','OT').setContent('OT');
+$(containerMessage.element).appendChild('span').attr('data-id','NT').setContent('NT');
 
 // var footer = main.appendChild(app.elementCreate('ol').attr('class','main-footer')), footerContainer = footer.appendChild(app.elementCreate('li')).appendChild(app.elementCreate('ul'));
 // footerContainer.appendChild(app.elementCreate('li')).addClass(configuration.classname.active).eventClick(function(event){

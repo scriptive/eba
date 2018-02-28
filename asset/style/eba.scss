@@ -30,6 +30,7 @@ body {
                     }
                     &:active, &:focus, &:hover{
                       &::before{
+                        color: $ColorGold;
                       }
                     }
                     &.active {

@@ -1,20 +1,31 @@
-// resolve();
-var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
+// console.log(app.scMain);
+// console.log(app.scMenu);
+// console.log(app.scContent);
+// console.log(app.scPanelCurrent);
 
-$(container).removeChild();
-var ul=app.createElement('ul');
-container.appendChild(ul).setAttribute('class','about');
-
+var ul = $('ul').addClass('contact about');
+$(app.scContent).html(ul);
 var info = configuration.information;
-ul.appendChild(app.createElement('li')).innerHTML=info.email;
-ul.appendChild(app.createElement('li')).innerHTML=info.introduction;
+console.log(app,$);
 
-// var li = $(ul).appendChild('li');
-var li=app.createElement('li');
+for (var id in info) {
+  if (info.hasOwnProperty(id)) {
+    var name = info[id];
+    var li = $('li').addClass(id);
+    if (app.isString(name)){
+      li.appendChild(
+        $('p').html(name)
+      ).appendTo(ul);
+    } else {
+      for (var i in name) {
+        if (name.hasOwnProperty(i)) {
+          li.appendChild(
+            $('p').attr('data-title',name[i].name).html(name[i].desc)
+          ).appendTo(ul);
+        }
+      }
+    }
+  }
+}
 
-$(ul).appendChild(li);
-$(info.list).each(function(i,v) {
-  $(li).appendChild('p').attr('data-title',v.name).setContent(v.desc);
-});
-ul.appendChild(app.createElement('li')).innerHTML=info.conclusion;
-resolve();
+return resolve();

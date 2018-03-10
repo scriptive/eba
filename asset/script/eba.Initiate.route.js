@@ -38,7 +38,7 @@ return new Promise(function(resolve, reject) {
       fO.pagePrevious = local.name.query.page;
       $(local.name.query).merge(app.hashObject);
     }
-    $(local.name.query).each(function(i,v,o){
+    $(local.name.query).each(function(v,i,o){
       if (fM[i] instanceof Function) fM[i](i,v,fO[i],o);
       // if (fM.isFunction(i))fM[i](i,v,fO[i],o);
     });

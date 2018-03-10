@@ -35,7 +35,7 @@ $(container).removeChild().appendChild(ul).addClass('setting');
 
 if(!localSetting.hasOwnProperty('class')){localSetting.class={};}
 
-$(sizeNcolor).each(function(k, name) {
+$(sizeNcolor).each(function(name,k) {
   // var liParent = ol.appendChild(app.elementCreate('li'));
   // liParent.appendChild(app.elementCreate('h3')).innerHTML=name.title;
   // var container = liParent.appendChild(app.elementCreate('ol')).addClass(k);
@@ -43,12 +43,12 @@ $(sizeNcolor).each(function(k, name) {
 
   var li = app.createElement('li');
 
-  $(ul).appendChild(li).appendChild('h3').setContent(name.title);
+  $(ul).appendChild(li).appendChild('h3').html(name.title);
 
   var ol = $(ul).appendChild(li).appendChild('ol').addClass(k).element;
 
 
-  $(name.option).each(function(i,o){
+  $(name.option).each(function(o,i){
 
     var activeStatusClass = configuration.classname.inactive,
     li = $(ol).appendChild('li').addClass(o.class).addClass('icon-ok');
@@ -63,12 +63,12 @@ $(sizeNcolor).each(function(k, name) {
     } else if(o.hasOwnProperty('defaults')) {
       activeStatusClass = configuration.classname.active;
     }
-    // .setContent(o.title || o.class)
+    // .html(o.title || o.class)
     li.addClass(activeStatusClass).click(function(evt){
       // var style = name.style.replace(/(\$.*)(\;)/gi,i+'$2');console.log(style);
       var e = evt.target;
       if (!e.classList.contains(configuration.classname.active)){
-        $(e.parentNode.getElementsByClassName(configuration.classname.active)).each(function(i,eCurrent){
+        $(e.parentNode.getElementsByClassName(configuration.classname.active)).each(function(eCurrent,i){
           eCurrent.classList.remove(configuration.classname.active);
         });
         e.classList.add(configuration.classname.active);
@@ -80,7 +80,7 @@ $(sizeNcolor).each(function(k, name) {
     });
   });
 
-  // name.option.each(function(i,o){
+  // name.option.each(function(o,i){
   //   var li = container.appendChild(app.elementCreate('li')).addClass(o.class).addClass('icon-ok');
   //   if (o.hasOwnProperty('title')) li.addAttr('data-title',o.title);
   //   if(localSetting.class.hasOwnProperty(k)){
@@ -94,7 +94,7 @@ $(sizeNcolor).each(function(k, name) {
   //     // var style = name.style.replace(/(\$.*)(\;)/gi,i+'$2');console.log(style);
   //     var evt = event.target;
   //     if (!evt.hasClass(configuration.classname.active)){
-  //       evt.parentNode.getElementsByClassName(configuration.classname.active).each(function(i,eCurrent){
+  //       evt.parentNode.getElementsByClassName(configuration.classname.active).each(function(eCurrent,i){
   //         eCurrent.removeClass(configuration.classname.active);
   //       });
   //       evt.addClass(configuration.classname.active);

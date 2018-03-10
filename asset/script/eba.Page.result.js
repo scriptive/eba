@@ -1,25 +1,37 @@
-var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
-var ul=app.createElement('ul');
+var ul = $('ul').addClass('reader');
+$(app.scContent).html(ul);
+
 var query=local.name.query, pID=query.page, lID = query.language;
-$(container).removeChild().appendChild(ul).attr('class','reader');
 
 // configuration.page[pID].title=local.name.query.q;
 
 new app.Content(lID).xml().then(function(e){
   if (local.name.query.q){
     e.lookup(ul,local.name.query.q).then(function(e){
-      // reader Done
+      // NOTE: reader Done
     },function(e){
-      // reader Fail
-      $(ul).attr('class','msg error').appendChild('li').appendChild('div').setContent(e.replace('{for}',local.name.query.q));
+      // NOTE: reader Fail
+      ul.html(
+        $('li').appendChild(
+          $('div').html(local.name.query.q)
+        )
+      ).attr('class','msg error');
     });
   } else {
-    $(ul).attr('class','msg error').appendChild('li').appendChild('div').setContent(configuration.lang.tryAWord);
+    ul.html(
+      $('li').appendChild(
+        $('div').html(configuration.lang.tryAWord)
+      )
+    ).attr('class','msg error');
   }
 },function(e){
-  // XML fail
-  $(ul).attr('class','msg error').appendChild('li').appendChild('div').setContent(configuration.lang.isNotFound.replace('{is}',local.name.query.book));
+  // NOTE: XML fail
+  ul.appendChild(
+    $('li').appendChild(
+      $('div').html(configuration.lang.isNotFound.replace('{is}',local.name.query.book))
+    )
+  ).attr('class','msg error');
 }).then(function(){
-  // XML Done
+  // NOTE: XML Done
   resolve();
 });

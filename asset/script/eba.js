@@ -1,7 +1,5 @@
 /*!
-    EBA
-    Version {package.version}-{application.buildDate}
-    https://scriptive.github.io/eba
+    EBA: https://scriptive.github.io/eba
 */
 (function($) {
   'use strict';
@@ -24,26 +22,25 @@
   $(configMain).ready(function(app){
     // TODO: load user configuration, setup template, initiate UI
     var file, doc=document,local = app.storage;
-
-    // console.log(app);
-    // app.loveMe='hateMe';
-    // eMain = (typeof config.main == 'string')?doc.querySelector(config.main):config.main;
-    // var apple = doc.querySelector('#lCm');
-    // app.scMain = doc.querySelector('#lCm');
-    // app.scMenu = doc.querySelector('#lMn');
-    // app.scContent = app.scMain.querySelector('.scSB');
-    // app.querySelector('.scSB');
-    // var abc = $('.scSB');
-    // console.log(apple);
-
-    // console.log(app.scMain);
-    // console.log(app.scMenu);
-    // console.log(app.scContent);
-
     app.on('error',function(e) {
       console.log('error',e);
     });
-
+    // app.on('ready',function(e) {
+    //   console.log(e,'ready');
+    // });
+    // app.on('hash',function(e) {
+    //   console.log('hash',app.hashObject,e);
+    // });
+    // app.on('online',function(e) {
+    //   console.log('online',e);
+    // });
+    // app.on('offline',function(e) {
+    //   console.log('offline',e);
+    // });
+    // app.on('resize',function(e) {
+    //   console.log('resize',e);
+    // });
+    // console.log(app);
 
     app.extension({
       notification:function(e){
@@ -51,6 +48,7 @@
       },
       initiate:function(){
         // =require eba.Initiate.js
+        // require eba.Delete.js
       },
       Data:function(bId){
         // =require eba.Data.js

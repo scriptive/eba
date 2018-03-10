@@ -89,7 +89,7 @@ gulp.task('script',function(){
     .pipe(gulp.dest(path.join(rootPublic,'js')));
 });
 // NOTE: SCRIPTIVE
-gulp.task('scriptive:script',function(){
+gulp.task('sct:script',function(){
     return gulp.src(path.join(scriptiveScript,'*([^A-Z0-9-]).js'))
     .pipe(include().on('error', console.log))
     // .pipe(uglify(style.compressed.js).on('error', console.log))
@@ -99,7 +99,7 @@ gulp.task('scriptive:script',function(){
     .pipe(gulp.dest(path.join(rootPublic,'js')));
 });
 
-gulp.task('scriptive:style',function(){
+gulp.task('sct:style',function(){
     return gulp.src(path.join(scriptiveStyle,'*([^A-Z0-9-]).scss'))
     // .pipe(sass(style.compressed.sass).on('error', sass.logError))
     // .pipe(concat('scriptive.min.css'))
@@ -119,8 +119,8 @@ gulp.task('watch', function() {
     gulp.watch(path.join(rootAsset,'style','*.scss'), ['style']);
     gulp.watch(path.join(rootAsset,'script','*.js'), ['script']);
     // gulp.watch(path.join(rootAsset,'scriptive','*.js'), ['scriptive:tmp']);
-    gulp.watch(path.join(scriptiveScript,'*.js'), ['scriptive:script']);
-    gulp.watch(path.join(scriptiveStyle,'*.scss'), ['scriptive:style']);
+    gulp.watch(path.join(scriptiveScript,'*.js'), ['sct:script']);
+    gulp.watch(path.join(scriptiveStyle,'*.scss'), ['sct:style']);
 });
 
 // NOTE: TASK

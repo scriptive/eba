@@ -1,6 +1,6 @@
 {
   "name": "scriptive",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "UTF8",
   "config": {
     "common": {
@@ -41,8 +41,6 @@
     "xmldom": "^0.1.27"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "task": "node ./task.js task"
   },
   "author": "Khen Solomon Lethil",
   "license": "MIT"

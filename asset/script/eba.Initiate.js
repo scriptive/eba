@@ -17,7 +17,7 @@ new Promise(function(resolve, reject) {
   process().then(function(){
     doc.body.classList.add('eba');
     if(local.name.setting.hasOwnProperty('class')){
-      $(local.name.setting.class).each(function(i,v){
+      $(local.name.setting.class).each(function(v,i){
         doc.body.classList.add(v);
       });
     } else {
@@ -40,10 +40,25 @@ new Promise(function(resolve, reject) {
   });
 }).then(function() {
   // $(app.scContent).scrollEvent(function(e){});
-  app.onlineEvent(function(){});
-  app.offineEvent(function(){});
-  app.resizeEvent(function(){});
-  app.hashEvent(function() {
+  // app.onlineEvent(function(){});
+  // app.offineEvent(function(){});
+  // app.resizeEvent(function(){});
+  // app.hashEvent(function() {
+  //   terminal().then(function(e) {
+  //     // NOTE: if page error
+  //     if (e)console.log('page error',e);
+  //   });
+  // });
+  app.on('online',function(e) {
+    console.log('online',e);
+  });
+  app.on('offline',function(e) {
+    console.log('offline',e);
+  });
+  app.on('resize',function(e) {
+    console.log('offline',e);
+  });
+  app.on('hash',function(e) {
     terminal().then(function(e) {
       // NOTE: if page error
       if (e)console.log('page error',e);
@@ -61,9 +76,9 @@ new Promise(function(resolve, reject) {
   //     var ul = o.panel.querySelector('ul');
   //
   //     $(ul).removeChild();
-  //     $(configuration.page).each(function(i,v){
+  //     $(configuration.page).each(function(v,i){
   //       if (v.name) {
-  //         $(ul).appendChild('li').addClass(i).toggleClass('active',local.name.query.page==i).appendChild('a').attr('href','#'+i).setContent(v.name)
+  //         $(ul).appendChild('li').addClass(i).toggleClass('active',local.name.query.page==i).appendChild('a').attr('href','#'+i).html(v.name)
   //       }
   //     });
   //     // var OpenCounter = o.panel.querySelector('.OpenCounter');
@@ -84,7 +99,10 @@ new Promise(function(resolve, reject) {
   //   });
   // });
 
-  var searchForm = document.querySelector('form.search');
+  // var searchForm = document.querySelector('form.search');
+  // var searchForm = $(doc).selectElement('form.search');
+  var searchForm = $().selectElement('form.search');
+
 
   if (searchForm) {
     // var searchInput = searchForm.querySelector('input#sch');

@@ -16,9 +16,9 @@ var selectorCommon=function(container,callbackVerse,category){
     var xmlCategories = selectorCategory(category);
 
     if (!xmlCategories.length) return reject(configuration.lang.noCategoryData);
-    $(xmlCategories).each(function(i,xmlCategory){
+    $(xmlCategories).each(function(xmlCategory,i){
       var ol, categoryId = category?category:xmlCategory.getAttribute('id');
-      $(xmlCategory.querySelectorAll(selectorVerse())).each(function(i,v){
+      $(xmlCategory.querySelectorAll(selectorVerse())).each(function(v,i){
         var verseText = callbackVerse(v);
         if (verseText){
           if (!ol)ol = html.createOl(container,categoryId);
@@ -30,8 +30,10 @@ var selectorCommon=function(container,callbackVerse,category){
           // tagName = selectorTagname(tagId).innerHTML,
           bookmarkClass = app.book.hasBookmark(categoryId,bookId,chapterId,verseId)?configuration.classname.active:configuration.classname.inactive,
           // testamentClass = testament.getAttribute('shortname').replace(/\s+/g, '-').toLowerCase(),
-          testamentClass = (bookId<=39?'OT':'NT'),
-          bookClass = bookName.replace(/\s+/g, '-').toLowerCase();
+          testamentClass = (testamentId==1?'OT':'NT'),
+          // bookClass = bookName.replace(/\s+/g, '-').toLowerCase(),
+          bookClass = 'b'+bookId;
+          app.book.category.name='Effortless!';
 
           // app.book.category.name='abc';
           // tagClass = tagName.replace(/\s+/g, '-').toLowerCase();
@@ -44,23 +46,28 @@ var selectorCommon=function(container,callbackVerse,category){
           //
           // containerVerse.attr('data-title','123 234:345'.replace(123, bookName).replace(234, chapterId).replace(345, verseId));
           // containerVerse.innerHTML = html.replaceNumber(verseText);
-
+          /*
           var li = app.createElement('li');
-          // var li = $('li').createElement().addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass);
-
-          // var li = ol.appendChild('li').addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass);
           $(ol).appendChild(li).addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass);
 
           $(li).appendChild('div').addClass('icon-star').click(function(evt){
             app.book.addBookmark(evt.target.parentNode,categoryId,bookId,chapterId,verseId);
           });
-          $(li).appendChild('div').attr('data-title','123 234:345'.replace(123, bookName).replace(234, chapterId).replace(345, verseId)).setContent(html.replaceNumber(verseText));
-          /*
-          var containerTag = containerVerse.appendChild(app.createElement('p'));
-          containerTag.appendChild(app.createElement('span')).innerHTML=testamentName;
-          containerTag.appendChild(app.createElement('span')).innerHTML=bookName;
-          containerTag.appendChild(app.createElement('span')).innerHTML=tagName;
+          $(li).appendChild('div').attr('data-title','123 234:345'.replace(123, bookName).replace(234, chapterId).replace(345, verseId)).html(html.replaceNumber(verseText));
+          */
+          ol.appendChild(
+            $('li').appendChild(
+              $('div').click(function(evt){
+                app.book.addBookmark(evt.target.parentNode,categoryId,bookId,chapterId,verseId);
+              }).addClass('icon-star'),
+              $('div').html(
+                html.replaceNumber(verseText)
+              ).attr('data-title','123 234:345'.replace(123, app.book.digit(bookName)).replace(234, app.book.digit(chapterId)).replace(345, app.book.digit(verseId)))
+            ).addClass(bookmarkClass,testamentClass,bookClass)
+          );
 
+
+          /*
           if (!configuration.catalog.hasOwnProperty('tag'))configuration.catalog.tag={};
           if (configuration.catalog.tag.hasOwnProperty(tagId)){
             configuration.catalog.tag[tagId].total++;
@@ -175,32 +182,17 @@ var html={
   createOl:function(container,categoryId){
     result.category++;
     var xmlSection = selectorSection(categoryId);
-    // li = container.appendChild(app.createElement('li')),
-    // h2 = li.appendChild(app.createElement('h2')).attr('data-description',xmlSection.innerHTML).innerHTML = xmlSection.getAttribute('name');
-    // return li.appendChild(app.createElement('ol'));
-
-    // li = container.appendChild(app.createElement('li')),
-    // h2 = li.appendChild(app.createElement('h2')).setAttribute('data-description',xmlSection.innerHTML).innerHTML = xmlSection.getAttribute('name');
-    // console.log(xmlSection);
-    // return li.appendChild(app.createElement('ol'));
-    // var li = $(container).appendChild('li');
-    // var li = $(container).appendChild('li');
-    var li = app.createElement('li');
-    // $(container).appendChild(li);
-    // li.appendChild('h2').attr('data-description',xmlSection.innerHTML).setContent(xmlSection.getAttribute('name'));
-    // li.appendChild('ol').element;
-
-    $(li).appendChild('h2').attr('data-description',xmlSection.innerHTML).setContent(xmlSection.getAttribute('name'));
-    // console.log(xmlSection.getAttribute('name'));
-    app.book.category.name=xmlSection.getAttribute('name');
-
-    // return $(li).appendChild('ol').element;
-    return $(container).appendChild(li).appendChild('ol').element;
-    // return $(container).appendChild(li).appendChild('ol');
+    return $('ol').appendTo(
+      $('li').appendChild(
+        $('h2').html(
+          xmlSection.getAttribute('name')
+        ).attr('data-description',xmlSection.innerHTML)
+      ).appendTo(container)
+    ).addClass('section');
   }
 };
 /*
-olMain.querySelectorAll('li').each(function(i,v){
+olMain.querySelectorAll('li').each(function(v,i){
   var char = v.dataset.char, id = v.getAttribute('id');
   if (!alphabet.has(char)){
     alphabet.push(char);
@@ -213,71 +205,20 @@ var responseXML={
   section:function(container){
     return new Promise(function(resolve, reject) {
       var alphabet=[];
-      $(selectorSection()).each(function(i,v){
+      $(selectorSection()).each(function(v,i){
         result.section++;
         var id = v.getAttribute('id'), name = v.getAttribute('name'), sort = v.getAttribute('sort'), description = v.innerHTML, char = name.charAt(0);
-
         if (alphabet.indexOf(char) < 0) {
           alphabet.push(char);
-          $(container).appendChild('li').addClass('alpha').attr('id',char).setContent(char);
+          container.appendChild(
+            $('li').html(char).addClass('alpha').attr('id',char)
+          );
         }
-
-
-        // self.appendTo=function(e){
-        //   e.appendChild(self.element);
-        //   return self;
-        // };
-        // $('li').createElement().appendTo(container)
-        // .addClass('icon-arrow-right')
-        // // .attr('id',id)
-        // .attr('data-title',id)
-        // // .attr('data-char',name.charAt(0))
-        //   // .appendChild(app.createElement('a'))
-        //   element.appendChild(app.createElement('a'))
-        //   .attr('data-total',selectorCategoryVerse(id).length)
-        //   .attr('data-description',v.innerHTML)
-        //   .attr('href','#dddddd')
-        //   .innerHTML=name;
-
-
-      $(container).appendChild('li')
-        .addClass('icon-arrow-right')
-        .attr('data-title',id)
-          .appendChild('a')
-          .attr('data-total',selectorCategoryVerse(id).length)
-          .attr('data-description',v.innerHTML)
-          .attr('href','#reader?category='+id)
-          .setContent(name);
-
-        // container.appendChild(app.createElement('li'))
-        //   .addClass('icon-arrow-right')
-        //   // .attr('id',id)
-        //   .attr('data-title',id)
-        //   // .attr('data-char',name.charAt(0))
-        //     .appendChild(app.createElement('a'))
-        //     .attr('data-total',selectorCategoryVerse(id).length)
-        //     .attr('data-description',v.innerHTML)
-        //     .attr('href',{category:id}.paramater(['#reader']))
-        //     .innerHTML=name;
-        // console.log(container);
-        // container.appendChild(app.createElement('li'))
-        //   .addClass('icon-arrow-right')
-        //   // .attr('id',id)
-        //   .attr('data-title',id)
-        //   // .attr('data-char',name.charAt(0))
-        //     .appendChild(app.createElement('a'))
-        //     .attr('data-total',selectorCategoryVerse(id).length)
-        //     .attr('data-description',v.innerHTML)
-        //     .attr('href',{category:id}.paramater(['#reader']))
-        //     .innerHTML=name;
-        // container.appendChild(app.createElement('li'))
-        //   .addClass('icon-arrow-right')
-        //   .attr('data-title',id)
-        //     .appendChild(app.createElement('a'))
-        //     .attr('data-total',selectorCategoryVerse(id).length)
-        //     .attr('data-description',v.innerHTML)
-        //     .attr('href',{category:id}.paramater(['#reader']))
-        //     .innerHTML=name;
+        container.appendChild(
+          $('li').appendChild(
+            $('a').html(name).attr('data-total',selectorCategoryVerse(id).length).attr('data-description',v.innerHTML).attr('href','#reader?category='+id)
+          ).addClass('icon-arrow-right').attr('data-title',app.book.digit(id))
+        );
       });
       resolve(result);
     });
@@ -302,7 +243,7 @@ var responseXML={
   information:function(){
     return new Promise(function(resolve, reject) {
       result.information={};
-      $(selectorInformation()).each(function(i,v){
+      $(selectorInformation()).each(function(v,i){
         result.section++;
         var id = v.getAttribute('id');
         result.information[id]=v.innerHTML;
@@ -317,13 +258,13 @@ var responseXML={
     var logSorted = {};
     var logContent='id\tlanguage\tsort\tgroup\tname\tdesc';
     return new Promise(function(resolve, reject) {
-      selectorSection().each(function(i,v){
+      selectorSection().each(function(v,i){
         result.section++;
         var id = v.getAttribute('id'), name = v.getAttribute('name'), sort = v.getAttribute('sort'), description = v.innerHTML;
         // logContent = logContent+"\n"+id+"\t"+language+"\t"+sort+"\t"+1+"\t"+name+"\t"+description;
         logSorted[sort]={id:id,language:language,sort:sort,name:name,description:description};
       });
-      logSorted.each(function(i,v){
+      logSorted.each(function(v,i){
         logContent = logContent+"\n"+v.id+"\t"+v.language+"\t"+v.sort+"\t"+1+"\t"+v.name+"\t"+v.description;
       });
       console.log(logContent);
@@ -334,7 +275,7 @@ var responseXML={
     // timestamp	id	language	name	shortname
     var logContent='id\tlanguage\tname\tshortname';
     return new Promise(function(resolve, reject) {
-      selectorTestamentname().each(function(i,v){
+      selectorTestamentname().each(function(v,i){
         var id = v.getAttribute('id'), shortname=v.getAttribute('shortname'), name = v.innerHTML;
         logContent = logContent+"\n"+id+"\t"+language+"\t"+name+"\t"+shortname;
       });
@@ -346,7 +287,7 @@ var responseXML={
     // timestamp	id	language	name
     var logContent='id\tlanguage\tname';
     return new Promise(function(resolve, reject) {
-      selectorBookname().each(function(i,v){
+      selectorBookname().each(function(v,i){
         var id = v.getAttribute('id'), description = v.innerHTML;
         logContent = logContent+"\n"+id+"\t"+language+"\t"+description;
       });
@@ -360,9 +301,9 @@ var responseXML={
     return new Promise(function(resolve, reject) {
       var xmlCategories = selectorCategory(category);
       if (!xmlCategories.length) return reject(configuration.lang.noCategoryData);
-      xmlCategories.each(function(i,xmlCategory){
+      xmlCategories.each(function(xmlCategory,i){
         var categoryId = category?category:xmlCategory.getAttribute('id');
-        xmlCategory.querySelectorAll(selectorVerse()).each(function(i,v){
+        xmlCategory.querySelectorAll(selectorVerse()).each(function(v,i){
           var bookId = v.getAttribute('book'), testamentId = (bookId<=39?1:2), chapterId = v.getAttribute('chapter'), verseId = v.getAttribute('verse'),
           testamentName = selectorTestamentname(testamentId).innerHTML,
           bookName=selectorBookname(bookId).innerHTML;
@@ -396,6 +337,7 @@ var responseXML={
       // testamentId == local.name.testament &&
       if (new RegExp(paraSearch, "i").test(v.innerHTML)) {
         var testamentId = v.getAttribute('testament');
+        // TODO: to be able to search testament wise, the 'testament' attribute="1/2" is required
         if (testamentId) {
           if (testamentId == local.name.testament) {
             return html.replaceKeyword(v.innerHTML,paraSearch);
@@ -408,64 +350,49 @@ var responseXML={
   },
   bookmark:function(container,lst){
     return new Promise(function(resolve, reject) {
-      // local.name.bookmark.each(function(categoryId,c){
-      $(lst).each(function(categoryId,c){
+      // local.name.bookmark.each(function(c,categoryId){
+      $(lst).each(function(c,categoryId){
         var ol;
-        $(c).each(function(bookId,c){
-          $(c).each(function(chapterId,c){
-            $(c).each(function(i,verseId){
-              $(selectorCategory(categoryId)).each(function(i,xmlCategory){
-                $(xmlCategory.querySelectorAll(selectorVerse(bookId,chapterId,verseId))).each(function(i,v){
+        $(c).each(function(c,bookId){
+          $(c).each(function(c,chapterId){
+            $(c).each(function(verseId,i){
+              $(selectorCategory(categoryId)).each(function(xmlCategory,i){
+                $(xmlCategory.querySelectorAll(selectorVerse(bookId,chapterId,verseId))).each(function(v,i){
                   if (!ol) ol = html.createOl(container,categoryId);
                   result.verse ++;
 
                   var testamentId = (bookId<=39?1:2),
                   testamentName = selectorTestamentname(testamentId).innerHTML,
                   bookName=selectorBookname(bookId).innerHTML,
-                  testamentClass = testamentName.replace(' ', '-').toLowerCase(),
-                  bookClass = bookName.replace(' ', '-').toLowerCase(),
+                  // testamentClass = testamentName.replace(' ', '-').toLowerCase(),
+                  testamentClass = (testamentId==1?'OT':'NT'),
+                  // bookClass = bookName.replace(' ', '-').toLowerCase(),
+                  bookClass = 'b'+bookId,
                   bookmarkClass = app.book.hasBookmark(categoryId,bookId,chapterId,verseId)?configuration.classname.active:configuration.classname.inactive;
-                  // li = ol.appendChild(app.createElement('li')).addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass),
-                  // containerBookmark = li.appendChild(app.createElement('div')).addClass('icon-star').eventClick(function(event){
-                  //   var evt=event.target.parentNode;
-                  //   app.book.addBookmark(evt,categoryId,bookId,chapterId,verseId);
-                  //   if (local.name.query.page!='randomverse'){
-                  //     evt=evt.removeElement();
-                  //     if (evt.innerHTML === ""){
-                  //       evt=evt.parentNode.removeElement();
-                  //       // NOTE: ol is empty
-                  //       if (evt.innerHTML === ""){
-                  //         // NOTE: no bookmark
-                  //         evt.attr('class','msg').appendChild(app.createElement('li')).appendChild(app.createElement('div')).innerHTML=configuration.lang.noBookmark;
-                  //       }
-                  //     }
-                  //   }
-                  // }),
-                  // containerVerse = li.appendChild(app.createElement('div'));
-                  // containerVerse.attr('data-title','123 234:345'.replace(123, bookName).replace(234, chapterId).replace(345, verseId));
-                  // containerVerse.innerHTML = html.replaceNumber(v.innerHTML);
 
-                  var li = app.createElement('li');
-                  $(ol).appendChild(li).addClass(bookmarkClass).addClass(testamentClass).addClass(bookClass);
-                  $(li).appendChild('div').addClass('icon-star').click(function(evt){
-                    // app.book.addBookmark(evt.target.parentNode,categoryId,bookId,chapterId,verseId);
-                    var e=evt.target.parentNode;
-                    app.book.addBookmark(e,categoryId,bookId,chapterId,verseId);
-                    if (local.name.query.page!='randomverse'){
-                      // e=e.removeElement();
-                      e=e.remove();
-                      if (e && e.innerHTML === ""){
-                        // e=e.parentNode.removeElement();
-                        e=e.parentNode.remove();
-                        // NOTE: ol is empty
-                        if (e && e.innerHTML === ""){
-                          // NOTE: no bookmark
-                          $(e).addClass('msg').appendChild('li').appendChild('div').setContent(configuration.lang.noBookmark);
+                  ol.appendChild(
+                    $('li').appendChild(
+                      $('div').click(function(evt){
+                        // app.book.addBookmark(evt.target.parentNode,categoryId,bookId,chapterId,verseId);
+                        var e=evt.target.parentNode;
+                        app.book.addBookmark(e,categoryId,bookId,chapterId,verseId);
+                        if (local.name.query.page!='randomverse'){
+                          var verseContainer = e.parentElement;
+                          verseContainer.removeChild(e);
+                          if (verseContainer.innerHTML === ""){
+                            verseContainer.parentElement.remove();
+
+                            if (container.hasChild() === false){
+                              container.attr('class','msg error').appendChild('li').appendChild('div').html(configuration.lang.noBookmark);
+                            }
+                          }
                         }
-                      }
-                    }
-                  });
-                  $(li).appendChild('div').attr('data-title','123 234:345'.replace(123, bookName).replace(234, chapterId).replace(345, verseId)).setContent(html.replaceNumber(v.innerHTML));
+                      }).addClass('icon-star'),
+                      $('div').html(
+                        html.replaceNumber(v.innerHTML)
+                      ).attr('data-title','1s 2s:3s'.replace('1s', bookName).replace('2s', app.book.digit(chapterId)).replace('3s', app.book.digit(verseId)))
+                    ).addClass(bookmarkClass,testamentClass,bookClass)
+                  );
                 });
               });
             });

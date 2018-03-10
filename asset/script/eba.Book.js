@@ -3,6 +3,31 @@ file:{
 category:{
 
 },
+digit:function(n) {
+  // var digit = this.active(l).digit;
+  var num = {
+      3:{
+        0: "၀",
+        1: "၁",
+        2: "၂",
+        3: "၃",
+        4: "၄",
+        5: "၅",
+        6: "၆",
+        7: "၇",
+        8: "၈",
+        9: "၉"
+      }
+  };
+  // var digit = this.num(l).digit;
+  if (num.hasOwnProperty(local.name.query.language)){
+    var digit = num[local.name.query.language];
+    return n.toString().replace(/[0-9]/g, function(i) {
+      return digit[i];
+    });
+  }
+  return n;
+},
 addBookmark:function(container,category,book,chapter,verse){
   var bookmarks = local.name.bookmark;
   if (container.classList.contains(configuration.classname.active)){

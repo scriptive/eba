@@ -10,6 +10,15 @@ Effortless bible analysis
 }
 ```
 ## Initiate
+- [x] Home
+- [x] Category
+- [x] Reader
+- [x] Search
+- [x] Result
+- [x] Stars
+- [x] Random Verse
+- [x] About
+- [x] Contact
 
 ```javascript
 // process().template().terminal().route();

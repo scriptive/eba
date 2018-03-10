@@ -1,10 +1,5 @@
-// resolve();
-
-var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
-var ul=app.createElement('ul');
-$(container).removeChild().appendChild(ul).attr('class','reader');
-
-
+var ul = $('ul').addClass('reader');
+$(app.scContent).html(ul);
 
 
 var randomGet = false, randomDay = new Date().toLocaleDateString().toString().replace(/\//g,'');
@@ -33,18 +28,24 @@ new Promise(function(res, rej) {
 }).then(function(){
   new app.Content(local.name.query.language).xml().then(function(e){
     e.bookmark(ul,local.name.randomverse.verse).then(function(e){
-      // reader Done
+      // NOTE: reader Done
     },function(e){
-      // reader Fail
-      // $(ul).addClass('msg').appendChild('li').appendChild('div').setContent(e);
-      // console.log(e);
+      // NOTE: reader Fail
+      ul.html(
+        $('li').appendChild(
+          $('div').html(e)
+        )
+      ).attr('class','msg error');
     });
   },function(e){
-    // XML fail
-    // console.log(e);
-    // $(ul).addClass('msg').appendChild('li').appendChild('div').setContent(configuration.lang.isNotFound.replace('{is}',local.name.query.language))
+    // NOTE: XML fail
+    ul.html(
+      $('li').appendChild(
+        $('div').html(configuration.lang.Error)
+      )
+    ).attr('class','msg error');
   }).then(function(){
-    // XML Done
+    // NOTE: XML Done
     resolve();
   });
 });

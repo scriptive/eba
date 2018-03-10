@@ -1,23 +1,27 @@
-// resolve();
+var ul = $('ul').addClass('reader');
+$(app.scContent).html(ul);
 
-var container = doc.getElementById("lCm").getElementsByClassName("scSB")[0];
-var ul=app.createElement('ul');
-$(container).removeChild().appendChild(ul).attr('class','reader');
-
-// var configuration = app.config, local = app.localStorage, ol=app.elementCreate('ol');
-// app.Toggle.main(true).appendChild(ol).setAttribute('class','main-reader');
 new app.Content(local.name.query.language).xml().then(function(e){
   e.bookmark(ul,local.name.bookmark).then(function(e){
-    // reader Done
-    // console.log(e);
+    // NOTE: reader Done
   },function(e){
-    // reader Fail
-    $(ul).attr('class','msg error').appendChild('li').appendChild('div').setContent(e);
+    // NOTE: reader Fail
+    // ul.attr('class','msg error').appendChild('li').appendChild('div').html(e);
+    ul.html(
+      $('li').appendChild(
+        $('div').html(e)
+      )
+    ).attr('class','msg error');
   });
 },function(e){
-  // XML fail
-  $(ul).attr('class','msg error').appendChild('li').appendChild('div').setContent(configuration.lang.isNotFound.replace('{is}',local.name.query.language));
+  // NOTE: XML fail
+  // ul.attr('class','msg error').appendChild('li').appendChild('div').html(configuration.lang.isNotFound.replace('{is}',local.name.query.language));
+  ul.html(
+    $('li').appendChild(
+      $('div').html(configuration.lang.isNotFound.replace('{is}',local.name.query.language))
+    )
+  ).attr('class','msg error');
 }).then(function(){
-  // XML Done
+  // NOTE: XML Done
   resolve();
 });

@@ -10,6 +10,8 @@
     }
     h3{
       padding: 10px 1px;
+      color: lighten(#666,10%);
+      text-transform: uppercase;
     }
     p{
       &[data-title]:not(:empty){
@@ -17,7 +19,8 @@
           display: inline-block;
           margin-right: 7px;
           content: attr(data-title);
-          color: #666;
+          // font-size: 90%;
+          color: lighten(#666,20%);
           // font-style: italic;
           // text-decoration: underline;
         }

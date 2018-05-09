@@ -1,5 +1,5 @@
 return file.download({
-  url:configuration.file.template.replace(/z/, ["default","all"].join('.')),
+  url:configuration.file.template.replace(/z/, ["layout","default"].join('.')),
   // url:configuration.file.template.replace(/z/, configuration.DeviceTemplate.join('.')),
   before:function(e){
     e.overrideMimeType('text/html; charset=utf-8');

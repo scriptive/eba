@@ -88,6 +88,22 @@ gulp.task('script',function(){
     .pipe(uglify(codeStyle.js).on('error', console.log))
     .pipe(gulp.dest(path.join(rootPublic,'js')));
 });
+
+
+gulp.task('fbs:style', function () {
+  return gulp.src(path.join(rootAsset,'firebase.style','*([^A-Z0-9-]).scss'))//!([^A-Z0-9-])
+    .pipe(sass(codeStyle.sass).on('error', sass.logError))
+    .pipe(gulp.dest(path.join(rootPublic,'firebase','public')));
+});
+
+gulp.task('fbs:script',function(){
+    return gulp.src(path.join(rootAsset,'firebase.script','*([^A-Z0-9-]).js'))
+    //.pipe(concat('all.min.js'))
+    .pipe(include().on('error', console.log))
+    .pipe(uglify(codeStyle.js).on('error', console.log))
+    .pipe(gulp.dest(path.join(rootPublic,'firebase','public')));
+});
+
 // NOTE: SCRIPTIVE
 gulp.task('sct:script',function(){
     return gulp.src(path.join(scriptiveScript,'*([^A-Z0-9-]).js'))
@@ -118,6 +134,10 @@ gulp.task('watch', function() {
   // echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
     gulp.watch(path.join(rootAsset,'style','*.scss'), ['style']);
     gulp.watch(path.join(rootAsset,'script','*.js'), ['script']);
+
+    gulp.watch(path.join(rootAsset,'firebase.style','*.scss'), ['fbs:style']);
+    gulp.watch(path.join(rootAsset,'firebase.script','*.js'), ['fbs:script']);
+
     // gulp.watch(path.join(rootAsset,'scriptive','*.js'), ['scriptive:tmp']);
     gulp.watch(path.join(scriptiveScript,'*.js'), ['sct:script']);
     gulp.watch(path.join(scriptiveStyle,'*.scss'), ['sct:style']);

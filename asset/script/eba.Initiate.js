@@ -39,6 +39,7 @@ new Promise(function(resolve, reject) {
     }
   });
 }).then(function() {
+  console.log(app.hashObject);
   // $(app.scContent).scrollEvent(function(e){});
   // app.onlineEvent(function(){});
   // app.offineEvent(function(){});
@@ -49,21 +50,26 @@ new Promise(function(resolve, reject) {
   //     if (e)console.log('page error',e);
   //   });
   // });
-  app.on('online',function(e) {
-    console.log('online',e);
-  });
-  app.on('offline',function(e) {
-    console.log('offline',e);
-  });
-  app.on('resize',function(e) {
-    console.log('offline',e);
-  });
+
+  // app.on('online',function(e) {
+  //   console.log('online',e);
+  // });
+  // app.on('offline',function(e) {
+  //   console.log('offline',e);
+  // });
+  // app.on('resize',function(e) {
+  //   console.log('offline',e);
+  // });
   app.on('hash',function(e) {
     terminal().then(function(e) {
       // NOTE: if page error
       if (e)console.log('page error',e);
     });
   });
+  // $('hash').on(function(s){
+  //   console.log('hash');
+  // });
+
   // $(configPanel).panelEvent(function(s){
   // app.panelEvent(function(s){
   //   // console.log('intPanel');

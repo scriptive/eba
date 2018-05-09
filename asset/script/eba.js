@@ -19,12 +19,16 @@
   configuration={
     // =require eba.Configuration.js
   };
+  $('error').on(function(e){
+    console.log('error',e);
+  });
   $(configMain).ready(function(app){
     // TODO: load user configuration, setup template, initiate UI
     var file, doc=document,local = app.storage;
-    app.on('error',function(e) {
-      console.log('error',e);
-    });
+    console.log(app);
+    // app.on('error',function(e) {
+    //   console.log('error',e);
+    // });
     // app.on('ready',function(e) {
     //   console.log(e,'ready');
     // });

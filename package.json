@@ -4,7 +4,7 @@
   "description": "Effortless bible analysis",
   "scripts": {
     "preview": "tns preview --bundle",
-    "build-android:release": "tns build android --release --key-store-path C:/remove/android-key.jks --key-store-password search --key-store-alias key0 --key-store-alias-password search",
+    "build-android:release": "tns build android --release --key-store-path C:/remove/android-key.jks --key-store-password ourpwd --key-store-alias key0 --key-store-alias-password ourpwd",
     "build-android": "tns build android"
   },
   "repository": {

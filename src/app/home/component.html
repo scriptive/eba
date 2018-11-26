@@ -1,0 +1,18 @@
+<ActionBar [title]="activePageTitle" flat="true">
+	<NavigationButton visibility="collapsed"></NavigationButton>
+	<GridLayout columns="50,*,50" width="95%" rows="*">
+		<Label col="0" row="0" text="&#xf0c9;" class="fa" (tap)="nav.sideDrawerShow()" style="text-align:center; padding:7;"></Label>
+		<Label col="1" row="0" [text]="activePageTitle" class="action-bar-title" style="text-align:center;"></Label>
+		<Label col="2" row="0" text="&#xf013;" class="fa" (tap)="nav.to('setting')" style="text-align:center; padding:7;"></Label>
+	</GridLayout>
+</ActionBar>
+
+<StackLayout>
+	<GridLayout>
+		<StackLayout row="0" horizontalAlignment="center">
+			<Label text="Hello."></Label>
+			<Label text="....."></Label>
+			<Label text="............."></Label>
+		</StackLayout>
+	</GridLayout>
+</StackLayout>

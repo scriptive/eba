@@ -1,0 +1,35 @@
+<RadSideDrawer [drawerTransition]="sideDrawerTransition" gesturesEnabled="true">
+	<GridLayout tkDrawerContent rows="auto, *, 50" class="sidedrawer sidedrawer-left">
+		<StackLayout row="0" class="sidedrawer-header" style="text-align:center;">
+			<Label class="h1" text="EBA" style="color:#7C7A79; text-shadow: 2px 1px 0px #000;"></Label>
+			<Label class="p" text="Sawltak 17:11" style="color:#B5B0AF;"></Label>
+			<Label class="sidedrawer-header-brand" text="Effortless bible analysis"></Label>
+			<Label class="footnote" text="Lai Siangtho, A thu zui-in khenna" style="color:#966e0a"></Label>
+		</StackLayout>
+		<ScrollView row="1" class="sidedrawer-content">
+			<ListView [items]="sideDrawerMenu" separatorColor="transparent" style="padding: 10;">
+				<ng-template let-page="item.data" let-uri="item.path" let-i="index" let-odd="odd" let-even="even" >
+					<ListView.itemTemplate>
+						<GridLayout columns="60,auto"
+							[class.active]="nav.isPage(uri)"
+							(tap)="nav.to(uri)"
+							class="sidedrawer-list-item">
+							<Label col="0" [text]="page.icon" class="fa" horizontalAlignment="center"></Label>
+							<Label col="1" [text]="page.name" class="p-r-10"></Label>
+						</GridLayout>
+					</ListView.itemTemplate>
+				</ng-template>
+			</ListView>
+		</ScrollView>
+		<StackLayout row="2">
+			<!-- [nsRouterLink]="['/setting---']" -->
+			<GridLayout columns="60,*"
+				(tap)="nav.to('setting')"
+				[class.active]="nav.isPage('setting')">
+				<Label col="0" text="&#xf013;" style="color:#B5B0AF;" class="fa" fontSize="27" horizontalAlignment="center" fontWeight="900"></Label>
+				<Label col="1" text="Setting" style="color:#7C7A79;"></Label>
+			</GridLayout>
+		</StackLayout>
+	</GridLayout>
+	<page-router-outlet tkMainContent class="page page-content"></page-router-outlet>
+</RadSideDrawer>

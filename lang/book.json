@@ -1,18 +1,23 @@
 {
-  "1":{
-    "name":"Zomi",
-    "updated":"12355467"
+  "1": {
+    "name": "Zolai",
+    "desc": "Zolai Version",
+    "lang": "zo",
+    "version": "1",
+    "launched": "10/12/18"
   },
-  "2":{
-    "name":"English",
-    "updated":"12355467"
+  "2": {
+    "name": "English",
+    "desc": "King James",
+    "lang": "en",
+    "version": "1",
+    "launched": "10/12/18"
   },
-  "3":{
-    "name":"Myanmar",
-    "updated":"12355467"
-  },
-  "4":{
-    "name":"NoDaat",
-    "updated":"12355467"
+  "3": {
+    "name": "Burmese",
+    "desc": "Common Burmese Version",
+    "lang": "my",
+    "version": "1",
+    "launched": "10/12/18"
   }
 }

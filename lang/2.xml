@@ -2,10 +2,10 @@
 <eba>
 	<info>
 		<row id="name">English</row>
-		<row id="desc">English</row>
-		<row id="lang">??</row>
-		<row id="version">English Version</row>
-		<row id="launched">English Launched</row>
+		<row id="desc">King James</row>
+		<row id="lang">en</row>
+		<row id="version">1</row>
+		<row id="launched">10/12/18</row>
 	</info>
 	<author>
 		<row id="name">Team</row>

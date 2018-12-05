@@ -2,10 +2,10 @@
 <eba>
 	<info>
 		<row id="name">Zolai</row>
-		<row id="desc">Zolai</row>
-		<row id="lang">??</row>
-		<row id="version">Zolai Version</row>
-		<row id="launched">Zolai Launched</row>
+		<row id="desc">Zolai Version</row>
+		<row id="lang">zo</row>
+		<row id="version">1</row>
+		<row id="launched">10/12/18</row>
 	</info>
 	<author>
 		<row id="name">Team</row>

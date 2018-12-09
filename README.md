@@ -11,6 +11,7 @@ or [readme][EBA Home]!
 ![alt text][launch]
 
 ## Todo
+
 - [x] Home/Language/Book
 - [x] Section
 - [x] Category
@@ -21,7 +22,7 @@ or [readme][EBA Home]!
 - [ ] About
 - [ ] Contact
 
-
+## Note
 - Lai Siangtho
 - A thu zui-in khenna
 - Sawltak 17:11

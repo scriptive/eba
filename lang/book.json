@@ -19,5 +19,19 @@
     "lang": "my",
     "version": "1",
     "launched": "10/12/18"
+  },
+  "666": {
+    "name": "Tmp One",
+    "desc": "...Beta propose, data would not be found!",
+    "lang": "",
+    "version": "1",
+    "launched": "10/12/18"
+  },
+  "3567": {
+    "name": "Tmp Two",
+    "desc": "...Beta propose, data would not be found!",
+    "lang": "",
+    "version": "1",
+    "launched": "10/12/18"
   }
 }

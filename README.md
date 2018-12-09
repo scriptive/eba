@@ -1,24 +1,40 @@
 # EBA
-Effortless bible analysis
+## Effortless bible analysis
+
+![alt text][logo]
+
+This is not the entire bible. This is the bible analysis according to topics. Thus it helps to search, check and study the scriptures. Please be advised, read the bible book to meditate.
+
+...at [Google play][playStore],
+[Join][playStore Join],
+[Readme][EBA Home]!
+
+![alt text][launch]
+
+
 
 ```json
-// scriptive.json
-"project": {
-  "eba":{
-    "root":"../scriptive.eba"
-  }
-}
+// check package.json
 ```
-## Initiate
-- [x] Home
+
+## Todo
+- [x] Home/Language/Book
+- [x] Section
 - [x] Category
-- [x] Reader
-- [x] Search
-- [x] Result
-- [x] Stars
-- [x] Random Verse
-- [x] About
-- [x] Contact
+- [ ] Lookup/search
+  - [ ] Results
+- [ ] Bookmark/Star
+- [ ] Random verse
+- [ ] About
+- [ ] Contact
+
+
+- Lai Siangtho
+- A thu zui-in khenna
+- Sawltak 17:11
+- 12th April 2017
+- Effortless bible analysis
+- Tg. Lian Than Tuang
 
 ```javascript
 // process().template().terminal().route();
@@ -56,17 +72,6 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-## Todo
-- Page
-  - [x] Home/Language
-  - [x] -Category
-  - [x] -Reader
-  - [x] Lookup/search
-  - [x] Bookmark/Stars
-  - [x] Setting/Display
-  - [x] Random Verse
-  - [x] About
-  - [x] Contact
 
 ## Command lines
 
@@ -80,3 +85,11 @@ new Promise(function(resolve, reject) {
   - `npm run chrome -- --pro=eba`
 - `npm run docs -- --pro=eba`
 - `npm run developer -- --pro=eba`
+
+
+[playStore]: https://play.google.com/store/apps/details?id=io.scriptive.eba
+[playStore Join]: https://play.google.com/apps/testing/io.scriptive.eba/join
+[EBA Home]: https://scriptive.github.io/eba
+
+[logo]: https://raw.githubusercontent.com/scriptive/eba/master/assets/image/logo.png "EBA"
+[launch]: https://raw.githubusercontent.com/scriptive/eba/master/assets/image/launch.png "Effortless bible analysis"

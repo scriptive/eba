@@ -1,14 +1,17 @@
 <GridLayout class="page section" rows="45,1,*" tkExampleTitle tkToggleNavButton>
-	<GridLayout id="actionbar" row="0" columns="auto,auto" rows="*" (tap)="nav.toBack()">
-		<Label col="0" row="0" [visibility]="actionItemVisibility" text="&#xf053;" class="icon"></Label>
-		<Label col="1" row="0" [text]="actionTitle" class="name"></Label>
+	<GridLayout id="actionbar" row="0" columns="auto" rows="*">
+		<Label col="0" text="&#xf053; Back" class="icon back" (tap)="nav.toBack()"></Label>
 	</GridLayout>
 	<StackLayout row="1">
 		<Label text="..."></Label>
 	</StackLayout>
-	<GridLayout row="2" rows="*" orientation="vertical">
-		<!-- <ActivityIndicator row="0" busy="true"  horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator> -->
+	<GridLayout row="2" rows="*" orientation="vertical" [class.busy]="ActivityIndicatorMsg">
+		<StackLayout row="0" class="ActivityIndicator" [visibility]="ActivityIndicatorMsg? 'visible' : 'hidden'">
+			<ActivityIndicator row="0" [busy]="ActivityIndicatorBusy"></ActivityIndicator>
+			<Label [text]="ActivityIndicatorMsg"></Label>
+		</StackLayout>
 		<RadListView row="0" class="listView" orientation="vertical"
+			[visibility]="ActivityIndicatorMsg? 'hidden' : 'visible'"
 			[items]="dataItems"
 			(itemTap)="itemTap($event)"
 			loadOnDemandMode="Auto" (loadMoreDataRequested)="itemMoreDataRequested($event)">
@@ -17,19 +20,12 @@
 				let-i="index"
 				let-odd="odd"
 				let-even="even">
-				<StackLayout class="item" [class.odd]="odd" [class.even]="even" rows="auto,auto">
+				<StackLayout class="item" rows="auto,auto">
 					<Label row="0" [text]="item.name"></Label>
 					<Label row="1" [text]="item.desc"></Label>
 				</StackLayout>
 			</ng-template>
-			<ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120" backgroundColor="red"></ListViewLinearLayout>
-			<!-- <ng-template tkListLoadOnDemandTemplate >
-			   <GridLayout style="background-color: blue">
-			       <Label text="loading" horizontalAlignment="center" verticalAlignment="center"></Label>
-			   </GridLayout>
-			</ng-template> -->
+			<ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120"></ListViewLinearLayout>
 		</RadListView>
 	</GridLayout>
 </GridLayout>
-
-

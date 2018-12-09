@@ -15,14 +15,22 @@ or [readme][EBA Home]!
 - [x] Home/Language/Book
 - [x] Section
 - [x] Category
+  - [x] Header
+  - [ ] Filter
+  - [x] Format
 - [ ] Lookup/search
   - [ ] Results
 - [ ] Bookmark/Star
 - [ ] Random verse
 - [ ] About
 - [ ] Contact
+- ...Other
+  - [ ] Actionbar
+  - [ ] Icon Font
+  - [x] Indicator
 
 ## Note
+
 - Lai Siangtho
 - A thu zui-in khenna
 - Sawltak 17:11
@@ -83,7 +91,10 @@ new Promise(function(resolve, reject) {
 
 [playStore]: https://play.google.com/store/apps/details?id=io.scriptive.eba
 [playStore Join]: https://play.google.com/apps/testing/io.scriptive.eba/join
+[playStore Join]: https://play.google.com/apps/internaltest/4697931938836877324
 [EBA Home]: https://scriptive.github.io/eba
+
 
 [logo]: https://raw.githubusercontent.com/scriptive/eba/master/assets/image/logo.png "EBA"
 [launch]: https://raw.githubusercontent.com/scriptive/eba/master/assets/image/launch.png "Effortless bible analysis"
+[internal test]: https://play.google.com/apps/internaltest/4697931938836877324 "Internal test"

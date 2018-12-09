@@ -20,6 +20,7 @@ import { getString, setString } from "tns-core-modules/application-settings";
 })
 
 export class SettingComponent implements OnInit {
+  private actionTitle:string="Setting";
   constructor(
     private nav:AppNavigation,
     private utl:AppUtilization

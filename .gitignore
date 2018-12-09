@@ -6,7 +6,7 @@ src/**/*.js
 src/**/*.css
 #assets/
 hooks/
-disk/
+dist/
 platforms/
 package-lock.json
 

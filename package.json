@@ -4,7 +4,7 @@
   "description": "Effortless bible analysis",
   "scripts": {
     "preview": "tns preview --bundle",
-    "build-android:release": "tns build android --key-store-path assets/lethil.jks --key-store-password pwd --key-store-alias lethil --key-store-alias-password pwd --release --copy-to dist/playStore/eba-beta.0.0.3.apk",
+    "build-android:release": "tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.5.apk",
     "build-android": "tns build android",
     "build-ios": "tns build ios"
   },

@@ -4,14 +4,20 @@
   // background-color:darken(#fff,10%);
   // vertical-align:center;
   // horizontal-align:center;
-  // vertical-align: middle;
+  vertical-align: middle;
+  // height: 30;
+  // font-size: 10;
+  padding:9 0;
+  // vertical-align: bottom;
   &.icon {
     color:lighten($icon-default-color,10);
-    font-size: 20;
-    padding: 14;
+    // font-size: 19;
+    // padding:0 14;
     text-align:center;
+    // font-weight: 50;
     // text-shadow:1px 0px 2px 2px red;
     // -webkit-text-stroke:0px 1px 1px 1px red;
+    // background-color: red;
     &.active {
       color:lighten($icon-active-color,10%);
     }
@@ -21,15 +27,17 @@
   }
   &.title{
     font-weight: 400;
-    font-size: 18;
-    padding:11 0;
+
+    // padding:10 0;
     color: lighten($icon-default-color,0);
     text-align: center;
   }
-  &.name{
-    font-weight: 400;
-    font-size: 18;
-    padding:11 0;
-    text-align: left;
+  &.back{
+    // font-weight: 400;
+    // font-size: 18;
+    // padding:10 0;
+    // text-align: left;
+    padding-left: 7;
   }
+
 }

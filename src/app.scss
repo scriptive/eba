@@ -1,18 +1,16 @@
 @import 'app-common';
 
 .icon, .fa {
-    font-family: "FontAwesome";
-    font-size: 18;
+  font-family: "FontAwesome";
+  font-size: 18;
 }
 Page {
-  // background-color: red;
+  background-color: darken($body-bg-color,0%);
 }
 ActionBar {
-
 }
-
 Page, ActionBar, GridLayout.page {
-  background-color: darken($body-bg-color,0%);
+  // background-color: darken($body-bg-color,0%);
 }
 GridLayout {
   &#actionbar {
@@ -36,15 +34,28 @@ GridLayout {
       }
       &[row="2"] {
         // NOTE: RadListView
-        background-color: darken($container-bg-color,0%);
-        > ActivityIndicator {
+        // background-color: darken($container-bg-color,0%);
+        &.busy{
+          // background-color: $body-bg-color;
+        }
+        > StackLayout.ActivityIndicator {
+          // NOTE: ActivityIndicator
+          text-align: center;
+          vertical-align: middle;
+          >ActivityIndicator{
+            color: lighten($icon-default-color,20);
+          }
+          >Label{
+            font-size: 19;
+            color: lighten($icon-disable-color,30);
+          }
         }
       }
     }
     > StackLayout {
       // NOTE: ActionBar line or can be use as floating text
       &[row="1"] {
-        background-color: darken($container-bg-color,0%);
+        background-color: darken($container-bg-color,2%);
       }
     }
     &.home{

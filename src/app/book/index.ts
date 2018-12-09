@@ -45,12 +45,12 @@ const page: Routes = [
       name: "Welcome", icon: String.fromCharCode(0xf518)
     }
   },
-  {
-    path: "booktest", component: BookTestComponent,
-    data:{
-      name: "Book Test", icon: String.fromCharCode(0xf128)
-    }
-  },
+  // {
+  //   path: "booktest", component: BookTestComponent,
+  //   data:{
+  //     name: "Book Test", icon: String.fromCharCode(0xf128)
+  //   }
+  // }
 ];
 
 @NgModule({

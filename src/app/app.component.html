@@ -2,7 +2,7 @@
 	[drawerTransition]="sidedrawer.transition"
 	drawerLocation="currentLocation"
 	gesturesEnabled="true">
-	<GridLayout tkDrawerContent rows="45, *, 44" class="sidedrawer sidedrawer-left">
+	<GridLayout tkDrawerContent rows="45, *, auto" class="sidedrawer sidedrawer-left">
 		<StackLayout row="0" rows="auto,auto,*" class="sidedrawer-header">
 			<Label row="0" [text]="appQuotes"></Label>
 			<Label row="1" [text]="appName"></Label>
@@ -21,7 +21,7 @@
 				</ng-template>
 			</ListView>
 		</ScrollView>
-		<StackLayout row="2">
+		<StackLayout row="2" visibility="collapsed">
 			<GridLayout columns="60,*" (tap)="nav.to(['setting'])" [class.active]="nav.isPage('setting')">
 				<Label col="0" text="&#xf013;" class="icon"></Label>
 				<Label col="1" text="Setting"></Label>

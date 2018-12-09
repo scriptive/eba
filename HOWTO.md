@@ -1,9 +1,3 @@
-# EBA
-
-- https://play.google.com/apps/testing/io.scriptive.eba/join
-- https://scriptive.github.io/eba
-https://play.google.com/store/apps/details?id=io.scriptive.eba
-
 # Image `#efefef`
 - iOS
   - icon
@@ -18,16 +12,7 @@ https://play.google.com/store/apps/details?id=io.scriptive.eba
   - icon
   - icon
 
-
-# Lai Siangtho
-```js
-// A thu zui-in khenna
-// Sawltak 17:11
-// 12th April 2017
-// Effortless bible analysis
-// Tg. Lian Than Tuang
-```
-
+## Debug
 
 ```
 tns install
@@ -36,16 +21,11 @@ tns platform clean ios
 tns platform clean android
 ```
 
+## Build
+
 ```
 tns build android [--compileSdk <API Level>] [--key-store-path <File Path> --key-store-password <Password> --key-store-alias <Name> --key-store-alias-password <Password>] [--release] [--static-bindings] [--copy-to <File Path>] [--bundle [<value>] [--env.*]] [--aab]
 
-tns build android --key-store-path C:\test\keyStore.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --release --copy-to C:\serve\eba.release\eba-beta.0.0.3.apk
-
-tns build android --key-store-path assets\keyStore.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --release --copy-to dist\playStore\eba-beta.0.0.3.apk
-
-tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --release --copy-to dist/playStore/eba-beta.0.0.3.apk
-
-tns build android --key-store-path assets/lethil.jks --key-store-password pwd --key-store-alias lethil --key-store-alias-password pwd --release --copy-to dist/playStore/eba-beta.0.0.3.apk
-
-tns build android --release --key-store-path C:/remove/android-key.jks --key-store-password ourpwd --key-store-alias key0 --key-store-alias-password ourpwd
+tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --release --copy-to dist/playStore/eba-beta.0.0.4.apk
+tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.5.apk
 ```

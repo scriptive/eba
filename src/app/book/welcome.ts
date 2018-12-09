@@ -24,34 +24,27 @@ import { BookItem, BookService } from "./service";
 export class WelcomeComponent implements OnInit {
   private actionItemVisibility:string="collapsed";
   private actionTitle:string="Effortless bible analysis";
-  // private _items: ObservableArray<BookItem>;
-  private _items: any;
 
   constructor(
+    private page: Page,
     private actionBar: AppActionBar,
     private sideDrawer: AppSideDrawer,
-    private fs: AppFileSystem,
     private bookService: BookService,
-    private page: Page,
     private nav: AppNavigation
   ) {
     // NOTE: ?
     this.page.actionBarHidden = true;
   }
   ngOnInit() {
-    this._items = this.bookService.books;
 
   }
-
-  onTap(index:number,item:any){
-    // this._items{}
-    // var id = item.id;
-    item.available = !item.available;
-    this._items.setItem(index, item);
-      // console.log(index,item);
+  // NOTE: (tap)="itemButton($event)"
+  itemButton(bookId: number) {
+    this.bookService.Id('book',bookId);
+    this.nav.to(['section']);
   }
   get dataItems() {
-    return this._items;
+    return this.bookService.books;
   }
 }
 

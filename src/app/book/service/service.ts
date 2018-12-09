@@ -1,22 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-
-
 // import { fromObject, fromObjectRecursive, Observable, PropertyChangeData } from "tns-core-modules/data/observable";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
-// import { Observable } from 'rxjs/Observable';
-// import { Observable } from 'rxjs';
-// import { Observable, of} from 'rxjs';
-// import { of } from 'rxjs';
+
 import * as appSettings from "tns-core-modules/application-settings";
-// import { getString, setString, getNumber, setNumber } from "tns-core-modules/application-settings";
-// import {knownFolders} from "tns-core-modules/file-system";
 
 import { AppFileSystem } from "../../shared";
 import { BookItem, SectionItem, CategoryItem,DataItem } from "./model";
 import { dataBook } from "./data.book";
-// import { dataSection } from "./data.section-mock";
 
 const dataCollection:any={
   list:[],
@@ -26,12 +18,6 @@ const dataCollection:any={
   sectionId:1,
   categoryId:1
 };
-// const bookActive:any={
-//   language:1,
-//   book:1,
-//   section:1,
-//   category:1
-// };
 
 @Injectable()
 // NOTE: EventEmitter, BehaviorSubject
@@ -87,6 +73,7 @@ export class BookService {
     return this.section_list;
   }
   public sectionObserve(bookId?:number){
+    // this.section_list = new ObservableArray<SectionItem>(this.active(bookId).section);
     this.section_list = new ObservableArray<SectionItem>(<Array<SectionItem>>this.active(bookId).section);
     // this.section_list = new ObservableArray<SectionItem>(<Array<SectionItem>>dataCollection.data[bookId].section);
     // this.section_list = new ObservableArray<SectionItem>(dataCollection.data[bookId].section);
@@ -117,6 +104,9 @@ export class BookService {
   }
   testamentName(id:number,bookId?:number) {
     return this.active(bookId).testament[id].name;
+  }
+  sectionName(id:number,bookId?:number) {
+    return this.active(bookId).section[id].name;
   }
   active(bookId?:number) {
     if (bookId){

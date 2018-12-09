@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectorRef, ViewChild } from "@angular/core";
+import { Component, OnInit, AfterContentInit, OnDestroy, ChangeDetectorRef, ViewChild } from "@angular/core";
 // import { Router, Route } from "@angular/router";
 // import { RouterExtensions } from "nativescript-angular/router";
 
@@ -83,6 +83,10 @@ export class HomeComponent implements OnInit {
       return item.lang  ? item.lang.toUpperCase() : this.defaultCategoryName.toUpperCase();
     }
     this.listViewComponent.listView.groupingFunction = this.itemGroupFunction;
+  }
+  ngAfterContentInit() {
+  }
+  ngOnDestroy() {
   }
   get dataItems(): ObservableArray<BookItem> {
     return this.bookService.books;
@@ -176,6 +180,11 @@ export class HomeComponent implements OnInit {
   // NOTE: (itemTap)="itemTap($event)"
   itemTap(args: any) {
     var itemView = args.view, book = <BookItem>itemView.bindingContext;
+    itemView.opacity = 0.3;
+    itemView.animate({
+      opacity: 1,
+      duration: 100
+    });
     this.bookService.Id('book',Number(book.id));
     this.nav.to(['section']);
 

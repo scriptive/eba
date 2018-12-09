@@ -1,7 +1,8 @@
-# EBA
-## Effortless bible analysis
+# Effortless bible analysis
 
+<p align="center">
 ![alt text][logo]
+</p>
 
 This is not the entire bible. This is the bible analysis according to topics. Thus it helps to search, check and study the scriptures. Please be advised, read the bible book to meditate.
 
@@ -9,13 +10,9 @@ This is not the entire bible. This is the bible analysis according to topics. Th
 [Join][playStore Join],
 [Readme][EBA Home]!
 
+<p align="center">
 ![alt text][launch]
-
-
-
-```json
-// check package.json
-```
+</p>
 
 ## Todo
 - [x] Home/Language/Book

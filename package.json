@@ -1,11 +1,12 @@
 {
   "name": "EBA",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Effortless bible analysis",
   "scripts": {
     "preview": "tns preview --bundle",
-    "build-android:release": "tns build android --release --key-store-path C:/remove/android-key.jks --key-store-password ourpwd --key-store-alias key0 --key-store-alias-password ourpwd",
-    "build-android": "tns build android"
+    "build-android:release": "tns build android --key-store-path assets/lethil.jks --key-store-password pwd --key-store-alias lethil --key-store-alias-password pwd --release --copy-to dist/playStore/eba-beta.0.0.3.apk",
+    "build-android": "tns build android",
+    "build-ios": "tns build ios"
   },
   "repository": {
     "type": "git",
@@ -13,20 +14,18 @@
   },
   "keywords": [
     "Myanmar",
-    "Number",
-    "Notation",
-    "Convertor",
-    "Num2Word"
+    "EBA",
+    "Bible"
   ],
   "bugs": {
     "url": "https://github.com/scriptive/eba/issues"
   },
   "nativescript": {
     "id": "io.scriptive.eba",
-    "tns-android": {
+    "tns-ios": {
       "version": "5.0.0"
     },
-    "tns-ios": {
+    "tns-android": {
       "version": "5.0.0"
     }
   },
@@ -40,10 +39,10 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
-    "nativescript-angular": "~7.0.0",
+    "nativescript-angular": "^7.0.2",
     "nativescript-intl": "^3.0.0",
     "nativescript-theme-core": "^1.0.4",
-    "nativescript-ui-autocomplete": "^3.10.2",
+    "nativescript-ui-autocomplete": "^3.10.3",
     "nativescript-ui-calendar": "^3.9.1",
     "nativescript-ui-chart": "^3.10.0",
     "nativescript-ui-gauge": "^3.7.1",
@@ -51,16 +50,20 @@
     "nativescript-ui-sidedrawer": "^5.0.0",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~6.3.0",
-    "tns-core-modules": "~5.0.2",
+    "tns-core-modules": "^5.0.5",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@nativescript/schematics": "~0.4.0",
-    "nativescript-dev-typescript": "~0.7.0",
-    "nativescript-dev-webpack": "~0.18.0",
-    "typescript": "^3.1.6",
     "@angular/compiler-cli": "~7.0.0",
-    "@ngtools/webpack": "~7.0.0"
+    "@nativescript/schematics": "~0.4.0",
+    "@ngtools/webpack": "^7.1.0",
+    "fs-extra": "^7.0.1",
+    "nativescript-dev-sass": "^1.6.0",
+    "nativescript-dev-typescript": "^0.7.8",
+    "nativescript-dev-webpack": "~0.18.0",
+    "nativescript-xmlobjects": "^1.1.4",
+    "typescript": "^3.2.1",
+    "xml2js": "^0.4.19"
   },
   "readme": "NativeScript Application",
   "author": "Khen Solomon Lethil",

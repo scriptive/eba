@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-// NOTE: https://docs.nativescript.org/ns-framework-modules/application-settings
-// NOTE: import * as xmlModule from "tns-core-modules/xml";
+
 @Injectable()
 // @Injectable({
 //   providedIn: "root"
 // })
 
-export class CoreUtility {
+export class AppUtilization {
 }
+
 /*
 import * as Application from "tns-core-modules/application";
 import * as applicationModul from "tns-core-modules/application";
@@ -26,5 +26,16 @@ export class BackendService {
     static set token(theToken: string) {
         setString("token", theToken);
     }
+}
+*/
+/*
+import { Injectable } from "@angular/core";
+
+import * as Application from "tns-core-modules/application";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { RouterExtensions } from "nativescript-angular/router";
+
+export function AppSharedTesting() {
+  console.log('testingShared->ok');
 }
 */

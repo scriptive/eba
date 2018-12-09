@@ -1,0 +1,37 @@
+// Import the theme’s variables. If you’re using a color scheme
+// other than “light”, switch the path to the alternative scheme,
+// for example '~nativescript-theme-core/scss/dark'.
+@import '~nativescript-theme-core/scss/light';
+
+// Customize any of the theme’s variables here, for instance $btn-color: red;
+
+// Import the theme’s main ruleset.
+// @import '~nativescript-theme-core/scss/index';
+// https://docs.nativescript.org/ui/theme
+// Place any CSS rules you want to apply on both iOS and Android here.
+// This is where the vast majority of your CSS code goes.
+
+// $container-bg-color: #f4f5f7;
+$body-bg-color: #fff;
+// $container-bg-color: #f4f5f7;
+$container-bg-color: #efefef;
+
+$actionbar-bg-color: #fff;
+
+// $icon-default-color: #68707c;
+$icon-default-color: #564e44;
+$icon-active-color: #4c2406;
+$icon-disable-color: #7b7774;
+
+// ListView {
+//   opacity: 0;
+// }
+// .visible {
+//   animation-name: show;
+//   animation-duration: 1s;
+//   animation-fill-mode: forwards;
+// }
+// @keyframes show {
+//   from { opacity: 0; }
+//   to { opacity: 1; }
+// }

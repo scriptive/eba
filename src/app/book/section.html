@@ -1,0 +1,35 @@
+<GridLayout class="page section" rows="45,1,*" tkExampleTitle tkToggleNavButton>
+	<GridLayout id="actionbar" row="0" columns="auto,auto" rows="*" (tap)="nav.toBack()">
+		<Label col="0" row="0" [visibility]="actionItemVisibility" text="&#xf053;" class="icon"></Label>
+		<Label col="1" row="0" [text]="actionTitle" class="name"></Label>
+	</GridLayout>
+	<StackLayout row="1">
+		<Label text="..."></Label>
+	</StackLayout>
+	<GridLayout row="2" rows="*" orientation="vertical">
+		<!-- <ActivityIndicator row="0" busy="true"  horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator> -->
+		<RadListView row="0" class="listView" orientation="vertical"
+			[items]="dataItems"
+			(itemTap)="itemTap($event)"
+			loadOnDemandMode="Auto" (loadMoreDataRequested)="itemMoreDataRequested($event)">
+			<ng-template tkListItemTemplate
+				let-item="item"
+				let-i="index"
+				let-odd="odd"
+				let-even="even">
+				<StackLayout class="item" [class.odd]="odd" [class.even]="even" rows="auto,auto">
+					<Label row="0" [text]="item.name"></Label>
+					<Label row="1" [text]="item.desc"></Label>
+				</StackLayout>
+			</ng-template>
+			<ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120" backgroundColor="red"></ListViewLinearLayout>
+			<!-- <ng-template tkListLoadOnDemandTemplate >
+			   <GridLayout style="background-color: blue">
+			       <Label text="loading" horizontalAlignment="center" verticalAlignment="center"></Label>
+			   </GridLayout>
+			</ng-template> -->
+		</RadListView>
+	</GridLayout>
+</GridLayout>
+
+

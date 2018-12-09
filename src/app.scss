@@ -1,0 +1,63 @@
+@import 'app-common';
+
+.icon, .fa {
+    font-family: "FontAwesome";
+    font-size: 18;
+}
+Page {
+  // background-color: red;
+}
+ActionBar {
+
+}
+
+Page, ActionBar, GridLayout.page {
+  background-color: darken($body-bg-color,0%);
+}
+GridLayout {
+  &#actionbar {
+    vertical-align: middle;
+    // background-color:darken($actionbar-bg-color,0%);
+    @import 'app-actionbar';
+    // -webkit-box-shadow: 0px 20px 2px 0px rgba(0,0,0,0.75);
+    // -moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
+    // box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
+    // -webkit-box-shadow: inset 0px 23px 2px 0px rgba(0,0,0,0.75);
+  }
+  &.sidedrawer{
+    background-color: darken($container-bg-color,0%);
+    @import 'app-sidedrawer';
+  }
+  &.page{
+
+    > GridLayout {
+      &[row="0"] {
+        // NOTE: ActionBar
+      }
+      &[row="2"] {
+        // NOTE: RadListView
+        background-color: darken($container-bg-color,0%);
+        > ActivityIndicator {
+        }
+      }
+    }
+    > StackLayout {
+      // NOTE: ActionBar line or can be use as floating text
+      &[row="1"] {
+        background-color: darken($container-bg-color,0%);
+      }
+    }
+    &.home{
+      @import 'app-page-home';
+    }
+    &.welcome{
+      @import 'app-page-welcome';
+    }
+    &.section{
+      @import 'app-page-section';
+    }
+    &.category{
+      @import 'app-page-category';
+    }
+  }
+}

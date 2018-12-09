@@ -72,6 +72,7 @@ module.exports = env => {
                 appResourcesFullPath,
                 // Don't watch hidden files
                 "**/.*",
+                "**/*-v.*"
             ]
         },
         target: nativescriptTarget,
@@ -218,7 +219,7 @@ module.exports = env => {
                     from: `${appResourcesFullPath}/${appResourcesPlatformDir}`,
                     to: `${dist}/App_Resources/${appResourcesPlatformDir}`,
                     context: projectRoot
-                },
+                }
             ]),
             // Copy assets to out dir. Add your own globs as needed.
             new CopyWebpackPlugin([

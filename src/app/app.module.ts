@@ -2,60 +2,59 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 // import { RouterModule, Routes } from '@angular/router';
 
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
+import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+
+
+// import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+// import { NativeScriptRouterModule } from "nativescript-angular/router";
+// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+// import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from "@angular/core";
+
+
+// import { AppNavigation, AppSideDrawer, AppActionBar, AppUtilization } from "./shared";
+import { BookService } from "./book/service";
 
 import { authProviders, appRoutes } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { CoreNavigation, CoreUtility } from "./shared";
-
-import { HomeModule } from "./home/module";
-
-import { SettingModule } from "./setting/module";
-// import { AboutModule } from "./about/module";
-// import { BookmarkModule } from "./bookmark/module";
-// import { ContactModule } from "./contact/module";
-// import { RandomModule } from "./random/module";
-
-// import { CategoryModule } from "./book/category";
-// import { SectionModule } from "./book/section";
-// import { SearchModule } from "./book/search";
-// import { ReaderModule } from "./book/reader";
-
-// import { LanguageListModule } from "./book/language.list";
-// import { LanguageDetailModule } from "./book/language.detail";
+import { HomeModule } from "./home";
+import { BookModule } from "./book";
+import { SettingModule } from "./setting";
 
 @NgModule({
   bootstrap: [
     AppComponent
   ],
   imports: [
-    // AppRoutingModule,
+    NativeScriptCommonModule,
+    NativeScriptUISideDrawerModule,
+    NativeScriptUIListViewModule,
     NativeScriptModule,
     NativeScriptRouterModule,
     NativeScriptFormsModule,
-    NativeScriptModule,
-    NativeScriptUISideDrawerModule,
+    NativeScriptHttpClientModule,
     NativeScriptRouterModule.forRoot(appRoutes),
     HomeModule,
-    SettingModule
+    SettingModule,
+    BookModule
   ],
   exports: [
 
   ],
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   providers: [
-    CoreUtility,
-    CoreNavigation
+    BookService // AppNavigation, AppActionBar, AppUtilization
   ],
   schemas: [
     NO_ERRORS_SCHEMA

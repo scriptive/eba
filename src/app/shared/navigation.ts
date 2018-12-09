@@ -1,53 +1,73 @@
-import { Injectable } from "@angular/core";
+// import { Injectable,OnInit,AfterViewInit } from "@angular/core";
+import { Injectable } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router";
 
-import * as Application from "tns-core-modules/application";
+import * as NativeScriptApplication from "tns-core-modules/application";
 import { getString, setString, getNumber, setNumber } from "tns-core-modules/application-settings";
-import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+
 import { RouterExtensions } from "nativescript-angular/router";
+import { Page } from "tns-core-modules/ui/page";
+
+// import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular";
+// import { getRootView } from "tns-core-modules/application";
+// import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { AppSideDrawer } from "./sidedrawer";
 
 @Injectable()
 
-export class CoreNavigation {
-  activePageName: string;
-  activePageTitle: string;
-  title: string;
-
+export class AppNavigation {
+  public currentRouteName: string;
   constructor(
+    private sidedrawer: AppSideDrawer,
+    private page: Page,
     private router: Router,
     private activatedRoute : ActivatedRoute,
     private routerExtensions: RouterExtensions
+
   ) {
     this.hasPage();
+    // console.log(this.activatedRoute.snapshot.url);
+    // console.log(activatedRoute.snapshot.url[0].path);
+    // this.route.snapshot.pathFromRoot.map(o => o.url[0]).join('/')
   }
-  sideDrawerShow(): void {
-    if (this.sideDrawer()) this.sideDrawer().showDrawer();
+
+  actionBarToggle() {
+    this.page.actionBarHidden = !this.page.actionBarHidden;
   }
-  sideDrawerHide(): void {
-    if (this.sideDrawer()) this.sideDrawer().closeDrawer();
-  }
-  sideDrawer(){
-    return <RadSideDrawer>Application.getRootView();
-  }
-  to(currentRouteName: string,routeTransition:string='fade'): void {
+
+  to(currentRouteName:any[],routeTransition:string='fade'): void {
     // NOTE: flip,fade
-    this.routerExtensions.navigate([currentRouteName], {
+    // currentRouteName[0] = currentRouteName[0].replace(':Id',0);
+    this.routerExtensions.navigate(currentRouteName, {
         transition: {
             name: routeTransition
         }
     });
-    this.sideDrawerHide();
+    this.sidedrawer.close();
+  }
+  toBack(): void {
+    this.routerExtensions.back();
+    // this.routerExtensions.backToPreviousPage();
   }
   isPage(currentRouteName: string): boolean {
-    return currentRouteName === this.router.url.replace(/^\//, '');
+    // console.log(currentRouteName);
+    return this.pageName(currentRouteName) === this.currentRouteName;
+    // return currentRouteName === this.currentRouteName;
   }
   hasPage() {
     // this.activatedRoute.url.subscribe(url =>{ });
     this.router.events.subscribe(e => {
       // NavigationStart, NavigationEnd
       if(e.constructor.name === "NavigationEnd") {
-        setString('page',this.router.url);
+        this.currentRouteName = this.pageName();
+        setString('page',this.currentRouteName);
       }
     });
+  }
+  pageName(value?:string) {
+    if (value) {
+      return value.replace(/^\//, '').split('/')[0];
+    }
+    return this.router.url.replace(/^\//, '').split('/')[0];
   }
 }

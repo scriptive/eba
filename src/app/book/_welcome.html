@@ -1,0 +1,30 @@
+<!-- <ActionBar [title]="actionTitle" flat="true">
+	<NavigationButton visibility="collapsed"></NavigationButton>
+</ActionBar>
+<StackLayout class="welcome">
+	<GridLayout rows="auto,*,auto">
+		<StackLayout row="0">
+			<Label text="Effortless bible analysis" style="color:#A09250; font-size:18;" (tap)="sidedrawer.toggle()"></Label>
+			<Label text="Lai Siangtho" style="color:#D1CCB3; font-size:25;" (tap)="actionBar.toggle()"></Label>
+			<Label text="A thu zui-in khenna"></Label>
+		</StackLayout>
+		<RadListView row="1" [items]="dataItems">
+		    <ng-template tkListItemTemplate
+					let-item="item"
+					let-i="index"
+					let-odd="odd"
+					let-even="even">
+		        <StackLayout
+							orientation="vertical"
+							[class.active]="item.available" [class.odd]="odd" [class.even]="even">
+							<Button [text]="item.name" (tap)="onTap(i,item)"></Button>
+		        </StackLayout>
+		    </ng-template>
+		</RadListView>
+		<StackLayout row="2" rows="auto">
+			<Label row="0" text="Sawltak 17:11"></Label>
+			<Label row="1" text="Tg. Lian Than Tuang..ssss" style="color:#D1CCB3; font-size:12;"></Label>
+		</StackLayout>
+	</GridLayout>
+</StackLayout> -->
+<!-- <ActivityIndicator busy="true" visibility="visible" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator> -->

@@ -1,0 +1,89 @@
+@import 'app-common';
+
+RadListView{
+  background-color: darken($container-bg-color,0%);
+  StackLayout {
+    &.item{
+      // background-color: darken($body-bg-color,0%);
+      Label {
+        &[row="0"]{
+          color:darken(#666,10%);
+          font-size: 17;
+          text-transform: uppercase;
+        }
+        &[row="1"]{
+          color:lighten(#666,25%);
+          font-size: 13;
+        }
+      }
+      // opacity: 0;
+      // animation-name: show;
+      // animation-duration: 3s;
+      // animation-fill-mode: forwards;
+      // @keyframes show {
+      //   from { opacity: 0; }
+      //   to { opacity: 1; }
+      // }
+      &.en{}
+      &.my{}
+      &.zo{}
+      &.other{}
+    }
+  }
+  StackLayout.item, GridLayout.swipeViewOptions {
+    padding:15 20;
+    border-bottom-width: 2;
+    border-bottom-color: darken($container-bg-color,0%);
+    background-color: darken($body-bg-color,0%);
+  }
+  GridLayout{
+    &.language{
+      padding:5 22;
+      height:35;
+      background-color: darken($container-bg-color,0%);
+      // ios:height="40"
+      > Label{
+        font-size: 13;
+        color: darken(#fff,30%);
+        // text-transform: uppercase;
+      }
+    }
+    &.header{
+      background-color: darken($container-bg-color,0%);
+      > Label{
+        font-size: 10;
+        color: darken(#fff,30%);
+        text-align: center;
+      }
+    }
+    &.footer{
+      background-color: darken($container-bg-color,0%);
+      > Label{
+        font-size: 10;
+        color: darken(#fff,30%);
+        text-align: center;
+      }
+    }
+    &.swipeViewOptions{
+      border-bottom-color: red;
+      > GridLayout{
+        padding-right:20;
+        // margin-right:20;
+        // margin: 0;
+        // padding:0;
+        > Label{
+          padding:12 10;
+          text-align: center;
+          font-size: 12;
+          text-transform: uppercase;
+          vertical-align: middle;
+          background-color: lighten(#919299,2%);
+          color:#fff;
+          &.danger{
+            background-color: lighten(red,2%);
+          }
+        }
+      }
+    }
+  }
+}

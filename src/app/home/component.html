@@ -1,18 +1,74 @@
-<ActionBar [title]="activePageTitle" flat="true">
+<!-- <ActionBar [title]="actionTitle" flat="true" actionBarHidden="true">
 	<NavigationButton visibility="collapsed"></NavigationButton>
-	<GridLayout columns="50,*,50" width="95%" rows="*">
-		<Label col="0" row="0" text="&#xf0c9;" class="fa" (tap)="nav.sideDrawerShow()" style="text-align:center; padding:7;"></Label>
-		<Label col="1" row="0" [text]="activePageTitle" class="action-bar-title" style="text-align:center;"></Label>
-		<Label col="2" row="0" text="&#xf013;" class="fa" (tap)="nav.to('setting')" style="text-align:center; padding:7;"></Label>
+</ActionBar> -->
+<GridLayout class="page home" rows="45,1,*" tkExampleTitle tkToggleNavButton>
+	<GridLayout id="actionbar" row="0" columns="60,*,60" rows="*">
+		<Label col="0" row="0" [visibility]="actionItemVisibility" text="&#xf0c9;" class="icon" (tap)="sideDrawer.toggle()"></Label>
+		<Label col="1" row="0" [text]="actionTitle" class="title"></Label>
+		<Label col="2" row="0" [visibility]="actionItemVisibility" text="&#xf013;" class="icon" (tap)="nav.to(['setting'])"></Label>
 	</GridLayout>
-</ActionBar>
+	<StackLayout row="1">
+		<Label text="..."></Label>
+	</StackLayout>
+	<GridLayout row="2" rows="*" orientation="vertical">
+		<ActivityIndicator row="0" busy="false"  horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+		<RadListView #listView row="0"
+			[items]="dataItems"
+			swipeActions="true"
+			(groupingFunction)="itemGroupFunction($event)"
+			(itemSwipeProgressStarted)="itemSwipeProgressStarted($event)"
+			(itemSwipeProgressEnded)="itemSwipeProgressEnded($event)"
+			(itemTap)="itemTap($event)"
+			pullToRefresh="true" (loaded)="listViewLoaded($event)" (pullToRefreshInitiated)="listViewPullToRefreshInitiated($event)">
+			<ng-template tkListItemTemplate let-book="item" let-it="index" let-odd="odd" let-even="even">
+				<StackLayout rows="*,auto" class="item other" [class.active]="book.available">
+					<Label row="0" [text]="book.name"></Label>
+					<Label row="1" [text]="book.desc"></Label>
+				</StackLayout>
+			</ng-template>
+			<ng-template tkGroupTemplate let-lang="category">
+				<GridLayout columns="*" class="language">
+					<Label col="0" [text]="lang"></Label>
+				</GridLayout>
+			</ng-template>
 
-<StackLayout>
-	<GridLayout>
-		<StackLayout row="0" horizontalAlignment="center">
-			<Label text="Hello."></Label>
-			<Label text="....."></Label>
-			<Label text="............."></Label>
-		</StackLayout>
+			 <!-- <ng-template tkTemplateKey="my" let-book="item">
+				<StackLayout rows="*,auto" class="item my">
+					<Label row="0" [text]="book.name"></Label>
+					<Label row="1" [text]="book.description"></Label>
+				</StackLayout>
+			</ng-template>
+			<ng-template tkTemplateKey="zo" let-book="item">
+				<StackLayout rows="*,auto" class="item zo">
+					<Label row="0" [text]="book.name"></Label>
+					<Label row="1" [text]="book.description"></Label>
+				</StackLayout>
+			</ng-template>
+			<ng-template tkTemplateKey="en" let-book="item">
+				<StackLayout rows="*,auto" class="item en">
+					<Label row="0" [text]="book.name"></Label>
+					<Label row="1" [text]="book.description"></Label>
+				</StackLayout>
+			</ng-template> -->
+
+			<ng-template tkListViewHeader>
+				<GridLayout class="header" columns="auto">
+					<Label col="0" text=""></Label>
+				</GridLayout>
+			</ng-template>
+			<ng-template tkListViewFooter>
+				<GridLayout class="footer" columns="auto">
+					<Label col="0" text=""></Label>
+				</GridLayout>
+			</ng-template>
+			<GridLayout *tkListItemSwipeTemplate columns="auto" rows="*" class="swipeViewOptions">
+				<GridLayout id="swipeViewLeft" row="0" columns="auto,auto,*" rows="*">
+					<Label row="0" col="0" text="Clear" (tap)="itemClear($event)"></Label>
+					<Label row="0" col="1" text="Delete" class="danger" (tap)="itemDelete($event)"></Label>
+				</GridLayout>
+			</GridLayout>
+			<ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120"></ListViewLinearLayout>
+			<!-- loadOnDemandMode="Auto" (loadMoreDataRequested)="onLoadMoreItemsRequested($event)" -->
+		</RadListView>
 	</GridLayout>
-</StackLayout>
+</GridLayout>

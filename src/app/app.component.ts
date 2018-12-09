@@ -1,73 +1,123 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { Router, Route } from "@angular/router";
+import { Component, ViewChild, OnInit, AfterViewInit, ChangeDetectorRef } from "@angular/core";
+import { Router, Route, ActivatedRoute } from "@angular/router";
 
-import * as applicationModul from "tns-core-modules/application";
 import { RouterExtensions } from "nativescript-angular/router";
-import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 
-import { getString, setString, getNumber, setNumber } from "tns-core-modules/application-settings";
+// import * as NativeScriptApplicationModule from "tns-core-modules/application";
+// import { getString, setString, getNumber, setNumber } from "tns-core-modules/application-settings";
+// import { RadSideDrawer, DrawerTransitionBase, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
+// import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular";
 
-import { Config,CoreNavigation, CoreUtility } from "./shared";
+import {
+  AppConfiguration,
+  AppSideDrawer,
+  AppActionBar,
+  AppNavigation,
+  AppUtilization,
+  AppFileSystem,
+  AppHttp
+} from "./shared";
+
+import { BookService } from "./book/service";
 
 @Component({
-  selector: "ns-app",
+  selector:'eba',
   moduleId: module.id,
   templateUrl: "./app.component.html",
+  styleUrls:['./app.scss'],
+  providers:[
+    AppConfiguration,
+    AppSideDrawer,
+    AppActionBar,
+    AppNavigation,
+    AppUtilization,
+    AppFileSystem,
+    AppHttp
+  ]
 })
 
-export class AppComponent implements OnInit {
-  private sideDrawerTransitionBase: DrawerTransitionBase;
-  private sideDrawerMenu:any;
-  // private pages = new Array(
-  //   { name: "Home", icon: String.fromCharCode(0xf2bd), url: "/home" },
-  //   { name: "Language", icon: String.fromCharCode(0xf015), url: "/language" },
-  //   { name: "Search", icon: String.fromCharCode(0xf002), url: "/search" },
-  // );
+export class AppComponent implements AfterViewInit, OnInit {
+  message:string;
   constructor(
+    private changeDetectionRef: ChangeDetectorRef,
     private router: Router,
     private routerExtensions: RouterExtensions,
-    private nav:CoreNavigation,
-    private util:CoreUtility)
+    private sidedrawer: AppSideDrawer,
+    private actionBar: AppActionBar,
+    private nav:AppNavigation,
+    private utl:AppUtilization,
+    private bookService: BookService
+  )
   {
   }
-
   ngOnInit(): void {
-    this.sideDrawerTransitionBase = new SlideInOnTopTransition();
-    this.sideDrawerMenuFilter();
-    // this.check_setting();
+    // this.bookService.bookRequest();
+    this.bookService.initiate();
+    // this.bookService.message.subscribe(data => console.log(data));
+    // this.bookService.request().subscribe(res => {
+    //   // this.message = (<any>res).json.data.username;
+    //   console.log(res);
+    // });
 
+    // this.activatedRoute.snapshot.paramMap.get(name);
+    // this.routerExtensions.subscribe(params =>{
+    //   console.log(params );
+    // });
   }
-
-  check_setting(): void {
-    Config.language = getNumber('language',Config.language);
-    Config.category = getNumber('category',Config.category);
-    Config.section = getNumber('section',Config.section);
-    // setString('page','home');
-    Config.page = getString('page',Config.page);
-    Config.books = JSON.parse(getString('books',JSON.stringify(Config.books)));
-
-    // this.router.navigate(Config.page);
-    // console.log(Config.page);
-
-    // setString('language','3');
-    // let test = getString('language');
-    // console.log('configured routes: ', JSON.stringify(Config.books));
-    // setNumber('language',Config.language);
-    // console.log(Config.language);
-
-    // console.log(JSON.stringify(Config.books));
-    // getString('language');
-    // static language = 1;
-    // static category = 1;
-    // static section = 1;
-    // static page = "home";
-
+  ngAfterViewInit() {
+    // this.changeDetectionRef.detectChanges();
+    // this.router.navigate(['welcome'])
+    // this.nav.actionBarToggle();
   }
-  sideDrawerMenuFilter(): void {
-    // console.log('configured routes: ', JSON.stringify(this.router.config));
-    this.sideDrawerMenu = this.router.config.filter(page => page.data && page.data.hasOwnProperty('name') && !page.data.hasOwnProperty('skip') );
+  get appShortName() {
+    return 'EBA'
   }
-  get sideDrawerTransition(): DrawerTransitionBase {
-    return this.sideDrawerTransitionBase;
+  get appQuotes() {
+    return 'Sawltak 17:11'
+  }
+  get appName() {
+    return 'Effortless bible analysis'
+  }
+  get appDescription() {
+    return 'Lai Siangtho, A thu zui-in khenna'
+  }
+  get appMenu() {
+    return this.router.config.filter(
+      i => i.data && i.data.hasOwnProperty('name') && (!i.data.hasOwnProperty('type') || !i.data.type)
+    );
   }
 }
+/*
+initConfiguration(): void {
+  // AppConfiguration.language = getNumber('language',AppConfiguration.language);
+  // AppConfiguration.category = getNumber('category',AppConfiguration.category);
+  // AppConfiguration.section = getNumber('section',AppConfiguration.section);
+  // AppConfiguration.books = JSON.parse(getString('books',JSON.stringify(AppConfiguration.books)));
+  // AppConfiguration.page = getString('page',AppConfiguration.page);
+  // setString('page','home');
+
+  // this.router.navigate(AppConfiguration.page);
+  // console.log(AppConfiguration.page);
+
+  // setString('language','3');
+  // let test = getString('language');
+  // console.log('configured routes: ', JSON.stringify(AppConfiguration.books));
+  // setNumber('language',AppConfiguration.language);
+  // console.log(AppConfiguration.language);
+
+  // console.log(JSON.stringify(AppConfiguration.books));
+  // getString('language');
+  // static language = 1;
+  // static category = 1;
+  // static section = 1;
+  // static page = "home";
+
+}
+*/
+/*
+new Array(
+  { name: "Home", icon: String.fromCharCode(0xf2bd), url: "/home" },
+  { name: "Language", icon: String.fromCharCode(0xf015), url: "/language" },
+  { name: "Search", icon: String.fromCharCode(0xf002), url: "/search" },
+);
+*/

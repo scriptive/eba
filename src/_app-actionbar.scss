@@ -1,0 +1,35 @@
+@import 'app-common';
+
+> Label {
+  // background-color:darken(#fff,10%);
+  // vertical-align:center;
+  // horizontal-align:center;
+  // vertical-align: middle;
+  &.icon {
+    color:lighten($icon-default-color,10);
+    font-size: 20;
+    padding: 14;
+    text-align:center;
+    // text-shadow:1px 0px 2px 2px red;
+    // -webkit-text-stroke:0px 1px 1px 1px red;
+    &.active {
+      color:lighten($icon-active-color,10%);
+    }
+    &.disable {
+      color:lighten($icon-active-color,40%);
+    }
+  }
+  &.title{
+    font-weight: 400;
+    font-size: 18;
+    padding:11 0;
+    color: lighten($icon-default-color,0);
+    text-align: center;
+  }
+  &.name{
+    font-weight: 400;
+    font-size: 18;
+    padding:11 0;
+    text-align: left;
+  }
+}

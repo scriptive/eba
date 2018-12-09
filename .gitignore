@@ -1,16 +1,17 @@
 *.v[0-9].*
+#*-v.*.*
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 src/**/*.js
-assets/
+src/**/*.css
+#assets/
 hooks/
 disk/
 platforms/
+package-lock.json
 
 # Dependency directories
 node_modules/
-package-lock.json
-
 
 #delete
 #output
@@ -20,7 +21,7 @@ package-lock.json
 #*tmp*
 #*copy*
 #*job*
-
+#test
 # Public
 #public/*
 #!public/*.md

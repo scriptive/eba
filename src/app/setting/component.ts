@@ -1,26 +1,28 @@
 import { Component, OnInit } from "@angular/core";
 
-import {Config, CoreNavigation, CoreUtility } from "../shared";
-import { Book, BookService } from "../shared/book";
+import {
+  AppConfiguration,
+  AppNavigation,
+  AppSideDrawer,
+  AppUtilization,
+  AppFileSystem,
+  AppHttp
+} from "../shared";
 
 import { getString, setString } from "tns-core-modules/application-settings";
 
-
 @Component({
-  selector: "home",
+  selector: "setting",
   moduleId: module.id,
   templateUrl: "./component.html",
-  // styleUrls:["./component.css"]
+  // styleUrls:["./component.scss"],
+  providers:[]
 })
 
 export class SettingComponent implements OnInit {
-  books: Book[];
-
   constructor(
-    // private router: Router,
-    private bookService: BookService,
-    private nav:CoreNavigation,
-    private util:CoreUtility
+    private nav:AppNavigation,
+    private utl:AppUtilization
   ) {
     // NOTE: ?
   }

@@ -1,0 +1,27 @@
+<GridLayout class="page welcome" rows="50,auto,*,auto" tkExampleTitle tkToggleNavButton>
+	<GridLayout id="actionbar" row="0" columns="*" rows="*">
+		<Label col="0" row="0" [text]="actionTitle" class="title"></Label>
+	</GridLayout>
+	<StackLayout row="1">
+		<Label text="Lai Siangtho" style="color:#D1CCB3; font-size:25;"></Label>
+		<Label text="A thu zui-in khenna"></Label>
+	</StackLayout>
+	<RadListView row="2" [items]="dataItems">
+			<ng-template tkListItemTemplate
+				let-item="item"
+				let-i="index"
+				let-odd="odd"
+				let-even="even">
+					<StackLayout
+						orientation="vertical"
+						class="item" [class.active]="item.available" [class.odd]="odd" [class.even]="even">
+						<Button [text]="item.name" (tap)="onTap(i,item)"></Button>
+					</StackLayout>
+			</ng-template>
+	</RadListView>
+	<ActivityIndicator row="2" busy="false" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+	<StackLayout row="3" rows="auto">
+		<Label row="0" text="Sawltak 17:11"></Label>
+		<Label row="1" text="Tg. Lian Than Tuang..ssss" style="color:#D1CCB3; font-size:12;"></Label>
+	</StackLayout>
+</GridLayout>

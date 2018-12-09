@@ -1,0 +1,48 @@
+@import 'app-common';
+
+> StackLayout {
+  // vertical-align: middle;
+  background-color: transparent;
+  > Label {
+    text-align: center;
+  }
+  &[row="1"]{
+    // NOTE: bar line or can be use as floating text
+    padding-bottom: 5%;
+    // background-color: darken($container-bg-color,0%);
+  }
+  &[row="3"]{
+    padding-bottom: 5%;
+  }
+}
+> RadListView{
+  // margin: 5% 5%;
+  // vertical-align: middle;
+  z-index: 0;
+  StackLayout {
+    Button {
+      border-radius:80px;
+      // width:60%;
+      font-size: 14;
+      padding:15;
+      margin:1 20%;
+      width: auto;
+      background-color: darken(#edebe6,1%);
+      // text-transform: uppercase;
+      color:#966e0a;
+      text-shadow:7px 2px 2px 0px red;
+      -webkit-text-stroke:2px 1px 0px 1px #000;
+    }
+    &.odd{
+      Button {
+        background-color: darken(#edebe6,5%);
+      }
+    }
+    &.even{}
+    &.active{
+      Button {
+        background-color: darken(#edebe6,10%);
+      }
+    }
+  }
+}

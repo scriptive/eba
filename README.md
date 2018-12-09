@@ -6,7 +6,7 @@ This is not the entire bible. This is the bible analysis according to topics. Th
 
 ...at [Google play][playStore],
 [Join][playStore Join],
-[Readme][EBA Home]!
+or [readme][EBA Home]!
 
 ![alt text][launch]
 

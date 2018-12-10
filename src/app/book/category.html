@@ -17,8 +17,8 @@
 			loadOnDemandMode="Auto" (loadMoreDataRequested)="itemMoreDataRequested($event)">
 			<ng-template tkListItemTemplate let-item="item" let-i="index">
 				<StackLayout class="item" rows="auto">
-					<Label [text]="i" class="desc" (textChange)="itemDescriptionFormat($event)" textWrap="true"></Label>
-					<Label [text]="i" class="book" (textChange)="itemBookFormat($event)"></Label>
+					<Label class="book" [text]="i" (textChange)="itemBookFormat($event)"></Label>
+					<Label class="desc" [text]="i" (textChange)="itemDescriptionFormat($event)" textWrap="true"></Label>
 				</StackLayout>
 			</ng-template>
 		</RadListView>

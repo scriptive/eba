@@ -79,8 +79,8 @@ export class CategoryComponent implements OnInit {
   private dataInit() {
     this.bookId=this.bookService.Id('book');
     this.sectionId=this.bookService.Id('section');
-    this.actionTitle = this.bookService.sectionName(this.sectionId);
     this.bookService.requestContent(this.bookId).then(()=>{
+      this.actionTitle = this.bookService.sectionName(this.sectionId);
       this.bookService.categoryObserve(this.sectionId);
       this.masterItems = this.bookService.category;
       this.copyItems = new ObservableArray<CategoryItem>();
@@ -125,10 +125,12 @@ export class CategoryComponent implements OnInit {
     }
   }
   // NOTE: (textChange)="itemDescriptionFormat($event)"
-  itemDescriptionFormat(args: EventData) {
+  itemDescriptionFormat(args: any) {
+    // var itemView = args.view, section = <SectionItem>itemView.bindingContext;
     const container = <Label>args.object;
     var item = container.bindingContext;
     const formattedString = new FormattedString(), spans = [];
+
     var tmp = item.desc.split('[');
     if (tmp.length > 1) {
       tmp = tmp.filter(Boolean);
@@ -141,14 +143,14 @@ export class CategoryComponent implements OnInit {
         // span.fontWeight = "bold";
         span.color = new Color("red");
         // span.color = new Color("#b54c00");
-        span.text = itmNumber;
+        span.text = this.bookService.digit(itmNumber);
         formattedString.spans.push(span);
 
         span = new Span();
         span.text = itmText;
         formattedString.spans.push(span);
       }
-    } else {
+    } else if (item.desc) {
       // NOTE: just One
       let span = new Span();
       span.text = item.desc;
@@ -160,7 +162,7 @@ export class CategoryComponent implements OnInit {
     */
   }
   // NOTE: (textChange)="itemBookFormat($event)"
-  itemBookFormat(args: EventData) {
+  itemBookFormat(args: any) {
     const container = <Label>args.object;
     var item = container.bindingContext;
     const formattedString = new FormattedString(), spans = [];
@@ -174,7 +176,7 @@ export class CategoryComponent implements OnInit {
     formattedString.spans.push(span);
 
     span = new Span();
-    span.text = item.chapter;
+    span.text = this.bookService.digit(item.chapter);
     formattedString.spans.push(span);
 
     span = new Span();
@@ -183,7 +185,7 @@ export class CategoryComponent implements OnInit {
     formattedString.spans.push(span);
 
     span = new Span();
-    span.text = item.verse;
+    span.text = this.bookService.digit(item.verse);
     formattedString.spans.push(span);
 
     container.formattedText = formattedString;

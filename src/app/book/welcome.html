@@ -1,12 +1,10 @@
-<ActionBar [title]="actionTitle" flat="true" actionBarHidden="true">
-	<NavigationButton visibility="collapsed"></NavigationButton>
-</ActionBar>
-<GridLayout class="page welcome" rows="50,auto,*,auto" tkExampleTitle tkToggleNavButton>
-	<GridLayout id="actionbar" row="0" columns="*" rows="*">
-		<Label col="0" row="0" [text]="actionTitle" class="title"></Label>
+<GridLayout class="page welcome" rows="50,100,*,100">
+	<GridLayout id="actionbar" row="0" columns="auto">
+		<Label col="0" row="0" text="&#xf053; Back" class="icon back" (tap)="nav.toBack()"></Label>
 	</GridLayout>
 	<StackLayout row="1">
-		<Label text="Lai Siangtho" style="color:#D1CCB3; font-size:25;"></Label>
+		<Label [text]="actionTitle"></Label>
+		<Label text="Lai Siangtho"></Label>
 		<Label text="A thu zui-in khenna"></Label>
 	</StackLayout>
 	<RadListView row="2" [items]="dataItems">
@@ -22,8 +20,8 @@
 					</StackLayout>
 			</ng-template>
 	</RadListView>
-	<StackLayout row="3" rows="auto">
+	<StackLayout row="3">
 		<Label row="0" text="Sawltak 17:11"></Label>
-		<Label row="1" text="Tg. Lian Than Tuang" style="color:#D1CCB3; font-size:12;"></Label>
+		<Label row="1" text="Tg. Lian Than Tuang"></Label>
 	</StackLayout>
 </GridLayout>

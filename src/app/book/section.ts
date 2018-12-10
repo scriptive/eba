@@ -119,27 +119,22 @@ export class SectionComponent implements OnInit {
   }
   // NOTE: (itemTap)="itemTap($event)"
   itemTap(args: any) {
-    var sectionView = args.view, section = <SectionItem>sectionView.bindingContext;
+    var itemView = args.view, section = <SectionItem>itemView.bindingContext;
+    // itemView.backgroundColor = new Color(this.bookService.highlightColor);
     this.bookService.Id('section',Number(section.id));
     this.nav.to(['category']);
-    // console.log(typeof section.id,section.id)
-    // sectionView.backgroundColor ='red';
-    // sectionView.color ='red';
-    // sectionView.backgroundColor = new Color("red");
-    // sectionView.animate({ backgroundColor: new Color("green"), duration:100 });
-    sectionView.opacity = 0;
-    sectionView.animate({
-        opacity: 1,
-        // color:'red',
-        duration: 200
-    });
+    // itemView.backgroundColor ='red';
+    // itemView.color ='red';
+    // itemView.backgroundColor = new Color("red");
+    // itemView.animate({ backgroundColor: new Color("green"), duration:100 });
+    itemView.opacity = 0.3;
+    itemView.animate({opacity: 1, duration: 200});
 
-
-    // sectionView.animate({
+    // itemView.animate({
     //     translate: { x: 100, y: 100 },
     //     duration: 100
     // }).then(function() {
-    //     return sectionView.animate({
+    //     return itemView.animate({
     //         opacity: 0,
     //         duration: 100
     //     });

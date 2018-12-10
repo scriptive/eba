@@ -181,23 +181,21 @@ export class HomeComponent implements OnInit {
   itemTap(args: any) {
     var itemView = args.view, book = <BookItem>itemView.bindingContext;
     itemView.opacity = 0.3;
-    itemView.animate({
-      opacity: 1,
-      duration: 100
-    });
+    itemView.animate({opacity: 1, duration: 200});
     this.bookService.Id('book',Number(book.id));
     this.nav.to(['section']);
 
      //or, if you need the entire list as well,
      // get it from the Page's bindingContext
      // as each View has a ref to the Page it's on
-     // var pageBindingContext = book.page.bindingContext,
+     // var pageBindingContext = itemView.page.bindingContext,
      //     fullItemsList = pageBindingContext.connections,
      //     itemForTap = fullItemsList[args.index];
   }
-
+  // NOTE: (itemTap)="itemClear($event)"
   itemClear(args: ListViewEventData) {
   }
+  // NOTE: (itemTap)="itemDelete($event)"
   itemDelete(args: ListViewEventData) {
     let itemView = args.object;
     let book = <BookItem>itemView.bindingContext;

@@ -1,26 +1,14 @@
 @import 'app-common';
 
-
 RadListView {
-  // padding-top:5;
-  // background-color: darken($container-bg-color,0%);
   StackLayout {
-    // background-color: darken($container-bg-color,0%);
-    // background-color: transparent;
     padding:2 4;
     &.item {
       Label {
-        padding:10 20;
-        &.desc{
-          // font-size: 17;
-          padding-bottom: 5;
-          font-weight: 300;
-          color:lighten(#000,0);
-        }
+        padding:7 15;
+
         &.book{
-          padding-top: 5;
-          border-top-width: 1;
-          border-top-color: darken($container-bg-color,10%);
+          padding-bottom: 2;
           color:lighten(#666,20%);
           font-size: 13;
           span {
@@ -28,88 +16,15 @@ RadListView {
             background-color: red;
           }
         }
+        &.desc{
+          font-size: 19;
+          font-weight: 300;
+          color:lighten(#000,0);
+          padding-top: 2;
+          // border-bottom-width: 1;
+          // border-bottom-color: darken($container-bg-color,10%);
+        }
       }
-      // FlexboxLayout {
-      //   // margin:2 10;
-      //   padding:5;
-      //   background-color: darken($body-bg-color,0%);
-      //   // border-radius: 5;
-      //   // border-bottom-width: 1;
-      //   // border-bottom-color: darken($container-bg-color,0%);
-      //   // border-bottom-color: darken($container-bg-color,20%);
-      //   >Label{
-      //     font-size: 17;
-      //     padding: 10;
-      //   }
-      //   >GridLayout{
-      //     // background-color: red;
-      //     // padding: 10;
-      //     margin:2 10;
-      //     font-size: 12;
-      //     border-top-width: 1;
-      //     border-top-color: darken($container-bg-color,0%);
-      //     > Label{
-      //       padding: 5 2 1 2;
-      //       text-align: center;
-      //       &.book{
-      //         font-weight: 400;
-      //         color:lighten(#666,10%);
-      //       }
-      //       &.chapter{
-      //         color:lighten(#666,10%);
-      //       }
-      //       &.verse{
-      //         color:lighten(#666,20%);
-      //       }
-      //     }
-      //   }
-      // }
     }
   }
 }
-// RadListView {
-//   // padding-top:5;
-//   // background-color: darken($container-bg-color,0%);
-//   StackLayout {
-//     // background-color: darken($container-bg-color,0%);
-//     // background-color: transparent;
-//     // padding:2 4;
-//     &.item {
-//       FlexboxLayout {
-//         // margin:2 10;
-//         padding:5;
-//         background-color: darken($body-bg-color,0%);
-//         // border-radius: 5;
-//         // border-bottom-width: 1;
-//         // border-bottom-color: darken($container-bg-color,0%);
-//         // border-bottom-color: darken($container-bg-color,20%);
-//         >Label{
-//           font-size: 17;
-//           padding: 10;
-//         }
-//         >GridLayout{
-//           // background-color: red;
-//           // padding: 10;
-//           margin:2 10;
-//           font-size: 12;
-//           border-top-width: 1;
-//           border-top-color: darken($container-bg-color,0%);
-//           > Label{
-//             padding: 5 2 1 2;
-//             text-align: center;
-//             &.book{
-//               font-weight: 400;
-//               color:lighten(#666,10%);
-//             }
-//             &.chapter{
-//               color:lighten(#666,10%);
-//             }
-//             &.verse{
-//               color:lighten(#666,20%);
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }

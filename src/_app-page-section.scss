@@ -17,6 +17,7 @@ RadListView {
       border-bottom-color: darken($container-bg-color,0%);
       // background-color: darken($body-bg-color,0%);
       > Label {
+        font-weight: 300;
         &[row="0"] {
           font-size: 19;
         }

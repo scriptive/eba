@@ -23,12 +23,7 @@ export class AppNavigation {
     private router: Router,
     private activatedRoute : ActivatedRoute,
     private routerExtensions: RouterExtensions
-
   ) {
-    this.hasPage();
-    // console.log(this.activatedRoute.snapshot.url);
-    // console.log(activatedRoute.snapshot.url[0].path);
-    // this.route.snapshot.pathFromRoot.map(o => o.url[0]).join('/')
   }
 
   actionBarToggle() {
@@ -37,7 +32,6 @@ export class AppNavigation {
 
   to(currentRouteName:any[],routeTransition:string='fade'): void {
     // NOTE: flip,fade
-    // currentRouteName[0] = currentRouteName[0].replace(':Id',0);
     this.routerExtensions.navigate(currentRouteName, {
         transition: {
             name: routeTransition
@@ -54,13 +48,12 @@ export class AppNavigation {
     return this.pageName(currentRouteName) === this.currentRouteName;
     // return currentRouteName === this.currentRouteName;
   }
-  hasPage() {
-    // this.activatedRoute.url.subscribe(url =>{ });
+  initiate() {
     this.router.events.subscribe(e => {
       // NavigationStart, NavigationEnd
       if(e.constructor.name === "NavigationEnd") {
         this.currentRouteName = this.pageName();
-        setString('page',this.currentRouteName);
+        // setString('page',this.currentRouteName);
       }
     });
   }

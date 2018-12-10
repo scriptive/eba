@@ -27,6 +27,7 @@ or [readme][EBA Home]!
 - ...Other
   - [ ] Actionbar
   - [ ] Icon Font
+  - [x] digit
   - [x] Indicator
 
 ## Note

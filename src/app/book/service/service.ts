@@ -13,15 +13,16 @@ import { dataBook } from "./data.book";
 const dataCollection:any={
   list:[],
   data:{},
-  current:{},
-  bookId:1,
-  sectionId:1,
-  categoryId:1
+  Id:{
+    book:1,
+    section:1
+  }
 };
 
 @Injectable()
 // NOTE: EventEmitter, BehaviorSubject
 export class BookService {
+  public highlightColor:string= "#564e44";
   private book_list: ObservableArray<BookItem>;
   private section_list: ObservableArray<SectionItem>;
   private category_list: ObservableArray<CategoryItem>;
@@ -112,17 +113,52 @@ export class BookService {
     if (bookId){
       return dataCollection.data[bookId];
     } else {
-      return dataCollection.current;
+      return dataCollection.data[dataCollection.Id.book];
     }
   }
+  digit(n:any,bookId?:number) {
+    var num = {
+        'my':{
+          0: "၀",
+          1: "၁",
+          2: "၂",
+          3: "၃",
+          4: "၄",
+          5: "၅",
+          6: "၆",
+          7: "၇",
+          8: "၈",
+          9: "၉"
+        }
+    };
+    // var digit = this.num(l).digit;
+    var Id = bookId || dataCollection.Id.book;
+    if (Id && dataCollection.list.hasOwnProperty(Id)) {
+      var lang = dataCollection.list[Id].lang;
+      if (num.hasOwnProperty(lang)){
+        var digit = num[lang];
+        return n.toString().replace(/[0-9]/g, (i) => digit[i]);
+      }
+    }
+    return n;
+  }
 
-  Id(name: string,value?: number) {
+  Id(name: string,value?: number){
     if (name) {
       if (value) {
-        appSettings.setNumber(name,value);
+        dataCollection.Id[name]=value;
       }
-      return appSettings.getNumber(name,1);
+      if (dataCollection.Id.hasOwnProperty(name) && dataCollection.Id[name]) {
+        return dataCollection.Id[name];
+      }
     }
+    return 1;
+    // if (name) {
+    //   if (value) {
+    //     appSettings.setNumber(name,value);
+    //   }
+    //   return appSettings.getNumber(name,1);
+    // }
   }
 
   private requests(Name:any) {
@@ -156,7 +192,6 @@ export class BookService {
   requestContent(Id:number) {
     return new Promise((resolve, reject) => {
       if (dataCollection.data.hasOwnProperty(Id)){
-        dataCollection.current=dataCollection.data[Id];
         resolve();
       } else {
         var fileName = Id.toString();
@@ -164,16 +199,14 @@ export class BookService {
         if (this.file.fileExists(localFile)) {
           this.file.read(localFile).then((Contents) => {
             dataCollection.data[Id] = JSON.parse(Contents);
-            dataCollection.current=dataCollection.data[Id];
             resolve();
           }).catch((error) => {
             reject(error);
           });
         } else {
           this.requests(fileName).then((Contents)=>{
-            dataCollection.data[Id] = Contents;
             this.file.write(localFile, JSON.stringify(Contents)).then((res) => {
-              dataCollection.current=dataCollection.data[Id];
+              dataCollection.data[Id] = Contents;
               resolve();
             }).catch((error) => {
               reject(error);

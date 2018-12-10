@@ -21,10 +21,7 @@ import { SectionComponent } from "./section";
 import { CategoryComponent } from "./category";
 import { WelcomeComponent } from "./welcome";
 import { BookTestComponent } from "./test";
-// import { CategoryModule } from "./category";
-// import { SectionModule } from "./section";
 // import { SearchModule } from "./search";
-// import { ReaderModule } from "./reader";
 
 const page: Routes = [
   {

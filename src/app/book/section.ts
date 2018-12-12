@@ -1,4 +1,4 @@
-import { Component, AfterViewInit,OnInit } from "@angular/core";
+import { Component, AfterViewInit,OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import { Color } from "tns-core-modules/color";
@@ -11,6 +11,8 @@ import {
   ListViewLinearLayout,
   LoadOnDemandListViewEventData
 } from "nativescript-ui-listview";
+
+import { RadListViewComponent } from "nativescript-ui-listview/angular";
 
 import {
   AppConfiguration,
@@ -48,10 +50,7 @@ export class SectionComponent implements OnInit {
   private ActivityIndicatorMsg:string="...";
   private ActivityIndicatorBusy:boolean=true;
 
-
-  // private idBook:number;
-  // private idSection:number;
-  // private idCategory:number;
+  private itemGroupbyLanguage: (item: SectionItem) => any;
 
   constructor(
     private actionBar: AppActionBar,
@@ -64,12 +63,25 @@ export class SectionComponent implements OnInit {
     // NOTE: ?
     this.page.actionBarHidden = true;
   }
+  @ViewChild("listView") listViewComponent: RadListViewComponent;
 
   ngOnInit() {
     this.layout = new ListViewLinearLayout();
     this.layout.scrollDirection = "Vertical";
+
+    this.itemGroupbyLanguage = (item: SectionItem) => {
+      // if (item.group) {
+      //   return item.group;
+      // } else{
+      //   return item.name.charAt(0).toUpperCase();
+      // }
+      item.group = item.name.charAt(0).toUpperCase();
+      return item.group;
+    }
+    this.listViewComponent.listView.groupingFunction = this.itemGroupFunction;
     this.dataInit();
   }
+
   private dataInit() {
     this.bookId=this.bookService.Id('book');
     this.bookService.requestContent(this.bookId).then(()=>{
@@ -108,9 +120,7 @@ export class SectionComponent implements OnInit {
         setTimeout(()=> {
           this.chunkItems((total < limit)?total:limit);
           listView.notifyLoadOnDemandFinished();
-        }, 100);
-        // this.chunkItems((total < limit)?total:limit);
-        // listView.notifyLoadOnDemandFinished();
+        }, 50);
         args.returnValue = true;
     } else {
         args.returnValue = false;
@@ -139,5 +149,17 @@ export class SectionComponent implements OnInit {
     //         duration: 100
     //     });
     // });
+  }
+  // [groupingFunction]="itemGroupFunction"
+  get itemGroupFunction(): (item: any) => any {
+    return this.itemGroupbyLanguage;
+  }
+  set itemGroupFunction(value: (item: any) => any) {
+    this.itemGroupbyLanguage = value;
+  }
+  groupName(name:string) {
+    var tmp = name.charAt(0);
+    console.log(tmp);
+    return name;
   }
 }

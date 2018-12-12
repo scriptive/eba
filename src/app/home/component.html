@@ -14,7 +14,6 @@
 		<RadListView #listView row="0"
 			[items]="dataItems"
 			swipeActions="false"
-			(groupingFunction)="itemGroupFunction($event)"
 			(itemSwipeProgressStarted)="itemSwipeProgressStarted($event)"
 			(itemSwipeProgressEnded)="itemSwipeProgressEnded($event)"
 			(itemTap)="itemTap($event)"
@@ -26,9 +25,7 @@
 				</StackLayout>
 			</ng-template>
 			<ng-template tkGroupTemplate let-lang="category">
-				<GridLayout columns="*" class="language">
-					<Label col="0" [text]="lang"></Label>
-				</GridLayout>
+				<Label class="category" [text]="lang"></Label>
 			</ng-template>
 
 			 <!-- <ng-template tkTemplateKey="my" let-book="item">

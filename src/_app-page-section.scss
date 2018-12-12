@@ -1,31 +1,28 @@
 @import 'app-common';
 
 RadListView {
-  // background-color: darken($body-bg-color,0%);
-  // background-color: darken($container-bg-color,0%);
-  // padding:20 20 0 20;
-  // padding:0;
-  // margin:0 0;
   StackLayout {
     &.item {
-      background-color: darken($body-bg-color,0%);
-      // margin:10 0 0 0;
-      // margin-top:1;
-      padding:7 20;
-      // border-radius: 100px;
-      border-bottom-width: 2;
-      border-bottom-color: darken($container-bg-color,0%);
-      // background-color: darken($body-bg-color,0%);
+      background-color: darken($body-bg-color,0);
+      padding:10 20;
+      margin-top: 1px;
       > Label {
         font-weight: 300;
         &[row="0"] {
-          font-size: 19;
+          font-size: 18;
         }
         &[row="1"] {
-          font-size: 13;
+          font-size: 12;
           color:lighten(#666,25%);
         }
       }
+    }
+  }
+  >Label {
+    &.category {
+      padding:3 20;
+      font-size: 12;
+      color: darken(#fff,30%);
     }
   }
 }

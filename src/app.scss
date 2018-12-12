@@ -34,9 +34,9 @@ GridLayout {
       }
       &[row="2"] {
         // NOTE: RadListView
-        // background-color: darken($container-bg-color,0%);
+        background-color: darken($container-bg-color,2);
         &.busy{
-          // background-color: $body-bg-color;
+          background-color: $body-bg-color;
         }
         > StackLayout.ActivityIndicator {
           // NOTE: ActivityIndicator
@@ -55,7 +55,7 @@ GridLayout {
     > StackLayout {
       // NOTE: ActionBar line or can be use as floating text
       &[row="1"] {
-        background-color: darken($container-bg-color,2%);
+        background-color: darken($container-bg-color,2);
       }
     }
     &.home{

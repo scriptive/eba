@@ -2,27 +2,21 @@
 
 RadListView {
   StackLayout {
-    padding:2 4;
     &.item {
+      background-color: darken($body-bg-color,0);
+      padding:10 20;
+      // margin-top: 1;
       Label {
-        padding:7 15;
-
         &.book{
           padding-bottom: 2;
           color:lighten(#666,20%);
           font-size: 13;
-          span {
-            padding: 1 5;
-            background-color: red;
-          }
         }
         &.desc{
-          font-size: 19;
+          font-size: 18;
           font-weight: 300;
           color:lighten(#000,0);
           padding-top: 2;
-          // border-bottom-width: 1;
-          // border-bottom-color: darken($container-bg-color,10%);
         }
       }
     }

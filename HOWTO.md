@@ -25,7 +25,5 @@ tns platform clean android
 
 ```
 tns build android [--compileSdk <API Level>] [--key-store-path <File Path> --key-store-password <Password> --key-store-alias <Name> --key-store-alias-password <Password>] [--release] [--static-bindings] [--copy-to <File Path>] [--bundle [<value>] [--env.*]] [--aab]
-
-tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --release --copy-to dist/playStore/eba-beta.0.0.4.apk
-tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.5.apk
 ```
+

@@ -13,11 +13,16 @@ or [readme][EBA Home]!
 ## Todo
 
 - [x] Home/Language/Book
+  - [x] Grouping
+  - [x] Pull to update
 - [x] Section
+  - [x] Grouping
+  - [x] Load of demand
 - [x] Category
   - [x] Header
-  - [ ] Filter
   - [x] Format
+  - [x] Load of demand
+  - [ ] Filter
 - [ ] Lookup/search
   - [ ] Results
 - [ ] Bookmark/Star

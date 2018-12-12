@@ -115,9 +115,7 @@ export class CategoryComponent implements OnInit {
         setTimeout(()=> {
           this.chunkItems((total < limit)?total:limit);
           listView.notifyLoadOnDemandFinished();
-        }, 100);
-        // this.chunkItems((total < limit)?total:limit);
-        // listView.notifyLoadOnDemandFinished();
+        }, 50);
         args.returnValue = true;
     } else {
         args.returnValue = false;

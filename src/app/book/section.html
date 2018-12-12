@@ -10,7 +10,7 @@
 			<ActivityIndicator row="0" [busy]="ActivityIndicatorBusy"></ActivityIndicator>
 			<Label [text]="ActivityIndicatorMsg"></Label>
 		</StackLayout>
-		<RadListView row="0" class="listView" orientation="vertical"
+		<RadListView #listView row="0" class="listView" orientation="vertical"
 			[visibility]="ActivityIndicatorMsg? 'hidden' : 'visible'"
 			[items]="dataItems"
 			(itemTap)="itemTap($event)"
@@ -24,6 +24,9 @@
 					<Label row="0" [text]="item.name"></Label>
 					<Label row="1" [text]="item.desc"></Label>
 				</StackLayout>
+			</ng-template>
+			<ng-template tkGroupTemplate let-group="category">
+				<Label [text]="group" class="category"></Label>
 			</ng-template>
 			<ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120"></ListViewLinearLayout>
 		</RadListView>

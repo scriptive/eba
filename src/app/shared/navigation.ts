@@ -24,6 +24,16 @@ export class AppNavigation {
     private activatedRoute : ActivatedRoute,
     private routerExtensions: RouterExtensions
   ) {
+    this.open();
+    this.router.events.subscribe(e => {
+      // NavigationStart, NavigationEnd
+      if(e.constructor.name === "NavigationEnd") {
+        this.currentRouteName = this.pageName();
+      }
+    });
+    if (this.currentRouteName) {
+      this.router.navigate([this.currentRouteName])
+    }
   }
 
   actionBarToggle() {
@@ -48,19 +58,16 @@ export class AppNavigation {
     return this.pageName(currentRouteName) === this.currentRouteName;
     // return currentRouteName === this.currentRouteName;
   }
-  initiate() {
-    this.router.events.subscribe(e => {
-      // NavigationStart, NavigationEnd
-      if(e.constructor.name === "NavigationEnd") {
-        this.currentRouteName = this.pageName();
-        // setString('page',this.currentRouteName);
-      }
-    });
-  }
   pageName(value?:string) {
     if (value) {
       return value.replace(/^\//, '').split('/')[0];
     }
     return this.router.url.replace(/^\//, '').split('/')[0];
+  }
+  save() {
+    setString('page',this.currentRouteName);
+  }
+  open() {
+    this.currentRouteName = getString('page');
   }
 }

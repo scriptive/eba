@@ -2,19 +2,45 @@
 
 RadListView{
   background-color: darken($container-bg-color,0%);
-  StackLayout {
+  GridLayout.item, GridLayout.swipeViewOptions {
+    padding:15 20;
+    border-bottom-width: 2;
+    border-bottom-color: darken($container-bg-color,0%);
+    background-color: darken($body-bg-color,0%);
+  }
+  GridLayout{
     &.item{
       // background-color: darken($body-bg-color,0%);
       Label {
-        &[row="0"]{
-          color:darken(#666,10%);
+        vertical-align: middle;
+        &.name{
+          color:lighten(#666,15%);
           font-size: 19;
           font-weight: 300;
           text-transform: uppercase;
         }
-        &[row="1"]{
+        &.desc{
           color:lighten(#666,25%);
           font-size: 13;
+        }
+        &.tag{
+          text-align: center;
+          color:lighten($icon-default-color,60%);
+          font-size: 25;
+          padding: 11 0;
+          font-weight: 400;
+          // border-radius: 100;
+          // background-color: lighten($icon-default-color,50%);
+        }
+      }
+      &.available {
+        Label {
+          &.name{
+            color:darken($icon-default-color,50%);
+          }
+          &.tag{
+            color:lighten($icon-default-color,40);
+          }
         }
       }
       // opacity: 0;
@@ -25,20 +51,11 @@ RadListView{
       //   from { opacity: 0; }
       //   to { opacity: 1; }
       // }
-      &.en{}
-      &.my{}
-      &.zo{}
-      &.other{}
+      // &.en{}
+      // &.my{}
+      // &.zo{}
+      // &.other{}
     }
-  }
-  StackLayout.item, GridLayout.swipeViewOptions {
-    padding:15 20;
-    border-bottom-width: 2;
-    border-bottom-color: darken($container-bg-color,0%);
-    background-color: darken($body-bg-color,0%);
-  }
-  GridLayout{
-
     &.header{
       background-color: darken($container-bg-color,0%);
       > Label{
@@ -56,22 +73,20 @@ RadListView{
       }
     }
     &.swipeViewOptions{
-      border-bottom-color: red;
+      padding:15 5;
+      border-bottom-color:lighten($icon-default-color,20);
       > GridLayout{
-        padding-right:20;
-        // margin-right:20;
-        // margin: 0;
-        // padding:0;
+        padding-left:5;
         > Label{
           padding:12 10;
           text-align: center;
           font-size: 12;
           text-transform: uppercase;
           vertical-align: middle;
-          background-color: lighten(#919299,2%);
+          background-color: lighten($icon-default-color,40);
           color:#fff;
           &.danger{
-            background-color: lighten(red,2%);
+            background-color: lighten($icon-default-color,10);
           }
         }
       }
@@ -79,6 +94,7 @@ RadListView{
   }
   > Label {
     &.category{
+      background-color: darken($container-bg-color,0%);
       padding:3 22;
       font-size: 12;
       color: darken(#fff,30%);

@@ -4,6 +4,12 @@ import { Router, Route, ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 
 import {
+  exitEvent, suspendEvent,
+  ApplicationEventData,
+  on
+} from "tns-core-modules/application";
+
+import {
   AppConfiguration,
   AppSideDrawer,
   AppActionBar,
@@ -46,8 +52,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   {
   }
   ngOnInit(): void {
-    this.bookService.initiate();
-    this.nav.initiate();
+    // this.nav.initiate();
+    // this.bookService.stage.subscribe((data:any) => console.log(data));
+    // this.bookService.stage = {lang:1,section:1};
+    // this.bookService.stage = 'Hello';
     // this.bookService.message.subscribe(data => console.log(data));
     // this.bookService.request().subscribe(res => {
     //   // this.message = (<any>res).json.data.username;
@@ -61,8 +69,17 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
   ngAfterViewInit() {
     // this.changeDetectionRef.detectChanges();
+    // console.log(this.nav.currentRouteName);
     // this.router.navigate(['welcome'])
     // this.nav.actionBarToggle();
+    on(exitEvent, (args: ApplicationEventData) => {
+      this.bookService.save();
+      this.nav.save();
+    });
+    on(suspendEvent, (args: ApplicationEventData) => {
+      this.bookService.save();
+      this.nav.save();
+    });
   }
   get appShortName() {
     return 'EBA'

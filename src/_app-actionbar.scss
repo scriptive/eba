@@ -8,10 +8,10 @@
     color:lighten($icon-default-color,10);
     text-align:center;
     &.active {
-      color:lighten($icon-active-color,10%);
+      color:lighten($icon-active-color,10);
     }
     &.disable {
-      color:lighten($icon-active-color,40%);
+      color:lighten($icon-active-color,40);
     }
   }
   &.title{

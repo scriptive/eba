@@ -3,7 +3,7 @@
 </ActionBar> -->
 <GridLayout class="page home" rows="45,1,*" tkExampleTitle tkToggleNavButton>
 	<GridLayout id="actionbar" row="0" columns="60,*,60" rows="*">
-		<Label col="0" row="0" [visibility]="actionItemVisibility" text="&#xf0c9;" class="icon" (tap)="sideDrawer.toggle()"></Label>
+		<Label col="0" row="0" [visibility]="actionItemVisibility" text="&#xf0C9;" class="icon" (tap)="sideDrawer.toggle()"></Label>
 		<Label col="1" row="0" [text]="actionTitle" class="title"></Label>
 	</GridLayout>
 	<StackLayout row="1">
@@ -16,18 +16,25 @@
 			swipeActions="false"
 			(itemSwipeProgressStarted)="itemSwipeProgressStarted($event)"
 			(itemSwipeProgressEnded)="itemSwipeProgressEnded($event)"
+			(itemSwipeProgressChanged)="itemSwipeProgressChanged($event)"
 			(itemTap)="itemTap($event)"
 			pullToRefresh="true" (loaded)="listViewLoaded($event)" (pullToRefreshInitiated)="listViewPullToRefreshInitiated($event)">
 			<ng-template tkListItemTemplate let-book="item" let-it="index" let-odd="odd" let-even="even">
-				<StackLayout rows="*,auto" class="item other" [class.active]="book.available">
+				<!-- <StackLayout rows="*,auto" class="item other" [class.available]="book.available">
 					<Label row="0" [text]="book.name"></Label>
 					<Label row="1" [text]="book.desc"></Label>
-				</StackLayout>
+				</StackLayout> -->
+
+				<GridLayout rows="*,*" columns="*,50" class="item" [class.available]="book.available">
+					<Label row="0" col="0" class="name" [text]="book.name"></Label>
+					<Label row="1" col="0" class="desc" [text]="book.desc"></Label>
+					<Label row="0" col="1" rowSpan="2" text="&#xe0027;" class="icon tag"></Label>
+				</GridLayout>
+
 			</ng-template>
 			<ng-template tkGroupTemplate let-lang="category">
 				<Label class="category" [text]="lang"></Label>
 			</ng-template>
-
 			 <!-- <ng-template tkTemplateKey="my" let-book="item">
 				<StackLayout rows="*,auto" class="item my">
 					<Label row="0" [text]="book.name"></Label>
@@ -46,24 +53,24 @@
 					<Label row="1" [text]="book.description"></Label>
 				</StackLayout>
 			</ng-template> -->
-
-			<ng-template tkListViewHeader>
+			<!-- <ng-template tkListViewHeader>
 				<GridLayout class="header" columns="auto">
-					<Label col="0" text=""></Label>
+					<Label col="0" text="..."></Label>
 				</GridLayout>
-			</ng-template>
-			<ng-template tkListViewFooter>
+			</ng-template> -->
+			<!-- <ng-template tkListViewFooter>
 				<GridLayout class="footer" columns="auto">
-					<Label col="0" text=""></Label>
+					<Label col="0" text="...."></Label>
 				</GridLayout>
-			</ng-template>
-			<GridLayout *tkListItemSwipeTemplate columns="auto" rows="*" class="swipeViewOptions">
-				<GridLayout id="swipeViewLeft" row="0" columns="auto,auto,*" rows="*">
+			</ng-template> -->
+			<GridLayout *tkListItemSwipeTemplate columns="*,auto" rows="*" class="swipeViewOptions">
+				<GridLayout id="swipeViewRight" col="1" row="0" columns="*,auto,auto" rows="*">
 					<Label row="0" col="0" text="Clear" (tap)="itemClear($event)"></Label>
-					<Label row="0" col="1" text="Delete" class="danger" (tap)="itemDelete($event)"></Label>
+					<Label row="0" col="1" text="Delete" [visibility]="deleteItemVisibility" class="danger" (tap)="itemDelete($event)"></Label>
+					<Label row="0" col="1" text="Download" [visibility]="downloadItemVisibility" class="danger" (tap)="itemDownload($event)"></Label>
 				</GridLayout>
 			</GridLayout>
-			<ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120"></ListViewLinearLayout>
+			<!-- <ListViewLinearLayout *tkIfIOS tkListViewLayout itemHeight="120"></ListViewLinearLayout> -->
 			<!-- loadOnDemandMode="Auto" (loadMoreDataRequested)="onLoadMoreItemsRequested($event)" -->
 		</RadListView>
 	</GridLayout>

@@ -1,6 +1,6 @@
 <GridLayout class="page welcome" rows="50,100,*,100">
 	<GridLayout id="actionbar" row="0" columns="auto">
-		<Label col="0" row="0" text="&#xf053; Back" class="icon back" (tap)="nav.toBack()"></Label>
+		<Label col="0" row="0" text="&#xf007; Back" class="icon back" (tap)="nav.to(['home'])"></Label>
 	</GridLayout>
 	<StackLayout row="1">
 		<Label [text]="actionTitle"></Label>

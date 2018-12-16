@@ -24,7 +24,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { BookItem, SectionItem, BookService } from "./service";
+import { BookItem,  BookService, SectionModel, BookDatabase } from "./service";
 
 @Component({
   selector:'eba',
@@ -36,13 +36,9 @@ import { BookItem, SectionItem, BookService } from "./service";
 export class SectionComponent implements OnInit {
   private layout: ListViewLinearLayout;
 
-  // private masterItems: SectionItem[];
   private masterItems: any;
-  // private masterItems: ObservableArray<SectionItem>;
-  private copyItems: ObservableArray<SectionItem>;
-  private bookId:number;
-  private sectionId:number;
-  private categoryId:number;
+
+  private copyItems: ObservableArray<SectionModel>;
 
   private actionItemVisibility:string="visible";
   private actionTitle:string="Section";
@@ -50,7 +46,7 @@ export class SectionComponent implements OnInit {
   private ActivityIndicatorMsg:string="...";
   private ActivityIndicatorBusy:boolean=true;
 
-  private itemGroupbyLanguage: (item: SectionItem) => any;
+  private itemGroupbyLanguage: (item: SectionModel) => any;
 
   constructor(
     private actionBar: AppActionBar,
@@ -69,29 +65,30 @@ export class SectionComponent implements OnInit {
     this.layout = new ListViewLinearLayout();
     this.layout.scrollDirection = "Vertical";
 
-    this.itemGroupbyLanguage = (item: SectionItem) => {
+    this.itemGroupbyLanguage = (item: SectionModel) => {
       // if (item.group) {
       //   return item.group;
       // } else{
       //   return item.name.charAt(0).toUpperCase();
       // }
-      item.group = item.name.charAt(0).toUpperCase();
-      return item.group;
+      item.groupname = item.name.charAt(0).toUpperCase();
+      return item.groupname;
     }
     this.listViewComponent.listView.groupingFunction = this.itemGroupFunction;
     this.dataInit();
   }
 
   private dataInit() {
-    this.bookId=this.bookService.Id('book');
-    this.bookService.requestContent(this.bookId).then(()=>{
-      this.bookService.sectionObserve();
-      this.masterItems = this.bookService.section;
-      // this.masterItems = new ObservableArray<SectionItem>(this.bookService.section);
-      this.copyItems = new ObservableArray<SectionItem>();
-      this.chunkItems(2);
-      this.ActivityIndicatorMsg = null;
-    },(error)=>{
+    this.bookService.requestContent().then((service:any)=>{
+      // console.log('section',_msg);
+      service.section().then((rows:ObservableArray<SectionModel>)=>{
+        this.masterItems = rows;
+        this.copyItems = new ObservableArray<SectionModel>();
+        this.copyItems.push(this.masterItems);
+        this.ActivityIndicatorMsg = null;
+        // this.masterItems = new ObservableArray<SectionModel>(service.sId);
+      })
+    }).catch(error => {
       if (error instanceof Object) {
         if (error.hasOwnProperty('statusText')) {
           this.ActivityIndicatorMsg = error.statusText;
@@ -101,37 +98,21 @@ export class SectionComponent implements OnInit {
       } else {
         this.ActivityIndicatorMsg = "Error";
       }
-    }).then(()=>{
+    }).then(() => {
       this.ActivityIndicatorBusy=false;
     });
   }
-  get dataItems():ObservableArray<SectionItem> {
+  get dataItems():ObservableArray<SectionModel> {
     return this.copyItems;
   }
-  private chunkItems(chunkSize: number) {
-    let items = this.masterItems.splice(0, chunkSize);
-    this.copyItems.push(items);
-  }
-  // NOTE: loadOnDemandMode="Auto" (loadMoreDataRequested)="itemMoreDataRequested($event)"
-  itemMoreDataRequested(args: LoadOnDemandListViewEventData) {
-    const listView: RadListView = args.object;
-    var total = this.masterItems.length, limit = 7;
-    if (total > 0) {
-        setTimeout(()=> {
-          this.chunkItems((total < limit)?total:limit);
-          listView.notifyLoadOnDemandFinished();
-        }, 50);
-        args.returnValue = true;
-    } else {
-        args.returnValue = false;
-        listView.notifyLoadOnDemandFinished(true);
-    }
+  public digit(num:any) {
+    return this.bookService.digit(num);
   }
   // NOTE: (itemTap)="itemTap($event)"
   itemTap(args: any) {
-    var itemView = args.view, section = <SectionItem>itemView.bindingContext;
+    var itemView = args.view, section = <SectionModel>itemView.bindingContext;
     // itemView.backgroundColor = new Color(this.bookService.highlightColor);
-    this.bookService.Id('section',Number(section.id));
+    this.bookService.sId = Number(section.id);
     this.nav.to(['category']);
     // itemView.backgroundColor ='red';
     // itemView.color ='red';
@@ -159,7 +140,6 @@ export class SectionComponent implements OnInit {
   }
   groupName(name:string) {
     var tmp = name.charAt(0);
-    console.log(tmp);
     return name;
   }
 }

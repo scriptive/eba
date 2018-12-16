@@ -1,20 +1,66 @@
 @import 'app-common';
 
 RadListView {
-  StackLayout {
+  // StackLayout {
+  //   &.item {
+  //     background-color: darken($body-bg-color,0);
+  //     padding:10 20;
+  //     margin-top: 1px;
+  //     > Label {
+  //       font-weight: 300;
+  //       &[row="0"] {
+  //         font-size: 18;
+  //       }
+  //       &[row="1"] {
+
+  //       }
+  //       &.name {
+  //         font-size: 18;
+  //       }
+  //       &.desc {
+  //         font-size: 12;
+  //         color:lighten(#666,25%);
+  //       }
+  //       &.tag {
+  //         background-color: red;
+  //         padding: 2 10;
+  //         display: inline-block;
+  //         color:#fff;
+  //         margin-right: 10;
+  //         border-radius: 30;
+  //       }
+
+  //     }
+  //   }
+  // }
+  GridLayout {
     &.item {
       background-color: darken($body-bg-color,0);
       padding:10 20;
       margin-top: 1px;
       > Label {
         font-weight: 300;
-        &[row="0"] {
-          font-size: 18;
+        &.name {
+          font-size: 19;
+          line-height: 2;
         }
-        &[row="1"] {
+        &.desc {
           font-size: 12;
           color:lighten(#666,25%);
         }
+        &.tag {
+          padding: 3 1;
+          font-size: 14;
+          font-weight: 400;
+          line-height: 10;
+          // margin:7 0;
+          border-radius: 100;
+          text-align: center;
+          vertical-align: middle;
+          color:darken(#fff,7);
+          background-color:lighten($icon-default-color,40);
+        }
+
       }
     }
   }

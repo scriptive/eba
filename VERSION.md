@@ -1,9 +1,26 @@
 # Version
 
 ```
-tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.7.apk
+tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.8.apk
 ```
 
+
+# 0.0.9
+- swipe Option
+  - *
+
+# 0.0.8
+- integrating SQLite,
+  - seem much faster in performance
+  - more flexible
+  - offline available
+- fix
+  - back button that occur when there is no history
+- add
+  - section available topics count
+  - numeric convert to each language
+- note
+  - as of testing propose, up to 5 topics are removed randomly
 
 # 0.0.7
 - section

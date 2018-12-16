@@ -1,17 +1,17 @@
 @import 'app-common';
 
 .icon, .fa {
-  font-family: "FontAwesome";
+  font-family: "icon";
   font-size: 18;
 }
 Page {
   background-color: darken($body-bg-color,0%);
 }
-ActionBar {
-}
-Page, ActionBar, GridLayout.page {
-  // background-color: darken($body-bg-color,0%);
-}
+// ActionBar {
+// }
+// Page, ActionBar, GridLayout.page {
+//   // background-color: darken($body-bg-color,0%);
+// }
 GridLayout {
   &#actionbar {
     vertical-align: middle;

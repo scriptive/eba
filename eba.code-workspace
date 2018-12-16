@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.tokenColorCustomizations": {
+			"comments": "#b3b5b7"
+		},
+		"workbench.colorCustomizations": {
+			"sideBar.background": "#ededed",
+			"activityBar.foreground":"#5b5b5b",
+			"activityBar.background":"#c4c4c4",
+			"titleBar.activeForeground":"#5b5b5b",
+			"titleBar.activeBackground":"#c4c4c4",
+			"terminal.foreground" : "#fff",
+			"terminal.background" : "#666",
+			"statusBar.foreground":"#5b5b5b",
+			"statusBar.background":"#c4c4c4"
+		}
+	}
+}

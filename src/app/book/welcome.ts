@@ -12,7 +12,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { BookItem, BookService } from "./service";
+import { LangModel, BookService } from "./service";
 
 @Component({
   selector:'eba',
@@ -38,10 +38,10 @@ export class WelcomeComponent implements OnInit {
   }
   // NOTE: (tap)="itemButton($event)"
   itemButton(bookId: number) {
-    this.bookService.Id('book',bookId);
+    this.bookService.lId = bookId;
     this.nav.to(['section']);
   }
-  get dataItems(): ObservableArray<BookItem> {
-    return this.bookService.books;
+  get dataItems(): ObservableArray<LangModel> {
+    return this.bookService.lang;
   }
 }

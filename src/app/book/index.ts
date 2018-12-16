@@ -14,7 +14,8 @@ import {
   AppHttp
 } from "../shared";
 import {
-  BookService
+  BookService,
+  BookDatabase
 } from "./service";
 
 import { SectionComponent } from "./section";
@@ -27,19 +28,19 @@ const page: Routes = [
   {
     path: "section", component: SectionComponent,
     data:{
-      name: "Section", icon: String.fromCharCode(0xf015)
+      name: "Section", icon: String.fromCharCode(0xe814)
     }
   },
   {
     path: "category", component: CategoryComponent,
     data:{
-      name: "Category", icon: String.fromCharCode(0xf647)
+      name: "Category", icon: String.fromCharCode(0xe801)
     }
   },
   {
     path: "welcome", component: WelcomeComponent,
     data:{
-      name: "Welcome", icon: String.fromCharCode(0xf518)
+      name: "Welcome", icon: String.fromCharCode(0xe817)
     }
   },
   // {

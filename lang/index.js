@@ -4,7 +4,7 @@ const path = require('path'), fs = require('fs'), xml2js = require('xml2js');
 var args = process.argv.slice(2);
 // args.unshift('tmp');
 
-// HACK: node lang {1/2/3}
+// HACK: node lang {1/2/3} {option}
 
 var parser = new xml2js.Parser({
   mergeAttrs: true,

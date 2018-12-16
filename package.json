@@ -41,6 +41,7 @@
     "@angular/router": "~7.0.0",
     "nativescript-angular": "^7.0.2",
     "nativescript-intl": "^3.0.0",
+    "nativescript-sqlite": "^2.2.3",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-ui-autocomplete": "^3.10.3",
     "nativescript-ui-calendar": "^3.9.1",

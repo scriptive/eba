@@ -3,7 +3,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+// import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
@@ -20,10 +20,10 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 // import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from "@angular/core";
 
 
-// import { AppNavigation, AppSideDrawer, AppActionBar, AppUtilization } from "./shared";
-import { BookService } from "./book/service";
+import { AppNavigation, AppSideDrawer, AppActionBar, AppUtilization } from "./shared";
+import { BookService, BookDatabase } from "./book/service";
 
-import { authProviders, appRoutes } from "./app-routing.module";
+import { appRoutes } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { HomeModule } from "./home";
@@ -54,7 +54,8 @@ import { SettingModule } from "./setting";
     AppComponent
   ],
   providers: [
-    BookService // AppNavigation, AppActionBar, AppUtilization
+    BookService,
+    AppNavigation
   ],
   schemas: [
     NO_ERRORS_SCHEMA

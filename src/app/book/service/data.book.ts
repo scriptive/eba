@@ -4,34 +4,34 @@ export const dataBook:any={
     lang:"zo",
     desc:"...",
     version:454,
-    available:false
+    available:1
   },
   2:{
     name:"English",
     lang:"en",
     desc:"...",
     version:554,
-    available:false
+    available:1
   },
   666:{
     name:"Apples",
     lang:"en",
     desc:"...s",
     version:989,
-    available:false
+    available:1
   },
   3:{
     name:"Myanmar",
     lang:"my",
     desc:"...",
     version:535,
-    available:false
+    available:1
   },
   3567:{
     name:"NoDat",
     desc:"...",
     lang:"",
     version:12355467,
-    available:false
+    available:1
   }
 };

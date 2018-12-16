@@ -1,4 +1,5 @@
 import { Component, AfterViewInit,OnInit,ChangeDetectorRef, ViewChild } from "@angular/core";
+import { SetupItemViewArgs } from "nativescript-angular/directives";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {Page} from "ui/page";
 
@@ -21,7 +22,7 @@ import {Color} from "tns-core-modules/color";
 import { EventData } from "tns-core-modules/data/observable";
 // import { TextField } from "ui/text-field";
 import { Label } from "tns-core-modules/ui/label";
-// import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
+import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { FormattedString } from "tns-core-modules/text/formatted-string";
 import { Span } from "tns-core-modules/text/span";
 
@@ -35,7 +36,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { BookItem, SectionItem, CategoryItem, BookService } from "./service";
+import { BookItem, SectionItem, CategoryModel, BookService, BookDatabase } from "./service";
 
 @Component({
   selector:'eba',
@@ -47,11 +48,7 @@ import { BookItem, SectionItem, CategoryItem, BookService } from "./service";
 export class CategoryComponent implements OnInit {
 
   private masterItems: any;
-  // private masterItems: ObservableArray<CategoryItem>;
-  private copyItems: ObservableArray<CategoryItem>;
-  private bookId:number;
-  private sectionId:number;
-  private categoryId:number;
+  private copyItems: ObservableArray<CategoryModel>;
 
   private actionItemVisibility:string="visible"; //collapsed
   private actionTitle:string="Category";
@@ -76,17 +73,26 @@ export class CategoryComponent implements OnInit {
     this.changeDetectionRef.detectChanges();
     this.dataInit();
   }
+
   private dataInit() {
-    this.bookId=this.bookService.Id('book');
-    this.sectionId=this.bookService.Id('section');
-    this.bookService.requestContent(this.bookId).then(()=>{
-      this.actionTitle = this.bookService.sectionName(this.sectionId);
-      this.bookService.categoryObserve(this.sectionId);
-      this.masterItems = this.bookService.category;
-      this.copyItems = new ObservableArray<CategoryItem>();
-      this.chunkItems(2);
-      this.ActivityIndicatorMsg = null;
-    },(error)=>{
+    this.bookService.requestContent().then((_msg:any)=>{
+
+      // this.langCurrent = this.bookDatabase.lang.filter((o:any)=> o.id == this.bookService.lang)[0];
+      // this.bookService.langList = this.bookDatabase.lang;
+      this.bookService.book().then((raw:any[])=>{
+        this.bookService.bookList = raw;
+      })
+      this.bookService.section().then((raw:any[])=>{
+        this.bookService.sectionList = raw;
+        this.actionTitle = this.bookService.sectionName();
+      })
+      this.bookService.category().then((rows:ObservableArray<CategoryModel>)=>{
+        this.masterItems = rows;
+        this.copyItems = new ObservableArray<CategoryModel>();
+        this.chunkItems(2);
+        this.ActivityIndicatorMsg = null;
+      })
+    }).catch(error => {
       if (error instanceof Object) {
         if (error.hasOwnProperty('statusText')) {
           this.ActivityIndicatorMsg = error.statusText;
@@ -96,11 +102,11 @@ export class CategoryComponent implements OnInit {
       } else {
         this.ActivityIndicatorMsg = "Error";
       }
-    }).then(()=>{
+    }).then(() => {
       this.ActivityIndicatorBusy=false;
     });
   }
-  get dataItems():ObservableArray<CategoryItem> {
+  get dataItems():ObservableArray<CategoryModel> {
     return this.copyItems;
   }
   private chunkItems(chunkSize: number) {
@@ -122,13 +128,31 @@ export class CategoryComponent implements OnInit {
         listView.notifyLoadOnDemandFinished(true);
     }
   }
-  // NOTE: (textChange)="itemDescriptionFormat($event)"
-  itemDescriptionFormat(args: any) {
-    // var itemView = args.view, section = <SectionItem>itemView.bindingContext;
-    const container = <Label>args.object;
-    var item = container.bindingContext;
-    const formattedString = new FormattedString(), spans = [];
+  // NOTE: (setupItemView)="itemViewSetup($event)"
+  itemViewSetup(args: any) {
+    // SetupItemViewArgs
+    // const container = <StackLayout>args.view;
+    const container = args.view;
+    // swipeView.getViewById<View>('swipeViewRight');
+    // var item = <Label>args.object.bindingContext;
+    // const formattedString = new FormattedString(), spans = [];
+    var lbl = new Label();
+    lbl.text = 'Testing';
+    container.lbl;
+    (container).addChild(lbl);
+    // (<StackLayout>args.object).addChild(lbl);
+    // <StackLayout>args.object.addChild(lbl);
+    // console.log(container);
+    // var item = container.context.item;
 
+
+    // container.context.item.desc = this.formatDescription(item.desc);
+    // container.context.item.book = 'book';
+
+    // container.formattedText = this.formatTextDescription(item.desc);
+  }
+  private formatTextDescription(item: any) {
+    const formattedString = new FormattedString(), spans = [];
     var tmp = item.desc.split('[');
     if (tmp.length > 1) {
       tmp = tmp.filter(Boolean);
@@ -137,10 +161,11 @@ export class CategoryComponent implements OnInit {
         var itmNumber = itm[0];
         var itmText = itm[1];
         let span = new Span();
-        // span.fontSize = 11;
-        // span.fontWeight = "bold";
+        span.fontSize = 10;
+        // span.style;
+        // span.setInlineStyle("vertical-align:top");
+        // span.fontWeight = "300";
         span.color = new Color("red");
-        // span.color = new Color("#b54c00");
         span.text = this.bookService.digit(itmNumber);
         formattedString.spans.push(span);
 
@@ -154,19 +179,15 @@ export class CategoryComponent implements OnInit {
       span.text = item.desc;
       formattedString.spans.push(span);
     }
-    container.formattedText = formattedString;
-    /*
-    (<Label>args.object).formattedText = formattedString;
-    */
+    return formattedString;
   }
-  // NOTE: (textChange)="itemBookFormat($event)"
-  itemBookFormat(args: any) {
-    const container = <Label>args.object;
-    var item = container.bindingContext;
+  private formatTextBook(item: any) {
     const formattedString = new FormattedString(), spans = [];
 
     let span = new Span();
     span.text = this.bookService.bookName(item.book);
+    // TODO : bookName
+    // span.text = 'TODO';
     formattedString.spans.push(span);
 
     span = new Span();
@@ -186,7 +207,21 @@ export class CategoryComponent implements OnInit {
     span.text = this.bookService.digit(item.verse);
     formattedString.spans.push(span);
 
-    container.formattedText = formattedString;
-
+    return formattedString;
+  }
+  // NOTE: (textChange)="itemDescriptionFormat($event)"
+  itemDescriptionFormat(args: any) {
+    const container = <Label>args.object;
+    var item = container.bindingContext;
+    container.formattedText = this.formatTextDescription(item);
+    /*
+    (<Label>args.object).formattedText = formattedString;
+    */
+  }
+  // NOTE: (textChange)="itemBookFormat($event)"
+  itemBookFormat(args: any) {
+    const container = <Label>args.object;
+    var item = container.bindingContext;
+    container.formattedText = this.formatTextBook(item);
   }
 }

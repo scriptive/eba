@@ -23,7 +23,8 @@ const page: Routes = [
   {
     path: "home", component: HomeComponent,
     data:{
-      name: "Home", icon: String.fromCharCode(0xf015)
+      // name: "Home", icon: String.fromCharCode(0xf015),
+      name: "Home", icon: String.fromCharCode(0xe804)
     }
   }
 ];
@@ -38,8 +39,8 @@ const page: Routes = [
       HomeComponent
     ],
     providers: [
-      AppFileSystem,
-      BookService
+      BookService,
+      AppNavigation,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

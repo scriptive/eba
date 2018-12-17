@@ -63,6 +63,7 @@
     "nativescript-dev-typescript": "^0.7.8",
     "nativescript-dev-webpack": "~0.18.0",
     "nativescript-xmlobjects": "^1.1.4",
+    "sqlite3": "https://github.com/mapbox/node-sqlite3/tarball/master",
     "typescript": "^3.2.1",
     "xml2js": "^0.4.19"
   },

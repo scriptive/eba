@@ -1,12 +1,15 @@
-
-const path = require('path'), fs = require('fs'), xml2js = require('xml2js');
+const path = require('path'), fs = require('fs'), xml2js = require('xml2js'), sqlite3 = require('sqlite3');
 // const fs = require('fs-extra'), xml2js = require('xml2js');
 var args = process.argv.slice(2);
 // args.unshift('tmp');
+/**
+ * NOTE: node lang {filename:1/2/3} {option:sqlite,json} {true}
+ * if option is json then there is thrid argument JSON.stringify would format
+ *
+ *  */
 
-// HACK: node lang {1/2/3} {option}
 
-var parser = new xml2js.Parser({
+var xmlParser = new xml2js.Parser({
   mergeAttrs: true,
   charkey:'desc',
   explicitArray:false,
@@ -20,29 +23,35 @@ var parser = new xml2js.Parser({
 bookId = args[0],
 currentDirectory = path.dirname(require.main.filename),
 // currentPath = process.cwd(),
-bookJSON = path.resolve(currentDirectory,'book.json'),
+bookCollectionJSON = path.resolve(currentDirectory,'book.json'),
 bookSource= path.resolve(currentDirectory,'*.xml'),
-bookTarget = path.resolve(currentDirectory,'*.json'),
-xmlData = function(){
+bookTargetJSON = path.resolve(currentDirectory,'*.json'),
+bookTargetSQLite = path.resolve(currentDirectory,'*.db'),
+xmlRead = function(){
   return new Promise(function(resolve, reject) {
     fs.readFile(bookSource.replace('*',bookId), function(e, data) {
       if (e) return reject(e);
-      parser.parseString(data, function (e, result) {
+      xmlParser.parseString(data, function (e, result) {
         if (e) return reject(e);
         var result_custom = customStructure(result);
-        fs.writeFile(bookTarget.replace('*',bookId), JSON_stringify(result_custom),function(e,r){
-          if (e) {
-            reject(e);
-          } else {
-            resolve(result_custom);
-          }
-        });
+        resolve(result_custom);
       });
     });
   })
 },
-JSON_stringify = function(data) {
-  if (args.length > 1) {
+jsonPrepare = function(data) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(bookTargetJSON.replace('*',bookId), jsonStringify(data),function(error){
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  });
+},
+jsonStringify = function(data) {
+  if (args.length > 2) {
     return JSON.stringify(data, null, 2);
   } else {
     return JSON.stringify(data);
@@ -82,96 +91,174 @@ category = function(data){
     result[rows.id]=rows.row;
   }
   return result;
+},
+databaseConnection = null,
+databasePrepare = function(data){
+  return new Promise((resolve, reject) => {
+    var db = bookTargetSQLite.replace('*',bookId);
+    fs.exists(db, function(e) {
+      if (e) fs.unlinkSync(db);
+    });
+
+    // databaseConnection = new sqlite3.Database(':memory:');
+    databaseConnection = new sqlite3.Database(db);
+
+    databaseConnection.serialize(function() {
+      // NOTE: testament
+      databaseConnection.run("CREATE TABLE IF NOT EXISTS testament (id INTEGER, name TEXT, shortname TEXT)");
+      // NOTE: book
+      databaseConnection.run("CREATE TABLE IF NOT EXISTS book (id INTEGER, name TEXT, shortname TEXT)");
+      // NOTE: section
+      databaseConnection.run("CREATE TABLE IF NOT EXISTS section (id INTEGER, name TEXT, desc TEXT, groupname TEXT, total INTEGER)");
+      // NOTE: category
+      databaseConnection.run("CREATE TABLE IF NOT EXISTS category (id INTEGER, book INTEGER, chapter INTEGER, verse TEXT, desc TEXT, tag TEXT)");
+      // NOTE: prepare insert
+      databaseInsert(data).then(()=>{
+        resolve()
+      },(e)=>{
+        reject(e);
+      }).then(()=>{
+        databaseConnection.close();
+      })
+    })
+  });
+},
+databaseTestament = function(value){
+  return new Promise((resolve, reject) => {
+    var table = databaseConnection.prepare("INSERT INTO testament (id, name, shortname) VALUES (?,?,?)");
+    for (const tId in value) {
+      if (value.hasOwnProperty(tId)) {
+        const o = value[tId];
+        table.run([tId, o.name, o.shortname]);
+      }
+    }
+    table.finalize(()=>{
+      resolve()
+    });
+  })
+},
+databaseBook = function(value){
+  return new Promise((resolve, reject) => {
+    var table = databaseConnection.prepare("INSERT INTO book (id, name, shortname) VALUES (?,?,?)");
+    for (const bId in value) {
+      if (value.hasOwnProperty(bId)) {
+        const o = value[bId];
+        table.run([bId, o.name, o.shortname]);
+      }
+    }
+    table.finalize(()=>{
+      resolve()
+    });
+  })
+},
+databaseInsert = function(value){
+  return new Promise((resolve, reject) => {
+    let taskPrimary = [];
+
+    taskPrimary.push(databaseTestament(value.testament));
+    taskPrimary.push(databaseBook(value.book));
+
+    let categories = value.category;
+    for (const sId in categories) {
+      if (categories.hasOwnProperty(sId)) {
+        var category = categories[sId];
+        var section = value.section.filter(o => o.id == sId)[0];
+        taskPrimary.push(databaseCategoryChildren(Number(sId),section,category));
+      }
+    }
+    Promise.all(taskPrimary).then(()=>{
+      resolve();
+    }).catch(error=>{
+      reject(error);
+    })
+  });
+},
+databaseCategoryChildren = function(sId,section,category){
+  return new Promise((resolve, reject) => {
+    let taskPrimary = [];
+    let total = 0;
+    var table = databaseCategoryInsert();
+    for (const o of category) {
+      taskPrimary.push(new Promise((resolve, reject) => {
+        table.run([sId, o.book, o.chapter, o.verse, o.desc, o.tag],()=>{
+          ++total;
+          resolve();
+        });
+      }));
+    }
+    Promise.all(taskPrimary).then(()=>{
+      table.finalize(()=>{
+        databaseSectionInsert().run([sId, section.name, section.desc, section.group, total]).finalize(()=>{
+          resolve();
+          console.log(sId, section.name, total);
+        });
+      });
+    }).catch(error=>{
+      reject(error)
+    })
+  });
+},
+databaseCategoryInsert = function() {
+  return databaseConnection.prepare("INSERT INTO category (id, book,chapter,verse, desc, tag) VALUES (?,?,?,?,?,?)");
+},
+databaseSectionInsert = function() {
+  return databaseConnection.prepare('INSERT INTO section (id, name, desc, groupname, total) VALUES (?,?,?,?,?)');
 };
 
+// console.log(args);
+// return;
 new Promise(function(resolve, reject) {
   try {
-    var tmp=fs.readFileSync(bookJSON).toString();
+    var tmp=fs.readFileSync(bookCollectionJSON).toString();
     resolve(JSON.parse(tmp));
   } catch (e) {
     resolve({})
   }
 }).then(function(books){
-  xmlData().then(function(result){
-    books[bookId]=result.info;
-    fs.writeFile(bookJSON, JSON.stringify(books, null, 2),function(e,r){
-      if (e) {
-        console.log(e);
+  xmlRead().then(function(result){
+    // console.log('Completed',bookId,result.info.name);
+    new Promise(function(resolve, reject) {
+      // bookId = args[0],
+      if (args.length > 1) {
+        if (args[1] == 'sqlite'){
+          // NOTE: create SQLite
+          databasePrepare(result).then(function(){
+            resolve();
+            console.log('SQLite process complete',Number(bookId),result.info.name);
+          },function(e){
+            reject(e);
+          });
+        } else if (args[1] == 'json') {
+          // NOTE: Create JSON
+          jsonPrepare(result).then(function(){
+            resolve();
+            console.log('JSON process complete',Number(bookId),result.info.name);
+          },function(e){
+            reject(e);
+          });
+        } else {
+          reject('... json/sqlite are only available tasks');
+        }
       } else {
-        console.log(result.info);
+        reject('... sqlite/json');
       }
-    });
+    }).then(function(){
 
+      books[bookId]=result.info;
+      fs.writeFile(bookCollectionJSON, JSON.stringify(books, null, 2),function(e,r){
+        if (e) {
+          console.log(e);
+        } else {
+          console.log('Updated book.json');
+        }
+      });
+    },function(error){
+      console.log(error);
+    })
   },function(e){
     console.log(e);
   })
 },function(e){
   console.log(e)
 });
-
-// const xmlURL = 'https://raw.githubusercontent.com/scriptive/eba/master/lang/1.xml';
-
-/*
-private xmlToJson(xml: string): any {
-    let doc = XmlObjects.parse(xml);
-    var rootElement = doc.root;
-    var result:any = {};
-    var categoryElements = rootElement.elements('category');
-    result.category={};
-    for (var i = 0; i < categoryElements.length; i++) {
-        var ae = categoryElements[i];
-        var Id = ae.attribute('id').value;
-        result.category[Id]={};
-        var row = ae.elements('row');
-        for (var r = 0; r < row.length; r++) {
-          var cat = row[r];
-          result.category[Id].book= cat.attribute('book').value;
-          result.category[Id].chapter = cat.attribute('chapter').value;
-          result.category[Id].verse = cat.attribute('verse').value;
-          result.category[Id].tag = cat.attribute('tag').value;
-          result.category[Id].text = cat.value;
-        }
-    }
-    result.section={};
-    var sectionElements = rootElement.elements('section')[0].elements('row');
-    for (var i = 0; i < sectionElements.length; i++) {
-      var ae = sectionElements[i];
-      var Id = ae.attribute('id').value;
-      result.section[Id]={};
-      result.section[Id].name = ae.attribute('name').value;
-      result.section[Id].group = ae.attribute('group').value;
-      result.section[Id].text=ae.value;
-    }
-    result.book={};
-    var bookElements = rootElement.elements('book')[0].elements('row');
-    for (var i = 0; i < bookElements.length; i++) {
-      var ae = bookElements[i];
-      var Id = ae.attribute('id').value;
-      result.book[Id]=ae.value;
-    }
-    result.testament={};
-    var testamentElements = rootElement.elements('testament')[0].elements('row');
-    for (var i = 0; i < testamentElements.length; i++) {
-      var ae = testamentElements[i];
-      var Id = ae.attribute('id').value;
-      result.testament[Id]={};
-      result.testament[Id].shortname=ae.attribute('shortname').value;
-      result.testament[Id].text=ae.value;
-    }
-    result.info={};
-    var infoElements = rootElement.elements('info')[0].elements('row');
-    for (var i = 0; i < infoElements.length; i++) {
-      var ae = infoElements[i];
-      var Id = ae.attribute('id').value;
-      result.info[Id]=ae.value;
-    }
-    result.author={};
-    var authorElements = rootElement.elements('author')[0].elements('row');
-    for (var i = 0; i < authorElements.length; i++) {
-      var ae = authorElements[i];
-      var Id = ae.attribute('id').value;
-      result.author[Id]=ae.value;
-    }
-    return result;
-}
-*/
+// npm install https://github.com/mapbox/node-sqlite3/tarball/master --save-dev

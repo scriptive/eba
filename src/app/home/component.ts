@@ -39,7 +39,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { LangModel, BookService } from "../book/service";
+import { BookModel, BookService } from "../book/service";
 
 @Component({
   selector: "eba",
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   private itemGroupbyLanguage: (item: any) => any;
 
 
-  private _templateSelector: (item: LangModel, index: number, items: any) => string;
+  private _templateSelector: (item: BookModel, index: number, items: any) => string;
   private defaultCategoryName:string = '...other';
 
   constructor(
@@ -73,11 +73,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.page.actionBarHidden = true;
     this._templateSelector = this.templateSelectorFunction;
-    // this._dataItems = this.bookService.book;
     // this.changeDetectionRef.detectChanges();
-    // this.dataStore();
     this.listViewIndicator();
-    this.itemGroupbyLanguage = (item: LangModel) => {
+    this.itemGroupbyLanguage = (item: BookModel) => {
       return item.lang  ? item.lang.toUpperCase() : this.defaultCategoryName.toUpperCase();
     }
     this.listViewComponent.listView.groupingFunction = this.itemGroupFunction;
@@ -86,9 +84,8 @@ export class HomeComponent implements OnInit {
   }
   ngOnDestroy() {
   }
-  get dataItems(): ObservableArray<LangModel> {
+  get dataItems(): ObservableArray<BookModel> {
     return this.bookService.lang;
-    // return new ObservableArray<LangModel>(this.bookDatabase.lang);
   }
   // NOTE: pullToRefresh="true"
   private listViewIndicator(){
@@ -109,12 +106,7 @@ export class HomeComponent implements OnInit {
   // (pullToRefreshInitiated)="listViewPullToRefreshInitiated($event)"
   public listViewPullToRefreshInitiated(args: ListViewEventData) {
     const listView = args.object;
-    this.bookService.requestLang().then(()=>{
-      console.log('success')
-    },()=>{
-      console.log('fail')
-    }).then(function(){
-      console.log('done')
+    this.bookService.requestBook().then(()=>{
       listView.notifyPullToRefreshFinished();
     });
   }
@@ -158,12 +150,17 @@ export class HomeComponent implements OnInit {
 
   // NOTE: (itemTap)="itemTap($event)"
   itemTap(args: any) {
-    var itemView = args.view, lang = <LangModel>itemView.bindingContext;
-    // console.log(<LangModel>args.view.bindingContext)
-    itemView.opacity = 0.3;
-    itemView.animate({opacity: 1, duration: 200});
-    this.bookService.lId=Number(lang.id);
-    this.nav.to(['section']);
+    var itemView = args.view, item = <BookModel>itemView.bindingContext;
+
+    var itemClassDefault = itemView.class;
+    itemView.class = itemClassDefault + ' tap';
+    setTimeout(()=>{
+      this.bookService.lId=Number(item.id);
+      this.nav.to(['section']);
+      itemView.class = itemClassDefault;
+    },100)
+
+    // console.log('NOTE: testing')
 
      //or, if you need the entire list as well,
      // get it from the Page's bindingContext
@@ -174,44 +171,56 @@ export class HomeComponent implements OnInit {
   }
   // NOTE: (itemTap)="itemDownload($event)"
   itemDownload(args: ListViewEventData) {
-    let itemView = args.object,
-        lang = <LangModel>itemView.bindingContext;
+    var itemObject = args.object,
+        item = <BookModel>itemObject.bindingContext;
 
-    this.bookService.requestContent(Number(lang.id)).then((service:any)=>{
-      console.log('its seem Ok');
-    }).catch(error => {
-      console.log(error);
+    this.bookService.bibleDownload(Number(item.id)).then(()=>{
+      // item.available=1;
+    },error => {
+      item.desc = error;
+    }).then(()=>{
+      this.listViewComponent.listView.notifySwipeToExecuteFinished();
     });
+
+    // this.bookService.downloadBook(Number(item.id));
   }
   // NOTE: (itemTap)="itemClear($event)"
   itemClear(args: ListViewEventData) {
-    let itemView = args.object,
-        lang = <LangModel>itemView.bindingContext;
-    console.log('...working');
+    let itemObject = args.object,
+        item = <BookModel>itemObject.bindingContext;
+    // console.log('...working');
+    // this.bookService.connectBook(Number(item.id));
 
   }
   // NOTE: (itemTap)="itemDelete($event)"
   itemDelete(args: ListViewEventData) {
-    let itemView = args.object,
-        lang = <LangModel>itemView.bindingContext;
-    // let lang = args.object.bindingContext
-    // let index = this.dataItems.indexOf(lang);
-    const listView = this.listViewComponent.listView;
-    // listView.refresh();
-    this.dataItems.forEach( (v,i,a) => {
-      if (v.id == lang.id){
-        if (isAndroid)listView.groupingFunction = undefined;
-        if (a.length > 1 ) {
-          a.splice(i, 1);
-        } else {
-          a.shift();
-        }
-        if (isAndroid)listView.groupingFunction = this.itemGroupFunction;
-        listView.refresh();
-        listView.notifySwipeToExecuteFinished();
-      }
+    let itemObject = args.object,
+        item = <BookModel>itemObject.bindingContext;
+    // let item = args.object.bindingContext
+    // let index = this.dataItems.indexOf(item);
+    this.bookService.bibleDelete(Number(item.id)).then(()=>{
+      // item.available=0;
+    },error => {
+      console.log(error);
+    }).then(()=>{
+      this.listViewComponent.listView.notifySwipeToExecuteFinished();
     });
 
+    // const listView = this.listViewComponent.listView;
+    // listView.refresh();
+    // this.dataItems.forEach( (v,i,a) => {
+    //   if (v.id == lang.id){
+    //     if (isAndroid)listView.groupingFunction = undefined;
+    //     if (a.length > 1 ) {
+    //       a.splice(i, 1);
+    //     } else {
+    //       a.shift();
+    //     }
+    //     if (isAndroid)listView.groupingFunction = this.itemGroupFunction;
+    //     listView.refresh();
+    //     listView.notifySwipeToExecuteFinished();
+    //   }
+    // });
   }
 
   // [groupingFunction]="itemGroupFunction"
@@ -222,13 +231,13 @@ export class HomeComponent implements OnInit {
     this.itemGroupbyLanguage = value;
   }
   // [itemTemplateSelector]="templateSelector"
-  get templateSelector(): (item: LangModel, index: number, items: any) => string {
+  get templateSelector(): (item: BookModel, index: number, items: any) => string {
     return this._templateSelector;
   }
-  set templateSelector(value: (item: LangModel, index: number, items: any) => string) {
+  set templateSelector(value: (item: BookModel, index: number, items: any) => string) {
     this._templateSelector = value;
   }
-  public templateSelectorFunction = (item: LangModel, index: number, items: any) => {
+  public templateSelectorFunction = (item: BookModel, index: number, items: any) => {
     return item.lang || this.defaultCategoryName;
   }
 }

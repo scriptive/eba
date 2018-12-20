@@ -21,6 +21,7 @@ import {Color} from "tns-core-modules/color";
 
 import { EventData } from "tns-core-modules/data/observable";
 // import { TextField } from "ui/text-field";
+import { TextView } from "ui/text-view";
 import { Label } from "tns-core-modules/ui/label";
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { FormattedString } from "tns-core-modules/text/formatted-string";
@@ -36,7 +37,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { BookItem, SectionItem, CategoryModel, BookService, BookDatabase } from "./service";
+import { CategoryModel, BookService, BookDatabase } from "./service";
 
 @Component({
   selector:'eba',
@@ -72,36 +73,27 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.changeDetectionRef.detectChanges();
     this.dataInit();
+    this.copyItems = new ObservableArray<CategoryModel>();
   }
 
   private dataInit() {
-    this.bookService.requestContent().then((_msg:any)=>{
-
-      // this.langCurrent = this.bookDatabase.lang.filter((o:any)=> o.id == this.bookService.lang)[0];
-      // this.bookService.langList = this.bookDatabase.lang;
-      this.bookService.book().then((raw:any[])=>{
-        this.bookService.bookList = raw;
+    this.bookService.requestBible().then((raw:any)=>{
+      raw.book().then((srcBook:any[])=>{
+        this.bookService.srcBook=srcBook;
       })
-      this.bookService.section().then((raw:any[])=>{
-        this.bookService.sectionList = raw;
+      raw.section().then((srcSection:any[])=>{
+        this.bookService.srcSection=srcSection;
         this.actionTitle = this.bookService.sectionName();
       })
-      this.bookService.category().then((rows:ObservableArray<CategoryModel>)=>{
+      raw.category(this.bookService.sId).then((rows:CategoryModel)=>{
         this.masterItems = rows;
         this.copyItems = new ObservableArray<CategoryModel>();
         this.chunkItems(2);
         this.ActivityIndicatorMsg = null;
       })
-    }).catch(error => {
-      if (error instanceof Object) {
-        if (error.hasOwnProperty('statusText')) {
-          this.ActivityIndicatorMsg = error.statusText;
-        } else {
-          this.ActivityIndicatorMsg = JSON.stringify(error);
-        }
-      } else {
-        this.ActivityIndicatorMsg = "Error";
-      }
+      // console.log(this.bookService.sId,raw)
+    },(error) => {
+      this.ActivityIndicatorMsg = error;
     }).then(() => {
       this.ActivityIndicatorBusy=false;
     });
@@ -167,6 +159,7 @@ export class CategoryComponent implements OnInit {
         // span.fontWeight = "300";
         span.color = new Color("red");
         span.text = this.bookService.digit(itmNumber);
+
         formattedString.spans.push(span);
 
         span = new Span();
@@ -211,8 +204,14 @@ export class CategoryComponent implements OnInit {
   }
   // NOTE: (textChange)="itemDescriptionFormat($event)"
   itemDescriptionFormat(args: any) {
-    const container = <Label>args.object;
+    // if (isAndroid) {
+    //   (<TextField>args.object).nativeView.setTextIsSelectable(true);
+    // }
+    const container = <TextView>args.object;
     var item = container.bindingContext;
+    if (isAndroid) {
+      container.nativeView.setTextIsSelectable(true);
+    }
     container.formattedText = this.formatTextDescription(item);
     /*
     (<Label>args.object).formattedText = formattedString;

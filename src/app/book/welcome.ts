@@ -12,7 +12,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { LangModel, BookService } from "./service";
+import { BookModel, BookService } from "./service";
 
 @Component({
   selector:'eba',
@@ -41,7 +41,7 @@ export class WelcomeComponent implements OnInit {
     this.bookService.lId = bookId;
     this.nav.to(['section']);
   }
-  get dataItems(): ObservableArray<LangModel> {
+  get dataItems(): ObservableArray<BookModel> {
     return this.bookService.lang;
   }
 }

@@ -73,11 +73,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     // this.router.navigate(['welcome'])
     // this.nav.actionBarToggle();
     on(exitEvent, (args: ApplicationEventData) => {
-      this.bookService.save();
+      this.bookService.saveStore();
       this.nav.save();
     });
     on(suspendEvent, (args: ApplicationEventData) => {
-      this.bookService.save();
+      this.bookService.saveStore();
       this.nav.save();
     });
   }

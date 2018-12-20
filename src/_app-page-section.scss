@@ -60,7 +60,17 @@ RadListView {
           color:darken(#fff,7);
           background-color:lighten($icon-default-color,40);
         }
-
+      }
+      &.tap {
+        background-color: darken($body-bg-color,4%);
+        > Label {
+          &.name {
+            color:lighten($icon-default-color,35%);
+          }
+          &.desc {
+            color:lighten(#666,35%);
+          }
+        }
       }
     }
   }

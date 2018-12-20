@@ -1,13 +1,22 @@
 # Version
 
 ```
-tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.8.apk
+tns build android --key-store-path assets/lethil.jks --key-store-password search --key-store-alias lethil --key-store-alias-password search --clean --release --copy-to dist/playStore/EBA-beta.0.0.9.apk
 ```
 
 
 # 0.0.9
-- swipe Option
-  - *
+- seperated SQLite into each Books
+  - improve
+    - performance
+    - UI
+- add
+  - icon
+  - each section count
+  - swipe Option
+  - TextView at category
+- ability to remove/add each books
+- ability to copy topics
 
 # 0.0.8
 - integrating SQLite,

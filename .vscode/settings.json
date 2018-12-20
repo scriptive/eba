@@ -2,9 +2,11 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "editor.renderLineHighlight": "none",
+    "editor.detectIndentation": false,
     "editor.fontSize": 13,
     "files.exclude": {
         "src/**/*.js": true,
         "src/**/*.css": true
-    }
+    },
+    "editor.tabSize": 2
 }

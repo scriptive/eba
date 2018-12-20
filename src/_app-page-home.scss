@@ -55,6 +55,17 @@ RadListView{
       // &.my{}
       // &.zo{}
       // &.other{}
+      &.tap {
+        background-color: darken($body-bg-color,4%);
+        Label {
+          &.name{
+            color:lighten($icon-active-color,20%);
+          }
+          &.desc{
+            color:darken(#666,15%);
+          }
+        }
+      }
     }
     &.header{
       background-color: darken($container-bg-color,0%);

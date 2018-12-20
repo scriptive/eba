@@ -1,4 +1,4 @@
-export const dataBook:any={
+export const BookData:any={
   1:{
     name:"Zomi",
     lang:"zo",

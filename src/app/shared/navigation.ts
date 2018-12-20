@@ -32,7 +32,7 @@ export class AppNavigation {
       }
     });
     if (this.currentRouteName) {
-      this.router.navigate([this.currentRouteName])
+      // this.router.navigate([this.currentRouteName])
     }
   }
 

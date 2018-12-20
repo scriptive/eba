@@ -18,6 +18,7 @@
 			"terminal.background" : "#666",
 			"statusBar.foreground":"#5b5b5b",
 			"statusBar.background":"#c4c4c4"
-		}
+		},
+		"editor.tabSize": 2
 	}
 }

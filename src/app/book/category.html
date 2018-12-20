@@ -18,7 +18,7 @@
 			<ng-template tkListItemTemplate let-item="item" let-i="index">
 				<StackLayout class="item" rows="auto">
 					<Label class="book" [text]="i" (textChange)="itemBookFormat($event)"></Label>
-					<Label class="desc" [text]="i" (textChange)="itemDescriptionFormat($event)" textWrap="true"></Label>
+          <TextView editable="false" class="desc" [text]="i" (textChange)="itemDescriptionFormat($event)"></TextView>
 				</StackLayout>
 			</ng-template>
 		</RadListView>

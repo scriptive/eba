@@ -24,7 +24,7 @@ import {
   AppHttp
 } from "../shared";
 
-import { BookItem,  BookService, SectionModel, BookDatabase } from "./service";
+import { BookService, SectionModel, BookDatabase } from "./service";
 
 @Component({
   selector:'eba',
@@ -76,28 +76,20 @@ export class SectionComponent implements OnInit {
     }
     this.listViewComponent.listView.groupingFunction = this.itemGroupFunction;
     this.dataInit();
+    this.copyItems = new ObservableArray<SectionModel>();
   }
 
   private dataInit() {
-    this.bookService.requestContent().then((service:any)=>{
-      // console.log('section',_msg);
-      service.section().then((rows:ObservableArray<SectionModel>)=>{
+    this.bookService.requestBible().then((raw:any)=>{
+      raw.section().then((rows:SectionModel)=>{
+        this.bookService.srcSection=rows;
         this.masterItems = rows;
         this.copyItems = new ObservableArray<SectionModel>();
         this.copyItems.push(this.masterItems);
         this.ActivityIndicatorMsg = null;
-        // this.masterItems = new ObservableArray<SectionModel>(service.sId);
       })
-    }).catch(error => {
-      if (error instanceof Object) {
-        if (error.hasOwnProperty('statusText')) {
-          this.ActivityIndicatorMsg = error.statusText;
-        } else {
-          this.ActivityIndicatorMsg = JSON.stringify(error);
-        }
-      } else {
-        this.ActivityIndicatorMsg = "Error";
-      }
+    },(error) => {
+      this.ActivityIndicatorMsg = error;
     }).then(() => {
       this.ActivityIndicatorBusy=false;
     });
@@ -110,26 +102,14 @@ export class SectionComponent implements OnInit {
   }
   // NOTE: (itemTap)="itemTap($event)"
   itemTap(args: any) {
-    var itemView = args.view, section = <SectionModel>itemView.bindingContext;
-    // itemView.backgroundColor = new Color(this.bookService.highlightColor);
-    this.bookService.sId = Number(section.id);
-    this.nav.to(['category']);
-    // itemView.backgroundColor ='red';
-    // itemView.color ='red';
-    // itemView.backgroundColor = new Color("red");
-    // itemView.animate({ backgroundColor: new Color("green"), duration:100 });
-    itemView.opacity = 0.3;
-    itemView.animate({opacity: 1, duration: 200});
-
-    // itemView.animate({
-    //     translate: { x: 100, y: 100 },
-    //     duration: 100
-    // }).then(function() {
-    //     return itemView.animate({
-    //         opacity: 0,
-    //         duration: 100
-    //     });
-    // });
+    var itemView = args.view, item = <SectionModel>itemView.bindingContext;
+    var itemClassDefault = itemView.class;
+    itemView.class = itemClassDefault + ' tap';
+    setTimeout(()=>{
+      this.bookService.sId = Number(item.id);
+      this.nav.to(['category']);
+      itemView.class = itemClassDefault;
+    },100)
   }
   // [groupingFunction]="itemGroupFunction"
   get itemGroupFunction(): (item: any) => any {

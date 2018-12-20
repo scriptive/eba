@@ -12,6 +12,10 @@ RadListView {
           color:lighten(#666,20%);
           font-size: 13;
         }
+      }
+      TextView {
+        background-color: transparent;
+        border-color: transparent;
         &.desc{
           font-size: 18;
           font-weight: 300;
